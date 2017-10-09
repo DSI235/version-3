@@ -11,10 +11,18 @@ package Clases;
  */
 public class DetalleCompra {
     public Producto producto;
-    public int cantidad;
+    public double cantidad;
     public double costoUnitario;
     
     public DetalleCompra(){
         
     }
+
+    public DetalleCompra(Producto producto, int cantidad, double costoUnitario) {
+        this.producto = producto;
+        this.cantidad = cantidad;
+        this.costoUnitario = costoUnitario;
+    }
+    
+    
 }

@@ -8,20 +8,27 @@ import java.sql.*;
 public class conection extends ClaseConexion {
 
     public conection() {
-        
+
     }
 
-    private String password = "1234";
+    private String password = "admin";
     private String usuario = "root";
     private String direccionServidor = "localhost";
-    private String nombreBaseDatos = "tienda";
-    private String puerto = "3306";
+    private String nombreBaseDatos = "tiendav2";
+    private String puerto = "3336";
 
     @Override
     public void CrearConexion() throws Exception {
         Class.forName("com.mysql.jdbc.Driver");
         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + nombreBaseDatos, usuario, password);
         System.out.println(":)");
+    }
+
+    public Connection getConexion() throws Exception {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + nombreBaseDatos, usuario, password);
+        System.out.println(":)");
+        return con;
     }
 
     public void setPassword(String password) {
@@ -43,4 +50,5 @@ public class conection extends ClaseConexion {
     public void setPuerto(String puerto) {
         this.puerto = puerto;
     }
+
 }

@@ -13,7 +13,7 @@ import java.util.ListIterator;
 
 /**
  *
- * @author Gabriela
+ * @author Roger
  */
 public class iList implements java.util.List<ListasTablas>{
        ListasTablas[] campos;

@@ -13,8 +13,9 @@ public class Producto {
 
     public String CodBarra;
     public String nombre;
-    public int inventario;
+    public double inventario;
     public double costo;
+    public int idSucursal;
     
     public Producto(String CodBarra, String nombre, int inventario, double costo ){
         this.CodBarra = CodBarra;
@@ -22,6 +23,15 @@ public class Producto {
         this.inventario = inventario;
         this.costo = costo;
     }
+
+    public Producto(String CodBarra, String nombre, double inventario, double costo, int idSucursal) {
+        this.CodBarra = CodBarra;
+        this.nombre = nombre;
+        this.inventario = inventario;
+        this.costo = costo;
+        this.idSucursal = idSucursal;
+    }
+    
     
     public Producto(){}
     

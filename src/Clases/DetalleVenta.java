@@ -16,33 +16,19 @@ import java.text.DecimalFormat;
 public class DetalleVenta {
     
   public Producto producto;
-  public int cantidad;
+  public double cantidad;
   public double PrecioUnitario;
 
   DecimalFormat decimal = new DecimalFormat("0.00");
+  public DetalleVenta(){
+        
+    }
 
-  public DetalleVenta(Producto producto, int cantidad, double PrecioUnitario){
+  public DetalleVenta(Producto producto, double cantidad, double PrecioUnitario){
       this.PrecioUnitario = PrecioUnitario;
       this.cantidad = cantidad;
       this.producto = producto;
   }
-  
-  public void New(String codBarra, int cantidad){
-  
-        this.cantidad = cantidad;
-        Producto p=new Producto();
-        p.CodBarra = codBarra;
-  }
-  public double calcularPrecio() throws ErrorTienda{
-     Parametro p=new Parametro();
-        try{
-           decimal.setRoundingMode(RoundingMode.CEILING); 
-        return Double.parseDouble(decimal.format(producto.costo/(1-(Double.parseDouble(p.ObtenerUtilidad().valor)/100))));
-        }catch(ArithmeticException ex){
-            throw new ErrorTienda("Error de Calculo", ex.getMessage());
-
-   }
-
-  } 
+ 
  
 }
