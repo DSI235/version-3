@@ -126,14 +126,26 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             modelo.setColumnIdentifiers(proveedores);
             Iterator<Proveedor> prov = proveedor.iterator();
             
-            while (prov.hasNext()) {
-                fila[0] = prov.next();
-                fila[1] = prov.next();
-                fila[2] = prov.next();
-                fila[3] = prov.next();
-                fila[4] = prov.next();
-                fila[5] = prov.next();
-                fila[6] = prov.next();
+            if (prov.hasNext()){
+                while (prov.hasNext()) {
+                    fila[0] = prov.next();
+                    fila[1] = prov.next();
+                    fila[2] = prov.next();
+                    fila[3] = prov.next();
+                    fila[4] = prov.next();
+                    fila[5] =  prov.next();
+                    fila[6] = prov.next();
+                    modelo.addRow(fila);
+                    tblProveedores.setModel(modelo);
+                }
+            } else {
+                fila[0] = "-";
+                fila[1] = "-";
+                fila[2] = "-";
+                fila[3] = "-";
+                fila[4] = "-";
+                fila[5] = "-";
+                fila[6] = "-";
                 modelo.addRow(fila);
                 tblProveedores.setModel(modelo);
             }
@@ -145,9 +157,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblProveedores.getColumnModel().getColumn(5).setMaxWidth(0);
         tblProveedores.getColumnModel().getColumn(5).setWidth(0);
 
-        //tblProveedores.getColumnModel().getColumn(6).setMinWidth(0);
-//        tblProveedores.getColumnModel().getColumn(6).setMaxWidth(0);
-//        tblProveedores.getColumnModel().getColumn(6).setWidth(0);
+        tblProveedores.getColumnModel().getColumn(6).setMinWidth(0);
+        tblProveedores.getColumnModel().getColumn(6).setMaxWidth(0);
+        tblProveedores.getColumnModel().getColumn(6).setWidth(0);
 
     }
 
@@ -522,15 +534,27 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             String[] sucursales = new String[]{"IdSucursal", "Nombre", "Direccion", "Telefono"};
             modelo.setColumnIdentifiers(sucursales);
             Iterator<Sucursal> prov = sucursal.iterator();
-            while (prov.hasNext()) {
-                fila[0] = prov.next();
-                fila[1] = prov.next();
-                fila[2] = prov.next();
-                fila[3] = prov.next();
+            
+            if (prov.hasNext()){
+                while (prov.hasNext()) {
+                    fila[0] = prov.next();
+                    fila[1] = prov.next();
+                    fila[2] = prov.next();
+                    fila[3] = prov.next();
+
+                    modelo.addRow(fila);
+                    tblSucursal.setModel(modelo);
+                }
+            } else {
+                fila[0] = "-";
+                fila[1] = "-";
+                fila[2] = "-";
+                fila[3] = "-";
 
                 modelo.addRow(fila);
                 tblSucursal.setModel(modelo);
             }
+
         } catch (ErrorTienda ex) {
             Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -4785,6 +4809,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         try {
             String[] cm = new String[]{"Nombre"};
             ArrayList<Object> listaSucursales = new ArrayList();
+            
+
             // ComboBoxModel modelo;
             //cmbSucursales1.removeAllItems();
 
@@ -4810,14 +4836,24 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             String[] productos = new String[]{"CodBarra", "Nombre", "Sucursal", "Cantidad", "Costo"};
             model.setColumnIdentifiers(productos);
             Iterator<Producto> prod = listaProducto.iterator();
-            while (prod.hasNext()) {
-                fila[0] = prod.next();
-                fila[1] = prod.next();
-                fila[3] = prod.next();
-                fila[4] = prod.next();
-                fila[2] = prod.next();
-                model.addRow(fila);
+            
+            if (prod.hasNext()){
+                while (prod.hasNext()) {
+                    fila[0] = prod.next();
+                    fila[1] = prod.next();
+                    fila[3] = prod.next();
+                    fila[4] = prod.next();
+                    fila[2] = prod.next();
+                    model.addRow(fila);
 
+                }
+            } else {
+                fila[0] = "-";
+                fila[1] = "-";
+                fila[3] = "-";
+                fila[4] = "-";
+                fila[2] = "-";
+                model.addRow(fila);
             }
 
             jtblProductos.setModel(model);
@@ -5128,7 +5164,13 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         } catch (ErrorTienda ex) {
             Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        txtIdCompra.setText(Integer.toString(idCompra));
+        
+        if (idCompra == 0) {
+            txtIdCompra.setText("1");
+        } else {
+            txtIdCompra.setText(Integer.toString(idCompra));
+        }
+        
 
         //FECHA DEL MOMENTO
         java.util.Date date = new Date();
@@ -5337,23 +5379,36 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
             Object[] fila = new Object[6];
 
-            String[] productos = new String[]{"CodBarra", "Nombre", "Sucursal", "Cantidad", "Costo"};
+            String[] productos = new String[]{"CodBarra", "Nombre", "Sucursal", "Cantidad", "Costo", "IdSucursal"};
             modelo.setColumnIdentifiers(productos);
             Iterator<Producto> prod = listaProducto.iterator();
-            while (prod.hasNext()) {
-                fila[0] = prod.next();
-                fila[1] = prod.next();
-                fila[3] = prod.next();
-                fila[4] = prod.next();
-                fila[2] = prod.next();
-                modelo.addRow(fila);
+            
+            if(prod.hasNext()) {
+                while (prod.hasNext()) {
+                    fila[0] = prod.next();
+                    fila[1] = prod.next();
+                    fila[3] = prod.next();
+                    fila[4] = prod.next();
+                    fila[2] = prod.next();
+                    fila[5] = prod.next();
+                    modelo.addRow(fila);
 
+                }
+            } else {
+                fila[0] = "-";
+                fila[1] = "-";
+                fila[3] = "-";
+                fila[4] = "-";
+                fila[2] = "-";
+                fila[5] = "-";
+                modelo.addRow(fila);
             }
+            
 
             jtblProductos.setModel(modelo);
-//            jtblProductos.getColumnModel().getColumn(5).setMinWidth(0);
-//            jtblProductos.getColumnModel().getColumn(5).setMaxWidth(0);
-//            jtblProductos.getColumnModel().getColumn(5).setWidth(0);
+            jtblProductos.getColumnModel().getColumn(5).setMinWidth(0);
+            jtblProductos.getColumnModel().getColumn(5).setMaxWidth(0);
+            jtblProductos.getColumnModel().getColumn(5).setWidth(0);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error buscando producto segun sucursal " + e.getMessage());
@@ -5404,7 +5459,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         try {
             Producto p = new Producto();
             p.CodBarra = jtblProductos.getValueAt(jtblProductos.getSelectedRow(), 0).toString();
-            p.idSucursal = Integer.parseInt(jtblProductos.getValueAt(jtblProductos.getSelectedRow(), 4).toString());
+            p.idSucursal = Integer.parseInt(jtblProductos.getValueAt(jtblProductos.getSelectedRow(), 5).toString());
             ControladorProducto.Eliminar(p);
 
             jtblProductos.removeAll();
@@ -5532,7 +5587,13 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         } catch (ErrorTienda ex) {
             Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        txtIdVenta.setText(Integer.toString(idVenta));
+        
+        if (idVenta == 0) {
+            txtIdVenta.setText("1");
+        } else {
+            txtIdVenta.setText(Integer.toString(idVenta));
+        }
+        
 
         //FECHA DEL MOMENTO
         java.util.Date date = new Date();

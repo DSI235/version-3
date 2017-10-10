@@ -117,6 +117,7 @@ public class ControladorProducto {
                     listaProductos.add(rs.getString("Cantidad"));
                     listaProductos.add(rs.getString("Costo"));
                     listaProductos.add(cn.nombreSucursal(rs.getString("IdSucursal")));
+                    listaProductos.add(rs.getString("IdSucursal"));
                 }
 
                 cn.Desconectar();
@@ -140,6 +141,7 @@ public class ControladorProducto {
                     listaProductos.add(rs.getString("Cantidad"));
                     listaProductos.add(rs.getString("Costo"));
                     listaProductos.add(cn.nombreSucursal(rs.getString("IdSucursal")));
+                    listaProductos.add(rs.getString("IdSucursal"));
                 }
 
                 cn.Desconectar();
