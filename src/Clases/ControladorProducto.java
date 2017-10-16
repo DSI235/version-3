@@ -205,7 +205,7 @@ public class ControladorProducto {
 
     public static Inventario ObtenerInventario(String CodigoBarra, int idSucursal) throws ErrorTienda {
         Inventario inventario = new Inventario();
-        String[] bs = new String[]{"CodBarra", "idSucursal"};
+        String[] bs = new String[]{"CodBarra", "idSucursal", "Cantidad"};
         try {
             cn.Conectar();
             iList p = new iList(new ListasTablas("CodBarra", CodigoBarra));
@@ -215,6 +215,7 @@ public class ControladorProducto {
                 rs.first();
                 inventario.codBarra = rs.getString(1);
                 inventario.idSucursal = rs.getInt(2);
+                inventario.cantidad = rs.getInt(3);
             }
 
         } catch (Exception ex) {

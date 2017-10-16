@@ -467,7 +467,7 @@ public abstract class ClaseConexion {
 
     public Double InventarioGlobal(String codBarra) {
         Double inventarioG = 0.0;
-        String sql = "SELECT Cantidad FROM inventario WHERE CodBarra = '" + codBarra + "'";
+        String sql = "SELECT SUM(Cantidad) as Cantidad FROM inventario WHERE CodBarra = '" + codBarra + "'";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
