@@ -1499,6 +1499,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 btnProductosMouseExited(evt);
             }
         });
+        btnProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductosActionPerformed(evt);
+            }
+        });
         jpnSubMenu.add(btnProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(-126, 120, 180, 40));
 
         btnVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ventas.png"))); // NOI18N
@@ -4827,36 +4832,36 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "111111111 " + e.getMessage());
             }
 
-            ArrayList<Producto> listaProducto = CP.Buscar("", Integer.parseInt(cn.BuscarId("Sucursal", "IdSucursal", "Nombre", cmbSucursales1.getItemAt(0).toString())));
-            DefaultTableModel model = new DefaultTableModel();
-            System.out.println("Lista de productos que coinciden: " + listaProducto.toString());
+            //ArrayList<Producto> listaProducto = CP.Buscar("", Integer.parseInt(cn.BuscarId("Sucursal", "IdSucursal", "Nombre", cmbSucursales1.getItemAt(0).toString())));
+            //DefaultTableModel model = new DefaultTableModel();
+            //System.out.println("Lista de productos que coinciden: " + listaProducto.toString());
 
-            Object[] fila = new Object[5];
+            //Object[] fila = new Object[5];
 
-            String[] productos = new String[]{"CodBarra", "Nombre", "Sucursal", "Cantidad", "Costo"};
-            model.setColumnIdentifiers(productos);
-            Iterator<Producto> prod = listaProducto.iterator();
+            //String[] productos = new String[]{"CodBarra", "Nombre", "Sucursal", "Cantidad", "Costo"};
+            //model.setColumnIdentifiers(productos);
+            //Iterator<Producto> prod = listaProducto.iterator();
             
-            if (prod.hasNext()){
-                while (prod.hasNext()) {
-                    fila[0] = prod.next();
-                    fila[1] = prod.next();
-                    fila[3] = prod.next();
-                    fila[4] = prod.next();
-                    fila[2] = prod.next();
-                    model.addRow(fila);
+            //if (prod.hasNext()){
+                //while (prod.hasNext()) {
+                    //fila[0] = prod.next();
+                    //fila[1] = prod.next();
+                    //fila[3] = prod.next();
+                    //fila[4] = prod.next();
+                    //fila[2] = prod.next();
+                    //model.addRow(fila);
 
-                }
-            } else {
-                fila[0] = "-";
-                fila[1] = "-";
-                fila[3] = "-";
-                fila[4] = "-";
-                fila[2] = "-";
-                model.addRow(fila);
-            }
+                //}
+            //} else {
+                //fila[0] = "-";
+                //fila[1] = "-";
+                //fila[3] = "-";
+                //fila[4] = "-";
+                //fila[2] = "-";
+                //model.addRow(fila);
+            //}
 
-            jtblProductos.setModel(model);
+            //jtblProductos.setModel(model);
 //            jtblProductos.getColumnModel().getColumn(5).setMinWidth(0);
 //            jtblProductos.getColumnModel().getColumn(5).setMaxWidth(0);
 //            jtblProductos.getColumnModel().getColumn(5).setWidth(0);
@@ -5342,7 +5347,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarProductoMouseExited
 
     private void btnBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProductoActionPerformed
-        System.out.println("txtProductosBuscar = " + txtProductosBuscar.getText());
+        System.out.println("txtProductosBuscar EN ACCION DE BOTON = " + txtProductosBuscar.getText());
         ControladorProducto CP = new ControladorProducto();
         LlenarProducto(txtProductosBuscar.getText());
         //ID SUCURSAL SELECCIONADA
@@ -5926,6 +5931,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
                         jtblProductos.removeAll();
                         LlenarProducto("");
+                        btnBuscarProducto.doClick();
 
                         DetalleCompra articulo = new DetalleCompra();
                         articulo.producto = produ;
@@ -5979,6 +5985,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                     ControladorProducto.Modificar(actProdu);
                     jtblProductos.removeAll();
                     LlenarProducto("");
+                    btnBuscarProducto.doClick();
 
                     DetalleCompra articulo = new DetalleCompra();
                     articulo.producto = produ;
@@ -7876,6 +7883,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         LlenarTablaMesCompra(cmbMes1.getSelectedItem().toString(), cmbAño1.getSelectedItem().toString());
         jpnReporteMesCompras.setVisible(true);
     }//GEN-LAST:event_reporteComprabtnActionPerformed
+
+    private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProductosActionPerformed
 
     /**
      * @param args the command line arguments
