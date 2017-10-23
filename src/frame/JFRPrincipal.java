@@ -59,7 +59,7 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public final class JFRPrincipal extends javax.swing.JFrame {
 
-    boolean ventas, compras, productos, proveedores, sucursales, precios, configuracion;
+    boolean ventas, compras, productos, proveedores, sucursales, precios, configuracion, usuarios, bitacora;
     boolean apagado, principal;
     int x, y;
     int filas = 0;
@@ -95,7 +95,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tHeadListaComprasMes = tblListaComprasMes.getTableHeader();
 
         cabezera();
-        ventas = compras = productos = proveedores = sucursales = precios = configuracion = apagado = false;
+        ventas = compras = productos = proveedores = sucursales = precios = configuracion = usuarios = bitacora = apagado = false;
         btnVentas.setBorder(null);
         btnCompras.setBorder(null);
         btnProductos.setBorder(null);
@@ -917,6 +917,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         btnAbrirPara = new javax.swing.JButton();
         btnAbrirSuc = new javax.swing.JButton();
         btnAbrirTP = new javax.swing.JButton();
+        btnAbrirUsuarios = new javax.swing.JButton();
+        btnAbrirBitacora = new javax.swing.JButton();
         btnHome = new javax.swing.JLabel();
         jpnPrincipal = new javax.swing.JPanel();
         jpnPrimero = new javax.swing.JPanel();
@@ -1602,7 +1604,37 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnSubMenu.add(btnAbrirTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(-130, 270, 180, 40));
 
-        jpnBarraMenu.add(jpnSubMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 77, 190, 400));
+        btnAbrirUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Usuarios.png"))); // NOI18N
+        btnAbrirUsuarios.setBorder(null);
+        btnAbrirUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAbrirUsuariosMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAbrirUsuariosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAbrirUsuariosMouseExited(evt);
+            }
+        });
+        jpnSubMenu.add(btnAbrirUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(-130, 350, 180, 40));
+
+        btnAbrirBitacora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Bitacora.png"))); // NOI18N
+        btnAbrirBitacora.setBorder(null);
+        btnAbrirBitacora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAbrirBitacoraMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAbrirBitacoraMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAbrirBitacoraMouseExited(evt);
+            }
+        });
+        jpnSubMenu.add(btnAbrirBitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(-130, 400, -1, -1));
+
+        jpnBarraMenu.add(jpnSubMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 77, 190, 460));
 
         btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Home48.png"))); // NOI18N
         btnHome.setToolTipText("Inicio");
@@ -7888,6 +7920,42 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnProductosActionPerformed
 
+    private void btnAbrirUsuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirUsuariosMouseEntered
+        if (!usuarios) {
+            Animacion.Animacion.mover_derecha(-126, 0, 1, 2, btnAbrirUsuarios);
+        }
+    }//GEN-LAST:event_btnAbrirUsuariosMouseEntered
+
+    private void btnAbrirUsuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirUsuariosMouseExited
+        if (!configuracion) {
+            Animacion.Animacion.mover_izquierda(0, -126, 1, 2, btnAbrirUsuarios);
+        }
+    }//GEN-LAST:event_btnAbrirUsuariosMouseExited
+
+    private void btnAbrirUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirUsuariosMouseClicked
+        apagado();
+        apagado2();
+        //jpnUsuarios.setVisible(true);
+    }//GEN-LAST:event_btnAbrirUsuariosMouseClicked
+
+    private void btnAbrirBitacoraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirBitacoraMouseEntered
+        if (!bitacora) {
+            Animacion.Animacion.mover_derecha(-126, 0, 1, 2, btnAbrirBitacora);
+        }
+    }//GEN-LAST:event_btnAbrirBitacoraMouseEntered
+
+    private void btnAbrirBitacoraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirBitacoraMouseExited
+        if (!bitacora) {
+            Animacion.Animacion.mover_izquierda(0, -126, 1, 2, btnAbrirBitacora);
+        }
+    }//GEN-LAST:event_btnAbrirBitacoraMouseExited
+
+    private void btnAbrirBitacoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirBitacoraMouseClicked
+        apagado();
+        apagado2();
+        //jpnBitacora.setVisible(true);
+    }//GEN-LAST:event_btnAbrirBitacoraMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -7932,9 +8000,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAbrirBitacora;
     private javax.swing.JButton btnAbrirPara;
     private javax.swing.JButton btnAbrirSuc;
     private javax.swing.JButton btnAbrirTP;
+    private javax.swing.JButton btnAbrirUsuarios;
     private javax.swing.JButton btnAgregarCompra;
     private javax.swing.JButton btnAgregarNuevoProducto;
     private javax.swing.JButton btnAgregarProd1;
