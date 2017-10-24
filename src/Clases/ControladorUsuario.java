@@ -44,7 +44,7 @@ public class ControladorUsuario {
             u.add(new ListasTablas("Clave", U.clave));
             u.add(new ListasTablas("Rol", U.rol));
             u.add(new ListasTablas("Estado", U.estado));
-            cn.ModificarRegistro("Usuario", u, a);
+            cn.ModificarRegistro("usuario", u, a);
         } catch (Exception e) {
             throw new ErrorTienda("Class ControladorUsuario/Modificar", e.getMessage());
         }
@@ -57,7 +57,7 @@ public class ControladorUsuario {
         try {
             cn.Conectar();
             iList cond = new iList(new ListasTablas("IdUsuario", U.idUsuario));
-            if (cn.Eliminar("Usuario", cond)) {
+            if (cn.Eliminar("usuario", cond)) {
                 System.out.println("Registro eliminado exitosamente");
             }
 
@@ -73,7 +73,7 @@ public class ControladorUsuario {
         ArrayList<Object> listaUsuarios = new ArrayList();
         try {
             cn.Conectar();
-            PreparedStatement ps = cn.BuscarTodos("Usuario", cm);
+            PreparedStatement ps = cn.BuscarTodos("usuario", cm);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -100,7 +100,7 @@ public class ControladorUsuario {
         PreparedStatement ps;
         try {
             cn.Conectar();
-            ps = cn.BuscarIdMax("IdUsuario", "Usuario");
+            ps = cn.BuscarIdMax("IdUsuario", "usuario");
             rs = ps.executeQuery();
             while (rs.next()) {
                 Id = rs.getInt(1);
@@ -119,7 +119,7 @@ public class ControladorUsuario {
             cn.Conectar();
             String[] cm = new String[]{"IdUsuario", "Username", "Clave", "Rol", "Estado"};
             iList cond = new iList(new ListasTablas("username", username));
-            ps = cn.BuscarRegistro("Usuario", cm, cond);
+            ps = cn.BuscarRegistro("usuario", cm, cond);
             rs = ps.executeQuery();
             while (rs.next()) {
                 user.idUsuario = rs.getInt("IdUsuario");

@@ -35,7 +35,7 @@ public class Parametro {
         ArrayList<Object> listaParametro = new ArrayList();
         try {
             cn.Conectar();
-            PreparedStatement ps = cn.BuscarTodos("Parametro", cm);
+            PreparedStatement ps = cn.BuscarTodos("parametro", cm);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -84,7 +84,7 @@ public class Parametro {
             ArrayList<Object> parametro = new ArrayList();
             try {
                 cn.Conectar();
-                PreparedStatement ps = cn.BuscarTodos("Parametro", cm);
+                PreparedStatement ps = cn.BuscarTodos("parametro", cm);
                 ResultSet rs = ps.executeQuery();
 
                 while (rs.next()) {
@@ -106,7 +106,7 @@ public class Parametro {
             System.out.println("buscar = " + buscar);
             try {
                 cn.Conectar();
-                PreparedStatement ps = cn.BuscarRegistroLikePar("Parametro", "Nombre", buscar);
+                PreparedStatement ps = cn.BuscarRegistroLikePar("parametro", "Nombre", buscar);
                 System.out.println("ps " + ps.toString());
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
@@ -130,7 +130,7 @@ public class Parametro {
             cn.Conectar();
             iList a = new iList(new ListasTablas("IdParametro", par.idParametro));
             iList p = new iList(new ListasTablas("Valor", par.valor));
-            cn.ModificarRegistro("Parametro", p, a);
+            cn.ModificarRegistro("parametro", p, a);
         } catch (Exception e) {
             throw new ErrorTienda("Class Parametro/Modificar", e.getMessage());
         }

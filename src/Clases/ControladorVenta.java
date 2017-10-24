@@ -41,7 +41,7 @@ public class ControladorVenta {
             p.add(new ListasTablas("NIT", venta.NIT));
             p.add(new ListasTablas("NRC", venta.NRC));
             p.add(new ListasTablas("NDocumento", venta.numDocumento));
-            cn.AgregarRegistro("Venta", p, false);
+            cn.AgregarRegistro("venta", p, false);
 
         } catch (SQLException e) {
             throw new ErrorTienda("Class ControladorVenta/Agregar", e.getMessage());
@@ -54,7 +54,7 @@ public class ControladorVenta {
         ArrayList<Object> listaVentas = new ArrayList();
         try {
             cn.Conectar();
-            PreparedStatement ps = cn.BuscarTodos("Venta", cm);
+            PreparedStatement ps = cn.BuscarTodos("venta", cm);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -91,7 +91,7 @@ public class ControladorVenta {
         try {
 
             cn.Conectar();
-            ps = cn.BuscarIdMax("IdVenta", "Venta");
+            ps = cn.BuscarIdMax("IdVenta", "venta");
             rs = ps.executeQuery();
             while (rs.next()) {
                 Id = rs.getInt(1);

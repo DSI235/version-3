@@ -19,7 +19,7 @@ public class ControladorSucursal {
             p.add(new ListasTablas("Direccion", s.direccion));
             p.add(new ListasTablas("Telefono", s.telefono));
 
-            cn.AgregarRegistro("Sucursal", p, false);
+            cn.AgregarRegistro("sucursal", p, false);
 
         } catch (Exception e) {
             throw new ErrorTienda("Class ControladorSucursal/Agregar", e.getMessage());
@@ -30,7 +30,7 @@ public class ControladorSucursal {
             cn.Conectar();
             iList p = new iList(new ListasTablas("IdSucursal", s.idSucursal));
 
-            cn.Eliminar("Sucursal", p);
+            cn.Eliminar("sucursal", p);
 
         } catch (Exception e) {
             throw new ErrorTienda("Class ControladorSucursal/Eliminar", e.getMessage());
@@ -45,7 +45,7 @@ public class ControladorSucursal {
             iList p = new iList(new ListasTablas("Nombre", s.nombre));
             p.add(new ListasTablas("Direccion", s.direccion));
             p.add(new ListasTablas("Telefono", s.telefono));
-            cn.ModificarRegistro("Sucursal", p, a);
+            cn.ModificarRegistro("sucursal", p, a);
         } catch (Exception e) {
             throw new ErrorTienda("Class ControladorSucursal/Modificar", e.getMessage());
         }
@@ -56,7 +56,7 @@ public class ControladorSucursal {
         ArrayList<Object> listaSucursal = new ArrayList();
         try {
             cn.Conectar();
-            PreparedStatement ps = cn.BuscarTodos("Sucursal", cm);
+            PreparedStatement ps = cn.BuscarTodos("sucursal", cm);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -85,7 +85,7 @@ public class ControladorSucursal {
             ArrayList<Object> sucursal = new ArrayList();
             try {
                 cn.Conectar();
-                PreparedStatement ps = cn.BuscarTodos("Sucursal", cm);
+                PreparedStatement ps = cn.BuscarTodos("sucursal", cm);
                 ResultSet rs = ps.executeQuery();
 
                 while (rs.next()) {
@@ -108,7 +108,7 @@ public class ControladorSucursal {
             System.out.println("buscar = " + buscar);
             try {
                 cn.Conectar();
-                PreparedStatement ps = cn.BuscarRegistroLike("Sucursal", "Nombre", buscar);
+                PreparedStatement ps = cn.BuscarRegistroLike("sucursal", "Nombre", buscar);
                 System.out.println("ps " + ps.toString());
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
@@ -132,7 +132,7 @@ public class ControladorSucursal {
         try {
             cn.Conectar();
             iList p = new iList(new ListasTablas("IdSucursal", id));
-            ResultSet rs = cn.BuscarRegistro("Sucursal", bs, p).executeQuery();
+            ResultSet rs = cn.BuscarRegistro("sucursal", bs, p).executeQuery();
             while (rs.next()){
                 rs.first();
                 s.idSucursal = Integer.parseInt(rs.getString(1));
@@ -156,7 +156,7 @@ public class ControladorSucursal {
         PreparedStatement ps;
         try {
             cn.Conectar();
-            ps = cn.BuscarIdMax("IdSucursal", "Sucursal");
+            ps = cn.BuscarIdMax("IdSucursal", "sucursal");
             rs = ps.executeQuery();
             while (rs.next()) {
                 Id = rs.getInt(1);

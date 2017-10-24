@@ -39,7 +39,7 @@ public class ControladorCompra {
             p.add(new ListasTablas("Total", compra.total));
             
 
-            cn.AgregarRegistro("Compra", p, false);
+            cn.AgregarRegistro("compra", p, false);
 
         } catch (Exception ex) {
             cn.Desconectar();
@@ -56,7 +56,7 @@ public class ControladorCompra {
             p.add(new ListasTablas("Cantidad", compra.articulo.get(1).cantidad));
             p.add(new ListasTablas("IdProveedor", compra.proveedor.idProveedor));
             p.add(new ListasTablas("Total", compra.total));
-            cn.ModificarRegistro("Compra", p, a);
+            cn.ModificarRegistro("compra", p, a);
         } catch (Exception e) {
             throw new ErrorTienda("Error al actualizar ", e.getMessage());
         }
@@ -72,7 +72,7 @@ public class ControladorCompra {
         ArrayList<Object> listaCompra= new ArrayList();
         try {
             cn.Conectar();
-            PreparedStatement ps = cn.BuscarTodos("Venta", cm);
+            PreparedStatement ps = cn.BuscarTodos("venta", cm);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -106,7 +106,7 @@ public class ControladorCompra {
         try {
 
             cn.Conectar();
-            ps = cn.BuscarIdMax("IdCompra", "Compra");
+            ps = cn.BuscarIdMax("IdCompra", "compra");
             rs = ps.executeQuery();
             while (rs.next()) {
                 Id = rs.getInt(1);

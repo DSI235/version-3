@@ -20,7 +20,7 @@ public class ControladorTipoPrecio {
             p.add(new ListasTablas("Utilidad", tipoPrecio.utilidad));
             
 
-            cn.AgregarRegistro("TipoPrecio", p, false);
+            cn.AgregarRegistro("tipoprecio", p, false);
 
         } catch (Exception e) {
             throw new ErrorTienda("Class ControladorTipoPrecio/Agregar", e.getMessage());
@@ -31,7 +31,7 @@ public class ControladorTipoPrecio {
             cn.Conectar();
             iList p = new iList(new ListasTablas("IdTipoPrecio", tipoPrecio.idTipoPrecio));
 
-            cn.Eliminar("TipoPrecio", p);
+            cn.Eliminar("tipoprecio", p);
 
         } catch (Exception e) {
             throw new ErrorTienda("Class ControladorTipoPrecio/Eliminar", e.getMessage());
@@ -45,7 +45,7 @@ public class ControladorTipoPrecio {
             iList a = new iList(new ListasTablas("IdTipoPrecio", tipoPrecio.idTipoPrecio));
             iList p = new iList(new ListasTablas("Nombre", tipoPrecio.nombre));
             p.add(new ListasTablas("Utilidad", tipoPrecio.utilidad));
-            cn.ModificarRegistro("TipoPrecio", p, a);
+            cn.ModificarRegistro("tipoprecio", p, a);
         } catch (Exception e) {
             throw new ErrorTienda("Class ControladorTipoPrecio/Modificar", e.getMessage());
         }
@@ -60,7 +60,7 @@ public class ControladorTipoPrecio {
             ArrayList<Object> listaTipoPrecio = new ArrayList();
             try {
                 cn.Conectar();
-                PreparedStatement ps = cn.BuscarTodos("TipoPrecio", cm);
+                PreparedStatement ps = cn.BuscarTodos("tipoprecio", cm);
                 ResultSet rs = ps.executeQuery();
 
                 while (rs.next()) {
@@ -82,7 +82,7 @@ public class ControladorTipoPrecio {
             System.out.println("buscar = " + buscar);
             try {
                 cn.Conectar();
-                PreparedStatement ps = cn.BuscarRegistroLikeTP("TipoPrecio", "Nombre", buscar);
+                PreparedStatement ps = cn.BuscarRegistroLikeTP("tipoprecio", "Nombre", buscar);
                 System.out.println("ps " + ps.toString());
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
@@ -106,7 +106,7 @@ public class ControladorTipoPrecio {
         try {
             cn.Conectar();
             iList p = new iList(new ListasTablas("IdTipoPrecio", id));
-            ResultSet rs = cn.BuscarRegistro("TipoPrecio", bs, p).executeQuery();
+            ResultSet rs = cn.BuscarRegistro("tipoprecio", bs, p).executeQuery();
             while (rs.next()){
                 rs.first();
                 TipoPrecio.idTipoPrecio = Integer.parseInt(rs.getString(1));

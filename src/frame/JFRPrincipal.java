@@ -340,7 +340,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         } else if (mes.equalsIgnoreCase("Diciembre")) {
             Mes = "12";
         }
-        String[] cm = new String[]{"No", "Fecha", "No Documento", "NRC", "Sucursal", "Iva", "Venta Gravada", "Total"};
+        String[] cm = new String[]{"No", "Fecha", "No Documento", "NRC", "sucursal", "Iva", "Venta Gravada", "Total"};
         ArrayList<Object> listaVentas = new ArrayList();
         DefaultTableModel modelo = new DefaultTableModel();
         conection cn = new conection();
@@ -683,7 +683,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         Object[] fila = new Object[10];
 
-        String[] compras = new String[]{"IdCompra", "Fecha", "TipoCompra", "Sucursal", "Proveedor", "Total", "NumDocumento", "Subtotal", "IVA", "Percepcion"};
+        String[] compras = new String[]{"IdCompra", "Fecha", "TipoCompra", "sucursal", "proveedor", "Total", "NumDocumento", "Subtotal", "IVA", "Percepcion"};
         modelo.setColumnIdentifiers(compras);
         Iterator prod = listaCompras.iterator();
         while (prod.hasNext()) {
@@ -1608,11 +1608,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnProductosMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnProductosMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnProductosMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnProductosMouseEntered(evt);
             }
         });
         btnProductos.addActionListener(new java.awt.event.ActionListener() {
@@ -5270,7 +5270,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             conection cn = new conection();
             try {
                 cn.Conectar();
-                PreparedStatement ps = cn.BuscarTodos("Sucursal", cm);
+                PreparedStatement ps = cn.BuscarTodos("sucursal", cm);
                 ResultSet rs = ps.executeQuery();
 
                 while (rs.next()) {
@@ -5808,7 +5808,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
             try {
                 cn.Conectar();
-                PreparedStatement ps = cn.BuscarRegistro("Sucursal", cm, p);
+                PreparedStatement ps = cn.BuscarRegistro("sucursal", cm, p);
                 ResultSet rs = ps.executeQuery();
 
                 while (rs.next()) {
@@ -5832,7 +5832,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
             Object[] fila = new Object[6];
 
-            String[] productos = new String[]{"CodBarra", "Nombre", "Sucursal", "Cantidad", "Costo", "IdSucursal"};
+            String[] productos = new String[]{"CodBarra", "Nombre", "sucursal", "Cantidad", "Costo", "IdSucursal"};
             modelo.setColumnIdentifiers(productos);
             Iterator<Producto> prod = listaProducto.iterator();
             
@@ -5941,7 +5941,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         try {
             cn.Conectar();
-            id = cn.BuscarId("Sucursal", "IdSucursal", "Nombre", cmbSucursal2.getSelectedItem().toString());
+            id = cn.BuscarId("sucursal", "IdSucursal", "Nombre", cmbSucursal2.getSelectedItem().toString());
             Producto producto = new Producto(txtCodBarraProductos.getText(), txtNombreProductos.getText(), Integer.parseInt(txtProductoInventario.getText()),
                     Double.parseDouble(cuatrodigitos.format(Double.parseDouble(txtPrecioProductos.getText()))), Integer.parseInt(id));
             try {
@@ -6206,7 +6206,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         }
         String id = "";
         try {
-            id = cn.BuscarId("Sucursal", "IdSucursal", "Nombre", txtNuevaSucursalProd.getText());
+            id = cn.BuscarId("sucursal", "IdSucursal", "Nombre", txtNuevaSucursalProd.getText());
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "waaaat" + ex.getMessage());
         }
@@ -7952,7 +7952,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
                 try {
                     cn.Conectar();
-                    PreparedStatement ps = cn.BuscarRegistro("Sucursal", cm, p);
+                    PreparedStatement ps = cn.BuscarRegistro("sucursal", cm, p);
                     ResultSet rs = ps.executeQuery();
 
                     while (rs.next()) {

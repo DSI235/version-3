@@ -30,7 +30,7 @@ public class ControladorProveedor {
             p.add(new ListasTablas("NIT", P.nit));
             p.add(new ListasTablas("NRC", P.NRC));
             p.add(new ListasTablas("Email", P.email));
-            cn.AgregarRegistro("Proveedor", p, false);
+            cn.AgregarRegistro("proveedor", p, false);
         } catch (Exception e) {
             throw new ErrorTienda("Class ControladorProoveedor/Agregar", e.getMessage());
         }
@@ -46,7 +46,7 @@ public class ControladorProveedor {
             p.add(new ListasTablas("NIT", P.nit));
             p.add(new ListasTablas("NRC", P.NRC));
             p.add(new ListasTablas("Email", P.email));
-            cn.ModificarRegistro("Proveedor", p, a);
+            cn.ModificarRegistro("proveedor", p, a);
         } catch (Exception e) {
             throw new ErrorTienda("Class ControladorProveedor/Modificar", e.getMessage());
         }
@@ -60,7 +60,7 @@ public class ControladorProveedor {
             iList cond = new iList(new ListasTablas("IdProveedor", P.idProveedor));
             //Se pueden seguir agregando condiciones para hacer el delete
             //cond.add(new ListasTablas("telefono", P.telefono));
-            if (cn.Eliminar("Proveedor", cond)) {
+            if (cn.Eliminar("proveedor", cond)) {
                 System.out.println("Registro eliminado exitosamente");
             }
 
@@ -75,7 +75,7 @@ public class ControladorProveedor {
         ArrayList<Object> listaProveedores = new ArrayList();
         try {
             cn.Conectar();
-            PreparedStatement ps = cn.BuscarTodos("Proveedor", cm);
+            PreparedStatement ps = cn.BuscarTodos("proveedor", cm);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -104,7 +104,7 @@ public class ControladorProveedor {
         PreparedStatement ps;
         try {
             cn.Conectar();
-            ps = cn.BuscarIdMax("IdProveedor", "Proveedor");
+            ps = cn.BuscarIdMax("IdProveedor", "proveedor");
             rs = ps.executeQuery();
             while (rs.next()) {
                 Id = rs.getInt(1);

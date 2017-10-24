@@ -34,7 +34,7 @@ public class ControladorProducto {
                     iList d = new iList(new ListasTablas("IdSucursal", producto.idSucursal));
                     d.add(new ListasTablas("CodBarra", productoObtenido.CodBarra));
                     d.add(new ListasTablas("Cantidad", producto.inventario));
-                    cn.AgregarRegistro("Inventario", d, false);
+                    cn.AgregarRegistro("inventario", d, false);
                     JOptionPane.showMessageDialog(null, "Este producto ya existe en el catalogo. Se agrego al inventario de la sucursal la cantidad especificada");
 
                 } catch (Exception e) {
@@ -50,11 +50,11 @@ public class ControladorProducto {
                 iList p = new iList(new ListasTablas("CodBarra", producto.CodBarra));
                 p.add(new ListasTablas("Costo", producto.costo));
                 p.add(new ListasTablas("Nombre", producto.nombre));
-                cn.AgregarRegistro("Producto", p, false);
+                cn.AgregarRegistro("producto", p, false);
                 iList d = new iList(new ListasTablas("IdSucursal", producto.idSucursal));
                 d.add(new ListasTablas("CodBarra", producto.CodBarra));
                 d.add(new ListasTablas("Cantidad", producto.inventario));
-                cn.AgregarRegistro("Inventario", d, false);
+                cn.AgregarRegistro("inventario", d, false);
 
             } catch (Exception e) {
                 throw new ErrorTienda("Class ControladorProducto/Agregar", e.getMessage());
@@ -70,12 +70,12 @@ public class ControladorProducto {
             iList a = new iList(new ListasTablas("CodBarra", P.CodBarra));
             iList p = new iList(new ListasTablas("Costo", P.costo));
             p.add(new ListasTablas("Nombre", P.nombre));
-            cn.ModificarRegistro("Producto", p, a);
+            cn.ModificarRegistro("producto", p, a);
             iList b = new iList(new ListasTablas("CodBarra", P.CodBarra));
             b.add(new ListasTablas("IdSucursal", P.idSucursal));
             iList c = new iList(new ListasTablas("Cantidad", P.inventario));
             if (cn.revisarInventario(P.CodBarra, P.idSucursal) == true){
-                cn.ModificarRegistro("Inventario", c, b);
+                cn.ModificarRegistro("inventario", c, b);
             } else {
                 cn.insertarInventario(P.CodBarra, P.idSucursal, P.inventario);
             }
@@ -91,7 +91,7 @@ public class ControladorProducto {
             iList p = new iList(new ListasTablas("CodBarra", producto.CodBarra));
             p.add(new ListasTablas("IdSucursal", producto.idSucursal));
 
-            cn.Eliminar("Inventario", p);
+            cn.Eliminar("inventario", p);
 
         } catch (Exception e) {
             throw new ErrorTienda("Class ControladorProducto/Eliminar", e.getMessage());
@@ -161,10 +161,10 @@ public class ControladorProducto {
         try {
             cn.Conectar();
             iList p = new iList(new ListasTablas("CodBarra", CodigoBarra));
-            ResultSet rs = cn.BuscarRegistro("Producto", bs, p).executeQuery();
+            ResultSet rs = cn.BuscarRegistro("producto", bs, p).executeQuery();
             iList a = new iList(new ListasTablas("CodBarra", CodigoBarra));
             a.add(new ListasTablas("IdSucursal", idSucursal));
-            ResultSet rt = cn.BuscarRegistro("Inventario", ba, a).executeQuery();
+            ResultSet rt = cn.BuscarRegistro("inventario", ba, a).executeQuery();
             while (rs.next()) {
                 rs.first();
                 producto.CodBarra = rs.getString(1);
@@ -188,7 +188,7 @@ public class ControladorProducto {
         try {
             cn.Conectar();
             iList p = new iList(new ListasTablas("CodBarra", CodigoBarra));
-            ResultSet rs = cn.BuscarRegistro("Producto", bs, p).executeQuery();
+            ResultSet rs = cn.BuscarRegistro("producto", bs, p).executeQuery();
             while (rs.next()) {
                 rs.first();
                 producto.CodBarra = rs.getString(1);
@@ -210,7 +210,7 @@ public class ControladorProducto {
             cn.Conectar();
             iList p = new iList(new ListasTablas("CodBarra", CodigoBarra));
             p.add(new ListasTablas("IdSucursal", idSucursal));
-            ResultSet rs = cn.BuscarRegistro("Inventario", bs, p).executeQuery();
+            ResultSet rs = cn.BuscarRegistro("inventario", bs, p).executeQuery();
             while (rs.next()) {
                 rs.first();
                 inventario.codBarra = rs.getString(1);
