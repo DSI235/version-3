@@ -15,7 +15,7 @@ public class conection extends ClaseConexion {
     private String usuario = "root";
     private String direccionServidor = "localhost";
     private String nombreBaseDatos = "tiendav2";
-    private String puerto = "3336";
+    private String puerto = "3306";
 
     @Override
     public void CrearConexion() throws Exception {
