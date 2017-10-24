@@ -14,12 +14,14 @@ public class Usuario {
     public String username;
     public String clave;
     public String rol;
+    public String estado;
     
-    public Usuario(int idusuario, String username, String clave, String rol){
+    public Usuario(int idUsuario, String username, String clave, String rol, String estado){
         this.idUsuario = idUsuario;
         this.username = username;
         this.clave = clave;
         this.rol = rol;
+        this.estado = estado;
     }
     
     public Usuario(){}

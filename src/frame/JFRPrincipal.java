@@ -6,6 +6,7 @@ import Clases.ControladorProducto;
 import Clases.ControladorProveedor;
 import Clases.ControladorSucursal;
 import Clases.ControladorTipoPrecio;
+import Clases.ControladorUsuario;
 import Clases.ControladorVenta;
 import Clases.DetalleCompra;
 import Clases.DetalleVenta;
@@ -15,6 +16,7 @@ import Clases.Producto;
 import Clases.Proveedor;
 import Clases.Sucursal;
 import Clases.TipoPrecio;
+import Clases.Usuario;
 import Clases.Venta;
 import connections.*;
 import java.awt.Color;
@@ -64,14 +66,23 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     int x, y;
     int filas = 0;
     double totalC = 0;
-    JTableHeader tHeadVentas, tHeadListaVentas, tHeadCompras, tHeadProductos, tHeadCompra, tHeadProveedores, tHeadDetalleCompra, tHeadCompraDet, tHeadDetalleCompra1, tHeadSucursales, tHeadPrecios, tHeadParametros, tHeadListaVentasMes2, tHeadListaComprasMes;
+    JTableHeader tHeadVentas, tHeadListaVentas, tHeadCompras, tHeadProductos, tHeadCompra, tHeadProveedores, tHeadDetalleCompra, tHeadCompraDet, tHeadDetalleCompra1, tHeadSucursales, tHeadPrecios, tHeadParametros, tHeadListaVentasMes2, tHeadListaComprasMes,
+    tHeadUsuarios;
     Validacion validacion = new Validacion();
     DefaultTableModel model0;
     private TableRowSorter trsFiltro;
+    
+   
 
-    public JFRPrincipal() {
+
+    public JFRPrincipal(Usuario userSesion) {
+        
         initComponents();
         conection cn = new conection();
+        
+        System.out.println("USUARIO DE LOGIN:" + userSesion.username);
+        System.out.println("CLAVE DE LOGIN:" + userSesion.clave);
+        System.out.println("ROL DE LOGIN:" + userSesion.rol);
 
         try {
             cn.Conectar();
@@ -93,6 +104,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tHeadCompraDet = tblCompra.getTableHeader();
         tHeadListaVentasMes2 = tblListaVentasMes2.getTableHeader();
         tHeadListaComprasMes = tblListaComprasMes.getTableHeader();
+        tHeadUsuarios = tblUsuarios.getTableHeader();
 
         cabezera();
         ventas = compras = productos = proveedores = sucursales = precios = configuracion = usuarios = bitacora = apagado = false;
@@ -113,6 +125,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         LlenarCompra();
         LlenarVenta();
         LlenarParametros();
+        LlenarUsuarios();
     }
 
     public void LlenarProveedor() {
@@ -160,6 +173,48 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblProveedores.getColumnModel().getColumn(6).setMinWidth(0);
         tblProveedores.getColumnModel().getColumn(6).setMaxWidth(0);
         tblProveedores.getColumnModel().getColumn(6).setWidth(0);
+
+    }
+    
+    public void LlenarUsuarios() {
+        System.out.println("LLENAR USER");
+        DefaultTableModel modelo = new DefaultTableModel();
+        ArrayList<Usuario> usuario = new ArrayList();
+        Object[] fila = new Object[7];
+        try {
+            usuario = ControladorUsuario.Obtener();
+            String[] usuarios = new String[]{"Idusuario", "Username", "Clave", "Rol", "Estado"};
+            modelo.setColumnIdentifiers(usuarios);
+            Iterator<Usuario> user = usuario.iterator();
+            
+            if (user.hasNext()){
+                while (user.hasNext()) {
+                    fila[0] = user.next();
+                    fila[1] = user.next();
+                    fila[2] = user.next();
+                    fila[3] = user.next();
+                    fila[4] = user.next();
+                    modelo.addRow(fila);
+                    tblUsuarios.setModel(modelo);
+                }
+            } else {
+                fila[0] = "-";
+                fila[1] = "-";
+                fila[2] = "-";
+                fila[3] = "-";
+                fila[4] = "-";
+                modelo.addRow(fila);
+                tblUsuarios.setModel(modelo);
+            }
+
+        } catch (ErrorTienda ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Si se quiere ocultar una columna pero siempre tenerla disponible para operar con ella
+        tblUsuarios.getColumnModel().getColumn(2).setMinWidth(0);
+        tblUsuarios.getColumnModel().getColumn(2).setMaxWidth(0);
+        tblUsuarios.getColumnModel().getColumn(2).setWidth(0);
 
     }
 
@@ -825,6 +880,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tHeadListaComprasMes.setBackground(jpnBarraMenu.getBackground());
         tHeadListaComprasMes.setForeground(Color.WHITE);
         tHeadListaComprasMes.setFont(fuente);
+        
+        tHeadUsuarios.setBackground(jpnBarraMenu.getBackground());
+        tHeadUsuarios.setForeground(Color.WHITE);
+        tHeadUsuarios.setFont(fuente);
 
     }
 
@@ -895,6 +954,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnModificarParametro.setVisible(false);
         jpnReporteMesVentas2.setVisible(false);
         jpnReporteMesCompras.setVisible(false);
+        jpnUsuarios.setVisible(false);
+        jpnAgregarUsuario.setVisible(false);
+        jpnModificarUsuario.setVisible(false);
 
     }
 
@@ -1414,6 +1476,58 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jSeparator108 = new javax.swing.JSeparator();
         cmbAño1 = new javax.swing.JComboBox<>();
         btnGenerar1 = new javax.swing.JButton();
+        jpnUsuarios = new javax.swing.JPanel();
+        btnAgregarUsuario = new javax.swing.JButton();
+        btnModificarUsuario = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblUsuarios = new javax.swing.JTable();
+        jPanel61 = new javax.swing.JPanel();
+        lblProveedores9 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jSeparator30 = new javax.swing.JSeparator();
+        txtUsuariosBuscar = new javax.swing.JTextField();
+        jSeparator54 = new javax.swing.JSeparator();
+        jLabel98 = new javax.swing.JLabel();
+        jpnAgregarUsuario = new javax.swing.JPanel();
+        btnGuardarUsuario = new javax.swing.JButton();
+        btnAtrasUsuarios = new javax.swing.JButton();
+        txtClaveUsuario = new javax.swing.JTextField();
+        txtUsernameUsuario = new javax.swing.JTextField();
+        jPanel62 = new javax.swing.JPanel();
+        jSeparator29 = new javax.swing.JSeparator();
+        jLabel99 = new javax.swing.JLabel();
+        jLabel102 = new javax.swing.JLabel();
+        txtIDUsuario = new javax.swing.JTextField();
+        jLabel103 = new javax.swing.JLabel();
+        jLabel104 = new javax.swing.JLabel();
+        jLabel105 = new javax.swing.JLabel();
+        jLabel106 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator31 = new javax.swing.JSeparator();
+        jSeparator33 = new javax.swing.JSeparator();
+        jSeparator36 = new javax.swing.JSeparator();
+        cmbRolUsuario = new javax.swing.JComboBox<>();
+        cmbEstadoUsuario = new javax.swing.JComboBox<>();
+        jpnModificarUsuario = new javax.swing.JPanel();
+        btnGuardarUsuario1 = new javax.swing.JButton();
+        btnAtrasUsuarios1 = new javax.swing.JButton();
+        txtNuevoClaveUsuario = new javax.swing.JTextField();
+        txtNuevoUsernameUsuario = new javax.swing.JTextField();
+        jPanel63 = new javax.swing.JPanel();
+        jSeparator55 = new javax.swing.JSeparator();
+        jLabel107 = new javax.swing.JLabel();
+        jLabel108 = new javax.swing.JLabel();
+        txtIDUsuario1 = new javax.swing.JTextField();
+        jLabel109 = new javax.swing.JLabel();
+        jLabel110 = new javax.swing.JLabel();
+        jLabel111 = new javax.swing.JLabel();
+        jLabel112 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator58 = new javax.swing.JSeparator();
+        jSeparator59 = new javax.swing.JSeparator();
+        jSeparator80 = new javax.swing.JSeparator();
+        cmbNuevoRolUsuario = new javax.swing.JComboBox<>();
+        cmbNuevoEstadoUsuario = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/iconos/lanzador.png")).getImage());
@@ -4731,6 +4845,308 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(jpnReporteMesCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
+        jpnUsuarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnAgregarUsuario.setBackground(new java.awt.Color(0, 0, 0));
+        btnAgregarUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAgregarUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/agregarprov.png"))); // NOI18N
+        btnAgregarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAgregarUsuario.setFocusCycleRoot(true);
+        btnAgregarUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarUsuarioMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgregarUsuarioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgregarUsuarioMouseExited(evt);
+            }
+        });
+        btnAgregarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarUsuarioActionPerformed(evt);
+            }
+        });
+        jpnUsuarios.add(btnAgregarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 520, 110, 30));
+
+        btnModificarUsuario.setBackground(new java.awt.Color(0, 0, 0));
+        btnModificarUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnModificarUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        btnModificarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/modificar.png"))); // NOI18N
+        btnModificarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnModificarUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnModificarUsuarioMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnModificarUsuarioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnModificarUsuarioMouseExited(evt);
+            }
+        });
+        btnModificarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarUsuarioActionPerformed(evt);
+            }
+        });
+        jpnUsuarios.add(btnModificarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 520, 110, 30));
+
+        tblUsuarios =new javax.swing.JTable(){ public boolean isCellEditable(int rowIndex, int colIndex){     return false; } };
+        tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "idUsuario", "Usuario", "Rol", "Estado"
+            }
+        ));
+        tblUsuarios.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(tblUsuarios);
+
+        jpnUsuarios.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 670, 260));
+
+        jPanel61.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel61.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblProveedores9.setBackground(new java.awt.Color(255, 255, 255));
+        lblProveedores9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblProveedores9.setForeground(new java.awt.Color(255, 255, 255));
+        lblProveedores9.setText("Usuarios");
+        jPanel61.add(lblProveedores9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 120, 30));
+
+        jpnUsuarios.add(jPanel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 50));
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel22.setText("Listado de usuarios registrados:");
+        jpnUsuarios.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 175, -1, -1));
+        jpnUsuarios.add(jSeparator30, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 200, -1));
+
+        txtUsuariosBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsuariosBuscarKeyTyped(evt);
+            }
+        });
+        jpnUsuarios.add(txtUsuariosBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 670, 30));
+        jpnUsuarios.add(jSeparator54, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 120, 20));
+
+        jLabel98.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel98.setText("Usuario a buscar:");
+        jpnUsuarios.add(jLabel98, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 85, -1, -1));
+
+        getContentPane().add(jpnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
+
+        jpnAgregarUsuario.setPreferredSize(new java.awt.Dimension(95, 95));
+        jpnAgregarUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnGuardarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/guardarprov.png"))); // NOI18N
+        btnGuardarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnGuardarUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnGuardarUsuarioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnGuardarUsuarioMouseExited(evt);
+            }
+        });
+        btnGuardarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarUsuarioActionPerformed(evt);
+            }
+        });
+        jpnAgregarUsuario.add(btnGuardarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 550, 110, 30));
+
+        btnAtrasUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/atras.png"))); // NOI18N
+        btnAtrasUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAtrasUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAtrasUsuariosMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAtrasUsuariosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAtrasUsuariosMouseExited(evt);
+            }
+        });
+        btnAtrasUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasUsuariosActionPerformed(evt);
+            }
+        });
+        jpnAgregarUsuario.add(btnAtrasUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 550, 110, 30));
+
+        txtClaveUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtClaveUsuarioKeyTyped(evt);
+            }
+        });
+        jpnAgregarUsuario.add(txtClaveUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 270, 30));
+
+        txtUsernameUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtUsernameUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsernameUsuarioKeyTyped(evt);
+            }
+        });
+        jpnAgregarUsuario.add(txtUsernameUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 270, 30));
+
+        jPanel62.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel62.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jSeparator29.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel62.add(jSeparator29, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 20, 50));
+
+        jLabel99.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel99.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel99.setText("Agrega un nuevo usuario:");
+        jPanel62.add(jLabel99, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 10, 290, 30));
+
+        jLabel102.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel102.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel102.setText("ID:");
+        jPanel62.add(jLabel102, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, -1, 30));
+
+        txtIDUsuario.setEditable(false);
+        jPanel62.add(txtIDUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, 90, 30));
+
+        jpnAgregarUsuario.add(jPanel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 50));
+
+        jLabel103.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel103.setText("Nombre de usuario:");
+        jpnAgregarUsuario.add(jLabel103, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, 20));
+
+        jLabel104.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel104.setText("Estado:");
+        jpnAgregarUsuario.add(jLabel104, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, -1, 20));
+
+        jLabel105.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel105.setText("Contraseña:");
+        jpnAgregarUsuario.add(jLabel105, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, -1, 20));
+
+        jLabel106.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel106.setText("Rol:");
+        jpnAgregarUsuario.add(jLabel106, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, -1, 20));
+        jpnAgregarUsuario.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 30, 10));
+        jpnAgregarUsuario.add(jSeparator31, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 120, 10));
+        jpnAgregarUsuario.add(jSeparator33, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 60, 10));
+        jpnAgregarUsuario.add(jSeparator36, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 60, 10));
+
+        cmbRolUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Comprador", "Vendedor" }));
+        jpnAgregarUsuario.add(cmbRolUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 180, -1));
+
+        cmbEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        jpnAgregarUsuario.add(cmbEstadoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 180, -1));
+
+        getContentPane().add(jpnAgregarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
+
+        jpnModificarUsuario.setPreferredSize(new java.awt.Dimension(95, 95));
+        jpnModificarUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnGuardarUsuario1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/guardarprov.png"))); // NOI18N
+        btnGuardarUsuario1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnGuardarUsuario1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnGuardarUsuario1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnGuardarUsuario1MouseExited(evt);
+            }
+        });
+        btnGuardarUsuario1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarUsuario1ActionPerformed(evt);
+            }
+        });
+        jpnModificarUsuario.add(btnGuardarUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 550, 110, 30));
+
+        btnAtrasUsuarios1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/atras.png"))); // NOI18N
+        btnAtrasUsuarios1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAtrasUsuarios1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAtrasUsuarios1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAtrasUsuarios1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAtrasUsuarios1MouseExited(evt);
+            }
+        });
+        btnAtrasUsuarios1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasUsuarios1ActionPerformed(evt);
+            }
+        });
+        jpnModificarUsuario.add(btnAtrasUsuarios1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 550, 110, 30));
+
+        txtNuevoClaveUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNuevoClaveUsuarioKeyTyped(evt);
+            }
+        });
+        jpnModificarUsuario.add(txtNuevoClaveUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 270, 30));
+
+        txtNuevoUsernameUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtNuevoUsernameUsuario.setEnabled(false);
+        txtNuevoUsernameUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNuevoUsernameUsuarioKeyTyped(evt);
+            }
+        });
+        jpnModificarUsuario.add(txtNuevoUsernameUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 270, 30));
+
+        jPanel63.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel63.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jSeparator55.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel63.add(jSeparator55, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 20, 50));
+
+        jLabel107.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel107.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel107.setText("Modifica un usuario:");
+        jPanel63.add(jLabel107, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 10, 290, 30));
+
+        jLabel108.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel108.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel108.setText("ID:");
+        jPanel63.add(jLabel108, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, -1, 30));
+
+        txtIDUsuario1.setEditable(false);
+        jPanel63.add(txtIDUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, 90, 30));
+
+        jpnModificarUsuario.add(jPanel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 50));
+
+        jLabel109.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel109.setText("Nombre de usuario:");
+        jpnModificarUsuario.add(jLabel109, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, 20));
+
+        jLabel110.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel110.setText("Estado:");
+        jpnModificarUsuario.add(jLabel110, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, -1, 20));
+
+        jLabel111.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel111.setText("Contraseña:");
+        jpnModificarUsuario.add(jLabel111, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, -1, 20));
+
+        jLabel112.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel112.setText("Rol:");
+        jpnModificarUsuario.add(jLabel112, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, -1, 20));
+        jpnModificarUsuario.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 30, 10));
+        jpnModificarUsuario.add(jSeparator58, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 120, 10));
+        jpnModificarUsuario.add(jSeparator59, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 60, 10));
+        jpnModificarUsuario.add(jSeparator80, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 60, 10));
+
+        cmbNuevoRolUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Comprador", "Vendedor" }));
+        jpnModificarUsuario.add(cmbNuevoRolUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 180, -1));
+
+        cmbNuevoEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        jpnModificarUsuario.add(cmbNuevoEstadoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 180, -1));
+
+        getContentPane().add(jpnModificarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -7935,7 +8351,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private void btnAbrirUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirUsuariosMouseClicked
         apagado();
         apagado2();
-        //jpnUsuarios.setVisible(true);
+        jpnUsuarios.setVisible(true);
     }//GEN-LAST:event_btnAbrirUsuariosMouseClicked
 
     private void btnAbrirBitacoraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirBitacoraMouseEntered
@@ -7955,6 +8371,191 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         apagado2();
         //jpnBitacora.setVisible(true);
     }//GEN-LAST:event_btnAbrirBitacoraMouseClicked
+
+    private void btnAgregarUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarUsuarioMouseClicked
+        jpnUsuarios.setVisible(false);
+        jpnAgregarUsuario.setVisible(true);
+    }//GEN-LAST:event_btnAgregarUsuarioMouseClicked
+
+    private void btnAgregarUsuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarUsuarioMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarUsuarioMouseEntered
+
+    private void btnAgregarUsuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarUsuarioMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarUsuarioMouseExited
+
+    private void btnAgregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarUsuarioActionPerformed
+        ControladorUsuario CUsuario = new ControladorUsuario();
+        int idUsuario = 0;
+        try {
+            idUsuario = CUsuario.ObtenerIdUsuario();
+        } catch (ErrorTienda ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        txtIDUsuario.setText(Integer.toString(idUsuario));
+    }//GEN-LAST:event_btnAgregarUsuarioActionPerformed
+
+    private void btnModificarUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarUsuarioMouseClicked
+        jpnUsuarios.setVisible(false);
+        jpnModificarUsuario.setVisible(true);
+    }//GEN-LAST:event_btnModificarUsuarioMouseClicked
+
+    private void btnModificarUsuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarUsuarioMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarUsuarioMouseEntered
+
+    private void btnModificarUsuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarUsuarioMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarUsuarioMouseExited
+
+    private void btnModificarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarUsuarioActionPerformed
+        try {
+            txtNuevoUsernameUsuario.setText(tblUsuarios.getValueAt(tblUsuarios.getSelectedRow(), 1).toString());
+            txtNuevoClaveUsuario.setText(tblUsuarios.getValueAt(tblUsuarios.getSelectedRow(), 2).toString());
+            cmbNuevoRolUsuario.setSelectedItem(tblUsuarios.getValueAt(tblUsuarios.getSelectedRow(), 3).toString());
+            cmbNuevoEstadoUsuario.setSelectedItem(tblUsuarios.getValueAt(tblUsuarios.getSelectedRow(), 4).toString());
+
+            txtIDUsuario1.setText(tblUsuarios.getValueAt(tblUsuarios.getSelectedRow(), 0).toString());
+            //            txtNombreActualProveedor1.setText(tblProveedores.getValueAt(tblProveedores.getSelectedRow(), 1).toString());
+            //            txtDireccionActualProveedor.setText(tblProveedores.getValueAt(tblProveedores.getSelectedRow(), 3).toString());
+            //            txtTelefonoActualProveedor.setText(tblProveedores.getValueAt(tblProveedores.getSelectedRow(), 2).toString());
+            //            txtNitActualProveedor.setText(tblProveedores.getValueAt(tblProveedores.getSelectedRow(), 4).toString());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Seleccione un usuario");
+        }
+    }//GEN-LAST:event_btnModificarUsuarioActionPerformed
+
+    private void txtUsuariosBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuariosBuscarKeyTyped
+        txtUsuariosBuscar.addKeyListener(new KeyAdapter() {
+            //@Override
+            public void keyReleased(final KeyEvent e) {
+                String cadena = (txtUsuariosBuscar.getText());
+                txtUsuariosBuscar.setText(cadena);
+                repaint();
+                trsFiltro.setRowFilter(RowFilter.regexFilter(txtUsuariosBuscar.getText(), 1));
+
+            }
+        });
+        trsFiltro = new TableRowSorter(tblUsuarios.getModel());
+        tblUsuarios.setRowSorter(trsFiltro);
+    }//GEN-LAST:event_txtUsuariosBuscarKeyTyped
+
+    private void btnGuardarUsuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarUsuarioMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarUsuarioMouseEntered
+
+    private void btnGuardarUsuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarUsuarioMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarUsuarioMouseExited
+
+    private void btnGuardarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarUsuarioActionPerformed
+    
+        Usuario usuario = new Usuario(Integer.parseInt(txtIDUsuario.getText()), txtUsernameUsuario.getText(), txtClaveUsuario.getText(), cmbRolUsuario.getSelectedItem().toString(), cmbEstadoUsuario.getSelectedItem().toString());
+        try {
+            ControladorUsuario.Agregar(usuario);
+            JOptionPane.showMessageDialog(rootPane, "Usuario agregado");
+            this.txtUsernameUsuario.setText("");
+            this.txtClaveUsuario.setText("");
+            this.cmbRolUsuario.setSelectedIndex(0);
+            this.cmbEstadoUsuario.setSelectedIndex(0);
+            tblUsuarios.removeAll();
+            LlenarUsuarios();
+            apagado2();
+            jpnAgregarUsuario.setVisible(false);
+            jpnUsuarios.setVisible(true);
+        } catch (ErrorTienda ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+
+    }//GEN-LAST:event_btnGuardarUsuarioActionPerformed
+
+    private void btnAtrasUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtrasUsuariosMouseClicked
+        jpnAgregarUsuario.setVisible(false);
+        jpnUsuarios.setVisible(true);
+        txtUsernameUsuario.setText("");
+        txtClaveUsuario.setText("");
+        cmbRolUsuario.setSelectedIndex(0);
+        cmbEstadoUsuario.setSelectedIndex(0);
+    }//GEN-LAST:event_btnAtrasUsuariosMouseClicked
+
+    private void btnAtrasUsuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtrasUsuariosMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAtrasUsuariosMouseEntered
+
+    private void btnAtrasUsuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtrasUsuariosMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAtrasUsuariosMouseExited
+
+    private void btnAtrasUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasUsuariosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAtrasUsuariosActionPerformed
+
+    private void txtClaveUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveUsuarioKeyTyped
+        int longitud = txtClaveUsuario.getText().length();
+        validacion.Longitud(evt, longitud, 45);
+    }//GEN-LAST:event_txtClaveUsuarioKeyTyped
+
+    private void txtUsernameUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameUsuarioKeyTyped
+        int longitud = txtUsernameUsuario.getText().length();
+        validacion.Longitud(evt, longitud, 20);
+    }//GEN-LAST:event_txtUsernameUsuarioKeyTyped
+
+    private void btnGuardarUsuario1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarUsuario1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarUsuario1MouseEntered
+
+    private void btnGuardarUsuario1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarUsuario1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarUsuario1MouseExited
+
+    private void btnGuardarUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarUsuario1ActionPerformed
+        Usuario usuario = new Usuario(Integer.parseInt(txtIDUsuario1.getText()), txtNuevoUsernameUsuario.getText(), txtNuevoClaveUsuario.getText(), cmbNuevoRolUsuario.getSelectedItem().toString(), cmbNuevoEstadoUsuario.getSelectedItem().toString());
+        try {
+            ControladorUsuario.Modificar(usuario);
+            JOptionPane.showMessageDialog(rootPane, "Usuario modificado");
+
+            tblUsuarios.removeAll();
+            LlenarUsuarios();
+
+            jpnModificarUsuario.setVisible(false);
+            jpnUsuarios.setVisible(true);
+        } catch (ErrorTienda ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        LlenarUsuarios();
+    }//GEN-LAST:event_btnGuardarUsuario1ActionPerformed
+
+    private void btnAtrasUsuarios1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtrasUsuarios1MouseClicked
+        jpnModificarUsuario.setVisible(false);
+        jpnUsuarios.setVisible(true);
+        txtNuevoUsernameUsuario.setText("");
+        txtNuevoClaveUsuario.setText("");
+        cmbNuevoRolUsuario.setSelectedIndex(0);
+        cmbNuevoEstadoUsuario.setSelectedIndex(0);
+    }//GEN-LAST:event_btnAtrasUsuarios1MouseClicked
+
+    private void btnAtrasUsuarios1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtrasUsuarios1MouseEntered
+        
+    }//GEN-LAST:event_btnAtrasUsuarios1MouseEntered
+
+    private void btnAtrasUsuarios1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtrasUsuarios1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAtrasUsuarios1MouseExited
+
+    private void btnAtrasUsuarios1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasUsuarios1ActionPerformed
+        jpnModificarUsuario.setVisible(false);
+        jpnUsuarios.setVisible(true);
+    }//GEN-LAST:event_btnAtrasUsuarios1ActionPerformed
+
+    private void txtNuevoClaveUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNuevoClaveUsuarioKeyTyped
+        int longitud = txtNuevoClaveUsuario.getText().length();
+        validacion.Longitud(evt, longitud, 45);
+    }//GEN-LAST:event_txtNuevoClaveUsuarioKeyTyped
+
+    private void txtNuevoUsernameUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNuevoUsernameUsuarioKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNuevoUsernameUsuarioKeyTyped
 
     /**
      * @param args the command line arguments
@@ -7994,7 +8595,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFRPrincipal().setVisible(true);
+                new JFRPrincipal(null).setVisible(true);
             }
         });
     }
@@ -8012,6 +8613,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarProveedor;
     private javax.swing.JButton btnAgregarSuc;
     private javax.swing.JButton btnAgregarSuc1;
+    private javax.swing.JButton btnAgregarUsuario;
     private javax.swing.JButton btnAgregarVenta;
     private javax.swing.JButton btnAtrasDetalleCompra;
     private javax.swing.JButton btnAtrasDetalleCompra1;
@@ -8025,6 +8627,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnAtrasReporteVenta2;
     private javax.swing.JButton btnAtrasSuc;
     private javax.swing.JButton btnAtrasSuc1;
+    private javax.swing.JButton btnAtrasUsuarios;
+    private javax.swing.JButton btnAtrasUsuarios1;
     private javax.swing.JButton btnBuscarParametro;
     private javax.swing.JButton btnBuscarProdCompra;
     private javax.swing.JButton btnBuscarProducto;
@@ -8044,12 +8648,15 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardarPar1;
     private javax.swing.JButton btnGuardarProveedor;
     private javax.swing.JButton btnGuardarSuc;
+    private javax.swing.JButton btnGuardarUsuario;
+    private javax.swing.JButton btnGuardarUsuario1;
     private javax.swing.JLabel btnHome;
     private javax.swing.JButton btnModSucursal;
     private javax.swing.JButton btnModificarParametro;
     private javax.swing.JButton btnModificarProducto;
     private javax.swing.JButton btnModificarProveedor;
     private javax.swing.JButton btnModificarTP;
+    private javax.swing.JButton btnModificarUsuario;
     private javax.swing.JButton btnNuevoProducto;
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnProveedores;
@@ -8067,9 +8674,13 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btngFiltroProductos;
     private javax.swing.JComboBox<String> cmbAño;
     private javax.swing.JComboBox<String> cmbAño1;
+    private javax.swing.JComboBox<String> cmbEstadoUsuario;
     private javax.swing.JComboBox<String> cmbMes;
     private javax.swing.JComboBox<String> cmbMes1;
+    private javax.swing.JComboBox<String> cmbNuevoEstadoUsuario;
+    private javax.swing.JComboBox<String> cmbNuevoRolUsuario;
     private javax.swing.JComboBox cmbProveedor;
+    private javax.swing.JComboBox<String> cmbRolUsuario;
     private javax.swing.JComboBox cmbSucursal2;
     private javax.swing.JComboBox cmbSucursalCompra;
     private javax.swing.JComboBox cmbSucursalVenta;
@@ -8080,7 +8691,18 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
+    private javax.swing.JLabel jLabel102;
+    private javax.swing.JLabel jLabel103;
+    private javax.swing.JLabel jLabel104;
+    private javax.swing.JLabel jLabel105;
+    private javax.swing.JLabel jLabel106;
+    private javax.swing.JLabel jLabel107;
+    private javax.swing.JLabel jLabel108;
+    private javax.swing.JLabel jLabel109;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel110;
+    private javax.swing.JLabel jLabel111;
+    private javax.swing.JLabel jLabel112;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -8092,6 +8714,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -8173,6 +8796,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel95;
     private javax.swing.JLabel jLabel96;
     private javax.swing.JLabel jLabel97;
+    private javax.swing.JLabel jLabel98;
+    private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel37;
     private javax.swing.JPanel jPanel38;
     private javax.swing.JPanel jPanel41;
@@ -8195,6 +8820,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel58;
     private javax.swing.JPanel jPanel59;
     private javax.swing.JPanel jPanel60;
+    private javax.swing.JPanel jPanel61;
+    private javax.swing.JPanel jPanel62;
+    private javax.swing.JPanel jPanel63;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
@@ -8202,6 +8830,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane17;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -8233,9 +8862,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator26;
     private javax.swing.JSeparator jSeparator27;
     private javax.swing.JSeparator jSeparator28;
+    private javax.swing.JSeparator jSeparator29;
+    private javax.swing.JSeparator jSeparator30;
+    private javax.swing.JSeparator jSeparator31;
     private javax.swing.JSeparator jSeparator32;
+    private javax.swing.JSeparator jSeparator33;
     private javax.swing.JSeparator jSeparator34;
     private javax.swing.JSeparator jSeparator35;
+    private javax.swing.JSeparator jSeparator36;
     private javax.swing.JSeparator jSeparator37;
     private javax.swing.JSeparator jSeparator38;
     private javax.swing.JSeparator jSeparator39;
@@ -8250,12 +8884,18 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator47;
     private javax.swing.JSeparator jSeparator48;
     private javax.swing.JSeparator jSeparator49;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator50;
     private javax.swing.JSeparator jSeparator51;
     private javax.swing.JSeparator jSeparator52;
     private javax.swing.JSeparator jSeparator53;
+    private javax.swing.JSeparator jSeparator54;
+    private javax.swing.JSeparator jSeparator55;
     private javax.swing.JSeparator jSeparator56;
     private javax.swing.JSeparator jSeparator57;
+    private javax.swing.JSeparator jSeparator58;
+    private javax.swing.JSeparator jSeparator59;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator60;
     private javax.swing.JSeparator jSeparator61;
     private javax.swing.JSeparator jSeparator62;
@@ -8276,6 +8916,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator77;
     private javax.swing.JSeparator jSeparator78;
     private javax.swing.JSeparator jSeparator79;
+    private javax.swing.JSeparator jSeparator80;
     private javax.swing.JSeparator jSeparator82;
     private javax.swing.JSeparator jSeparator83;
     private javax.swing.JSeparator jSeparator84;
@@ -8295,6 +8936,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator98;
     private javax.swing.JSeparator jSeparator99;
     private javax.swing.JPanel jpnAgregarProv;
+    private javax.swing.JPanel jpnAgregarUsuario;
     private javax.swing.JPanel jpnAgregarVenta;
     private javax.swing.JPanel jpnBarraMenu;
     private javax.swing.JPanel jpnBarraSuperior;
@@ -8309,6 +8951,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jpnModificarProducto;
     private javax.swing.JPanel jpnModificarProveedor;
     private javax.swing.JPanel jpnModificarSucursal;
+    private javax.swing.JPanel jpnModificarUsuario;
     private javax.swing.JPanel jpnNuevaSucursal;
     private javax.swing.JPanel jpnNuevoPrecio;
     private javax.swing.JPanel jpnNuevoProducto;
@@ -8325,6 +8968,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jpnSucursal;
     private javax.swing.JPanel jpnTercero;
     private javax.swing.JPanel jpnTipoPrecio;
+    private javax.swing.JPanel jpnUsuarios;
     private javax.swing.JTable jtblProductos;
     private javax.swing.JLabel lbl10;
     private javax.swing.JLabel lbl11;
@@ -8393,6 +9037,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblProveedores6;
     private javax.swing.JLabel lblProveedores7;
     private javax.swing.JLabel lblProveedores8;
+    private javax.swing.JLabel lblProveedores9;
     private javax.swing.JLabel lblSucursalProd;
     private javax.swing.JLabel lblSuma;
     private javax.swing.JLabel lblSumaVenta;
@@ -8418,10 +9063,12 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable tblProveedores;
     private javax.swing.JTable tblSucursal;
     private javax.swing.JTable tblTP;
+    private javax.swing.JTable tblUsuarios;
     private javax.swing.JTextField txtBuscaTipoPrecio;
     private javax.swing.JTextField txtBuscarParametro;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCantidadVender;
+    private javax.swing.JTextField txtClaveUsuario;
     private javax.swing.JTextField txtClienteDetalleVenta;
     private javax.swing.JTextField txtClienteVenta;
     private javax.swing.JTextField txtCodBarraProd;
@@ -8440,6 +9087,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txtGiroVenta;
     private javax.swing.JTextField txtIDProveedor;
     private javax.swing.JTextField txtIDProveedor1;
+    private javax.swing.JTextField txtIDUsuario;
+    private javax.swing.JTextField txtIDUsuario1;
     private javax.swing.JTextField txtIVADetalleCompra;
     private javax.swing.JTextField txtIVADetalleVenta;
     private javax.swing.JTextField txtIdCompra;
@@ -8472,6 +9121,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombreProveedor;
     private javax.swing.JTextField txtNombreSuc;
     private javax.swing.JTextField txtNuevaSucursalProd;
+    private javax.swing.JTextField txtNuevoClaveUsuario;
     private javax.swing.JTextField txtNuevoCodigoBarra;
     private javax.swing.JTextField txtNuevoCostoProducto;
     private javax.swing.JTextField txtNuevoDireccionProveedor;
@@ -8481,6 +9131,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txtNuevoNombreProducto;
     private javax.swing.JTextField txtNuevoNombreProveedor;
     private javax.swing.JTextField txtNuevoTelefonoProveedor;
+    private javax.swing.JTextField txtNuevoUsernameUsuario;
     private javax.swing.JTextField txtNumDocCompra;
     private javax.swing.JTextField txtNumDocumentoDetalleCompra;
     private javax.swing.JTextField txtPercepcion;
@@ -8507,6 +9158,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txtTotalDetalleVenta;
     private javax.swing.JTextField txtTotalGravadoDetalleVenta;
     private javax.swing.JTextField txtTotalVenta;
+    private javax.swing.JTextField txtUsernameUsuario;
+    private javax.swing.JTextField txtUsuariosBuscar;
     private javax.swing.JTextField txtUtPar;
     private javax.swing.JTextField txtUtilidadPrecio;
     private javax.swing.JTextField txtValorPar;

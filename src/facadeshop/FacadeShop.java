@@ -19,7 +19,7 @@ public class FacadeShop {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        JFRPrincipal sp= new JFRPrincipal();
+        JFRPrincipal sp= new JFRPrincipal(null);
         sp.setVisible(true);
         //Splash sp = new Splash();
         //sp.setVisible(true);

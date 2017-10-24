@@ -29,6 +29,7 @@ public class ControladorUsuario {
             u.add(new ListasTablas("Username", U.username));
             u.add(new ListasTablas("Clave", U.clave));
             u.add(new ListasTablas("Rol", U.rol));
+            u.add(new ListasTablas("Estado", U.estado));
             cn.AgregarRegistro("Usuario", u, false);
         } catch (Exception e) {
             throw new ErrorTienda("Class ControladorUsuario/Agregar", e.getMessage());
@@ -42,6 +43,7 @@ public class ControladorUsuario {
             iList u = new iList(new ListasTablas("Username", U.username));
             u.add(new ListasTablas("Clave", U.clave));
             u.add(new ListasTablas("Rol", U.rol));
+            u.add(new ListasTablas("Estado", U.estado));
             cn.ModificarRegistro("Usuario", u, a);
         } catch (Exception e) {
             throw new ErrorTienda("Class ControladorUsuario/Modificar", e.getMessage());
@@ -49,8 +51,9 @@ public class ControladorUsuario {
 
     }
     
+    
+    //El siguiente es el metodo para eliminar usuarios pero no se deberia poder eliminar usuarios, solo desactivarlos.
     public static void Eliminar(Usuario U) throws ErrorTienda {
-
         try {
             cn.Conectar();
             iList cond = new iList(new ListasTablas("IdUsuario", U.idUsuario));
@@ -65,7 +68,7 @@ public class ControladorUsuario {
     
     
     public static ArrayList<Usuario> Obtener() throws ErrorTienda {
-        String[] cm = new String[]{"IdUsuario", "Username", "Clave", "Rol"};
+        String[] cm = new String[]{"IdUsuario", "Username", "Clave", "Rol", "Estado"};
 
         ArrayList<Object> listaUsuarios = new ArrayList();
         try {
@@ -78,6 +81,7 @@ public class ControladorUsuario {
                 listaUsuarios.add(rs.getString("Username"));
                 listaUsuarios.add(rs.getString("Clave"));
                 listaUsuarios.add(rs.getString("Rol"));
+                listaUsuarios.add(rs.getString("Estado"));
             }
             
             cn.Desconectar();
@@ -105,6 +109,30 @@ public class ControladorUsuario {
             throw new ErrorTienda("Error al obtener el IdUsuario", e.getMessage());
         }
         return Id;
+    }
+    
+    public Usuario ObtenerUsuario(String username) throws ErrorTienda {
+        Usuario user = new Usuario();
+        ResultSet rs;
+        PreparedStatement ps;
+        try {
+            cn.Conectar();
+            String[] cm = new String[]{"IdUsuario", "Username", "Clave", "Rol", "Estado"};
+            iList cond = new iList(new ListasTablas("username", username));
+            ps = cn.BuscarRegistro("Usuario", cm, cond);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                user.idUsuario = rs.getInt("IdUsuario");
+                user.username = rs.getString("Username");
+                user.clave = rs.getString("Clave");
+                user.rol = rs.getString("Rol");
+                user.estado = rs.getString("Estado");
+                
+            }
+        } catch (Exception e) {
+            throw new ErrorTienda("Error al obtener el usuario", e.getMessage());
+        }
+        return user;
     }
 
     public ControladorUsuario() {

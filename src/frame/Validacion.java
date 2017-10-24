@@ -118,4 +118,11 @@ public class Validacion {
             evt.consume();
         }
     }
+    
+    public void Longitud(KeyEvent evt, int longitud, int longitudDeseada) {
+        s = evt.getKeyChar();
+        if (s == KeyEvent.VK_SPACE || longitud > longitudDeseada) {
+            evt.consume();
+        }
+    }
 }
