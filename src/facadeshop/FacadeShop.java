@@ -7,7 +7,7 @@ package facadeshop;
 
 import frame.JFRPrincipal;
 // import frame.Splash;
-//import javafx.scene.shape.Sphere;
+import javafx.scene.shape.Sphere;
 
 /**
  *
