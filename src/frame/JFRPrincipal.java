@@ -73,7 +73,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     DefaultTableModel model0;
     private TableRowSorter trsFiltro;
     
-   
+   boolean banderita = false; // bandera para bug en compras de cmbSucursales
 
 
     public JFRPrincipal(Usuario userSesion) {
@@ -3350,7 +3350,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnAgregarVenta.add(txtGiroVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 140, 30));
 
-        cmbTipoVenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Libre", "Credito Fiscal", "Factura" }));
+        cmbTipoVenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Libre", "Credito Fiscal", "Factura", "Borrador" }));
         cmbTipoVenta.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbTipoVentaItemStateChanged(evt);
@@ -5796,80 +5796,82 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarProductoMouseExited
 
     private void btnBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProductoActionPerformed
-        System.out.println("txtProductosBuscar EN ACCION DE BOTON = " + txtProductosBuscar.getText());
-        ControladorProducto CP = new ControladorProducto();
-        LlenarProducto(txtProductosBuscar.getText());
-        //ID SUCURSAL SELECCIONADA
-        int idSucursalSeleccionada = 0;
-        String suc = cmbSucursales1.getSelectedItem().toString();
-        conection cn = new conection();
-        try {
-            String[] cm = new String[]{"IdSucursal", "Nombre", "Direccion", "Telefono"};
-            iList p = new iList(new ListasTablas("Nombre", suc));
+        if (banderita=false) {
+            System.out.println("txtProductosBuscar EN ACCION DE BOTON = " + txtProductosBuscar.getText());
+            ControladorProducto CP = new ControladorProducto();
+            LlenarProducto(txtProductosBuscar.getText());
+            //ID SUCURSAL SELECCIONADA
+            int idSucursalSeleccionada = 0;
+            String suc = cmbSucursales1.getSelectedItem().toString();
+            conection cn = new conection();
+            try {
+                String[] cm = new String[]{"IdSucursal", "Nombre", "Direccion", "Telefono"};
+                iList p = new iList(new ListasTablas("Nombre", suc));
+
+                try {
+                    cn.Conectar();
+                    PreparedStatement ps = cn.BuscarRegistro("sucursal", cm, p);
+                    ResultSet rs = ps.executeQuery();
+
+                    while (rs.next()) {
+                        idSucursalSeleccionada = Integer.parseInt(rs.getString("IdSucursal"));
+
+                    }
+                    cn.Desconectar();
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error interno buscando la sucursal " + e.getMessage());
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error externo buscando la sucursal " + e.getMessage());
+            }
 
             try {
                 cn.Conectar();
-                PreparedStatement ps = cn.BuscarRegistro("sucursal", cm, p);
-                ResultSet rs = ps.executeQuery();
+                ArrayList<Producto> listaProducto = CP.Buscar(txtProductosBuscar.getText(), idSucursalSeleccionada);
+                DefaultTableModel modelo = new DefaultTableModel();
+                System.out.println("Lista de productos que coinciden: " + listaProducto.toString());
 
-                while (rs.next()) {
-                    idSucursalSeleccionada = Integer.parseInt(rs.getString("IdSucursal"));
+                Object[] fila = new Object[6];
 
+                String[] productos = new String[]{"CodBarra", "Nombre", "sucursal", "Cantidad", "Costo", "IdSucursal"};
+                modelo.setColumnIdentifiers(productos);
+                Iterator<Producto> prod = listaProducto.iterator();
+
+                if(prod.hasNext()) {
+                    while (prod.hasNext()) {
+                        fila[0] = prod.next();
+                        fila[1] = prod.next();
+                        fila[3] = prod.next();
+                        fila[4] = prod.next();
+                        fila[2] = prod.next();
+                        fila[5] = prod.next();
+                        modelo.addRow(fila);
+
+                    }
+                } else {
+                    fila[0] = "-";
+                    fila[1] = "-";
+                    fila[3] = "-";
+                    fila[4] = "-";
+                    fila[2] = "-";
+                    fila[5] = "-";
+                    modelo.addRow(fila);
                 }
-                cn.Desconectar();
+
+
+                jtblProductos.setModel(modelo);
+                jtblProductos.getColumnModel().getColumn(5).setMinWidth(0);
+                jtblProductos.getColumnModel().getColumn(5).setMaxWidth(0);
+                jtblProductos.getColumnModel().getColumn(5).setWidth(0);
 
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error interno buscando la sucursal " + e.getMessage());
+                JOptionPane.showMessageDialog(null, "Error buscando producto segun sucursal " + e.getMessage());
+
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error externo buscando la sucursal " + e.getMessage());
-        }
-
-        try {
-            cn.Conectar();
-            ArrayList<Producto> listaProducto = CP.Buscar(txtProductosBuscar.getText(), idSucursalSeleccionada);
-            DefaultTableModel modelo = new DefaultTableModel();
-            System.out.println("Lista de productos que coinciden: " + listaProducto.toString());
-
-            Object[] fila = new Object[6];
-
-            String[] productos = new String[]{"CodBarra", "Nombre", "sucursal", "Cantidad", "Costo", "IdSucursal"};
-            modelo.setColumnIdentifiers(productos);
-            Iterator<Producto> prod = listaProducto.iterator();
-            
-            if(prod.hasNext()) {
-                while (prod.hasNext()) {
-                    fila[0] = prod.next();
-                    fila[1] = prod.next();
-                    fila[3] = prod.next();
-                    fila[4] = prod.next();
-                    fila[2] = prod.next();
-                    fila[5] = prod.next();
-                    modelo.addRow(fila);
-
-                }
-            } else {
-                fila[0] = "-";
-                fila[1] = "-";
-                fila[3] = "-";
-                fila[4] = "-";
-                fila[2] = "-";
-                fila[5] = "-";
-                modelo.addRow(fila);
-            }
-            
-
-            jtblProductos.setModel(modelo);
-            jtblProductos.getColumnModel().getColumn(5).setMinWidth(0);
-            jtblProductos.getColumnModel().getColumn(5).setMaxWidth(0);
-            jtblProductos.getColumnModel().getColumn(5).setWidth(0);
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error buscando producto segun sucursal " + e.getMessage());
 
         }
-
-
+        banderita = false;
     }//GEN-LAST:event_btnBuscarProductoActionPerformed
 
     private void btnModificarProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarProductoMouseClicked
@@ -6268,6 +6270,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // Crear compra y el detalle de compra de esa compra...
+        banderita = true;
         DecimalFormat dosdigitos = new DecimalFormat("0.00");
         DecimalFormat cuatrodigitos = new DecimalFormat("0.0000");
         try {
@@ -7875,6 +7878,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 lblgiro.setVisible(false);
                 lblnrc.setVisible(false);
                 lblIvaVenta.setVisible(false);
+                lblCodBarraProd18.setVisible(true);
+                lblCodBarraProd22.setVisible(true);
+                cmbTipoPrecioVenta.setEnabled(true);
                 break;
             case "Factura":
                 tblProductosVender.getColumnModel().getColumn(4).setMinWidth(0);
@@ -7894,6 +7900,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 lblIvaVenta.setVisible(false);
                 txtNITVenta.setVisible(false);
                 lblNITVenta.setVisible(false);
+                lblCodBarraProd18.setVisible(true);
+                lblCodBarraProd22.setVisible(true);
+                cmbTipoPrecioVenta.setEnabled(true);
                 break;
             case "Credito Fiscal":
                 tblProductosVender.getColumnModel().getColumn(4).setMinWidth(0);
@@ -7910,6 +7919,30 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 lblnrc.setVisible(true);
                 txtNITVenta.setVisible(true);
                 lblNITVenta.setVisible(true);
+                lblCodBarraProd18.setVisible(true);
+                lblCodBarraProd22.setVisible(true);
+                cmbTipoPrecioVenta.setEnabled(true);
+                break;
+            case "Borrador":
+                tblProductosVender.getColumnModel().getColumn(4).setMinWidth(0);
+                tblProductosVender.getColumnModel().getColumn(4).setMaxWidth(0);
+                tblProductosVender.getColumnModel().getColumn(4).setWidth(0);
+                txtSumaVenta.setVisible(false);
+                txtSumaVenta.setText(txtTotal.getText());
+                lblSumaVenta.setVisible(false);
+                txtIvaVenta.setVisible(false);
+                txtIvaVenta.setText("0");
+                lblIvaVenta.setVisible(false);
+                txtGiroVenta.setVisible(false);
+                txtNRCVenta.setVisible(false);
+                txtNITVenta.setVisible(false);
+                lblNITVenta.setVisible(false);
+                lblgiro.setVisible(false);
+                lblnrc.setVisible(false);
+                lblIvaVenta.setVisible(false);
+                lblCodBarraProd18.setVisible(true);
+                lblCodBarraProd22.setVisible(true);
+                cmbTipoPrecioVenta.setEnabled(true);
                 break;
             default:
                 tblProductosVender.getColumnModel().getColumn(4).setMinWidth(0);
@@ -8006,14 +8039,22 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 case "Factura":
                     nventa.tipoVenta = "F";
                     break;
+                case "Borrador":
+                    nventa.tipoVenta = "B";
+                    break;
                 default:
                     break;
             }
             System.out.println("TIPO VENTA: " + nventa.tipoVenta);
             nventa.idTipoPrecio = idTipoPrecio;
+            
             nventa.cliente = txtClienteVenta.getText();
+            
             nventa.fecha = date2;
+           
             nventa.IVA = Double.parseDouble(txtIvaVenta.getText());
+            
+            //Despues de aqui tira error para guardar borrador
             nventa.totalGrabado = Double.parseDouble(txtSumaVenta.getText());
             nventa.total = Double.parseDouble(txtTotalVenta.getText());
             nventa.direccion = txtDireccionVenta.getText();
@@ -8021,10 +8062,17 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             nventa.NIT = txtNITVenta.getText();
             nventa.NRC = txtNRCVenta.getText();
             nventa.numDocumento = txtNoDocVenta.getText();
+            
             nventa.articulo = new ArrayList<DetalleVenta>();
 //                nventa.articulo =    ------------FALTA ARTICULOS?? R/ NO, se llena en DetalleVenta
 //                venta agregada:
+               System.out.println("ANTES DE GUARDAR VENTA.... : " + nventa.toString());
+            
             venta.Agregar(nventa);
+            
+            System.out.println("LLEGA HASTA DESPUES DE AGREGAR VENTA");
+            
+            
 
             //CONTINUAR CON EL DETALLE_VENTA
             //Recorrer la tabla - tblProductosVender

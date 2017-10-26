@@ -8,6 +8,7 @@ package frame;
 import Clases.ControladorUsuario;
 import Clases.ErrorTienda;
 import Clases.Usuario;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -81,6 +82,11 @@ public class JFRLogin extends javax.swing.JFrame {
 
         txtClaveLogin.setBackground(new java.awt.Color(255, 255, 255));
         txtClaveLogin.setForeground(new java.awt.Color(0, 0, 0));
+        txtClaveLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtClaveLoginKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -164,6 +170,12 @@ public class JFRLogin extends javax.swing.JFrame {
         int longitud = txtUsernameLogin.getText().length();
         validacion.Longitud(evt, longitud, 20);
     }//GEN-LAST:event_txtUsernameLoginKeyTyped
+
+    private void txtClaveLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveLoginKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnLogin.doClick();
+         }
+    }//GEN-LAST:event_txtClaveLoginKeyPressed
 
     /**
      * @param args the command line arguments
