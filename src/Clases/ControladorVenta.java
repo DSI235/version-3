@@ -127,4 +127,48 @@ public class ControladorVenta {
             }
         }
     }
+    
+        //vizcarra metodo para obtener id borrador
+        public static int ObtenerIdBorrador() throws ErrorTienda {
+
+        int Id = 0;
+        ResultSet rs;
+        PreparedStatement ps;
+        try {
+
+            cn.Conectar();
+            ps = cn.BuscarIdMax("IdBorrador", "ventaborrador");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Id = rs.getInt(1);
+            }
+
+        } catch (Exception e) {
+            throw new ErrorTienda("Error al obtener el IdVenta", e.getMessage());
+        }
+        return Id;
+    }
+        public ResultSet llenarVenta(){         
+             conection cn = new conection();
+             return (cn.getValores(" SELECT `CodBarra`, `Producto`, `Cantidad`, `PrecioUnitario`, `IdSucursal` FROM `ventaborrador` WHERE Realizada = \"NO\"  "));
+    }
+        public void Agregar(int IdVenta, int IdSucursal, int IdTipoPrecio, String TipoVenta, String Cliente, String Fecha, double IVA, double TotalGravado, double Total, String Direccion, String Giro, String NIT, String NRC, String NDocumento) throws ErrorTienda{                    
+             conection cn = new conection();;
+         cn.UID("INSERT INTO venta(IdVenta, IdSucursal, IdTipoPrecio, TipoVenta,  Cliente, Fecha, IVA, TotalGravado, Total,Direccion, Giro, NIT, NRC, NDocumento) "
+                + "VALUES('" + IdVenta + "','" + IdSucursal + "','" + IdTipoPrecio + "','" + TipoVenta + "','" + Cliente + "','" + Fecha + "','" + IVA + "','" + TotalGravado + "','" + Total + "','" + Direccion + "','" + Giro + "','" + NIT + "','" + NRC + "','" + NDocumento + "')");      
+    }
+        
+//        public void confirmarVentaBorrador(){         
+//            
+//             conection cn = new conection();;
+//         cn.UID("INSERT INTO ventaborrador(Realizada) "
+//                + "VALUES('" + IdVenta + "','" + IdSucursal + "','" + IdTipoPrecio + "','" + TipoVenta + "','" + Cliente + "','" + Fecha + "','" + IVA + "','" + TotalGravado + "','" + Total + "','" + Direccion + "','" + Giro + "','" + NIT + "','" + NRC + "','" + NDocumento + "')");      
+//        }
+//        
+    // final metodo
+
+    
+
+    
 }
+
