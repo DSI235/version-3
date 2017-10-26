@@ -27,13 +27,20 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `bitacora`
 --
-
-CREATE TABLE `bitacora` (
-  `idbitacora` int(11) NOT NULL,
-  `idUsuario` int(10) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `accion` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `tiendav2`.`bitacora` (
+  `idbitacora` INT(11) NOT NULL,
+  `idUsuario` INT(10) NOT NULL,
+  `fecha` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `accion` VARCHAR(250) NOT NULL,
+  PRIMARY KEY (`idbitacora`),
+  INDEX `idUsuario_idx` (`idUsuario` ASC),
+  CONSTRAINT `idUsuario`
+    FOREIGN KEY (`idUsuario`)
+    REFERENCES `tiendav2`.`usuario` (`idusuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1; 
 
 -- --------------------------------------------------------
 

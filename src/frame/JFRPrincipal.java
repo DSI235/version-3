@@ -1471,12 +1471,12 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblListadoVentas3 = new javax.swing.JLabel();
         jSeparator64 = new javax.swing.JSeparator();
         btnAtrasReporteVenta2 = new javax.swing.JButton();
-        cmbMes = new javax.swing.JComboBox<String>();
+        cmbMes = new javax.swing.JComboBox<>();
         jLabel96 = new javax.swing.JLabel();
         jSeparator103 = new javax.swing.JSeparator();
         jLabel100 = new javax.swing.JLabel();
         jSeparator107 = new javax.swing.JSeparator();
-        cmbAño = new javax.swing.JComboBox<String>();
+        cmbAño = new javax.swing.JComboBox<>();
         btnGenerar = new javax.swing.JButton();
         jpnReporteMesCompras = new javax.swing.JPanel();
         jScrollPane17 = new javax.swing.JScrollPane();
@@ -1487,13 +1487,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblListadoVentas4 = new javax.swing.JLabel();
         jSeparator67 = new javax.swing.JSeparator();
         btnAtrasReporteCompra = new javax.swing.JButton();
-        cmbMes1 = new javax.swing.JComboBox<String>();
+        cmbMes1 = new javax.swing.JComboBox<>();
         jLabel97 = new javax.swing.JLabel();
         jSeparator104 = new javax.swing.JSeparator();
         jLabel101 = new javax.swing.JLabel();
         jSeparator108 = new javax.swing.JSeparator();
-        cmbAño1 = new javax.swing.JComboBox<String>();
+        cmbAño1 = new javax.swing.JComboBox<>();
         btnGenerar1 = new javax.swing.JButton();
+        cmbReporteCompra = new javax.swing.JComboBox<>();
         jpnUsuarios = new javax.swing.JPanel();
         btnAgregarUsuario = new javax.swing.JButton();
         btnModificarUsuario = new javax.swing.JButton();
@@ -1524,8 +1525,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jSeparator31 = new javax.swing.JSeparator();
         jSeparator33 = new javax.swing.JSeparator();
         jSeparator36 = new javax.swing.JSeparator();
-        cmbRolUsuario = new javax.swing.JComboBox<String>();
-        cmbEstadoUsuario = new javax.swing.JComboBox<String>();
+        cmbRolUsuario = new javax.swing.JComboBox<>();
+        cmbEstadoUsuario = new javax.swing.JComboBox<>();
         jpnModificarUsuario = new javax.swing.JPanel();
         btnGuardarUsuario1 = new javax.swing.JButton();
         btnAtrasUsuarios1 = new javax.swing.JButton();
@@ -1544,8 +1545,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jSeparator58 = new javax.swing.JSeparator();
         jSeparator59 = new javax.swing.JSeparator();
         jSeparator80 = new javax.swing.JSeparator();
-        cmbNuevoRolUsuario = new javax.swing.JComboBox<String>();
-        cmbNuevoEstadoUsuario = new javax.swing.JComboBox<String>();
+        cmbNuevoRolUsuario = new javax.swing.JComboBox<>();
+        cmbNuevoEstadoUsuario = new javax.swing.JComboBox<>();
         jpnListaBorrador = new javax.swing.JPanel();
         jScrollPane14 = new javax.swing.JScrollPane();
         tblListaBorrador = new javax.swing.JTable();
@@ -4910,6 +4911,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnReporteMesCompras.add(btnGenerar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 400, 130, 40));
 
+        cmbReporteCompra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<SELECCIONAR>", "CREDITO FISCAL", "LIBRE", "FACTURA", " " }));
+        jpnReporteMesCompras.add(cmbReporteCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 400, 150, 40));
+
         getContentPane().add(jpnReporteMesCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
         jpnUsuarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -5101,10 +5105,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnAgregarUsuario.add(jSeparator33, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 60, 10));
         jpnAgregarUsuario.add(jSeparator36, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 60, 10));
 
-        cmbRolUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Comprador", "Vendedor" }));
+        cmbRolUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Comprador", "Vendedor" }));
         jpnAgregarUsuario.add(cmbRolUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 180, -1));
 
-        cmbEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo" }));
+        cmbEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
         jpnAgregarUsuario.add(cmbEstadoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 180, -1));
 
         getContentPane().add(jpnAgregarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
@@ -5206,10 +5210,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnModificarUsuario.add(jSeparator59, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 60, 10));
         jpnModificarUsuario.add(jSeparator80, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 60, 10));
 
-        cmbNuevoRolUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Comprador", "Vendedor" }));
+        cmbNuevoRolUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Comprador", "Vendedor" }));
         jpnModificarUsuario.add(cmbNuevoRolUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 180, -1));
 
-        cmbNuevoEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo" }));
+        cmbNuevoEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
         jpnModificarUsuario.add(cmbNuevoEstadoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 180, -1));
 
         getContentPane().add(jpnModificarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
@@ -8060,9 +8064,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnGenerarActionPerformed
 
-    private void btnGenerar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerar1ActionPerformed
+public void generarReporteCompra(String nameReporte){
 
-        String reporte = "C:\\Users\\Rogelio Alvarez\\Desktop\\VERSION FINAL PRUEBA\\tiendads2\\src\\reportes\\reporteCompras2.jasper";
+        String reporte = "C:\\Users\\ronal\\Desktop\\version-3\\src\\reportes\\"+nameReporte;
         System.out.println(reporte);
         Map parametros = new HashMap();
         conection cn = new conection();
@@ -8107,6 +8111,16 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "ERROR EN REPORTE: " + ex.getMessage());
         }
+}    
+    
+    private void btnGenerar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerar1ActionPerformed
+
+        if(cmbReporteCompra.getSelectedItem().toString().equals("CREDITO FISCAL")){
+            generarReporteCompra("reporteCompras2.jasper");
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione algun tipo de reporte:\nEjemplo: CREDITO FISCAL, LIBRE O FACTURA.");
+        }
+        
     }//GEN-LAST:event_btnGenerar1ActionPerformed
 
     private void btnAtrasReporteCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtrasReporteCompraMouseClicked
@@ -9226,6 +9240,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbNuevoEstadoUsuario;
     private javax.swing.JComboBox<String> cmbNuevoRolUsuario;
     private javax.swing.JComboBox cmbProveedor;
+    private javax.swing.JComboBox<String> cmbReporteCompra;
     private javax.swing.JComboBox<String> cmbRolUsuario;
     private javax.swing.JComboBox cmbSucursal2;
     private javax.swing.JComboBox cmbSucursalCompra;
