@@ -26,6 +26,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.table.JTableHeader;
 import connections.conection;
 import connections.iList;
+import groovyjarjarantlr.Utils;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
@@ -8195,7 +8196,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
 
-        String reporte = "C:\\Users\\Rogelio Alvarez\\Desktop\\VERSION FINAL TIENDA\\tiendads2\\src\\reportes\\reporteVentas.jasper";
+        //String reporte = "C:\\Users\\Rogelio Alvarez\\Desktop\\VERSION FINAL TIENDA\\tiendads2\\src\\reportes\\reporteVentas.jasper";
+        String reporte = this.getClass().getResource("/reportes/reporteVentas.jasper").getPath();
+        
         System.out.println(reporte);
         Map parametros = new HashMap();
         conection cn = new conection();
@@ -8245,7 +8248,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
     private void btnGenerar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerar1ActionPerformed
 
-        String reporte = "C:\\Users\\Rogelio Alvarez\\Desktop\\VERSION FINAL PRUEBA\\tiendads2\\src\\reportes\\reporteCompras2.jasper";
+        //String reporte = "C:\\Users\\Rogelio Alvarez\\Desktop\\VERSION FINAL PRUEBA\\tiendads2\\src\\reportes\\reporteCompras2.jasper";
+        String reporte = this.getClass().getResource("/reportes/reporteCompras2.jasper").getPath();
         System.out.println(reporte);
         Map parametros = new HashMap();
         conection cn = new conection();
