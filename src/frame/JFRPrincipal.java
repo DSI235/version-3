@@ -80,7 +80,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     DefaultTableModel model0;
     private TableRowSorter trsFiltro;
     
-   
+    boolean putaBandera = false; // bandera para Compras con bug en cmbSucursales1
 
 
     public JFRPrincipal(Usuario userSesion) {
@@ -6004,6 +6004,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarProductoMouseExited
 
     private void btnBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProductoActionPerformed
+        if(putaBandera==false){
         System.out.println("txtProductosBuscar EN ACCION DE BOTON = " + txtProductosBuscar.getText());
         ControladorProducto CP = new ControladorProducto();
         LlenarProducto(txtProductosBuscar.getText());
@@ -6077,7 +6078,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         }
 
-
+        }
+        putaBandera=false;
     }//GEN-LAST:event_btnBuscarProductoActionPerformed
 
     private void btnModificarProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarProductoMouseClicked
@@ -6477,6 +6479,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // Crear compra y el detalle de compra de esa compra...
+         putaBandera = true;
         DecimalFormat dosdigitos = new DecimalFormat("0.00");
         DecimalFormat cuatrodigitos = new DecimalFormat("0.0000");
         try {
@@ -6681,7 +6684,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Nope " + e.getMessage());
         }
-
+       
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
