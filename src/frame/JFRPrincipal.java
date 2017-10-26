@@ -8120,6 +8120,8 @@ public void generarReporteCompra(String nameReporte){
 
         if(cmbReporteCompra.getSelectedItem().toString().equals("CREDITO FISCAL")){
             generarReporteCompra("reporteCompras2.jasper");
+        }else if(cmbReporteCompra.getSelectedItem().toString().equals("LIBRE")){
+            generarReporteCompra("report2.jasper");
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione algun tipo de reporte:\nEjemplo: CREDITO FISCAL, LIBRE O FACTURA.");
         }
