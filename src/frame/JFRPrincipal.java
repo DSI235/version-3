@@ -3468,6 +3468,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(jpnListaVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
+        jpnAgregarVenta.setPreferredSize(new java.awt.Dimension(760, 750));
         jpnAgregarVenta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSeparator62.setBackground(new java.awt.Color(0, 0, 0));
@@ -9188,7 +9189,7 @@ public void generarReporteCompra(String nameReporte){
                     System.out.println("utili " + utilidad);
                     System.out.println(""+producto.costo);
                     //producto.costo = (producto.costo * (Double.parseDouble(dosdigitos.format(Double.parseDouble(para))) / 100) + producto.costo);
-                    producto.costo = Double.parseDouble(dosdigitos.format((producto.costo / (1 - utilidad))));
+                    producto.costo = Double.parseDouble(cuatrodigitos.format((producto.costo / (1 - utilidad))));
                     double Total = 0;
 
                     DefaultTableModel model = (DefaultTableModel) tblProductosVender.getModel();
