@@ -974,6 +974,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     /*  ---- Visualización de imágenes en Menú ----  */
     public void Principal(boolean estado) {
         if (!jpnProveedores.isVisible()) {
+            jpnSexto.setVisible(estado);
+            jpnSeptimo.setVisible(estado);
+            jpnOctavo.setVisible(estado);
+            jpnNoveno.setVisible(estado);
+            jpnDecimo.setVisible(estado);
             jpnPrimero.setVisible(estado);
 
         } else {
