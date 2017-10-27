@@ -1,6 +1,8 @@
 package frame;
 
+import Clases.Bitacora;
 import Clases.Compra;
+import Clases.ControladorBitacora;
 import Clases.ControladorCompra;
 import Clases.ControladorProducto;
 import Clases.ControladorProveedor;
@@ -76,16 +78,16 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     int filas = 0;
     double totalC = 0;
     JTableHeader tHeadVentas, tHeadListaVentas, tHeadCompras, tHeadProductos, tHeadCompra, tHeadProveedores, tHeadDetalleCompra, tHeadCompraDet, tHeadDetalleCompra1, tHeadSucursales, tHeadPrecios, tHeadParametros, tHeadListaVentasMes2, tHeadListaComprasMes,
-    tHeadUsuarios;
+    tHeadUsuarios, tHeadBitacora;
     Validacion validacion = new Validacion();
     DefaultTableModel model0;
     private TableRowSorter trsFiltro;
     
     boolean putaBandera = false; // bandera para Compras con bug en cmbSucursales1
-
+    Usuario sesion;
 
     public JFRPrincipal(Usuario userSesion) {
-        
+        this.sesion=userSesion;
         initComponents();
         //llenado de tabla ventaBorrador vizcarra
         ventaBorrador.addColumn("CodBarra");
@@ -122,6 +124,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tHeadListaVentasMes2 = tblListaVentasMes2.getTableHeader();
         tHeadListaComprasMes = tblListaComprasMes.getTableHeader();
         tHeadUsuarios = tblUsuarios.getTableHeader();
+        tHeadBitacora = tblBitacora.getTableHeader();
 
         cabezera();
         ventas = compras = productos = proveedores = sucursales = precios = configuracion = usuarios = bitacora = apagado = false;
@@ -143,7 +146,70 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         LlenarVenta();
         LlenarParametros();
         LlenarUsuarios();
+        LlenarBitacora();
     }
+    
+    public void agregarABitacora(String accionRealizada){
+        int id=sesion.idUsuario;
+        ControladorBitacora bit = new ControladorBitacora();
+        int idBIT = 0;
+        try {
+            idBIT = bit.ObtenerIdBitacora();
+        } catch (ErrorTienda ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (idBIT == 0) {idBIT=1;} 
+        Bitacora bt = new Bitacora();
+        bt.idBitacora= idBIT;
+        bt.idUsuario = id;
+        bt.accion = accionRealizada;
+        try {
+            ControladorBitacora.agregarBitacora(bt);
+            //JOptionPane.showMessageDialog(rootPane, "Agregado");
+            tblBitacora.removeAll();
+            LlenarBitacora();
+            apagado2();
+            jpnBitacora.setVisible(true);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
+    
+  public void LlenarBitacora() {
+        System.out.println("LLENAR Bitacora" + "");
+        DefaultTableModel modelo = new DefaultTableModel();
+        ArrayList<Bitacora> bitacora = new ArrayList();
+        Object[] fila = new Object[7];
+        try {
+            bitacora = ControladorBitacora.Obtener();
+            String[] bitacoras = new String[]{"IdBitacora", "IdUsuario", "Fecha", "Accion"};
+            modelo.setColumnIdentifiers(bitacoras);
+            Iterator<Bitacora> prov = bitacora.iterator();
+            
+            if (prov.hasNext()){
+                while (prov.hasNext()) {
+                    fila[0] = prov.next();
+                    fila[1] = prov.next();
+                    fila[2] = prov.next();
+                    fila[3] = prov.next();
+
+                    modelo.addRow(fila);
+                    tblBitacora.setModel(modelo);
+                }
+            } else {
+                fila[0] = "-";
+                fila[1] = "-";
+                fila[2] = "-";
+                fila[3] = "-";
+
+                modelo.addRow(fila);
+                tblBitacora.setModel(modelo);
+            }
+
+        } catch (ErrorTienda ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+  }
 
     public void LlenarProveedor() {
         System.out.println("LLENAR PRO");
@@ -975,6 +1041,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnAgregarUsuario.setVisible(false);
         jpnModificarUsuario.setVisible(false);
         jpnListaBorrador.setVisible(false);
+        jpnBitacora.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -1401,6 +1468,19 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtSucursalBuscar = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jSeparator70 = new javax.swing.JSeparator();
+        jpnBitacora = new javax.swing.JPanel();
+        jScrollPane15 = new javax.swing.JScrollPane();
+        tblBitacora = new javax.swing.JTable();
+        btnBuscarBitacora = new javax.swing.JButton();
+        btnEliminarBitacora = new javax.swing.JButton();
+        jPanel64 = new javax.swing.JPanel();
+        jSeparator106 = new javax.swing.JSeparator();
+        lblProveedores11 = new javax.swing.JLabel();
+        jSeparator109 = new javax.swing.JSeparator();
+        jLabel115 = new javax.swing.JLabel();
+        txtBuscarBitacora = new javax.swing.JTextField();
+        jLabel116 = new javax.swing.JLabel();
+        jSeparator110 = new javax.swing.JSeparator();
         jpnModificarPrecio = new javax.swing.JPanel();
         btnGuardarPar = new javax.swing.JButton();
         btnAtrasModPar = new javax.swing.JButton();
@@ -4333,6 +4413,106 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnSucursal.add(jSeparator70, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 96, 100, 20));
 
         getContentPane().add(jpnSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
+
+        jpnBitacora.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblBitacora =new javax.swing.JTable(){ public boolean isCellEditable(int rowIndex, int colIndex){     return false; } };
+        tblBitacora.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Nombre", "Direccion", "telefono"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblBitacora.getTableHeader().setReorderingAllowed(false);
+        jScrollPane15.setViewportView(tblBitacora);
+
+        jpnBitacora.add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 650, 180));
+
+        btnBuscarBitacora.setBackground(new java.awt.Color(0, 0, 0));
+        btnBuscarBitacora.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarBitacora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/buscar.png"))); // NOI18N
+        btnBuscarBitacora.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnBuscarBitacora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBuscarBitacoraMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBuscarBitacoraMouseExited(evt);
+            }
+        });
+        btnBuscarBitacora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarBitacoraActionPerformed(evt);
+            }
+        });
+        jpnBitacora.add(btnBuscarBitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 110, 30));
+
+        btnEliminarBitacora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
+        btnEliminarBitacora.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEliminarBitacora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarBitacoraMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarBitacoraMouseExited(evt);
+            }
+        });
+        btnEliminarBitacora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarBitacoraActionPerformed(evt);
+            }
+        });
+        jpnBitacora.add(btnEliminarBitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 110, 30));
+
+        jPanel64.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel64.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jSeparator106.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel64.add(jSeparator106, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 20, 50));
+
+        lblProveedores11.setBackground(new java.awt.Color(255, 255, 255));
+        lblProveedores11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblProveedores11.setForeground(new java.awt.Color(255, 255, 255));
+        lblProveedores11.setText("Bitacora");
+        jPanel64.add(lblProveedores11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 110, 30));
+
+        jpnBitacora.add(jPanel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 50));
+        jpnBitacora.add(jSeparator109, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 130, 10));
+
+        jLabel115.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel115.setText("Listado de entradas en la bitacora:");
+        jpnBitacora.add(jLabel115, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
+
+        txtBuscarBitacora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarBitacoraActionPerformed(evt);
+            }
+        });
+        txtBuscarBitacora.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBuscarBitacoraKeyPressed(evt);
+            }
+        });
+        jpnBitacora.add(txtBuscarBitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 430, 30));
+
+        jLabel116.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel116.setText("Buscar en bitacora");
+        jpnBitacora.add(jLabel116, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
+        jpnBitacora.add(jSeparator110, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 96, 100, 20));
+
+        getContentPane().add(jpnBitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
         jpnModificarPrecio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -8177,7 +8357,7 @@ public void generarReporteCompra(String nameReporte){
     private void btnAbrirBitacoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirBitacoraMouseClicked
         apagado();
         apagado2();
-        //jpnBitacora.setVisible(true);
+        jpnBitacora.setVisible(true);
     }//GEN-LAST:event_btnAbrirBitacoraMouseClicked
 
     private void btnAgregarUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarUsuarioMouseClicked
@@ -9099,6 +9279,61 @@ public void generarReporteCompra(String nameReporte){
         acercaDe.setVisible(true);
     }//GEN-LAST:event_btnAcercaDeActionPerformed
 
+    private void btnBuscarBitacoraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarBitacoraMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarBitacoraMouseEntered
+
+    private void btnBuscarBitacoraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarBitacoraMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarBitacoraMouseExited
+
+    private void btnBuscarBitacoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarBitacoraActionPerformed
+       LlenarBitacora();
+    }//GEN-LAST:event_btnBuscarBitacoraActionPerformed
+
+    private void btnEliminarBitacoraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarBitacoraMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarBitacoraMouseEntered
+
+    private void btnEliminarBitacoraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarBitacoraMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarBitacoraMouseExited
+
+    private void btnEliminarBitacoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarBitacoraActionPerformed
+        if (tblBitacora.getSelectedRow() != -1) {
+            int c = tblBitacora.getRowCount();
+            if (c == 1) {
+                JOptionPane.showMessageDialog(null, "Necesita al menos una entrada de bitacora para trabajar");
+            } else {
+                try {
+                    Bitacora b = new Bitacora();
+                    b.idBitacora = Integer.parseInt(tblBitacora.getValueAt(tblBitacora.getSelectedRow(), 0).toString());
+                    ControladorBitacora.eliminarBitacora(b);
+
+                    tblBitacora.removeAll();
+                    LlenarSucursal();
+
+                    JOptionPane.showMessageDialog(null, "Entrada de bitacora Eliminada");
+                    agregarABitacora("Se elimino un campo de bitacora");
+                    LlenarBitacora();
+                } catch (ErrorTienda e) {
+                    JOptionPane.showMessageDialog(null, "Error al eliminar le entrada de bitacora");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "seleccione una entrada de bitacora");
+
+        }
+    }//GEN-LAST:event_btnEliminarBitacoraActionPerformed
+
+    private void txtBuscarBitacoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarBitacoraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarBitacoraActionPerformed
+
+    private void txtBuscarBitacoraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarBitacoraKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarBitacoraKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -9174,12 +9409,14 @@ public void generarReporteCompra(String nameReporte){
     private javax.swing.JButton btnAtrasUsuarios;
     private javax.swing.JButton btnAtrasUsuarios1;
     private javax.swing.JButton btnBrorrador;
+    private javax.swing.JButton btnBuscarBitacora;
     private javax.swing.JButton btnBuscarParametro;
     private javax.swing.JButton btnBuscarProdCompra;
     private javax.swing.JButton btnBuscarProducto;
     private javax.swing.JButton btnBuscarTP;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCompras;
+    private javax.swing.JButton btnEliminarBitacora;
     private javax.swing.JButton btnEliminarProducto;
     private javax.swing.JButton btnEliminarProductoVenta;
     private javax.swing.JButton btnEliminarProveedor;
@@ -9251,6 +9488,8 @@ public void generarReporteCompra(String nameReporte){
     private javax.swing.JLabel jLabel112;
     private javax.swing.JLabel jLabel113;
     private javax.swing.JLabel jLabel114;
+    private javax.swing.JLabel jLabel115;
+    private javax.swing.JLabel jLabel116;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -9372,12 +9611,14 @@ public void generarReporteCompra(String nameReporte){
     private javax.swing.JPanel jPanel61;
     private javax.swing.JPanel jPanel62;
     private javax.swing.JPanel jPanel63;
+    private javax.swing.JPanel jPanel64;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane17;
     private javax.swing.JScrollPane jScrollPane2;
@@ -9393,9 +9634,12 @@ public void generarReporteCompra(String nameReporte){
     private javax.swing.JSeparator jSeparator103;
     private javax.swing.JSeparator jSeparator104;
     private javax.swing.JSeparator jSeparator105;
+    private javax.swing.JSeparator jSeparator106;
     private javax.swing.JSeparator jSeparator107;
     private javax.swing.JSeparator jSeparator108;
+    private javax.swing.JSeparator jSeparator109;
     private javax.swing.JSeparator jSeparator11;
+    private javax.swing.JSeparator jSeparator110;
     private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator13;
     private javax.swing.JSeparator jSeparator14;
@@ -9492,6 +9736,7 @@ public void generarReporteCompra(String nameReporte){
     private javax.swing.JPanel jpnAgregarVenta;
     private javax.swing.JPanel jpnBarraMenu;
     private javax.swing.JPanel jpnBarraSuperior;
+    private javax.swing.JPanel jpnBitacora;
     private javax.swing.JPanel jpnCompras;
     private javax.swing.JPanel jpnConfiguracion;
     private javax.swing.JPanel jpnCuarto;
@@ -9584,6 +9829,7 @@ public void generarReporteCompra(String nameReporte){
     private javax.swing.JLabel lblPercepcion;
     private javax.swing.JLabel lblProveedor2;
     private javax.swing.JLabel lblProveedores10;
+    private javax.swing.JLabel lblProveedores11;
     private javax.swing.JLabel lblProveedores3;
     private javax.swing.JLabel lblProveedores4;
     private javax.swing.JLabel lblProveedores6;
@@ -9605,6 +9851,7 @@ public void generarReporteCompra(String nameReporte){
     private org.edisoncor.gui.panel.PanelCurves panelCurves1;
     private org.edisoncor.gui.panel.PanelCurves panelCurves2;
     private javax.swing.JButton reporteComprabtn;
+    private javax.swing.JTable tblBitacora;
     private javax.swing.JTable tblCompra;
     private javax.swing.JTable tblCompras;
     private javax.swing.JTable tblDetalleCompra;
@@ -9620,6 +9867,7 @@ public void generarReporteCompra(String nameReporte){
     private javax.swing.JTable tblTP;
     private javax.swing.JTable tblUsuarios;
     private javax.swing.JTextField txtBuscaTipoPrecio;
+    private javax.swing.JTextField txtBuscarBitacora;
     private javax.swing.JTextField txtBuscarParametro;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCantidadVender;
