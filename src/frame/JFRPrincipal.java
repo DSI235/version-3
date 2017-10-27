@@ -1896,22 +1896,23 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lbl5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl5.setForeground(new java.awt.Color(102, 102, 102));
         lbl5.setText("Bienvenido a tu sistema.");
-        jpnPrimero.add(lbl5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, -1, -1));
+        jpnPrimero.add(lbl5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, -1, -1));
 
         lblMitad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mitad.jpg"))); // NOI18N
         jpnPrimero.add(lblMitad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 600));
 
         btnAcercaDe.setBackground(new java.awt.Color(0, 0, 0));
         btnAcercaDe.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
-        btnAcercaDe.setForeground(new java.awt.Color(0, 255, 204));
-        btnAcercaDe.setText("Acerca de:");
+        btnAcercaDe.setForeground(new java.awt.Color(204, 204, 204));
+        btnAcercaDe.setText("Acerca de v3.0");
+        btnAcercaDe.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAcercaDe.setBorderPainted(false);
         btnAcercaDe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAcercaDeActionPerformed(evt);
             }
         });
-        jpnPrimero.add(btnAcercaDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, -1, -1));
+        jpnPrimero.add(btnAcercaDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 560, -1, -1));
 
         jpnPrincipal.add(jpnPrimero, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 730, 600));
 
