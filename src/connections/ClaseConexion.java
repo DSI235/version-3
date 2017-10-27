@@ -186,7 +186,18 @@ public abstract class ClaseConexion {
         System.out.println("SQL " + sql);
         return ps;
     }
+    
+    public PreparedStatement BuscarRegistroBitacora() throws SQLException {
 
+        String sql = "";
+
+        sql = "SELECT idbitacora, U.username, fecha,accion FROM usuario U LEFT JOIN bitacora B ON U.idusuario = B.idUsuario ";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        System.out.println("SQL " + sql);
+        return ps;
+    }
+    
     public PreparedStatement BuscarRegistroMes(String mes, String dia) throws SQLException {
         String sql = "";
 

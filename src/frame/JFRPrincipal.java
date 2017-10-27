@@ -81,7 +81,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     tHeadUsuarios, tHeadBitacora;
     Validacion validacion = new Validacion();
     DefaultTableModel model0;
-    private TableRowSorter trsFiltro;
+    private TableRowSorter trsFiltro, trsFiltroBit;
     
     boolean putaBandera = false; // bandera para Compras con bug en cmbSucursales1
     Usuario sesion;
@@ -183,7 +183,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         Object[] fila = new Object[7];
         try {
             bitacora = ControladorBitacora.Obtener();
-            String[] bitacoras = new String[]{"IdBitacora", "IdUsuario", "Fecha", "Accion"};
+            String[] bitacoras = new String[]{"IdBitacora", "Usuario", "Fecha", "Accion"};
             modelo.setColumnIdentifiers(bitacoras);
             Iterator<Bitacora> prov = bitacora.iterator();
             
@@ -1007,6 +1007,40 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         } else {
         }
     }
+    
+     public void Sucursales(boolean estado) {
+        if (!jpnProveedores.isVisible()) {
+            jpnSexto.setVisible(estado);
+        } else {
+        }
+    }
+
+    public void TipoPrecio(boolean estado) {
+        if (!jpnProveedores.isVisible()) {
+            jpnSeptimo.setVisible(estado);
+        } else {
+        }
+    }
+
+    public void Configuracion(boolean estado) {
+        if (!jpnProveedores.isVisible()) {
+            jpnOctavo.setVisible(estado);
+        } else {
+        }
+    }
+
+    public void Usuarios(boolean estado) {
+        if (!jpnProveedores.isVisible()) {
+            jpnNoveno.setVisible(estado);
+        } else {
+        }
+    }
+    public void Bitacora(boolean estado) {
+        if (!jpnProveedores.isVisible()) {
+            jpnDecimo.setVisible(estado);
+        } else {
+        }
+    }
 
     public void apagado() {
         apagado = true;
@@ -1081,6 +1115,33 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lbl14 = new javax.swing.JLabel();
         lbl15 = new javax.swing.JLabel();
         lblMitad2 = new javax.swing.JLabel();
+        jpnSexto = new javax.swing.JPanel();
+        lbl16 = new javax.swing.JLabel();
+        lbl17 = new javax.swing.JLabel();
+        lbl18 = new javax.swing.JLabel();
+        lblMitad6 = new javax.swing.JLabel();
+        jpnSeptimo = new javax.swing.JPanel();
+        lbl51 = new javax.swing.JLabel();
+        lbl52 = new javax.swing.JLabel();
+        lbl53 = new javax.swing.JLabel();
+        lbl54 = new javax.swing.JLabel();
+        lbl55 = new javax.swing.JLabel();
+        lblMitad10 = new javax.swing.JLabel();
+        jpnOctavo = new javax.swing.JPanel();
+        lbl36 = new javax.swing.JLabel();
+        lbl37 = new javax.swing.JLabel();
+        lbl38 = new javax.swing.JLabel();
+        lblMitad8 = new javax.swing.JLabel();
+        jpnNoveno = new javax.swing.JPanel();
+        lbl46 = new javax.swing.JLabel();
+        lbl47 = new javax.swing.JLabel();
+        lbl48 = new javax.swing.JLabel();
+        lblMitad9 = new javax.swing.JLabel();
+        jpnDecimo = new javax.swing.JPanel();
+        lbl56 = new javax.swing.JLabel();
+        lbl57 = new javax.swing.JLabel();
+        lbl58 = new javax.swing.JLabel();
+        lblMitad11 = new javax.swing.JLabel();
         jpnTercero = new javax.swing.JPanel();
         lbl21 = new javax.swing.JLabel();
         lbl22 = new javax.swing.JLabel();
@@ -1947,10 +2008,137 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lbl15.setText("el sistema de Compras.");
         jpnSegundo.add(lbl15, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, -1, 30));
 
-        lblMitad2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mitad2.jpg"))); // NOI18N
-        jpnSegundo.add(lblMitad2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 370, 600));
+        lblMitad2.setForeground(new java.awt.Color(51, 255, 255));
+        lblMitad2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/color1.png"))); // NOI18N
+        jpnSegundo.add(lblMitad2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 370, 600));
 
         jpnPrincipal.add(jpnSegundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 730, 600));
+
+        jpnSexto.setBackground(new java.awt.Color(0, 0, 0));
+        jpnSexto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbl16.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        lbl16.setForeground(new java.awt.Color(255, 255, 255));
+        lbl16.setText("Sucursales");
+        jpnSexto.add(lbl16, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 120, -1));
+
+        lbl17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl17.setForeground(new java.awt.Color(102, 102, 102));
+        lbl17.setText("Gestiona las diferentes sucursales de");
+        jpnSexto.add(lbl17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
+
+        lbl18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl18.setForeground(new java.awt.Color(102, 102, 102));
+        lbl18.setText("tu negocio y ten el control sobre ellos");
+        jpnSexto.add(lbl18, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, 30));
+
+        lblMitad6.setForeground(new java.awt.Color(51, 255, 255));
+        lblMitad6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/color2.png"))); // NOI18N
+        jpnSexto.add(lblMitad6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 370, 600));
+
+        jpnPrincipal.add(jpnSexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 730, 600));
+
+        jpnSeptimo.setBackground(new java.awt.Color(0, 0, 0));
+        jpnSeptimo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbl51.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        lbl51.setForeground(new java.awt.Color(255, 255, 255));
+        lbl51.setText("Tipo precio");
+        jpnSeptimo.add(lbl51, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 160, -1));
+
+        lbl52.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl52.setForeground(new java.awt.Color(102, 102, 102));
+        lbl52.setText("Precios diferenciados para tus clientes ");
+        jpnSeptimo.add(lbl52, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, -1, -1));
+
+        lbl53.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl53.setForeground(new java.awt.Color(102, 102, 102));
+        lbl53.setText("especiales y mayoristas");
+        jpnSeptimo.add(lbl53, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 260, -1, 30));
+
+        lbl54.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl54.setForeground(new java.awt.Color(102, 102, 102));
+        lbl54.setText("Aca podras gestionar la utilidad");
+        jpnSeptimo.add(lbl54, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 300, 210, -1));
+
+        lbl55.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl55.setForeground(new java.awt.Color(102, 102, 102));
+        lbl55.setText("de los productos de tu tienda");
+        jpnSeptimo.add(lbl55, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, -1, 30));
+
+        lblMitad10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/color7.png"))); // NOI18N
+        jpnSeptimo.add(lblMitad10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 600));
+
+        jpnPrincipal.add(jpnSeptimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 730, 600));
+
+        jpnOctavo.setBackground(new java.awt.Color(0, 0, 0));
+        jpnOctavo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbl36.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        lbl36.setForeground(new java.awt.Color(255, 255, 255));
+        lbl36.setText("Configuracion");
+        jpnOctavo.add(lbl36, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, 170, -1));
+
+        lbl37.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl37.setForeground(new java.awt.Color(102, 102, 102));
+        lbl37.setText("Para manejar parametros de tu sistema");
+        jpnOctavo.add(lbl37, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, -1, -1));
+
+        lbl38.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl38.setForeground(new java.awt.Color(102, 102, 102));
+        lbl38.setText("y configuraciones especiales");
+        jpnOctavo.add(lbl38, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, -1, 30));
+
+        lblMitad8.setText("jLabel2");
+        jpnOctavo.add(lblMitad8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 600));
+
+        jpnPrincipal.add(jpnOctavo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 730, 600));
+
+        jpnNoveno.setBackground(new java.awt.Color(0, 0, 0));
+        jpnNoveno.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbl46.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        lbl46.setForeground(new java.awt.Color(255, 255, 255));
+        lbl46.setText("Usuarios");
+        jpnNoveno.add(lbl46, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 130, -1));
+
+        lbl47.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl47.setForeground(new java.awt.Color(102, 102, 102));
+        lbl47.setText("Gestiona los usuarios que tienen");
+        jpnNoveno.add(lbl47, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 220, -1));
+
+        lbl48.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl48.setForeground(new java.awt.Color(102, 102, 102));
+        lbl48.setText("acceso a tus sistema");
+        jpnNoveno.add(lbl48, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, -1, 30));
+
+        lblMitad9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/color8.png"))); // NOI18N
+        jpnNoveno.add(lblMitad9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 360, 600));
+
+        jpnPrincipal.add(jpnNoveno, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 730, 600));
+
+        jpnDecimo.setBackground(new java.awt.Color(0, 0, 0));
+        jpnDecimo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbl56.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        lbl56.setForeground(new java.awt.Color(255, 255, 255));
+        lbl56.setText("Bitacora");
+        jpnDecimo.add(lbl56, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 130, -1));
+
+        lbl57.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl57.setForeground(new java.awt.Color(102, 102, 102));
+        lbl57.setText("Que ha sucedido mientras no estabas");
+        jpnDecimo.add(lbl57, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 240, -1));
+
+        lbl58.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl58.setForeground(new java.awt.Color(102, 102, 102));
+        lbl58.setText("revisa lo sucedido aca");
+        jpnDecimo.add(lbl58, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, -1, 30));
+
+        lblMitad11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/color1.png"))); // NOI18N
+        jpnDecimo.add(lblMitad11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 360, 600));
+
+        jpnPrincipal.add(jpnDecimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 730, 600));
 
         jpnTercero.setBackground(new java.awt.Color(0, 0, 0));
         jpnTercero.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1973,15 +2161,15 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         lbl24.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl24.setForeground(new java.awt.Color(102, 102, 102));
-        lbl24.setText("Usa esta opción y maneja");
-        jpnTercero.add(lbl24, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, 160, -1));
+        lbl24.setText("Podras vender en distintas modalidades");
+        jpnTercero.add(lbl24, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 260, -1));
 
         lbl25.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl25.setForeground(new java.awt.Color(102, 102, 102));
-        lbl25.setText("el sistema de Ventas.");
-        jpnTercero.add(lbl25, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, -1, 30));
+        lbl25.setText("y precios especiales a tus clientes");
+        jpnTercero.add(lbl25, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, -1, 30));
 
-        lblMitad3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mitad3.jpg"))); // NOI18N
+        lblMitad3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/color3.png"))); // NOI18N
         lblMitad3.setText("jLabel2");
         jpnTercero.add(lblMitad3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 600));
 
@@ -2016,7 +2204,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lbl35.setText("agregar o eliminar Productos.");
         jpnCuarto.add(lbl35, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 190, 30));
 
-        lblMitad4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mitad4.jpg"))); // NOI18N
+        lblMitad4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/color4.png"))); // NOI18N
         jpnCuarto.add(lblMitad4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 360, 600));
 
         jpnPrincipal.add(jpnCuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 730, 600));
@@ -2050,7 +2238,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lbl45.setText("a tus nuevos proveedores.");
         jpnQuinto.add(lbl45, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, -1, 30));
 
-        lblMitad5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mitad5.jpg"))); // NOI18N
+        lblMitad5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/color6.png"))); // NOI18N
         jpnQuinto.add(lblMitad5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 600));
 
         jpnPrincipal.add(jpnQuinto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 730, 600));
@@ -4447,6 +4635,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         btnBuscarBitacora.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscarBitacora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/buscar.png"))); // NOI18N
         btnBuscarBitacora.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnBuscarBitacora.setEnabled(false);
         btnBuscarBitacora.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnBuscarBitacoraMouseEntered(evt);
@@ -4460,7 +4649,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 btnBuscarBitacoraActionPerformed(evt);
             }
         });
-        jpnBitacora.add(btnBuscarBitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 110, 30));
+        jpnBitacora.add(btnBuscarBitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 170, 110, 30));
 
         btnEliminarBitacora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
         btnEliminarBitacora.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -4507,8 +4696,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtBuscarBitacoraKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarBitacoraKeyTyped(evt);
+            }
         });
-        jpnBitacora.add(txtBuscarBitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 470, 30));
+        jpnBitacora.add(txtBuscarBitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 640, 30));
 
         jLabel116.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel116.setText("Buscar en bitacora");
@@ -7849,36 +8041,49 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private void btnAbrirSucMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirSucMouseEntered
         if (!sucursales) {
             Animacion.Animacion.mover_derecha(-126, 0, 1, 2, btnAbrirSuc);
+             /*  ---- Animación compras, mover ----  */
+        Principal(false);
+        Sucursales(true);
         }
     }//GEN-LAST:event_btnAbrirSucMouseEntered
 
     private void btnAbrirSucMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirSucMouseExited
         if (!sucursales) {
             Animacion.Animacion.mover_izquierda(0, -126, 1, 2, btnAbrirSuc);
+            Principal(true);
+        Sucursales(false);
         }
     }//GEN-LAST:event_btnAbrirSucMouseExited
 
     private void btnAbrirTPMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirTPMouseEntered
         if (!precios) {
             Animacion.Animacion.mover_derecha(-126, 0, 1, 2, btnAbrirTP);
+            Principal(false);
+        TipoPrecio(true);
         }
     }//GEN-LAST:event_btnAbrirTPMouseEntered
 
     private void btnAbrirTPMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirTPMouseExited
         if (!precios) {
             Animacion.Animacion.mover_izquierda(0, -126, 1, 2, btnAbrirTP);
+            Principal(true);
+        TipoPrecio(false);
         }
     }//GEN-LAST:event_btnAbrirTPMouseExited
 
     private void btnAbrirParaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirParaMouseEntered
         if (!configuracion) {
             Animacion.Animacion.mover_derecha(-126, 0, 1, 2, btnAbrirPara);
+            Principal(false);
+        Configuracion(true);
         }
     }//GEN-LAST:event_btnAbrirParaMouseEntered
 
     private void btnAbrirParaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirParaMouseExited
         if (!configuracion) {
             Animacion.Animacion.mover_izquierda(0, -126, 1, 2, btnAbrirPara);
+            Principal(true);
+        Configuracion(false);
         }
     }//GEN-LAST:event_btnAbrirParaMouseExited
 
@@ -8366,12 +8571,16 @@ public void generarReporteCompra(String nameReporte){
     private void btnAbrirUsuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirUsuariosMouseEntered
         if (!usuarios) {
             Animacion.Animacion.mover_derecha(-126, 0, 1, 2, btnAbrirUsuarios);
+            Principal(false);
+        Usuarios(true);
         }
     }//GEN-LAST:event_btnAbrirUsuariosMouseEntered
 
     private void btnAbrirUsuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirUsuariosMouseExited
         if (!configuracion) {
             Animacion.Animacion.mover_izquierda(0, -126, 1, 2, btnAbrirUsuarios);
+            Principal(true);
+        Usuarios(false);
         }
     }//GEN-LAST:event_btnAbrirUsuariosMouseExited
 
@@ -8384,12 +8593,16 @@ public void generarReporteCompra(String nameReporte){
     private void btnAbrirBitacoraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirBitacoraMouseEntered
         if (!bitacora) {
             Animacion.Animacion.mover_derecha(-126, 0, 1, 2, btnAbrirBitacora);
+            Principal(false);
+        Bitacora(true);
         }
     }//GEN-LAST:event_btnAbrirBitacoraMouseEntered
 
     private void btnAbrirBitacoraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirBitacoraMouseExited
         if (!bitacora) {
             Animacion.Animacion.mover_izquierda(0, -126, 1, 2, btnAbrirBitacora);
+            Principal(true);
+        Bitacora(false);
         }
     }//GEN-LAST:event_btnAbrirBitacoraMouseExited
 
@@ -9386,6 +9599,21 @@ public void generarReporteCompra(String nameReporte){
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarBitacora1ActionPerformed
 
+    private void txtBuscarBitacoraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarBitacoraKeyTyped
+ txtBuscarBitacora.addKeyListener(new KeyAdapter() {
+            //@Override
+            public void keyReleased(final KeyEvent e) {
+                String cadena = (txtBuscarBitacora.getText());
+                txtBuscarBitacora.setText(cadena);
+                repaint();
+                trsFiltroBit.setRowFilter(RowFilter.regexFilter(txtBuscarBitacora.getText(), 1));
+
+            }
+        });
+        trsFiltroBit = new TableRowSorter(tblBitacora.getModel());
+        tblBitacora.setRowSorter(trsFiltroBit);     
+    }//GEN-LAST:event_txtBuscarBitacoraKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -9793,6 +10021,7 @@ public void generarReporteCompra(String nameReporte){
     private javax.swing.JPanel jpnCompras;
     private javax.swing.JPanel jpnConfiguracion;
     private javax.swing.JPanel jpnCuarto;
+    private javax.swing.JPanel jpnDecimo;
     private javax.swing.JPanel jpnDetalleCompra;
     private javax.swing.JPanel jpnDetalleVenta;
     private javax.swing.JPanel jpnListaBorrador;
@@ -9803,9 +10032,11 @@ public void generarReporteCompra(String nameReporte){
     private javax.swing.JPanel jpnModificarProveedor;
     private javax.swing.JPanel jpnModificarSucursal;
     private javax.swing.JPanel jpnModificarUsuario;
+    private javax.swing.JPanel jpnNoveno;
     private javax.swing.JPanel jpnNuevaSucursal;
     private javax.swing.JPanel jpnNuevoPrecio;
     private javax.swing.JPanel jpnNuevoProducto;
+    private javax.swing.JPanel jpnOctavo;
     private javax.swing.JPanel jpnPrimero;
     private javax.swing.JPanel jpnPrincipal;
     private javax.swing.JPanel jpnProductos;
@@ -9815,6 +10046,8 @@ public void generarReporteCompra(String nameReporte){
     private javax.swing.JPanel jpnReporteMesCompras;
     private javax.swing.JPanel jpnReporteMesVentas2;
     private javax.swing.JPanel jpnSegundo;
+    private javax.swing.JPanel jpnSeptimo;
+    private javax.swing.JPanel jpnSexto;
     private javax.swing.JPanel jpnSubMenu;
     private javax.swing.JPanel jpnSucursal;
     private javax.swing.JPanel jpnTercero;
@@ -9826,6 +10059,9 @@ public void generarReporteCompra(String nameReporte){
     private javax.swing.JLabel lbl13;
     private javax.swing.JLabel lbl14;
     private javax.swing.JLabel lbl15;
+    private javax.swing.JLabel lbl16;
+    private javax.swing.JLabel lbl17;
+    private javax.swing.JLabel lbl18;
     private javax.swing.JLabel lbl21;
     private javax.swing.JLabel lbl22;
     private javax.swing.JLabel lbl23;
@@ -9837,13 +10073,27 @@ public void generarReporteCompra(String nameReporte){
     private javax.swing.JLabel lbl33;
     private javax.swing.JLabel lbl34;
     private javax.swing.JLabel lbl35;
+    private javax.swing.JLabel lbl36;
+    private javax.swing.JLabel lbl37;
+    private javax.swing.JLabel lbl38;
     private javax.swing.JLabel lbl4;
     private javax.swing.JLabel lbl41;
     private javax.swing.JLabel lbl42;
     private javax.swing.JLabel lbl43;
     private javax.swing.JLabel lbl44;
     private javax.swing.JLabel lbl45;
+    private javax.swing.JLabel lbl46;
+    private javax.swing.JLabel lbl47;
+    private javax.swing.JLabel lbl48;
     private javax.swing.JLabel lbl5;
+    private javax.swing.JLabel lbl51;
+    private javax.swing.JLabel lbl52;
+    private javax.swing.JLabel lbl53;
+    private javax.swing.JLabel lbl54;
+    private javax.swing.JLabel lbl55;
+    private javax.swing.JLabel lbl56;
+    private javax.swing.JLabel lbl57;
+    private javax.swing.JLabel lbl58;
     private javax.swing.JLabel lblBorrador;
     private javax.swing.JLabel lblBotonCerrar;
     private javax.swing.JLabel lblCantidad2;
@@ -9873,10 +10123,15 @@ public void generarReporteCompra(String nameReporte){
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblMenu;
     private javax.swing.JLabel lblMitad;
+    private javax.swing.JLabel lblMitad10;
+    private javax.swing.JLabel lblMitad11;
     private javax.swing.JLabel lblMitad2;
     private javax.swing.JLabel lblMitad3;
     private javax.swing.JLabel lblMitad4;
     private javax.swing.JLabel lblMitad5;
+    private javax.swing.JLabel lblMitad6;
+    private javax.swing.JLabel lblMitad8;
+    private javax.swing.JLabel lblMitad9;
     private javax.swing.JLabel lblNITVenta;
     private javax.swing.JLabel lblNomProd2;
     private javax.swing.JLabel lblPercepcion;
