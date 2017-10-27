@@ -81,7 +81,15 @@ public class JFRLogin extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Contraseña:");
 
+        txtUsernameLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsernameLoginActionPerformed(evt);
+            }
+        });
         txtUsernameLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtUsernameLoginKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtUsernameLoginKeyTyped(evt);
             }
@@ -92,6 +100,20 @@ public class JFRLogin extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(15, 15, 15));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Ingreso al sistema");
+
+        txtClaveLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtClaveLoginActionPerformed(evt);
+            }
+        });
+        txtClaveLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtClaveLoginKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtClaveLoginKeyTyped(evt);
+            }
+        });
 
         lbl3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Entypo_e776(0)_64.png"))); // NOI18N
 
@@ -243,6 +265,8 @@ public class JFRLogin extends javax.swing.JFrame {
     private void txtUsernameLoginKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameLoginKeyTyped
         int longitud = txtUsernameLogin.getText().length();
         validacion.Longitud(evt, longitud, 20);
+        
+        
     }//GEN-LAST:event_txtUsernameLoginKeyTyped
 
     private void btnAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcercaDeActionPerformed
@@ -255,6 +279,26 @@ public class JFRLogin extends javax.swing.JFrame {
     private void lblBotonCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBotonCerrarMouseClicked
         System.exit(0);
     }//GEN-LAST:event_lblBotonCerrarMouseClicked
+
+    private void txtClaveLoginKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveLoginKeyTyped
+       
+    }//GEN-LAST:event_txtClaveLoginKeyTyped
+
+    private void txtUsernameLoginKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameLoginKeyReleased
+       
+    }//GEN-LAST:event_txtUsernameLoginKeyReleased
+
+    private void txtClaveLoginKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveLoginKeyReleased
+       
+    }//GEN-LAST:event_txtClaveLoginKeyReleased
+
+    private void txtUsernameLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameLoginActionPerformed
+        txtClaveLogin.requestFocus();
+    }//GEN-LAST:event_txtUsernameLoginActionPerformed
+
+    private void txtClaveLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveLoginActionPerformed
+       btnLogin.doClick();
+    }//GEN-LAST:event_txtClaveLoginActionPerformed
 
     /**
      * @param args the command line arguments

@@ -2413,6 +2413,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnAgregarProv.add(btnAtrasProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 550, 110, 30));
 
+        txtDireccionProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDireccionProveedorActionPerformed(evt);
+            }
+        });
         txtDireccionProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDireccionProveedorKeyTyped(evt);
@@ -2420,6 +2425,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnAgregarProv.add(txtDireccionProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 410, 30));
 
+        txtNIT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNITActionPerformed(evt);
+            }
+        });
         txtNIT.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNITKeyTyped(evt);
@@ -2428,6 +2438,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnAgregarProv.add(txtNIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 230, 30));
 
         txtNombreProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtNombreProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreProveedorActionPerformed(evt);
+            }
+        });
         txtNombreProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreProveedorKeyTyped(evt);
@@ -2435,6 +2450,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnAgregarProv.add(txtNombreProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 410, 30));
 
+        txtTelefonoProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelefonoProveedorActionPerformed(evt);
+            }
+        });
         txtTelefonoProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTelefonoProveedorKeyTyped(evt);
@@ -2483,6 +2503,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnAgregarProv.add(jSeparator18, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 60, 10));
         jpnAgregarProv.add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 60, 10));
 
+        txtNRCProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNRCProveedorActionPerformed(evt);
+            }
+        });
         txtNRCProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNRCProveedorKeyTyped(evt);
@@ -2495,6 +2520,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnAgregarProv.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 400, -1, 20));
         jpnAgregarProv.add(jSeparator22, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, 60, 10));
 
+        txtEmailProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailProveedorActionPerformed(evt);
+            }
+        });
         txtEmailProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtEmailProveedorKeyTyped(evt);
@@ -2543,6 +2573,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnModificarProveedor.add(btnAtrasModificarProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 550, 110, 30));
 
+        txtNuevoDireccionProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNuevoDireccionProveedorActionPerformed(evt);
+            }
+        });
         txtNuevoDireccionProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNuevoDireccionProveedorKeyTyped(evt);
@@ -2550,6 +2585,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnModificarProveedor.add(txtNuevoDireccionProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 410, 30));
 
+        txtNuevoNIT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNuevoNITActionPerformed(evt);
+            }
+        });
         txtNuevoNIT.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNuevoNITKeyTyped(evt);
@@ -2558,6 +2598,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnModificarProveedor.add(txtNuevoNIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, 230, 30));
 
         txtNuevoNombreProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtNuevoNombreProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNuevoNombreProveedorActionPerformed(evt);
+            }
+        });
         txtNuevoNombreProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNuevoNombreProveedorKeyTyped(evt);
@@ -2565,6 +2610,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnModificarProveedor.add(txtNuevoNombreProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 410, 30));
 
+        txtNuevoTelefonoProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNuevoTelefonoProveedorActionPerformed(evt);
+            }
+        });
         txtNuevoTelefonoProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNuevoTelefonoProveedorKeyTyped(evt);
@@ -2613,6 +2663,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnModificarProveedor.add(jSeparator42, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 60, 10));
         jpnModificarProveedor.add(jSeparator43, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 60, 10));
 
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
         txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtEmailKeyTyped(evt);
@@ -2625,6 +2680,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnModificarProveedor.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, -1, 20));
         jpnModificarProveedor.add(jSeparator82, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, 30, 10));
 
+        txtNuevoNRC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNuevoNRCActionPerformed(evt);
+            }
+        });
         txtNuevoNRC.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNuevoNRCKeyTyped(evt);
@@ -2906,6 +2966,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 txtCodBarraProductosFocusLost(evt);
             }
         });
+        txtCodBarraProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodBarraProductosActionPerformed(evt);
+            }
+        });
         txtCodBarraProductos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCodBarraProductosKeyTyped(evt);
@@ -2913,6 +2978,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnNuevoProducto.add(txtCodBarraProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 230, 30));
 
+        txtNombreProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreProductosActionPerformed(evt);
+            }
+        });
         txtNombreProductos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreProductosKeyTyped(evt);
@@ -2920,6 +2990,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnNuevoProducto.add(txtNombreProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 230, 30));
 
+        txtPrecioProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecioProductosActionPerformed(evt);
+            }
+        });
         txtPrecioProductos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPrecioProductosKeyTyped(evt);
@@ -2962,6 +3037,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jLabel2.setText("Inventario:");
         jpnNuevoProducto.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, 20));
 
+        txtProductoInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProductoInventarioActionPerformed(evt);
+            }
+        });
         txtProductoInventario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtProductoInventarioKeyTyped(evt);
@@ -3762,6 +3842,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnModificarProducto.add(btnAtrasModificarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, 110, 30));
 
+        txtNuevoInventarioProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNuevoInventarioProductoActionPerformed(evt);
+            }
+        });
         txtNuevoInventarioProducto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNuevoInventarioProductoKeyTyped(evt);
@@ -3769,6 +3854,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnModificarProducto.add(txtNuevoInventarioProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 230, 30));
 
+        txtNuevoCostoProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNuevoCostoProductoActionPerformed(evt);
+            }
+        });
         txtNuevoCostoProducto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNuevoCostoProductoKeyTyped(evt);
@@ -4325,6 +4415,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtModIdSuc.setEnabled(false);
         jpnModificarSucursal.add(txtModIdSuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 290, 30));
 
+        txtModNombreSuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtModNombreSucActionPerformed(evt);
+            }
+        });
         txtModNombreSuc.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtModNombreSucKeyTyped(evt);
@@ -4332,6 +4427,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnModificarSucursal.add(txtModNombreSuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 290, 30));
 
+        txtTelSuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelSucActionPerformed(evt);
+            }
+        });
         txtTelSuc.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTelSucKeyTyped(evt);
@@ -4361,6 +4461,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jLabel64.setText("Direccion:");
         jpnModificarSucursal.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, -1, 20));
 
+        txtModDirSuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtModDirSucActionPerformed(evt);
+            }
+        });
         txtModDirSuc.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtModDirSucKeyTyped(evt);
@@ -4410,6 +4515,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtIdSuc.setEditable(false);
         jpnNuevaSucursal.add(txtIdSuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 230, 30));
 
+        txtNombreSuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreSucActionPerformed(evt);
+            }
+        });
         txtNombreSuc.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreSucKeyTyped(evt);
@@ -4452,6 +4562,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jLabel55.setText("Direccion:");
         jpnNuevaSucursal.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, 20));
 
+        txtDireccionSuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDireccionSucActionPerformed(evt);
+            }
+        });
         txtDireccionSuc.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDireccionSucKeyTyped(evt);
@@ -4790,6 +4905,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtIdPar.setEnabled(false);
         jpnModificarPrecio.add(txtIdPar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 290, 30));
 
+        txtNomPar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomParActionPerformed(evt);
+            }
+        });
         txtNomPar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNomParKeyTyped(evt);
@@ -4813,6 +4933,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jLabel76.setText("Utilidad:");
         jpnModificarPrecio.add(jLabel76, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, -1, 20));
 
+        txtUtPar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUtParActionPerformed(evt);
+            }
+        });
         txtUtPar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtUtParKeyTyped(evt);
@@ -4862,6 +4987,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtIdTP.setEditable(false);
         jpnNuevoPrecio.add(txtIdTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 230, 30));
 
+        txtNombrePrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombrePrecioActionPerformed(evt);
+            }
+        });
         txtNombrePrecio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombrePrecioKeyTyped(evt);
@@ -4898,6 +5028,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jLabel81.setText("Utilidad:");
         jpnNuevoPrecio.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, 20));
 
+        txtUtilidadPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUtilidadPrecioActionPerformed(evt);
+            }
+        });
         txtUtilidadPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtUtilidadPrecioKeyTyped(evt);
@@ -5072,6 +5207,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jLabel85.setText("Valor");
         jpnModificarParametro.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, -1, 20));
 
+        txtValorPar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtValorParActionPerformed(evt);
+            }
+        });
         txtValorPar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtValorParKeyTyped(evt);
@@ -5422,6 +5562,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnAgregarUsuario.add(btnAtrasUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 550, 110, 30));
 
+        txtClaveUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtClaveUsuarioActionPerformed(evt);
+            }
+        });
         txtClaveUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtClaveUsuarioKeyTyped(evt);
@@ -5430,6 +5575,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnAgregarUsuario.add(txtClaveUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 270, 30));
 
         txtUsernameUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtUsernameUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsernameUsuarioActionPerformed(evt);
+            }
+        });
         txtUsernameUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtUsernameUsuarioKeyTyped(evt);
@@ -5526,6 +5676,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnModificarUsuario.add(btnAtrasUsuarios1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 550, 110, 30));
 
+        txtNuevoClaveUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNuevoClaveUsuarioActionPerformed(evt);
+            }
+        });
         txtNuevoClaveUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNuevoClaveUsuarioKeyTyped(evt);
@@ -6850,7 +7005,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNuevoCodigoBarraKeyTyped
 
     private void txtNuevoNombreProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNuevoNombreProductoActionPerformed
-        // TODO add your handling code here:
+       txtNuevoInventarioProducto.requestFocus();
     }//GEN-LAST:event_txtNuevoNombreProductoActionPerformed
 
     private void txtNuevoNombreProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNuevoNombreProductoKeyTyped
@@ -7603,7 +7758,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtrasSucActionPerformed
 
     private void txtTelefonoSucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoSucActionPerformed
-        // TODO add your handling code here:
+       btnAgregarSuc.doClick();
     }//GEN-LAST:event_txtTelefonoSucActionPerformed
 
     private void txtTelefonoSucKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoSucKeyTyped
@@ -9623,6 +9778,131 @@ public void generarReporteCompra(String nameReporte){
         trsFiltroBit = new TableRowSorter(tblBitacora.getModel());
         tblBitacora.setRowSorter(trsFiltroBit);     
     }//GEN-LAST:event_txtBuscarBitacoraKeyTyped
+
+    private void txtNombreProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreProveedorActionPerformed
+        txtDireccionProveedor.requestFocus();
+    }//GEN-LAST:event_txtNombreProveedorActionPerformed
+
+    private void txtDireccionProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionProveedorActionPerformed
+       txtNIT.requestFocus();
+    }//GEN-LAST:event_txtDireccionProveedorActionPerformed
+
+    private void txtNITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNITActionPerformed
+      txtTelefonoProveedor.requestFocus();
+    }//GEN-LAST:event_txtNITActionPerformed
+
+    private void txtTelefonoProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoProveedorActionPerformed
+       txtNRCProveedor.requestFocus();
+    }//GEN-LAST:event_txtTelefonoProveedorActionPerformed
+
+    private void txtNRCProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNRCProveedorActionPerformed
+       txtEmailProveedor.requestFocus();
+    }//GEN-LAST:event_txtNRCProveedorActionPerformed
+
+    private void txtEmailProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailProveedorActionPerformed
+        btnGuardarProveedor.doClick();
+    }//GEN-LAST:event_txtEmailProveedorActionPerformed
+
+    private void txtNuevoNombreProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNuevoNombreProveedorActionPerformed
+        txtNuevoDireccionProveedor.requestFocus();
+    }//GEN-LAST:event_txtNuevoNombreProveedorActionPerformed
+
+    private void txtNuevoDireccionProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNuevoDireccionProveedorActionPerformed
+      txtNuevoNIT.requestFocus();
+    }//GEN-LAST:event_txtNuevoDireccionProveedorActionPerformed
+
+    private void txtNuevoNITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNuevoNITActionPerformed
+        txtNuevoNRC.requestFocus();
+    }//GEN-LAST:event_txtNuevoNITActionPerformed
+
+    private void txtNuevoNRCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNuevoNRCActionPerformed
+       txtNuevoTelefonoProveedor.requestFocus();
+    }//GEN-LAST:event_txtNuevoNRCActionPerformed
+
+    private void txtNuevoTelefonoProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNuevoTelefonoProveedorActionPerformed
+        txtEmail.requestFocus();
+    }//GEN-LAST:event_txtNuevoTelefonoProveedorActionPerformed
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+       btnGuardarModificarProveedor.doClick();
+    }//GEN-LAST:event_txtEmailActionPerformed
+
+    private void txtCodBarraProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodBarraProductosActionPerformed
+        txtNombreProductos.requestFocus();
+    }//GEN-LAST:event_txtCodBarraProductosActionPerformed
+
+    private void txtNombreProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreProductosActionPerformed
+        txtProductoInventario.requestFocus();
+    }//GEN-LAST:event_txtNombreProductosActionPerformed
+
+    private void txtProductoInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductoInventarioActionPerformed
+        txtPrecioProductos.requestFocus();
+    }//GEN-LAST:event_txtProductoInventarioActionPerformed
+
+    private void txtPrecioProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioProductosActionPerformed
+        btnAgregarNuevoProducto.doClick();
+    }//GEN-LAST:event_txtPrecioProductosActionPerformed
+
+    private void txtNuevoInventarioProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNuevoInventarioProductoActionPerformed
+txtNuevoCostoProducto.requestFocus();
+    }//GEN-LAST:event_txtNuevoInventarioProductoActionPerformed
+
+    private void txtNuevoCostoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNuevoCostoProductoActionPerformed
+btnGuardarModificarProducto.doClick();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNuevoCostoProductoActionPerformed
+
+    private void txtModNombreSucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtModNombreSucActionPerformed
+        txtModDirSuc.requestFocus();
+    }//GEN-LAST:event_txtModNombreSucActionPerformed
+
+    private void txtModDirSucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtModDirSucActionPerformed
+txtTelSuc.requestFocus();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtModDirSucActionPerformed
+
+    private void txtTelSucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelSucActionPerformed
+        btnGuardarSuc.doClick();
+    }//GEN-LAST:event_txtTelSucActionPerformed
+
+    private void txtNombreSucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreSucActionPerformed
+       txtDireccionSuc.requestFocus();
+    }//GEN-LAST:event_txtNombreSucActionPerformed
+
+    private void txtDireccionSucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionSucActionPerformed
+       txtTelefonoSuc.requestFocus();
+    }//GEN-LAST:event_txtDireccionSucActionPerformed
+
+    private void txtNomParActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomParActionPerformed
+txtUtPar.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomParActionPerformed
+
+    private void txtUtParActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUtParActionPerformed
+btnGuardarPar.doClick();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUtParActionPerformed
+
+    private void txtNombrePrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombrePrecioActionPerformed
+       txtUtilidadPrecio.requestFocus();
+    }//GEN-LAST:event_txtNombrePrecioActionPerformed
+
+    private void txtUtilidadPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUtilidadPrecioActionPerformed
+btnAgregarSuc1.doClick();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUtilidadPrecioActionPerformed
+
+    private void txtValorParActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorParActionPerformed
+btnGuardarPar1.doClick();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtValorParActionPerformed
+
+    private void txtUsernameUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameUsuarioActionPerformed
+      txtClaveUsuario.requestFocus();
+    }//GEN-LAST:event_txtUsernameUsuarioActionPerformed
+
+    private void txtClaveUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveUsuarioActionPerformed
+      cmbRolUsuario.requestFocus();
+    }//GEN-LAST:event_txtClaveUsuarioActionPerformed
+
+    private void txtNuevoClaveUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNuevoClaveUsuarioActionPerformed
+       cmbNuevoRolUsuario.requestFocus();
+    }//GEN-LAST:event_txtNuevoClaveUsuarioActionPerformed
 
     /**
      * @param args the command line arguments

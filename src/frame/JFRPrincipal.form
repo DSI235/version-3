@@ -1699,6 +1699,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtDireccionProveedor">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDireccionProveedorActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDireccionProveedorKeyTyped"/>
           </Events>
           <Constraints>
@@ -1709,6 +1710,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNIT">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNITActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNITKeyTyped"/>
           </Events>
           <Constraints>
@@ -1724,6 +1726,7 @@
             </Property>
           </Properties>
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreProveedorActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreProveedorKeyTyped"/>
           </Events>
           <Constraints>
@@ -1734,6 +1737,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtTelefonoProveedor">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTelefonoProveedorActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTelefonoProveedorKeyTyped"/>
           </Events>
           <Constraints>
@@ -1894,6 +1898,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNRCProveedor">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNRCProveedorActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNRCProveedorKeyTyped"/>
           </Events>
           <Constraints>
@@ -1924,6 +1929,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtEmailProveedor">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEmailProveedorActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEmailProveedorKeyTyped"/>
           </Events>
           <Constraints>
@@ -2007,6 +2013,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNuevoDireccionProveedor">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNuevoDireccionProveedorActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNuevoDireccionProveedorKeyTyped"/>
           </Events>
           <Constraints>
@@ -2017,6 +2024,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNuevoNIT">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNuevoNITActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNuevoNITKeyTyped"/>
           </Events>
           <Constraints>
@@ -2032,6 +2040,7 @@
             </Property>
           </Properties>
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNuevoNombreProveedorActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNuevoNombreProveedorKeyTyped"/>
           </Events>
           <Constraints>
@@ -2042,6 +2051,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNuevoTelefonoProveedor">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNuevoTelefonoProveedorActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNuevoTelefonoProveedorKeyTyped"/>
           </Events>
           <Constraints>
@@ -2202,6 +2212,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtEmail">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEmailActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEmailKeyTyped"/>
           </Events>
           <Constraints>
@@ -2232,6 +2243,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNuevoNRC">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNuevoNRCActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNuevoNRCKeyTyped"/>
           </Events>
           <Constraints>
@@ -2790,6 +2802,7 @@
         <Component class="javax.swing.JTextField" name="txtCodBarraProductos">
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtCodBarraProductosFocusLost"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCodBarraProductosActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCodBarraProductosKeyTyped"/>
           </Events>
           <Constraints>
@@ -2800,6 +2813,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNombreProductos">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreProductosActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreProductosKeyTyped"/>
           </Events>
           <Constraints>
@@ -2810,6 +2824,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtPrecioProductos">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPrecioProductosActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPrecioProductosKeyTyped"/>
           </Events>
           <Constraints>
@@ -2946,6 +2961,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtProductoInventario">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtProductoInventarioActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtProductoInventarioKeyTyped"/>
           </Events>
           <Constraints>
@@ -4840,6 +4856,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNuevoInventarioProducto">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNuevoInventarioProductoActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNuevoInventarioProductoKeyTyped"/>
           </Events>
           <Constraints>
@@ -4850,6 +4867,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNuevoCostoProducto">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNuevoCostoProductoActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNuevoCostoProductoKeyTyped"/>
           </Events>
           <Constraints>
@@ -5977,6 +5995,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtModNombreSuc">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtModNombreSucActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtModNombreSucKeyTyped"/>
           </Events>
           <Constraints>
@@ -5987,6 +6006,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtTelSuc">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTelSucActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTelSucKeyTyped"/>
           </Events>
           <Constraints>
@@ -6079,6 +6099,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtModDirSuc">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtModDirSucActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtModDirSucKeyTyped"/>
           </Events>
           <Constraints>
@@ -6159,6 +6180,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNombreSuc">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreSucActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreSucKeyTyped"/>
           </Events>
           <Constraints>
@@ -6295,6 +6317,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtDireccionSuc">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDireccionSucActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDireccionSucKeyTyped"/>
           </Events>
           <Constraints>
@@ -6877,6 +6900,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNomPar">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNomParActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNomParKeyTyped"/>
           </Events>
           <Constraints>
@@ -6946,6 +6970,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtUtPar">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUtParActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtUtParKeyTyped"/>
           </Events>
           <Constraints>
@@ -7026,6 +7051,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNombrePrecio">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombrePrecioActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombrePrecioKeyTyped"/>
           </Events>
           <Constraints>
@@ -7139,6 +7165,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtUtilidadPrecio">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUtilidadPrecioActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtUtilidadPrecioKeyTyped"/>
           </Events>
           <Constraints>
@@ -7517,6 +7544,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtValorPar">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtValorParActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtValorParKeyTyped"/>
           </Events>
           <Constraints>
@@ -8319,6 +8347,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtClaveUsuario">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtClaveUsuarioActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtClaveUsuarioKeyTyped"/>
           </Events>
           <Constraints>
@@ -8334,6 +8363,7 @@
             </Property>
           </Properties>
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUsernameUsuarioActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtUsernameUsuarioKeyTyped"/>
           </Events>
           <Constraints>
@@ -8590,6 +8620,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNuevoClaveUsuario">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNuevoClaveUsuarioActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNuevoClaveUsuarioKeyTyped"/>
           </Events>
           <Constraints>

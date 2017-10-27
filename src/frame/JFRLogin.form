@@ -177,6 +177,8 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtUsernameLogin">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUsernameLoginActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtUsernameLoginKeyReleased"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtUsernameLoginKeyTyped"/>
           </Events>
         </Component>
@@ -196,6 +198,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="txtClaveLogin">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtClaveLoginActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtClaveLoginKeyReleased"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtClaveLoginKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbl3">
           <Properties>
