@@ -7190,8 +7190,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                     System.out.println("COSTO A INGRESAR:" + actProdu.costo);
                     ControladorProducto.Modificar(actProdu);
                     jtblProductos.removeAll();
-                    LlenarProducto("");
-                    btnBuscarProducto.doClick();
+                    
+                    //Se comentaron las siguientes lineas porque daba error al recargar productos
+                    //LlenarProducto(""); //Esto no hacia nada porque la funcion esta comentada
+                    //btnBuscarProducto.doClick(); //Esto refrescaba la tabla productos y es lo que daba el problema
 
                     DetalleCompra articulo = new DetalleCompra();
                     articulo.producto = produ;
