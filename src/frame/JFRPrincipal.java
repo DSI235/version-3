@@ -86,6 +86,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     boolean putaBandera = false; // bandera para Compras con bug en cmbSucursales1
     Usuario sesion;
 
+    public JFRPrincipal(){}
     public JFRPrincipal(Usuario userSesion) {
         this.sesion=userSesion;
         initComponents();
@@ -5512,7 +5513,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblBotonCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBotonCerrarMouseClicked
-        System.exit(0);
+//        logout z= new logout();
+//        z.setVisible(true);
+
+                       //a.agregarABitacora(idUser,"Se inicio sesion");
+                       agregarABitacora("Se cerro la sesion");
+                       dispose();
+                       JFRLogin b=new JFRLogin();
+                       b.setVisible(true);
     }//GEN-LAST:event_lblBotonCerrarMouseClicked
 
     /*  ---- Animaciones de los botones del menú ----  */
