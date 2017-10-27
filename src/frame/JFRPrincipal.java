@@ -1482,6 +1482,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtBuscarBitacora = new javax.swing.JTextField();
         jLabel116 = new javax.swing.JLabel();
         jSeparator110 = new javax.swing.JSeparator();
+        btnEliminarBitacora1 = new javax.swing.JButton();
         jpnModificarPrecio = new javax.swing.JPanel();
         btnGuardarPar = new javax.swing.JButton();
         btnAtrasModPar = new javax.swing.JButton();
@@ -4476,7 +4477,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 btnEliminarBitacoraActionPerformed(evt);
             }
         });
-        jpnBitacora.add(btnEliminarBitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 110, 30));
+        jpnBitacora.add(btnEliminarBitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, 110, 30));
 
         jPanel64.setBackground(new java.awt.Color(0, 0, 0));
         jPanel64.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -4507,12 +4508,30 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 txtBuscarBitacoraKeyPressed(evt);
             }
         });
-        jpnBitacora.add(txtBuscarBitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 430, 30));
+        jpnBitacora.add(txtBuscarBitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 470, 30));
 
         jLabel116.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel116.setText("Buscar en bitacora");
         jpnBitacora.add(jLabel116, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
         jpnBitacora.add(jSeparator110, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 96, 100, 20));
+
+        btnEliminarBitacora1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
+        btnEliminarBitacora1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEliminarBitacora1.setEnabled(false);
+        btnEliminarBitacora1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarBitacora1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarBitacora1MouseExited(evt);
+            }
+        });
+        btnEliminarBitacora1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarBitacora1ActionPerformed(evt);
+            }
+        });
+        jpnBitacora.add(btnEliminarBitacora1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 110, 30));
 
         getContentPane().add(jpnBitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -5737,12 +5756,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         try {
             Proveedor p = new Proveedor();
             p.idProveedor = Integer.parseInt(tblProveedores.getValueAt(tblProveedores.getSelectedRow(), 0).toString().trim());
+            p.idProveedor = Integer.parseInt(tblProveedores.getValueAt(tblProveedores.getSelectedRow(), 1).toString().trim());
             ControladorProveedor.Eliminar(p);
-
+            String prove=  tblProveedores.getValueAt(tblProveedores.getSelectedRow(), 0).toString();
             tblProveedores.removeAll();
             LlenarProveedor();
 
             JOptionPane.showMessageDialog(null, "Proveedor Eliminado");
+            agregarABitacora("Se elimino un proveedor "+prove);
 
         } catch (ErrorTienda e) {
             JOptionPane.showMessageDialog(null, "Error al eliminar proveedor");
@@ -5840,6 +5861,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         try {
             ControladorProveedor.Agregar(proveedor);
             JOptionPane.showMessageDialog(rootPane, "Agregado");
+            String prove=txtNombreProveedor.getText();
+            agregarABitacora("Se elimino un proveedor "+prove);
             this.txtNombreProveedor.setText("");
             this.txtTelefonoProveedor.setText("");
             this.txtDireccionProveedor.setText("");
@@ -5849,6 +5872,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             tblProveedores.removeAll();
             LlenarProveedor();
             apagado2();
+            agregarABitacora("Se agrego un proveedor: "+prove);
             jpnAgregarProv.setVisible(false);
             jpnProveedores.setVisible(true);
         } catch (ErrorTienda ex) {
@@ -5904,10 +5928,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         Proveedor proveedor = new Proveedor(Integer.parseInt(txtIDProveedor1.getText()), txtNuevoNombreProveedor.getText(), txtNuevoTelefonoProveedor.getText(),
                 txtNuevoDireccionProveedor.getText(), txtNuevoNIT.getText(), txtNuevoNRC.getText(), txtEmail.getText());
+        String prove=txtNuevoNombreProveedor.getText();
         try {
             ControladorProveedor.Modificar(proveedor);
             JOptionPane.showMessageDialog(rootPane, "Modificado");
-
+             agregarABitacora("Se elimino un modifico "+prove);
             tblProveedores.removeAll();
             LlenarProveedor();
 
@@ -6286,11 +6311,12 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             p.CodBarra = jtblProductos.getValueAt(jtblProductos.getSelectedRow(), 0).toString();
             p.idSucursal = Integer.parseInt(jtblProductos.getValueAt(jtblProductos.getSelectedRow(), 5).toString());
             ControladorProducto.Eliminar(p);
-
+            String produ=jtblProductos.getValueAt(jtblProductos.getSelectedRow(), 1).toString();
             jtblProductos.removeAll();
             btnBuscarProducto.doClick();
-
+            
             JOptionPane.showMessageDialog(null, "Producto Eliminado");
+            agregarABitacora("Se elimino un proveedor "+produ);
 
         } catch (ErrorTienda e) {
             JOptionPane.showMessageDialog(null, "Error al eliminar Producto");
@@ -6316,15 +6342,17 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             id = cn.BuscarId("sucursal", "IdSucursal", "Nombre", cmbSucursal2.getSelectedItem().toString());
             Producto producto = new Producto(txtCodBarraProductos.getText(), txtNombreProductos.getText(), Integer.parseInt(txtProductoInventario.getText()),
                     Double.parseDouble(cuatrodigitos.format(Double.parseDouble(txtPrecioProductos.getText()))), Integer.parseInt(id));
-            try {
+            String produ=txtNombreProductos.getText();
+            try{
                 ControladorProducto.Agregar(producto);
                 JOptionPane.showMessageDialog(null, "Agregado");
 
                 jtblProductos.removeAll();
                 btnBuscarProducto.doClick();
-
+                
                 jpnNuevoProducto.setVisible(false);
                 jpnProductos.setVisible(true);
+                agregarABitacora("Se agregro producto "+produ);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
@@ -6588,7 +6616,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         try {
             ControladorProducto.Modificar(producto);
             JOptionPane.showMessageDialog(rootPane, "Modificado");
-
+                  agregarABitacora("Se modifico producto "+txtNuevoNombreProducto.getText());
             jtblProductos.removeAll();
             btnBuscarProducto.doClick();
 
@@ -6727,6 +6755,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             //int idCompra, Date fecha, Proveedor proveedor, int idSucursal, char tipoCompra, String numDocumento, double subTotal, double IVA, double percepcion, double total, ArrayList<DetalleCompra> articulo
             Compra compra = new Compra(idcompra, date, proveedor, sucursal.idSucursal, tipoC, txtNumDocCompra.getText(), suma, ivaFinal, percepcionFinal, granTotal);
             ControladorCompra.Agregar(compra);
+            agregarABitacora("Se realizo una comprar "+txtNumDocCompra.getText());
 
             //DETALLE COMPRA
             /**
@@ -6771,7 +6800,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                             p.add(new ListasTablas("IdSucursal", produ.idSucursal));
 
                             cn.AgregarRegistro("detallecompra", p, false);
-
+                            agregarABitacora("Se agrega a detalle comprar ");                           
                         } catch (Exception e) {
                             throw new ErrorTienda("Agregar Detalle Compra 1", e.getMessage());
                         }
@@ -7293,7 +7322,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         try {
             ControladorSucursal.Modificar(Suc);
             JOptionPane.showMessageDialog(rootPane, "Modificado");
-
+            agregarABitacora("Se modifico una sucursal "+txtModNombreSuc.getText());
             tblSucursal.removeAll();
             LlenarSucursal();
 
@@ -7340,12 +7369,13 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         try {
             ControladorSucursal.agregarSucursal(Suc);
             JOptionPane.showMessageDialog(rootPane, "Agregado");
-            this.txtNombreSuc.setText("");
+            
             this.txtDireccionSuc.setText("");
             this.txtTelefonoSuc.setText("");
             this.txtNIT.setText("");
             txtIdSuc.setText("");
-
+            agregarABitacora("Se agrego una nueva sucursal "+txtNombreSuc.getText());
+            this.txtNombreSuc.setText("");
             tblSucursal.removeAll();
             LlenarSucursal();
             apagado2();
@@ -7488,7 +7518,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                     LlenarSucursal();
 
                     JOptionPane.showMessageDialog(null, "Sucursal Eliminada");
-
+                    agregarABitacora("Se elimino la sucursal "+tblSucursal.getValueAt(tblSucursal.getSelectedRow(), 1).toString());
                 } catch (ErrorTienda e) {
                     JOptionPane.showMessageDialog(null, "Error al eliminar Sucursal");
                 }
@@ -7562,7 +7592,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         try {
             ControladorTipoPrecio.Modificar(tp);
             JOptionPane.showMessageDialog(rootPane, "Modificado");
-
+            agregarABitacora("Se modifico tipo precio "+txtNomPar.getText());
             tblTP.removeAll();
             LlenarTipoPrecio();
 
@@ -7623,7 +7653,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         try {
             ControladorTipoPrecio.agregarTipoPrecio(TP);
             JOptionPane.showMessageDialog(rootPane, "Agregado");
-
+            agregarABitacora("se agrego un tipo precio "+txtNombrePrecio.getText());
             tblTP.removeAll();
             LlenarTipoPrecio();
             apagado2();
@@ -7690,7 +7720,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                     TipoPrecio tp = new TipoPrecio();
                     tp.idTipoPrecio = Integer.parseInt(tblTP.getValueAt(tblTP.getSelectedRow(), 0).toString());
                     ControladorTipoPrecio.eliminarTipoPrecio(tp);
-
+                    agregarABitacora("Se elimino el tipo precio: " + tblTP.getValueAt(tblTP.getSelectedRow(), 1).toString());
                     tblTP.removeAll();
                     LlenarTipoPrecio();
 
@@ -7776,7 +7806,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         try {
             Parametro.Modificar(par);
             JOptionPane.showMessageDialog(rootPane, "Modificado");
-
+            agregarABitacora("se modiico un parametro "+ txtNomPar.getText());
             tblParametro.removeAll();
             LlenarParametros();
 
@@ -8452,6 +8482,7 @@ public void generarReporteCompra(String nameReporte){
         try {
             ControladorUsuario.Agregar(usuario);
             JOptionPane.showMessageDialog(rootPane, "Usuario agregado");
+            agregarABitacora("Se agrego un nuevo usuario "+txtUsernameUsuario.getText());
             this.txtUsernameUsuario.setText("");
             this.txtClaveUsuario.setText("");
             this.cmbRolUsuario.setSelectedIndex(0);
@@ -8511,7 +8542,7 @@ public void generarReporteCompra(String nameReporte){
         try {
             ControladorUsuario.Modificar(usuario);
             JOptionPane.showMessageDialog(rootPane, "Usuario modificado");
-
+            agregarABitacora("se modifico un usuario "+txtNuevoUsernameUsuario.getText());
             tblUsuarios.removeAll();
             LlenarUsuarios();
 
@@ -9032,7 +9063,7 @@ public void generarReporteCompra(String nameReporte){
                     //                nventa.articulo =    ------------FALTA ARTICULOS?? R/ NO, se llena en DetalleVenta
                     //                venta agregada:
                     venta.Agregar(nventa);
-
+                    agregarABitacora("Se realizo una venta "+txtNoDocVenta.getText());
                     //CONTINUAR CON EL DETALLE_VENTA
                     //Recorrer la tabla - tblProductosVender
                     DefaultTableModel model = (DefaultTableModel) tblProductosVender.getModel();
@@ -9323,7 +9354,7 @@ public void generarReporteCompra(String nameReporte){
                     LlenarSucursal();
 
                     JOptionPane.showMessageDialog(null, "Entrada de bitacora Eliminada");
-                    agregarABitacora("Se elimino un campo de bitacora");
+                    //agregarABitacora("Se elimino un campo de bitacora");
                     LlenarBitacora();
                 } catch (ErrorTienda e) {
                     JOptionPane.showMessageDialog(null, "Error al eliminar le entrada de bitacora");
@@ -9342,6 +9373,18 @@ public void generarReporteCompra(String nameReporte){
     private void txtBuscarBitacoraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarBitacoraKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarBitacoraKeyPressed
+
+    private void btnEliminarBitacora1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarBitacora1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarBitacora1MouseEntered
+
+    private void btnEliminarBitacora1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarBitacora1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarBitacora1MouseExited
+
+    private void btnEliminarBitacora1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarBitacora1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarBitacora1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -9426,6 +9469,7 @@ public void generarReporteCompra(String nameReporte){
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCompras;
     private javax.swing.JButton btnEliminarBitacora;
+    private javax.swing.JButton btnEliminarBitacora1;
     private javax.swing.JButton btnEliminarProducto;
     private javax.swing.JButton btnEliminarProductoVenta;
     private javax.swing.JButton btnEliminarProveedor;
@@ -10067,6 +10111,7 @@ public void generarReporteCompra(String nameReporte){
                 cv.ActualizarInventario(nventa.articulo, nventa.idSucursal);
                 jtblProductos.removeAll();
                 LlenarProducto("");
+                agregarABitacora("Se agregro el detalle de una venta");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error en agregar Detalle de Venta interno");
             }
