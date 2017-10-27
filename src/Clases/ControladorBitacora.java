@@ -33,13 +33,13 @@ public class ControladorBitacora {
         ArrayList<Object> listaBitacora = new ArrayList();
         try {
             cn.Conectar();
-            PreparedStatement ps = cn.BuscarTodos("bitacora", cm);
+            PreparedStatement ps = cn.BuscarRegistroBitacora();
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
 
                 listaBitacora.add(rs.getString("idbitacora"));
-                listaBitacora.add(rs.getString("idUsuario"));
+                listaBitacora.add(rs.getString("username"));
                 
                 listaBitacora.add(rs.getString("fecha"));
                 listaBitacora.add(rs.getString("accion"));
