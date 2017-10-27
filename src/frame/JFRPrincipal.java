@@ -111,15 +111,31 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                     break;
             case "Vendedor":
                     btnCompras.setVisible(false);
-                    btnProductos.setVisible(false);
+                    btnModificarProducto.setVisible(false);
+                    btnEliminarProducto.setVisible(false);
+                    btnNuevoProducto.setVisible(false);
                     btnProveedores.setVisible(false);
                     btnAbrirSuc.setVisible(false);
-                    btnAbrirTP.setVisible(false);
+                    btnTPEliminar.setVisible(false);
+                    btnTPNuevo.setVisible(false);
+                    btnModificarTP.setVisible(false);
                     btnAbrirPara.setVisible(false);
                     btnAbrirBitacora.setVisible(false);
                     btnAbrirUsuarios.setVisible(false);
                     break;
             case "Comprador":
+                    btnVentas.setVisible(false);
+                    btnProductos.setVisible(true);
+                    btnModificarProducto.setVisible(true);
+                    btnEliminarProducto.setVisible(false);
+                    btnNuevoProducto.setVisible(false);
+                    btnProveedores.setVisible(true);
+                    btnEliminarProveedor.setVisible(false);
+                    btnAbrirSuc.setVisible(false);
+                    btnAbrirTP.setVisible(false);
+                    btnAbrirPara.setVisible(false);
+                    btnAbrirBitacora.setVisible(false);
+                    btnAbrirUsuarios.setVisible(false);
                     break;
         }
         

@@ -21,3 +21,4 @@ build/built-jar.properties
 *.class
 *.properties
 *.xml
+*.properties
