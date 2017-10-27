@@ -104,7 +104,25 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         System.out.println("USUARIO DE LOGIN:" + userSesion.username);
         System.out.println("CLAVE DE LOGIN:" + userSesion.clave);
         System.out.println("ROL DE LOGIN:" + userSesion.rol);
-
+        
+        switch (sesion.rol) {
+            case "Administrador":
+                    System.out.println("Puede ver todo");
+                    break;
+            case "Vendedor":
+                    btnCompras.setVisible(false);
+                    btnProductos.setVisible(false);
+                    btnProveedores.setVisible(false);
+                    btnAbrirSuc.setVisible(false);
+                    btnAbrirTP.setVisible(false);
+                    btnAbrirPara.setVisible(false);
+                    btnAbrirBitacora.setVisible(false);
+                    btnAbrirUsuarios.setVisible(false);
+                    break;
+            case "Comprador":
+                    break;
+        }
+        
         try {
             cn.Conectar();
         } catch (Exception ex) {
