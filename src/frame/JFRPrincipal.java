@@ -75,6 +75,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     boolean ventas, compras, productos, proveedores, sucursales, precios, configuracion, usuarios, bitacora;
     boolean apagado, principal;
     int x, y;
+    int estadoVenta = 1;//Para el estado consolidado de las ventas, puede ser 0 o 1.
     int filas = 0;
     double totalC = 0;
     JTableHeader tHeadVentas, tHeadListaVentas, tHeadCompras, tHeadProductos, tHeadCompra, tHeadProveedores, tHeadDetalleCompra, tHeadCompraDet, tHeadDetalleCompra1, tHeadSucursales, tHeadPrecios, tHeadParametros, tHeadListaVentasMes2, tHeadListaComprasMes,
@@ -90,14 +91,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     public JFRPrincipal(Usuario userSesion) {
         this.sesion=userSesion;
         initComponents();
-        //llenado de tabla ventaBorrador vizcarra
-        ventaBorrador.addColumn("CodBarra");
-        ventaBorrador.addColumn("Producto");        
-        ventaBorrador.addColumn("Cantidad");
-        ventaBorrador.addColumn("PrecioUnitario");
-        ventaBorrador.addColumn("Sucursal");                      
-        tblListaBorrador.setModel(ventaBorrador);
-        //finalizado "llenado de tabla VentaBorrador"// vizcarra
+//        //llenado de tabla ventaBorrador vizcarra
+//        ventaBorrador.addColumn("CodBarra");
+//        ventaBorrador.addColumn("Producto");        
+//        ventaBorrador.addColumn("Cantidad");
+//        ventaBorrador.addColumn("PrecioUnitario");
+//        ventaBorrador.addColumn("Sucursal");                      
+//        tblListaBorrador.setModel(ventaBorrador);
+//        //finalizado "llenado de tabla VentaBorrador"// vizcarra
         conection cn = new conection();
         
         System.out.println("USUARIO DE LOGIN:" + userSesion.username);
@@ -805,7 +806,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
     public void LlenarVenta() {
         String[] cm = new String[]{"IdVenta", "IdSucursal", "TipoVenta", "IdTipoPrecio", "Cliente", "Fecha", "IVA", "TotalGravado", "Total", "Direccion",
-            "Giro", "NIT", "NRC", "NDocumento"};
+            "Giro", "NIT", "NRC", "NDocumento","Estado"};
         ArrayList<Object> listaVentas = new ArrayList();
         DefaultTableModel modelo = new DefaultTableModel();
         conection cn = new conection();
@@ -840,16 +841,17 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 listaVentas.add(rs.getString("NIT"));
                 listaVentas.add(rs.getString("NRC"));
                 listaVentas.add(rs.getString("NDocumento"));
+                listaVentas.add(rs.getString("Estado"));
             }
             cn.Desconectar();
         } catch (Exception e) {
             //ERROR!!!
         }
         ArrayList<Venta> listaVenta = (ArrayList) listaVentas;
-        Object[] fila = new Object[14];
+        Object[] fila = new Object[15];
 
         String[] ventas = new String[]{"IdVenta", "Fecha", "Sucursal", "Tipo Venta", "Tipo Precio", "Cliente", "IVA", "TotalGravado", "Total", "Direccion",
-            "Giro", "NIT", "NRC", "NDocumento"};
+            "Giro", "NIT", "NRC", "NDocumento", "Estado"};
         modelo.setColumnIdentifiers(ventas);
         Iterator<Venta> prod = listaVenta.iterator();
         while (prod.hasNext()) {
@@ -867,6 +869,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             fila[11] = prod.next();
             fila[12] = prod.next();
             fila[13] = prod.next();
+            fila[14] = prod.next();
             modelo.addRow(fila);
 
         }
@@ -6403,7 +6406,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         cmbTipoVenta.setEnabled(true);
         cmbTipoPrecioVenta.setEnabled(true);
         cmbSucursalVenta.setEnabled(true);
-
+        
         //NUEVA COMPRA - VARIOS DETALLES
         //NUEVO ID
         ControladorVenta VEnta = new ControladorVenta();
@@ -6475,12 +6478,12 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         } catch (Exception e) {
         }
 
-        cmbSucursalVenta.setSelectedIndex(1);
-        cmbSucursalVenta.setSelectedIndex(0);
-        cmbTipoVenta.setSelectedIndex(1);
-        cmbTipoVenta.setSelectedIndex(2);
-        cmbTipoPrecioVenta.setSelectedIndex(1);
-        cmbTipoPrecioVenta.setSelectedIndex(0);
+//        cmbSucursalVenta.setSelectedIndex(1);
+//        cmbSucursalVenta.setSelectedIndex(0);
+//        cmbTipoVenta.setSelectedIndex(1);
+//        cmbTipoVenta.setSelectedIndex(2);
+//        cmbTipoPrecioVenta.setSelectedIndex(1);
+//        cmbTipoPrecioVenta.setSelectedIndex(0);
     }//GEN-LAST:event_btnAgregarVentaActionPerformed
 
     private void btnVerDetalleVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerDetalleVentaMouseClicked
@@ -8710,6 +8713,7 @@ public void generarReporteCompra(String nameReporte){
 
     private void btnAgregarProductoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoVentaActionPerformed
         //vizcarra. bloqueare obciones extras
+     
         cmbTipoVenta.setEnabled(false);
         cmbTipoPrecioVenta.setEnabled(false);
 
@@ -8747,12 +8751,12 @@ public void generarReporteCompra(String nameReporte){
 
                     try {
                         cn.Conectar();
-                        PreparedStatement ps = cn.BuscarRegistro("Sucursal", cm, p);
+                        PreparedStatement ps = cn.BuscarRegistro("sucursal", cm, p);
                         ResultSet rs = ps.executeQuery();
 
                         while (rs.next()) {
                             idSucursalSeleccionada = Integer.parseInt(rs.getString("IdSucursal"));
-
+                            System.out.println(""+idSucursalSeleccionada);
                         }
                         cn.Desconectar();
 
@@ -8771,8 +8775,9 @@ public void generarReporteCompra(String nameReporte){
                     Double utilidad = cn.utilidadPrecio(cmbTipoPrecioVenta.getSelectedItem().toString());
                     //System.out.println(para);
                     System.out.println("utili " + utilidad);
+                    System.out.println(""+producto.costo);
                     //producto.costo = (producto.costo * (Double.parseDouble(dosdigitos.format(Double.parseDouble(para))) / 100) + producto.costo);
-                    producto.costo = Double.parseDouble(cuatrodigitos.format((producto.costo / (1 - utilidad))));
+                    producto.costo = Double.parseDouble(dosdigitos.format((producto.costo / (1 - utilidad))));
                     double Total = 0;
 
                     DefaultTableModel model = (DefaultTableModel) tblProductosVender.getModel();
@@ -9090,7 +9095,7 @@ public void generarReporteCompra(String nameReporte){
 
     private void cmbTipoVentaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbTipoVentaItemStateChanged
         
-        ControladorVenta VEnta = new ControladorVenta();
+        ControladorVenta cv = new ControladorVenta();
             int idVenta = 0;
         String tipoVenta = cmbTipoVenta.getSelectedItem().toString();
         switch (tipoVenta) {
@@ -9125,7 +9130,7 @@ public void generarReporteCompra(String nameReporte){
             lblFecha3.setVisible(true);
             txt_fecha_venta.setVisible(true);
                  try {
-                idVenta = VEnta.ObtenerIdVenta();
+                idVenta = cv.ObtenerIdVenta();
             } catch (ErrorTienda ex) {
                 Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -9168,7 +9173,7 @@ public void generarReporteCompra(String nameReporte){
             lblFecha3.setVisible(true);
             txt_fecha_venta.setVisible(true);
             try {
-                idVenta = VEnta.ObtenerIdVenta();
+                idVenta = cv.ObtenerIdVenta();
             } catch (ErrorTienda ex) {
                 Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -9209,7 +9214,7 @@ public void generarReporteCompra(String nameReporte){
             txt_fecha_venta.setVisible(true);
             
             try {
-                idVenta = VEnta.ObtenerIdVenta();
+                idVenta = cv.ObtenerIdVenta();
             } catch (ErrorTienda ex) {
                 Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -9246,18 +9251,16 @@ public void generarReporteCompra(String nameReporte){
             txtClienteVenta.setVisible(false);
             lblCodBarraProd22.setVisible(false);
             txtDireccionVenta.setVisible(false);
-            jLabel44.setVisible(false);
-            txtIdVenta.setVisible(false);
             jLabel45.setVisible(false);
             txtNoDocVenta.setVisible(false);
             lblBorrador.setVisible(true);
             lblProveedores10.setVisible(false);
             lblFecha3.setVisible(false);
             txt_fecha_venta.setVisible(false);
-            //traer el idborrador//NUEVA COMPRA - VARIOS DETALLES
-            //NUEVO ID           
+                   
+            
             try {
-                idVenta = VEnta.ObtenerIdBorrador();
+                idVenta = cv.ObtenerIdVenta();
             } catch (ErrorTienda ex) {
                 Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -9267,6 +9270,8 @@ public void generarReporteCompra(String nameReporte){
             } else {
                 txtIdVenta.setText(Integer.toString(idVenta));
             }
+            
+            
             break;
 
             default:

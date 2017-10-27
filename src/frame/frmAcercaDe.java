@@ -75,7 +75,7 @@ public class frmAcercaDe extends javax.swing.JFrame {
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("MURRILLO AGUILAR, DANIEL ALBERTO");
+        jLabel5.setText("MURILLO AGUILAR, DANIEL ALBERTO");
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N

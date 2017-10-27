@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 25-10-2017 a las 00:54:16
--- Versión del servidor: 10.1.26-MariaDB
--- Versión de PHP: 7.1.9
+-- Host: 127.0.0.1
+-- Generation Time: Oct 27, 2017 at 06:20 AM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,33 +17,35 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `tiendav2`
+-- Database: `tiendav2`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `bitacora`
+-- Table structure for table `bitacora`
 --
-CREATE TABLE IF NOT EXISTS `tiendav2`.`bitacora` (
-  `idbitacora` INT(11) NOT NULL,
-  `idUsuario` INT(10) NOT NULL,
-  `fecha` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `accion` VARCHAR(250) NOT NULL,
-  PRIMARY KEY (`idbitacora`),
-  INDEX `idUsuario_idx` (`idUsuario` ASC),
-  CONSTRAINT `idUsuario`
-    FOREIGN KEY (`idUsuario`)
-    REFERENCES `tiendav2`.`usuario` (`idusuario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1; 
+
+CREATE TABLE `bitacora` (
+  `idbitacora` int(11) NOT NULL,
+  `idUsuario` int(10) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `accion` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bitacora`
+--
+
+INSERT INTO `bitacora` (`idbitacora`, `idUsuario`, `fecha`, `accion`) VALUES
+(3, 1, '2017-10-26 23:18:29', 'se hizo algo'),
+(4, 1, '2017-10-27 04:17:53', 'Se modifico producto PUTAS DE LUJO'),
+(5, 1, '2017-10-27 04:18:14', 'Se cerro la sesion');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `compra`
+-- Table structure for table `compra`
 --
 
 CREATE TABLE `compra` (
@@ -61,10 +61,17 @@ CREATE TABLE `compra` (
   `Total` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
+--
+-- Dumping data for table `compra`
+--
+
+INSERT INTO `compra` (`IdCompra`, `Fecha`, `IdProveedor`, `IdSucursal`, `TipoCompra`, `NumDocumento`, `Subtotal`, `IVA`, `Percepcion`, `Total`) VALUES
+(1, '2017-10-26 20:53:30', 1, 3, 'L', '', 10, 0, 0, 10);
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `detallecompra`
+-- Table structure for table `detallecompra`
 --
 
 CREATE TABLE `detallecompra` (
@@ -75,10 +82,17 @@ CREATE TABLE `detallecompra` (
   `IdSucursal` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
+--
+-- Dumping data for table `detallecompra`
+--
+
+INSERT INTO `detallecompra` (`IdCompra`, `CodBarra`, `Cantidad`, `CostoUnitario`, `IdSucursal`) VALUES
+(1, '12345', 1, 10, 3);
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `detalleventa`
+-- Table structure for table `detalleventa`
 --
 
 CREATE TABLE `detalleventa` (
@@ -89,19 +103,10 @@ CREATE TABLE `detalleventa` (
   `IdSucursal` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
---
--- Volcado de datos para la tabla `detalleventa`
---
-
-INSERT INTO `detalleventa` (`IdVenta`, `CodBarra`, `Cantidad`, `PrecioUnitario`, `IdSucursal`) VALUES
-(1, '001', 2, 2.3333, 1),
-(2, '001', 1, 2.3333, 1),
-(2, '002', 1, 0.4667, 1);
-
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `inventario`
+-- Table structure for table `inventario`
 --
 
 CREATE TABLE `inventario` (
@@ -111,20 +116,16 @@ CREATE TABLE `inventario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
--- Volcado de datos para la tabla `inventario`
+-- Dumping data for table `inventario`
 --
 
 INSERT INTO `inventario` (`IdSucursal`, `CodBarra`, `Cantidad`) VALUES
-(1, '001', 81),
-(1, '002', 83),
-(1, '003', 100),
-(1, '004', 100),
-(1, '005', 100);
+(3, '12345', 11);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `parametro`
+-- Table structure for table `parametro`
 --
 
 CREATE TABLE `parametro` (
@@ -133,17 +134,10 @@ CREATE TABLE `parametro` (
   `Valor` varchar(50) CHARACTER SET latin1 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
---
--- Volcado de datos para la tabla `parametro`
---
-
-INSERT INTO `parametro` (`IdParametro`, `Nombre`, `Valor`) VALUES
-(1, 'iva', '0.13');
-
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `producto`
+-- Table structure for table `producto`
 --
 
 CREATE TABLE `producto` (
@@ -153,20 +147,16 @@ CREATE TABLE `producto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
--- Volcado de datos para la tabla `producto`
+-- Dumping data for table `producto`
 --
 
 INSERT INTO `producto` (`CodBarra`, `Nombre`, `Costo`) VALUES
-('001', 'coca grande 2.5 lit', 1.75),
-('002', 'Barra margarina grande', 0.35),
-('003', 'diana pequeña', 0.15),
-('004', 'amp 600ml', 0.9),
-('005', 'raptor 600ml', 1);
+('12345', 'PUTAS DE LUJO', 10);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `proveedor`
+-- Table structure for table `proveedor`
 --
 
 CREATE TABLE `proveedor` (
@@ -179,10 +169,17 @@ CREATE TABLE `proveedor` (
   `Email` varchar(100) CHARACTER SET latin1 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
+--
+-- Dumping data for table `proveedor`
+--
+
+INSERT INTO `proveedor` (`IdProveedor`, `Nombre`, `Telefono`, `Direccion`, `NIT`, `NRC`, `Email`) VALUES
+(1, 'FULANO', '77777777', 'EN LA MIERDA', '12312312312312', '1111111', 'FULANITO@TUPUTAMADRE.COM');
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `sucursal`
+-- Table structure for table `sucursal`
 --
 
 CREATE TABLE `sucursal` (
@@ -193,16 +190,16 @@ CREATE TABLE `sucursal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
--- Volcado de datos para la tabla `sucursal`
+-- Dumping data for table `sucursal`
 --
 
 INSERT INTO `sucursal` (`IdSucursal`, `Nombre`, `Direccion`, `Telefono`) VALUES
-(1, 'casitas santa ana centro', 'centro calle 5', '25854565');
+(3, 'CASA MATRIZ', 'KJSADHOFI', '23412341');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipoprecio`
+-- Table structure for table `tipoprecio`
 --
 
 CREATE TABLE `tipoprecio` (
@@ -212,17 +209,16 @@ CREATE TABLE `tipoprecio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
--- Volcado de datos para la tabla `tipoprecio`
+-- Dumping data for table `tipoprecio`
 --
 
 INSERT INTO `tipoprecio` (`IdTipoPrecio`, `Nombre`, `Utilidad`) VALUES
-(1, 'NORMAL', 0.25),
-(2, 'DESCUENTO', 0.1);
+(1, 'NORMAL', 0.25);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario`
+-- Table structure for table `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -230,20 +226,20 @@ CREATE TABLE `usuario` (
   `username` varchar(20) NOT NULL,
   `clave` varchar(45) NOT NULL,
   `rol` varchar(20) NOT NULL,
-  `Estado` varchar(20) NOT NULL
+  `estado` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `usuario`
+-- Dumping data for table `usuario`
 --
 
-INSERT INTO `usuario` (`idusuario`, `username`, `clave`, `rol`, `Estado`) VALUES
-(1, 'sysadmin', '123', 'Administrador', 'Activo');
+INSERT INTO `usuario` (`idusuario`, `username`, `clave`, `rol`, `estado`) VALUES
+(1, 'admin', 'admin', 'Administrador', 'Activo');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `venta`
+-- Table structure for table `venta`
 --
 
 CREATE TABLE `venta` (
@@ -260,46 +256,24 @@ CREATE TABLE `venta` (
   `Giro` varchar(100) CHARACTER SET latin1 NOT NULL,
   `NIT` varchar(14) CHARACTER SET latin1 NOT NULL,
   `NRC` varchar(7) CHARACTER SET latin1 NOT NULL,
-  `NDocumento` varchar(100) CHARACTER SET latin1 NOT NULL
+  `NDocumento` varchar(100) CHARACTER SET latin1 NOT NULL,
+  `PAC` double NOT NULL,
+  `utilidad` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
--- Volcado de datos para la tabla `venta`
---
-
-INSERT INTO `venta` (`IdVenta`, `IdSucursal`, `TipoVenta`, `IdTipoPrecio`, `Cliente`, `Fecha`, `IVA`, `TotalGravado`, `Total`, `Direccion`, `Giro`, `NIT`, `NRC`, `NDocumento`) VALUES
-(1, 1, 'L', 1, '', '2017-10-22 21:42:18', 0, 4.67, 4.67, '', '', '', '', ''),
-(2, 1, 'L', 1, '', '2017-10-24 07:52:43', 0, 2.8, 2.8, '', '', '', '', '');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ventaborrador`
---
-
-CREATE TABLE `ventaborrador` (
-  `IdBorrador` int(20) NOT NULL,
-  `CodBarra` int(13) NOT NULL,
-  `Producto` varchar(10) NOT NULL,
-  `Cantidad` int(10) NOT NULL,
-  `PrecioUnitario` double NOT NULL,
-  `IdSucursal` int(20) NOT NULL,
-  `Realizada` char(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `bitacora`
+-- Indexes for table `bitacora`
 --
 ALTER TABLE `bitacora`
   ADD PRIMARY KEY (`idbitacora`),
   ADD KEY `idUsuario_idx` (`idUsuario`);
 
 --
--- Indices de la tabla `compra`
+-- Indexes for table `compra`
 --
 ALTER TABLE `compra`
   ADD PRIMARY KEY (`IdCompra`,`IdSucursal`,`IdProveedor`) USING BTREE,
@@ -307,7 +281,7 @@ ALTER TABLE `compra`
   ADD KEY `IdProveedor` (`IdProveedor`);
 
 --
--- Indices de la tabla `detallecompra`
+-- Indexes for table `detallecompra`
 --
 ALTER TABLE `detallecompra`
   ADD PRIMARY KEY (`IdCompra`,`CodBarra`,`IdSucursal`) USING BTREE,
@@ -315,7 +289,7 @@ ALTER TABLE `detallecompra`
   ADD KEY `CodBarra` (`CodBarra`);
 
 --
--- Indices de la tabla `detalleventa`
+-- Indexes for table `detalleventa`
 --
 ALTER TABLE `detalleventa`
   ADD PRIMARY KEY (`IdVenta`,`CodBarra`,`IdSucursal`),
@@ -323,7 +297,7 @@ ALTER TABLE `detalleventa`
   ADD KEY `CodBarra` (`CodBarra`);
 
 --
--- Indices de la tabla `inventario`
+-- Indexes for table `inventario`
 --
 ALTER TABLE `inventario`
   ADD KEY `IdSucursal` (`IdSucursal`),
@@ -331,113 +305,106 @@ ALTER TABLE `inventario`
   ADD KEY `CodBarra` (`CodBarra`);
 
 --
--- Indices de la tabla `parametro`
+-- Indexes for table `parametro`
 --
 ALTER TABLE `parametro`
   ADD PRIMARY KEY (`IdParametro`);
 
 --
--- Indices de la tabla `producto`
+-- Indexes for table `producto`
 --
 ALTER TABLE `producto`
   ADD PRIMARY KEY (`CodBarra`);
 
 --
--- Indices de la tabla `proveedor`
+-- Indexes for table `proveedor`
 --
 ALTER TABLE `proveedor`
   ADD PRIMARY KEY (`IdProveedor`);
 
 --
--- Indices de la tabla `sucursal`
+-- Indexes for table `sucursal`
 --
 ALTER TABLE `sucursal`
   ADD PRIMARY KEY (`IdSucursal`);
 
 --
--- Indices de la tabla `tipoprecio`
+-- Indexes for table `tipoprecio`
 --
 ALTER TABLE `tipoprecio`
   ADD PRIMARY KEY (`IdTipoPrecio`);
 
 --
--- Indices de la tabla `usuario`
+-- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`idusuario`);
 
 --
--- Indices de la tabla `venta`
+-- Indexes for table `venta`
 --
 ALTER TABLE `venta`
   ADD PRIMARY KEY (`IdVenta`,`IdSucursal`,`IdTipoPrecio`),
   ADD KEY `IdTipoPrecio` (`IdTipoPrecio`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `compra`
+-- AUTO_INCREMENT for table `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `IdCompra` int(100) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `IdCompra` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT de la tabla `parametro`
+-- AUTO_INCREMENT for table `parametro`
 --
 ALTER TABLE `parametro`
-  MODIFY `IdParametro` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `IdParametro` int(100) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT de la tabla `proveedor`
+-- AUTO_INCREMENT for table `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `IdProveedor` int(100) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `IdProveedor` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT de la tabla `sucursal`
+-- AUTO_INCREMENT for table `sucursal`
 --
 ALTER TABLE `sucursal`
-  MODIFY `IdSucursal` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `IdSucursal` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT de la tabla `tipoprecio`
+-- AUTO_INCREMENT for table `tipoprecio`
 --
 ALTER TABLE `tipoprecio`
-  MODIFY `IdTipoPrecio` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `IdTipoPrecio` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT de la tabla `usuario`
+-- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
--- AUTO_INCREMENT de la tabla `venta`
+-- AUTO_INCREMENT for table `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `IdVenta` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IdVenta` int(100) NOT NULL AUTO_INCREMENT;
+--
+-- Constraints for dumped tables
+--
 
 --
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `bitacora`
+-- Constraints for table `bitacora`
 --
 ALTER TABLE `bitacora`
   ADD CONSTRAINT `idUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `compra`
+-- Constraints for table `compra`
 --
 ALTER TABLE `compra`
   ADD CONSTRAINT `Compra_ibfk_1` FOREIGN KEY (`IdSucursal`) REFERENCES `sucursal` (`IdSucursal`),
   ADD CONSTRAINT `Compra_ibfk_2` FOREIGN KEY (`IdProveedor`) REFERENCES `proveedor` (`IdProveedor`);
 
 --
--- Filtros para la tabla `detallecompra`
+-- Constraints for table `detallecompra`
 --
 ALTER TABLE `detallecompra`
   ADD CONSTRAINT `DetalleCompra_ibfk_1` FOREIGN KEY (`IdCompra`) REFERENCES `compra` (`IdCompra`),
@@ -445,7 +412,7 @@ ALTER TABLE `detallecompra`
   ADD CONSTRAINT `DetalleCompra_ibfk_3` FOREIGN KEY (`CodBarra`) REFERENCES `producto` (`CodBarra`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `detalleventa`
+-- Constraints for table `detalleventa`
 --
 ALTER TABLE `detalleventa`
   ADD CONSTRAINT `DetalleVenta_ibfk_1` FOREIGN KEY (`IdVenta`) REFERENCES `venta` (`IdVenta`),
@@ -454,18 +421,17 @@ ALTER TABLE `detalleventa`
   ADD CONSTRAINT `fk_DetalleVenta_1` FOREIGN KEY (`IdSucursal`) REFERENCES `sucursal` (`IdSucursal`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `inventario`
+-- Constraints for table `inventario`
 --
 ALTER TABLE `inventario`
   ADD CONSTRAINT `Inventario_ibfk_1` FOREIGN KEY (`IdSucursal`) REFERENCES `sucursal` (`IdSucursal`),
   ADD CONSTRAINT `Inventario_ibfk_2` FOREIGN KEY (`CodBarra`) REFERENCES `producto` (`CodBarra`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `venta`
+-- Constraints for table `venta`
 --
 ALTER TABLE `venta`
   ADD CONSTRAINT `Venta_ibfk_1` FOREIGN KEY (`IdTipoPrecio`) REFERENCES `tipoprecio` (`IdTipoPrecio`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
