@@ -8714,9 +8714,9 @@ public void generarReporteCompra(String nameReporte){
     private void btnGenerar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerar1ActionPerformed
 
         if(cmbReporteCompra.getSelectedItem().toString().equals("CREDITO FISCAL")){
-            generarReporteCompra("reporteCompras2.jasper");
+            generarReporteCompra("reporteCompraFiscal.jasper");
         }else if(cmbReporteCompra.getSelectedItem().toString().equals("LIBRE")){
-            generarReporteCompra("report2.jasper");
+            generarReporteCompra("reporteCompraLibre.jasper");
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione algun tipo de reporte:\nEjemplo: CREDITO FISCAL, LIBRE O FACTURA.");
         }
