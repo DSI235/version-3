@@ -65,13 +65,7 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author Roger Alvarez
  */
 public final class JFRPrincipal extends javax.swing.JFrame {
-//vizcarra
-    String datosVentaB[] = new String[5];
-            DefaultTableModel ventaBorrador = new DefaultTableModel();
-            ResultSet rstventaBorrador = null;
-            ControladorVenta controladorventa = new ControladorVenta();
-            DecimalFormat df = new DecimalFormat("00.0000");
-    //vizcarra
+
     boolean ventas, compras, productos, proveedores, sucursales, precios, configuracion, usuarios, bitacora;
     boolean apagado, principal;
     int x, y;
@@ -91,14 +85,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     public JFRPrincipal(Usuario userSesion) {
         this.sesion=userSesion;
         initComponents();
-//        //llenado de tabla ventaBorrador vizcarra
-//        ventaBorrador.addColumn("CodBarra");
-//        ventaBorrador.addColumn("Producto");        
-//        ventaBorrador.addColumn("Cantidad");
-//        ventaBorrador.addColumn("PrecioUnitario");
-//        ventaBorrador.addColumn("Sucursal");                      
-//        tblListaBorrador.setModel(ventaBorrador);
-//        //finalizado "llenado de tabla VentaBorrador"// vizcarra
+
         conection cn = new conection();
         
         System.out.println("USUARIO DE LOGIN:" + userSesion.username);
@@ -735,7 +722,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         conection cn = new conection();
         try {
             cn.Conectar();
-            PreparedStatement ps = cn.BuscarTodosCV("compra", cm);
+            PreparedStatement ps = cn.BuscarTodosCVC("compra", cm);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -851,7 +838,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         } catch (Exception e) {
             //ERROR!!!
         }
-        
         ArrayList<Venta> listaVenta = (ArrayList) listaVentas;
         Object[] fila = new Object[16];
 
@@ -912,6 +898,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblListaVentas.getColumnModel().getColumn(13).setMinWidth(0);
         tblListaVentas.getColumnModel().getColumn(13).setMaxWidth(0);
         tblListaVentas.getColumnModel().getColumn(13).setWidth(0);
+        
+        tblListaVentas.getColumnModel().getColumn(14).setMinWidth(0);
+        tblListaVentas.getColumnModel().getColumn(14).setMaxWidth(0);
+        tblListaVentas.getColumnModel().getColumn(14).setWidth(0);
+        
+        tblListaVentas.getColumnModel().getColumn(15).setMinWidth(0);
+        tblListaVentas.getColumnModel().getColumn(15).setMaxWidth(0);
+        tblListaVentas.getColumnModel().getColumn(15).setWidth(0);
         System.out.println("Lleno Venta!...creo");
     }
 
@@ -919,92 +913,117 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     
     //Para borrador
     public void LlenarVentaBorrador() {
-        String[] cm = new String[]{"IdVenta", "IdSucursal", "TipoVenta", "IdTipoPrecio", "Total"};
+         String[] cm = new String[]{"IdVenta", "IdSucursal", "TipoVenta", "IdTipoPrecio", "Cliente", "Fecha", "IVA", "TotalGravado", "Total", "Direccion",
+            "Giro", "NIT", "NRC", "NDocumento", "PAC", "utilidad"};
         ArrayList<Object> listaVentas = new ArrayList();
         DefaultTableModel modelo = new DefaultTableModel();
         conection cn = new conection();
         try {
             cn.Conectar();
-            PreparedStatement ps = cn.BuscarTodosCV("venta", cm);
+            PreparedStatement ps = cn.BuscarTodosCVB("venta", cm);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
 
                 listaVentas.add(rs.getString("IdVenta"));
+                listaVentas.add(rs.getString("Fecha"));
                 listaVentas.add(cn.nombreSucursal(rs.getString("IdSucursal")));
                 switch (rs.getString("TipoVenta")) {
                     case "B":
                         listaVentas.add("Borrador");
                         break;
-                  
-                                        }
+                    }
                 listaVentas.add(cn.nombrePrecio(rs.getString("IdTipoPrecio")));
-//                listaVentas.add(rs.getString("Cliente"));
-//                listaVentas.add(rs.getString("Fecha"));
-//                listaVentas.add(rs.getString("IVA"));
-//                listaVentas.add(rs.getString("TotalGravado"));
+                listaVentas.add(rs.getString("Cliente"));
+                listaVentas.add(rs.getString("IVA"));
+                listaVentas.add(rs.getString("TotalGravado"));
                 listaVentas.add(rs.getString("Total"));
-//                listaVentas.add(rs.getString("Direccion"));
-//                listaVentas.add(rs.getString("Giro"));
-//                listaVentas.add(rs.getString("NIT"));
-//                listaVentas.add(rs.getString("NRC"));
-//                listaVentas.add(rs.getString("NDocumento"));
-
+                listaVentas.add(rs.getString("Direccion"));
+                listaVentas.add(rs.getString("Giro"));
+                listaVentas.add(rs.getString("NIT"));
+                listaVentas.add(rs.getString("NRC"));
+                listaVentas.add(rs.getString("NDocumento"));
+                listaVentas.add(rs.getString("PAC"));
+                listaVentas.add(rs.getString("utilidad"));
             }
             cn.Desconectar();
         } catch (Exception e) {
             //ERROR!!!
         }
         ArrayList<Venta> listaVenta = (ArrayList) listaVentas;
-        Object[] fila = new Object[4];
+        Object[] fila = new Object[16];
 
-        String[] ventas = new String[]{"IdVenta", "Sucursal", "Tipo Venta", "Tipo Precio", "Total"};
+        String[] ventas = new String[]{"IdVenta", "Fecha", "Sucursal", "Tipo Venta", "Tipo Precio", "Cliente", "IVA", "TotalGravado", "Total", "Direccion",
+            "Giro", "NIT", "NRC", "NDocumento", "PAC", "utilidad"};
         modelo.setColumnIdentifiers(ventas);
         Iterator<Venta> prod = listaVenta.iterator();
         while (prod.hasNext()) {
             fila[0] = prod.next();
+            fila[1] = prod.next();
             fila[2] = prod.next();
             fila[3] = prod.next();
             fila[4] = prod.next();
-            fila[1] = prod.next();
-           
+            fila[5] = prod.next();
+            fila[6] = prod.next();
+            fila[7] = prod.next();
+            fila[8] = prod.next();
+            fila[9] = prod.next();
+            fila[10] = prod.next();
+            fila[11] = prod.next();
+            fila[12] = prod.next();
+            fila[13] = prod.next();
+            fila[14] = prod.next();
+            fila[15] = prod.next();
             modelo.addRow(fila);
 
         }
-        tblListaVentas.setModel(modelo);
+        tblListaVentasBorrador.setModel(modelo);
 
-        tblListaVentas.getColumnModel().getColumn(3).setMinWidth(0);
-        tblListaVentas.getColumnModel().getColumn(3).setMaxWidth(0);
-        tblListaVentas.getColumnModel().getColumn(3).setWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(3).setMinWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(3).setMaxWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(3).setWidth(0);
 
-//        tblListaVentas.getColumnModel().getColumn(6).setMinWidth(0);
-//        tblListaVentas.getColumnModel().getColumn(6).setMaxWidth(0);
-//        tblListaVentas.getColumnModel().getColumn(6).setWidth(0);
-//
-//        tblListaVentas.getColumnModel().getColumn(7).setMinWidth(0);
-//        tblListaVentas.getColumnModel().getColumn(7).setMaxWidth(0);
-//        tblListaVentas.getColumnModel().getColumn(7).setWidth(0);
-//
-//        tblListaVentas.getColumnModel().getColumn(9).setMinWidth(0);
-//        tblListaVentas.getColumnModel().getColumn(9).setMaxWidth(0);
-//        tblListaVentas.getColumnModel().getColumn(9).setWidth(0);
-//
-//        tblListaVentas.getColumnModel().getColumn(10).setMinWidth(0);
-//        tblListaVentas.getColumnModel().getColumn(10).setMaxWidth(0);
-//        tblListaVentas.getColumnModel().getColumn(10).setWidth(0);
-//
-//        tblListaVentas.getColumnModel().getColumn(11).setMinWidth(0);
-//        tblListaVentas.getColumnModel().getColumn(11).setMaxWidth(0);
-//        tblListaVentas.getColumnModel().getColumn(11).setWidth(0);
-//
-//        tblListaVentas.getColumnModel().getColumn(12).setMinWidth(0);
-//        tblListaVentas.getColumnModel().getColumn(12).setMaxWidth(0);
-//        tblListaVentas.getColumnModel().getColumn(12).setWidth(0);
-//
-//        tblListaVentas.getColumnModel().getColumn(13).setMinWidth(0);
-//        tblListaVentas.getColumnModel().getColumn(13).setMaxWidth(0);
-//        tblListaVentas.getColumnModel().getColumn(13).setWidth(0);
-        System.out.println("Lleno Venta Borrador!...creo");
+        tblListaVentasBorrador.getColumnModel().getColumn(5).setMinWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(5).setMaxWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(5).setWidth(0);
+        
+        tblListaVentasBorrador.getColumnModel().getColumn(6).setMinWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(6).setMaxWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(6).setWidth(0);
+
+        tblListaVentasBorrador.getColumnModel().getColumn(7).setMinWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(7).setMaxWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(7).setWidth(0);
+
+        tblListaVentasBorrador.getColumnModel().getColumn(9).setMinWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(9).setMaxWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(9).setWidth(0);
+
+        tblListaVentasBorrador.getColumnModel().getColumn(10).setMinWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(10).setMaxWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(10).setWidth(0);
+
+        tblListaVentasBorrador.getColumnModel().getColumn(11).setMinWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(11).setMaxWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(11).setWidth(0);
+
+        tblListaVentasBorrador.getColumnModel().getColumn(12).setMinWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(12).setMaxWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(12).setWidth(0);
+
+        tblListaVentasBorrador.getColumnModel().getColumn(13).setMinWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(13).setMaxWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(13).setWidth(0);
+        
+        tblListaVentasBorrador.getColumnModel().getColumn(14).setMinWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(14).setMaxWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(14).setWidth(0);
+        
+        tblListaVentasBorrador.getColumnModel().getColumn(15).setMinWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(15).setMaxWidth(0);
+        tblListaVentasBorrador.getColumnModel().getColumn(15).setWidth(0);
+                
+        System.out.println("Lleno Venta Borrador!");
     }
 
     
@@ -1016,6 +1035,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tHeadVentas.setForeground(Color.WHITE);
         tHeadVentas.setFont(fuente);
 
+        tHeadListaVentasBorrador.setBackground(jpnBarraMenu.getBackground());
+        tHeadListaVentasBorrador.setForeground(Color.WHITE);
+        tHeadListaVentasBorrador.setFont(fuente);
+        
         tHeadListaVentas.setBackground(jpnBarraMenu.getBackground());
         tHeadListaVentas.setForeground(Color.WHITE);
         tHeadListaVentas.setFont(fuente);
@@ -6044,7 +6067,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "IdVenta", "", "", "", "Total"
+                "IdVenta", "Sucursal", "Tipo de venta", "Tipo de precio", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -7583,7 +7606,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                     } else {
                         model0.setValueAt(0, filas, 4);
                     }
-                    model0.setValueAt(cuatrodigitos.format(((Double.parseDouble(model.getValueAt(filas, 2).toString()) * Double.parseDouble(model.getValueAt(filas, 3).toString())) + Double.parseDouble(model.getValueAt(filas, 4).toString()))), filas, 5);
+                    model0.setValueAt(Double.parseDouble(cuatrodigitos.format(((Double.parseDouble(model.getValueAt(filas, 2).toString()) * Double.parseDouble(model.getValueAt(filas, 3).toString())) + Double.parseDouble(model.getValueAt(filas, 4).toString())))), filas, 5);
                 }
                 /*try {
                     double tot=compra.CalcularTotal();
@@ -9786,7 +9809,7 @@ public void generarReporteCompra(String nameReporte){
             txtNoDocVenta.setVisible(false);
             lblProveedores10.setVisible(false);
             lblFecha3.setVisible(false);
-            txt_fecha_venta.setVisible(false);
+            
                    
             
             try {

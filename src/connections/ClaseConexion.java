@@ -373,13 +373,45 @@ public abstract class ClaseConexion {
             sql += ((u > 1) ? ", " : " ") + f;
             u++;
         }
-        sql += " FROM " + NombreTabla + " ORDER BY Fecha DESC";
+        sql += " FROM " + NombreTabla + " WHERE TipoVenta IN ('F','C','L') ORDER BY Fecha DESC";
         u = 1;
         PreparedStatement ps = con.prepareStatement(sql);
         System.out.println(sql);
         return ps;
     }
 
+    //Para compras
+    public PreparedStatement BuscarTodosCVC(String NombreTabla, String[] CamposAMostrar) throws Exception {
+        String sql = "SELECT";
+        int u = 1;
+        for (String f : CamposAMostrar) {
+            sql += ((u > 1) ? ", " : " ") + f;
+            u++;
+        }
+        sql += " FROM " + NombreTabla + " ORDER BY Fecha DESC";
+        u = 1;
+        PreparedStatement ps = con.prepareStatement(sql);
+        System.out.println(sql);
+        return ps;
+    }
+    
+    //Para venta en borrador
+    public PreparedStatement BuscarTodosCVB(String NombreTabla, String[] CamposAMostrar) throws Exception {
+        String sql = "SELECT";
+        int u = 1;
+        for (String f : CamposAMostrar) {
+            sql += ((u > 1) ? ", " : " ") + f;
+            u++;
+        }
+        sql += " FROM " + NombreTabla + " WHERE TipoVenta = 'B' ORDER BY Fecha DESC";
+        u = 1;
+        PreparedStatement ps = con.prepareStatement(sql);
+        System.out.println(sql);
+        return ps;
+    }
+
+   
+    
     public String nombreProveedor(String IdProveedor) {
         String nombreProveedor = null;
         String sql = "SELECT Nombre FROM proveedor WHERE IdProveedor = " + IdProveedor;
