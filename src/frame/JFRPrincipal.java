@@ -148,6 +148,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         LlenarSucursal();
         LlenarCompra();
         LlenarVenta();
+        LlenarVentaBorrador();
         LlenarParametros();
         LlenarUsuarios();
         LlenarBitacora();
@@ -808,7 +809,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
     public void LlenarVenta() {
         String[] cm = new String[]{"IdVenta", "IdSucursal", "TipoVenta", "IdTipoPrecio", "Cliente", "Fecha", "IVA", "TotalGravado", "Total", "Direccion",
-            "Giro", "NIT", "NRC", "NDocumento","Estado"};
+            "Giro", "NIT", "NRC", "NDocumento", "PAC", "utilidad"};
         ArrayList<Object> listaVentas = new ArrayList();
         DefaultTableModel modelo = new DefaultTableModel();
         conection cn = new conection();
@@ -831,7 +832,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                     case "C":
                         listaVentas.add("Credito Fiscal");
                         break;
-                }
+                                        }
                 listaVentas.add(cn.nombrePrecio(rs.getString("IdTipoPrecio")));
                 listaVentas.add(rs.getString("Cliente"));
                 listaVentas.add(rs.getString("Fecha"));
@@ -843,17 +844,19 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 listaVentas.add(rs.getString("NIT"));
                 listaVentas.add(rs.getString("NRC"));
                 listaVentas.add(rs.getString("NDocumento"));
-                listaVentas.add(rs.getString("Estado"));
+                listaVentas.add(rs.getString("PAC"));
+                listaVentas.add(rs.getString("utilidad"));
             }
             cn.Desconectar();
         } catch (Exception e) {
             //ERROR!!!
         }
+        
         ArrayList<Venta> listaVenta = (ArrayList) listaVentas;
-        Object[] fila = new Object[15];
+        Object[] fila = new Object[16];
 
         String[] ventas = new String[]{"IdVenta", "Fecha", "Sucursal", "Tipo Venta", "Tipo Precio", "Cliente", "IVA", "TotalGravado", "Total", "Direccion",
-            "Giro", "NIT", "NRC", "NDocumento", "Estado"};
+            "Giro", "NIT", "NRC", "NDocumento", "PAC", "utilidad"};
         modelo.setColumnIdentifiers(ventas);
         Iterator<Venta> prod = listaVenta.iterator();
         while (prod.hasNext()) {
@@ -872,6 +875,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             fila[12] = prod.next();
             fila[13] = prod.next();
             fila[14] = prod.next();
+            fila[15] = prod.next();
             modelo.addRow(fila);
 
         }
@@ -911,6 +915,100 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         System.out.println("Lleno Venta!...creo");
     }
 
+    
+    
+    //Para borrador
+    public void LlenarVentaBorrador() {
+        String[] cm = new String[]{"IdVenta", "IdSucursal", "TipoVenta", "IdTipoPrecio", "Total"};
+        ArrayList<Object> listaVentas = new ArrayList();
+        DefaultTableModel modelo = new DefaultTableModel();
+        conection cn = new conection();
+        try {
+            cn.Conectar();
+            PreparedStatement ps = cn.BuscarTodosCV("venta", cm);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                listaVentas.add(rs.getString("IdVenta"));
+                listaVentas.add(cn.nombreSucursal(rs.getString("IdSucursal")));
+                switch (rs.getString("TipoVenta")) {
+                    case "B":
+                        listaVentas.add("Borrador");
+                        break;
+                  
+                                        }
+                listaVentas.add(cn.nombrePrecio(rs.getString("IdTipoPrecio")));
+//                listaVentas.add(rs.getString("Cliente"));
+//                listaVentas.add(rs.getString("Fecha"));
+//                listaVentas.add(rs.getString("IVA"));
+//                listaVentas.add(rs.getString("TotalGravado"));
+                listaVentas.add(rs.getString("Total"));
+//                listaVentas.add(rs.getString("Direccion"));
+//                listaVentas.add(rs.getString("Giro"));
+//                listaVentas.add(rs.getString("NIT"));
+//                listaVentas.add(rs.getString("NRC"));
+//                listaVentas.add(rs.getString("NDocumento"));
+
+            }
+            cn.Desconectar();
+        } catch (Exception e) {
+            //ERROR!!!
+        }
+        ArrayList<Venta> listaVenta = (ArrayList) listaVentas;
+        Object[] fila = new Object[4];
+
+        String[] ventas = new String[]{"IdVenta", "Sucursal", "Tipo Venta", "Tipo Precio", "Total"};
+        modelo.setColumnIdentifiers(ventas);
+        Iterator<Venta> prod = listaVenta.iterator();
+        while (prod.hasNext()) {
+            fila[0] = prod.next();
+            fila[2] = prod.next();
+            fila[3] = prod.next();
+            fila[4] = prod.next();
+            fila[1] = prod.next();
+           
+            modelo.addRow(fila);
+
+        }
+        tblListaVentas.setModel(modelo);
+
+        tblListaVentas.getColumnModel().getColumn(3).setMinWidth(0);
+        tblListaVentas.getColumnModel().getColumn(3).setMaxWidth(0);
+        tblListaVentas.getColumnModel().getColumn(3).setWidth(0);
+
+//        tblListaVentas.getColumnModel().getColumn(6).setMinWidth(0);
+//        tblListaVentas.getColumnModel().getColumn(6).setMaxWidth(0);
+//        tblListaVentas.getColumnModel().getColumn(6).setWidth(0);
+//
+//        tblListaVentas.getColumnModel().getColumn(7).setMinWidth(0);
+//        tblListaVentas.getColumnModel().getColumn(7).setMaxWidth(0);
+//        tblListaVentas.getColumnModel().getColumn(7).setWidth(0);
+//
+//        tblListaVentas.getColumnModel().getColumn(9).setMinWidth(0);
+//        tblListaVentas.getColumnModel().getColumn(9).setMaxWidth(0);
+//        tblListaVentas.getColumnModel().getColumn(9).setWidth(0);
+//
+//        tblListaVentas.getColumnModel().getColumn(10).setMinWidth(0);
+//        tblListaVentas.getColumnModel().getColumn(10).setMaxWidth(0);
+//        tblListaVentas.getColumnModel().getColumn(10).setWidth(0);
+//
+//        tblListaVentas.getColumnModel().getColumn(11).setMinWidth(0);
+//        tblListaVentas.getColumnModel().getColumn(11).setMaxWidth(0);
+//        tblListaVentas.getColumnModel().getColumn(11).setWidth(0);
+//
+//        tblListaVentas.getColumnModel().getColumn(12).setMinWidth(0);
+//        tblListaVentas.getColumnModel().getColumn(12).setMaxWidth(0);
+//        tblListaVentas.getColumnModel().getColumn(12).setWidth(0);
+//
+//        tblListaVentas.getColumnModel().getColumn(13).setMinWidth(0);
+//        tblListaVentas.getColumnModel().getColumn(13).setMaxWidth(0);
+//        tblListaVentas.getColumnModel().getColumn(13).setWidth(0);
+        System.out.println("Lleno Venta Borrador!...creo");
+    }
+
+    
+    
     /*  ---- Color a las cabeceras de las tablas ----  */
     public void cabezera() {
         Font fuente = new Font("Tahoma", Font.BOLD, 12);
@@ -3370,7 +3468,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "lIdVenta", "Fecha", "Cliente", "IVA", "Total"
+                "IdVenta", "Fecha", "Cliente", "IVA", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -3494,7 +3592,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblProductosVender.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(tblProductosVender);
 
-        jpnAgregarVenta.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 630, 190));
+        jpnAgregarVenta.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 660, 190));
 
         btnEliminarProductoVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
         btnEliminarProductoVenta.setToolTipText("Eliminar Productos Seleccionados");
@@ -3675,21 +3773,21 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblCodBarraProd23.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblCodBarraProd23.setText("Sucursal:");
         jpnAgregarVenta.add(lblCodBarraProd23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 60, 30));
-        jpnAgregarVenta.add(txtSumaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 500, 100, 30));
+        jpnAgregarVenta.add(txtSumaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 500, 100, 30));
 
         lblSumaVenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblSumaVenta.setText("Suma :  $");
-        jpnAgregarVenta.add(lblSumaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 510, 70, 10));
-        jpnAgregarVenta.add(txtIvaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 530, 100, 30));
+        jpnAgregarVenta.add(lblSumaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 510, 70, 10));
+        jpnAgregarVenta.add(txtIvaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 530, 100, 30));
 
         lblIvaVenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblIvaVenta.setText("Iva :   $");
-        jpnAgregarVenta.add(lblIvaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 530, 50, 30));
-        jpnAgregarVenta.add(txtTotalVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 620, 100, 30));
+        jpnAgregarVenta.add(lblIvaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 530, 50, 30));
+        jpnAgregarVenta.add(txtTotalVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 500, 100, 30));
 
         lblTotalVenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblTotalVenta.setText("TOTAL:   $");
-        jpnAgregarVenta.add(lblTotalVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 630, 70, 10));
+        jpnAgregarVenta.add(lblTotalVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 510, 70, 10));
 
         jSeparator68.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator68.setForeground(new java.awt.Color(0, 0, 0));
@@ -3701,21 +3799,21 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         lblCodBarraProd24.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblCodBarraProd24.setText("Tipo Precio:");
-        jpnAgregarVenta.add(lblCodBarraProd24, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 80, 30));
+        jpnAgregarVenta.add(lblCodBarraProd24, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 80, 30));
 
         cmbTipoPrecioVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbTipoPrecioVentaActionPerformed(evt);
             }
         });
-        jpnAgregarVenta.add(cmbTipoPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 140, 30));
+        jpnAgregarVenta.add(cmbTipoPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 170, 140, 30));
 
         lblFecha3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblFecha3.setText("Fecha:");
-        jpnAgregarVenta.add(lblFecha3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 50, 30));
+        jpnAgregarVenta.add(lblFecha3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, 50, 30));
 
         txt_fecha_venta.setDateFormatString("MM/dd/yyyy HH:mm:ss");
-        jpnAgregarVenta.add(txt_fecha_venta, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, 160, 30));
+        jpnAgregarVenta.add(txt_fecha_venta, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 160, 30));
 
         btnAgregarProductoVenta.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnAgregarProductoVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/agregar2.png"))); // NOI18N
@@ -3763,13 +3861,13 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         lblPagoCuenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblPagoCuenta.setText("Pago a cuenta: $");
-        jpnAgregarVenta.add(lblPagoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 570, -1, -1));
-        jpnAgregarVenta.add(txtPagoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 560, 100, 30));
+        jpnAgregarVenta.add(lblPagoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 570, -1, -1));
+        jpnAgregarVenta.add(txtPagoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 560, 100, 30));
 
         lblUtilidadVenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblUtilidadVenta.setText("Utilidad: $");
-        jpnAgregarVenta.add(lblUtilidadVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 600, -1, -1));
-        jpnAgregarVenta.add(txtUtilidadVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 590, 100, 30));
+        jpnAgregarVenta.add(lblUtilidadVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 600, -1, -1));
+        jpnAgregarVenta.add(txtUtilidadVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 590, 100, 30));
 
         getContentPane().add(jpnAgregarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -5946,7 +6044,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "lIdVenta", "Fecha", "Cliente", "IVA", "Total"
+                "IdVenta", "", "", "", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -9108,10 +9206,11 @@ public void generarReporteCompra(String nameReporte){
 
     private void btnBrorradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrorradorActionPerformed
 
-
     jpnListaVentas.setVisible(false);
     jpnListaVentasBorrador.setVisible(true);
-        
+    LlenarVentaBorrador();
+    
+    
         
     }//GEN-LAST:event_btnBrorradorActionPerformed
 
@@ -9314,13 +9413,39 @@ public void generarReporteCompra(String nameReporte){
             conection cn = new conection();
             ControladorVenta venta = new ControladorVenta();
             Venta nventa = new Venta();
+            Venta ventaB = new Venta();
 
-            int borrador=cmbTipoVenta.getSelectedIndex();
-            int IdBorrador = Integer.parseInt(txtIdVenta.getText());
+         
             //si es borrador
-            if (borrador==3) {
-                                    int idTipoPrecio = 0;
-                                    double utilidadb=0;
+            if (cmbTipoVenta.getSelectedItem().toString()=="Borrador") {
+                 
+                  //ID SUCURSAL SELECCIONADA
+                    int idSucursalSeleccionada = 0;
+                    String suc = cmbSucursalVenta.getSelectedItem().toString();
+                    try {
+                        String[] cm = new String[]{"IdSucursal", "Nombre", "Direccion", "Telefono"};
+                        iList p = new iList(new ListasTablas("Nombre", suc));
+
+                        try {
+                            cn.Conectar();
+                            PreparedStatement ps = cn.BuscarRegistro("Sucursal", cm, p);
+                            ResultSet rs = ps.executeQuery();
+
+                            while (rs.next()) {
+                                idSucursalSeleccionada = Integer.parseInt(rs.getString("IdSucursal"));
+
+                            }
+                            cn.Desconectar();
+
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, "Error interno buscando la sucursal " + e.getMessage());
+                        }
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Error externo buscando la sucursal " + e.getMessage());
+                    }
+
+                    //ID TIPOPRECIO SELECCIONADA
+                    int idTipoPrecio = 0;
                     String tp = cmbTipoPrecioVenta.getSelectedItem().toString();
                     try {
                         String[] cm = new String[]{"IdTipoPrecio", "Nombre", "Utilidad"};
@@ -9333,9 +9458,6 @@ public void generarReporteCompra(String nameReporte){
 
                             while (rs.next()) {
                                 idTipoPrecio = Integer.parseInt(rs.getString("IdTipoPrecio"));
-                                utilidadb = Double.parseDouble(rs.getString("Utilidad"));
-                                utilidadb = (1 - utilidadb);
-                                
 
                             }
                             cn.Desconectar();
@@ -9346,19 +9468,27 @@ public void generarReporteCompra(String nameReporte){
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "Error externo buscando el tipoprecio " + e.getMessage());
                     }
-                String realizada = "NO";
-                int suc = cmbSucursalVenta.getSelectedIndex();
-                suc = suc + 1;
-                for(int i=0;i < tblProductosVender.getRowCount();i++){
-                    double posicionprecio = (Double.parseDouble(tblProductosVender.getValueAt(i, 3).toString() ));
-                    posicionprecio = (posicionprecio*utilidadb);
-                    posicionprecio = Double.parseDouble(df.format(posicionprecio));
-                    cn.UID("INSERT INTO ventaborrador (IdBorrador, CodBarra, Producto, Cantidad, PrecioUnitario, IdSucursal, Realizada) VALUES ('" +IdBorrador+ "','" +tblProductosVender.getValueAt(i, 0)+ "','"
-                        +tblProductosVender.getValueAt(i, 1)+ "','" + tblProductosVender.getValueAt(i, 2) + "','" + posicionprecio + "'    ,'" + suc + "'  ,'" + realizada + "')");
-                    cn.UID("UPDATE inventario SET Cantidad = Cantidad - '" +tblProductosVender.getValueAt(i, 2)+ "'  WHERE CodBarra='" +tblProductosVender.getValueAt(i, 0)+ "'  AND IdSucursal ='"+suc+"'");
-                }
-                jpnAgregarVenta.setVisible(false);
-                jpnListaVentas.setVisible(true);
+                
+                    //Llenando el objeto venta con las limitciones de una venta en borrador
+                    ventaB.idVenta = Integer.parseInt(txtIdVenta.getText());
+                    ventaB.idSucursal = idSucursalSeleccionada;
+                    ventaB.tipoVenta = "B";
+                    ventaB.idTipoPrecio = idTipoPrecio;
+                    ventaB.total = Double.parseDouble(txtTotalVenta.getText());
+                    //Los datos que no se utilizaran
+                    ventaB.IVA = 0;
+                    ventaB.NIT = "";
+                    ventaB.NRC = "";
+                    ventaB.cliente = "";
+                    ventaB.direccion = "";
+                    ventaB.fecha = null;
+                    ventaB.giro = "";
+                    ventaB.totalGrabado = ventaB.total;
+                    ventaB.numDocumento = "";
+                    ventaB.pac = 0;
+                    ventaB.utilidad = 0;
+                    
+                    
             }
             //si no es borrador
             else {

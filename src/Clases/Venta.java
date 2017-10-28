@@ -28,6 +28,8 @@ public class Venta {
     public String numDocumento;
     public Date fecha;
     public String cliente;
+    public double pac;
+    public double utilidad;
     public double total;
     public ArrayList<DetalleVenta> articulo;
     DecimalFormat decimal = new DecimalFormat("0.00");
@@ -80,7 +82,7 @@ public class Venta {
         return Double.parseDouble(decimal.format(total));
     }
 
-    public Venta(int idVenta, int idSucursal, String tipoVenta, int idTipoPrecio, double IVA, double totalGrabado, String direccion, String giro, String NIT, String NRC, String numDocumento, Date fecha, String cliente, double total, ArrayList<DetalleVenta> articulo) {
+    public Venta(int idVenta, int idSucursal, String tipoVenta, int idTipoPrecio, double IVA, double totalGrabado, String direccion, String giro, String NIT, String NRC, String numDocumento, Date fecha, String cliente, double total, double pac, double utilidad, ArrayList<DetalleVenta> articulo) {
         this.idVenta = idVenta;
         this.idSucursal = idSucursal;
         this.tipoVenta = tipoVenta;
@@ -95,8 +97,17 @@ public class Venta {
         this.fecha = fecha;
         this.cliente = cliente;
         this.total = total;
+        this.pac = pac;
+        this.utilidad = utilidad;
         this.articulo = articulo;
     }
-        
+
+    //crear los metodos de calcular pac y calcular utilidad
+    
+    
+    
+    
+    
+    
         
 }
