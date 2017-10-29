@@ -1658,6 +1658,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jSeparator107 = new javax.swing.JSeparator();
         cmbAño = new javax.swing.JComboBox<>();
         btnGenerar = new javax.swing.JButton();
+        cmbReporteVenta = new javax.swing.JComboBox<>();
         jpnReporteMesCompras = new javax.swing.JPanel();
         jScrollPane17 = new javax.swing.JScrollPane();
         tblListaComprasMes = new javax.swing.JTable();
@@ -5356,6 +5357,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnReporteMesVentas2.add(btnGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 420, 130, 40));
 
+        cmbReporteVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<SELECCIONAR>", "CREDITO FISCAL", "LIBRE", "FACTURA", " " }));
+        cmbReporteVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbReporteVentaActionPerformed(evt);
+            }
+        });
+        jpnReporteMesVentas2.add(cmbReporteVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, 150, 40));
+
         getContentPane().add(jpnReporteMesVentas2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
         jpnReporteMesCompras.setName("jpnListaVentas"); // NOI18N
@@ -8612,9 +8621,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cmbAñoItemStateChanged
 
-    private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
-
-        String reporte = "C:\\Users\\Rogelio Alvarez\\Desktop\\VERSION FINAL TIENDA\\tiendads2\\src\\reportes\\reporteVentas.jasper";
+    public void generarReporteVenta(String archivo){
+        String reporte = "C:\\Users\\ronal\\Desktop\\version-3\\src\\reportes\\"+archivo;
         System.out.println(reporte);
         Map parametros = new HashMap();
         conection cn = new conection();
@@ -8660,6 +8668,18 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "ERROR EN REPORTE: " + ex.getMessage());
         }
 
+    }
+    private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
+       
+        if(cmbReporteCompra.getSelectedItem().toString().equals("CREDITO FISCAL")){
+            generarReporteVenta("reporteVentaFiscal.jasper");
+        }else if(cmbReporteCompra.getSelectedItem().toString().equals("LIBRE")){
+            generarReporteVenta("reporteVentaLibre.jasper");
+        }else if(cmbReporteCompra.getSelectedItem().toString().equals("FACTURA")){
+            generarReporteVenta("reporteVentaFactura.jasper");
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione algun tipo de reporte:\nEjemplo: CREDITO FISCAL, LIBRE O FACTURA.");
+        }
     }//GEN-LAST:event_btnGenerarActionPerformed
 
 public void generarReporteCompra(String nameReporte){
@@ -9942,6 +9962,10 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
        cmbNuevoRolUsuario.requestFocus();
     }//GEN-LAST:event_txtNuevoClaveUsuarioActionPerformed
 
+    private void cmbReporteVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbReporteVentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbReporteVentaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -10072,6 +10096,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JComboBox<String> cmbNuevoRolUsuario;
     private javax.swing.JComboBox cmbProveedor;
     private javax.swing.JComboBox<String> cmbReporteCompra;
+    private javax.swing.JComboBox<String> cmbReporteVenta;
     private javax.swing.JComboBox<String> cmbRolUsuario;
     private javax.swing.JComboBox cmbSucursal2;
     private javax.swing.JComboBox cmbSucursalCompra;

@@ -15,7 +15,7 @@
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT p.Nombre, dc.Cantidad, dc.CostoUnitario, c.Total
-FROM compra AS c INNER JOIN detallecompra AS dc INNER JOIN producto AS p ON(c.TipoCompra = 'C' AND c.IdCompra = dc.IdCompra)]]>
+FROM compra AS c INNER JOIN detallecompra AS dc INNER JOIN producto AS p ON(c.TipoCompra = 'F' AND c.IdCompra = dc.IdCompra)]]>
 	</queryString>
 	<field name="Nombre" class="java.lang.String"/>
 	<field name="Cantidad" class="java.lang.Double"/>
