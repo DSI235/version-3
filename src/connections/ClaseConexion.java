@@ -68,7 +68,7 @@ public abstract class ClaseConexion {
         }
         y = ps.executeUpdate();
         agregado = y > 0;
-        System.out.println("SQL DE AGREGAR COMPRA" + sql);
+        System.out.println("SQL DE AGREGAR Venta" + sql);
         System.out.println("PREPARED STATEMENT DE AGREGAR COMPRA" + ps.toString());
         return agregado;
     }

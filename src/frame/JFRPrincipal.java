@@ -6962,8 +6962,13 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         try {
             cn.Conectar();
             id = cn.BuscarId("sucursal", "IdSucursal", "Nombre", cmbSucursal2.getSelectedItem().toString());
-            Producto producto = new Producto(txtCodBarraProductos.getText(), txtNombreProductos.getText(), Integer.parseInt(txtProductoInventario.getText()),
+            
+                    Producto producto = new Producto(txtCodBarraProductos.getText(), txtNombreProductos.getText(), Integer.parseInt(txtProductoInventario.getText()),
                     Double.parseDouble(cuatrodigitos.format(Double.parseDouble(txtPrecioProductos.getText()))), Integer.parseInt(id));
+         
+            
+            
+            
             String produ=txtNombreProductos.getText();
             try{
                 ControladorProducto.Agregar(producto);
@@ -6984,6 +6989,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
+        
 
     }//GEN-LAST:event_btnAgregarNuevoProductoActionPerformed
 
@@ -7528,22 +7534,9 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarProd1MouseExited
 
     private void btnAgregarProd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProd1ActionPerformed
-//        Compra compra = new Compra();
+
         txtNomProd.setEditable(true);
-//        DetalleCompra objetoDetalle = new DetalleCompra();.
-//        objetoDetalle.
-//        ArrayList<DetalleCompra> listaCompra = compra.AgregarItem(objetoDetalle);
 
-        /*dc.producto.CodBarra= this.txtCodBarraProd.getText();
-
-        dc.costoUnitario= Double.parseDouble(this.txtCostoProd.getText());
-        dc.cantidad= Integer.parseInt(this.txtCantidad.getText());
-
-        try {
-            compra.AgregarItem(dc);
-        } catch (ErrorTienda ex) {
-            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
         if (!this.txtCodBarraProd.getText().equals("") && !this.txtNomProd.getText().equals("") && !this.txtCantidad.getText().equals("") && !this.txtCostoProd.getText().equals("")) {
             conection cn = new conection();
             String iva = null;
@@ -7558,6 +7551,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             DecimalFormat dosdigitos = new DecimalFormat("0.00");
             DecimalFormat cuatrodigitos = new DecimalFormat("0.0000");
             totalC = 0;
+            
 
             TableModel model = tblCompra.getModel();
             for (int row = 0; row < model.getRowCount(); row++) {
@@ -7601,22 +7595,13 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                     model0.setValueAt(cuatrodigitos.format(Double.parseDouble(this.txtCostoProd.getText())), filas, 3);
                     //model0.setValueAt(dosdigitos.format(((Integer.parseInt(this.txtCantidad.getText()) * Double.parseDouble(this.txtCostoProd.getText())) * Double.parseDouble(iva))), filas, 4);
 
-                    if (cmbTipoCompra.getSelectedIndex() == 2) {
+                    if (cmbTipoCompra.getSelectedIndex() == 0) {
                         model0.setValueAt(cuatrodigitos.format(((Double.parseDouble(this.txtCantidad.getText()) * Double.parseDouble(this.txtCostoProd.getText())) * Double.parseDouble(iva))), filas, 4);
                     } else {
                         model0.setValueAt(0, filas, 4);
                     }
-                    model0.setValueAt(Double.parseDouble(cuatrodigitos.format(((Double.parseDouble(model.getValueAt(filas, 2).toString()) * Double.parseDouble(model.getValueAt(filas, 3).toString())) + Double.parseDouble(model.getValueAt(filas, 4).toString())))), filas, 5);
+                    model0.setValueAt(cuatrodigitos.format(((Double.parseDouble(model.getValueAt(filas, 2).toString()) * Double.parseDouble(model.getValueAt(filas, 3).toString())) + Double.parseDouble(model.getValueAt(filas, 4).toString()))), filas, 5);
                 }
-                /*try {
-                    double tot=compra.CalcularTotal();
-                    this.txtTotal.setText(String.valueOf(tot));
-                } catch (ErrorTienda ex) {
-                    Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                }*/
-
-//                n = String.valueOf(dosdigitos.format(Double.parseDouble(model0.getValueAt(filas, 4).toString())));
-//                totalC += Double.parseDouble(n);
                 filas++;
                 cmbTipoCompra.setEnabled(false);
                 this.txtCodBarraProd.setText("");
@@ -7624,8 +7609,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 this.txtCantidad.setText("");
                 this.txtCostoProd.setText("");
             }
-            //TOTALES
-
+        
             switch (cmbTipoCompra.getSelectedItem().toString()) {
                 case "Libre":
                     for (int row = 0; row < model.getRowCount(); row++) {
@@ -9350,7 +9334,7 @@ public void generarReporteCompra(String nameReporte){
                                 model.setValueAt(producto.nombre, filas, 1);
                                 model.setValueAt(txtCantidadVender.getText(), filas, 2);
                                 model.setValueAt(producto.costo, filas, 3);
-                                if (cmbTipoVenta.getSelectedIndex() == 2) {
+                                if (cmbTipoVenta.getSelectedIndex() == 1) {
                                     model.setValueAt(cuatrodigitos.format(((Double.parseDouble(model.getValueAt(filas, 2).toString()) * Double.parseDouble(model.getValueAt(filas, 3).toString()) * Double.parseDouble(iva)))), filas, 4);
                                 } else {
                                     model.setValueAt(0, filas, 4);
@@ -9367,6 +9351,7 @@ public void generarReporteCompra(String nameReporte){
                     //TOTAL
                     switch (cmbTipoVenta.getSelectedItem().toString()) {
                         case "Libre":
+                            
                         for (int row = 0; row < model.getRowCount(); row++) {
                             totalC = Double.parseDouble(dosdigitos.format(totalC + Double.parseDouble(model.getValueAt(row, 5).toString())));
                         }
@@ -9376,6 +9361,7 @@ public void generarReporteCompra(String nameReporte){
                         break;
 
                         case "Credito Fiscal":
+                            
                         for (int row = 0; row < model.getRowCount(); row++) {
                             totalC = Double.parseDouble(dosdigitos.format(totalC + Double.parseDouble(model.getValueAt(row, 5).toString())));
                         }
@@ -9387,6 +9373,7 @@ public void generarReporteCompra(String nameReporte){
                         double granTotal = totalC + ivaFinal;
                         txtTotalVenta.setText("" + dosdigitos.format(granTotal));
                         break;
+                        
                         case "Factura":
                         for (int row = 0; row < model.getRowCount(); row++) {
                             totalC = Double.parseDouble(dosdigitos.format(totalC + Double.parseDouble(model.getValueAt(row, 5).toString())));
@@ -9395,6 +9382,18 @@ public void generarReporteCompra(String nameReporte){
                         txtTotalVenta.setText("" + dosdigitos.format(totalC));
                         txtIvaVenta.setText("0");
                         ;
+                        break;
+                         
+                        case "Borrador":
+                        for (int row = 0; row < model.getRowCount(); row++) {
+                            totalC = Double.parseDouble(dosdigitos.format(totalC + Double.parseDouble(model.getValueAt(row, 5).toString())));
+                        }
+                        txtTotalVenta.setText("" + totalC);
+                        txtSumaVenta.setText("" + totalC);
+                        txtIvaVenta.setText("0");   
+                            
+                            
+                            
                         break;
                     }
 
@@ -9440,8 +9439,17 @@ public void generarReporteCompra(String nameReporte){
 
          
             //si es borrador
-            if (cmbTipoVenta.getSelectedItem().toString()=="Borrador") {
+            if (cmbTipoVenta.getSelectedIndex()==3) {
                  
+                
+                 try {
+                DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+                    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+                    String dateFormatted = sdf.format(txt_fecha_venta.getDate());                            //.getDate()
+               
+                    Date dateB = formatter.parse(dateFormatted);
+              
+
                   //ID SUCURSAL SELECCIONADA
                     int idSucursalSeleccionada = 0;
                     String suc = cmbSucursalVenta.getSelectedItem().toString();
@@ -9504,12 +9512,59 @@ public void generarReporteCompra(String nameReporte){
                     ventaB.NRC = "";
                     ventaB.cliente = "";
                     ventaB.direccion = "";
-                    ventaB.fecha = null;
+                    ventaB.fecha = dateB;
                     ventaB.giro = "";
                     ventaB.totalGrabado = ventaB.total;
                     ventaB.numDocumento = "";
                     ventaB.pac = 0;
                     ventaB.utilidad = 0;
+           
+                    
+                    //Agregando una venta en borrador
+                    
+                    ventaB.articulo = new ArrayList<DetalleVenta>();
+               
+                    //                nventa.articulo =    ------------FALTA ARTICULOS?? R/ NO, se llena en DetalleVenta
+                    //                venta agregada:
+                    venta.Agregar(ventaB);
+               
+                    
+                    DefaultTableModel model = (DefaultTableModel) tblProductosVenderBorrador.getModel();
+                    ArrayList<DetalleVenta> articulos = new ArrayList<DetalleVenta>();
+                    for (int row = 0; row < model.getRowCount(); row++) {
+                        //Agregar
+                        Producto producto = new Producto();
+                        producto.CodBarra = model.getValueAt(row, 0).toString();
+
+                        System.out.println("DATOS> Cantidad>" + Double.parseDouble(model.getValueAt(row, 2).toString())  
+                                + " PrecioU> " + Double.parseDouble(model.getValueAt(row, 3).toString()));
+
+                        DetalleVenta dv = new DetalleVenta(producto, Double.parseDouble(model.getValueAt(row, 2).toString()),  
+                                Double.parseDouble(model.getValueAt(row, 3).toString()));
+                        System.out.println("DEtalleVenta " + dv.cantidad + " " + dv.PrecioUnitario + " " + dv.producto.CodBarra);
+                        System.out.println("ART: " + ventaB.articulo);
+                        ventaB.articulo.add(dv);
+                    }
+                    System.out.println("LLEgue");
+                    
+                    agregarDetalleVenta(ventaB);
+                    
+                    agregarABitacora("Se realizo una venta en borrador"+txtIdVenta1.getText());
+
+                    
+                    
+                    
+                } catch (ParseException ex) {
+                    Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                    
+                    
+                    
+                    
                     
                     
             }
@@ -9602,7 +9657,6 @@ public void generarReporteCompra(String nameReporte){
                     //                nventa.articulo =    ------------FALTA ARTICULOS?? R/ NO, se llena en DetalleVenta
                     //                venta agregada:
                     venta.Agregar(nventa);
-                    agregarABitacora("Se realizo una venta "+txtNoDocVenta.getText());
                     //CONTINUAR CON EL DETALLE_VENTA
                     //Recorrer la tabla - tblProductosVender
                     DefaultTableModel model = (DefaultTableModel) tblProductosVender.getModel();
@@ -9621,6 +9675,7 @@ public void generarReporteCompra(String nameReporte){
                     }
                     System.out.println("LLEgue");
                     agregarDetalleVenta(nventa);
+                    agregarABitacora("Se realizo una venta "+txtNoDocVenta.getText());
 
                 } catch (ParseException ex) {
                     JOptionPane.showMessageDialog(null, "Error Parse guardando venta " + ex.getMessage());
@@ -9799,8 +9854,8 @@ public void generarReporteCompra(String nameReporte){
             lblgiro.setVisible(false);
             lblnrc.setVisible(false);
             lblIvaVenta.setVisible(false);
-            lblCodBarraProd24.setVisible(false);
-            cmbTipoPrecioVenta.setVisible(false);
+//            lblCodBarraProd24.setVisible(false);
+//            cmbTipoPrecioVenta.setVisible(false);
             lblCodBarraProd18.setVisible(false);
             txtClienteVenta.setVisible(false);
             lblCodBarraProd22.setVisible(false);
