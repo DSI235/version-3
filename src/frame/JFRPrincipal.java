@@ -8671,11 +8671,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     }
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
        
-        if(cmbReporteCompra.getSelectedItem().toString().equals("CREDITO FISCAL")){
+        if(cmbReporteVenta.getSelectedItem().toString().equals("CREDITO FISCAL")){
             generarReporteVenta("reporteVentaFiscal.jasper");
-        }else if(cmbReporteCompra.getSelectedItem().toString().equals("LIBRE")){
+        }else if(cmbReporteVenta.getSelectedItem().toString().equals("LIBRE")){
             generarReporteVenta("reporteVentaLibre.jasper");
-        }else if(cmbReporteCompra.getSelectedItem().toString().equals("FACTURA")){
+        }else if(cmbReporteVenta.getSelectedItem().toString().equals("FACTURA")){
             generarReporteVenta("reporteVentaFactura.jasper");
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione algun tipo de reporte:\nEjemplo: CREDITO FISCAL, LIBRE O FACTURA.");
