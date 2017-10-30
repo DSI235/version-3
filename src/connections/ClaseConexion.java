@@ -48,6 +48,7 @@ public abstract class ClaseConexion {
         PreparedStatement ps;
         y = 1;
         sql += sql1 + ")";
+        
         if (Merge) {
             sql += agregarMergeSentencia("mysql", campos);
         }
@@ -66,9 +67,10 @@ public abstract class ClaseConexion {
                 m++;
             }
         }
+        System.out.println("Error cacaso que no me deja avanzar: "+sql);
         y = ps.executeUpdate();
         agregado = y > 0;
-        System.out.println("SQL DE AGREGAR Venta" + sql);
+        System.out.println("SQL DE AGREGAR" + sql);
         System.out.println("PREPARED STATEMENT DE AGREGAR COMPRA" + ps.toString());
         return agregado;
     }

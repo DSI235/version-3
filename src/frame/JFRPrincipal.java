@@ -10125,9 +10125,10 @@ public void generarReporteCompra(String nameReporte){
             VentasSeleccionadas = tblListaVentasBorrador.getSelectedRows();
              
             for(int i=0; i<tblListaVentasBorrador.getSelectedRowCount(); i++){
+          
             //LLENAR TABlA DE DETALLE VENTA
-            String[] cm = new String[]{"CodBarra", "IdVenta", "Cantidad", "PrecioUnitario"};
-            iList p = new iList(new ListasTablas("IdVenta", tblListaVentasBorrador.getValueAt(VentasSeleccionadas[i], 0)));
+            String[] cm = new String[]{"IdVenta", "CodBarra", "Cantidad", "PrecioUnitario"};
+            iList p = new iList(new ListasTablas("IdVenta", tblListaVentasBorrador.getValueAt(VentasSeleccionadas[i], 1)));
             ArrayList<Object> listaDetalleVentas = new ArrayList();
            
             suma =  suma + Double.parseDouble(tblListaVentasBorrador.getValueAt(VentasSeleccionadas[i], 7).toString());
@@ -10352,45 +10353,50 @@ public void generarReporteCompra(String nameReporte){
                     nventa.utilidad = 0.0;
                     nventa.articulo = new ArrayList<DetalleVenta>();
                
+                    for(int d=0;d<VentasSeleccionadas.length;d++){
+                         cn.UID("DELETE FROM detalleventa WHERE IdVenta = '"+tblListaVentasBorrador.getValueAt(VentasSeleccionadas[d],0)+"';");
+                         //cn.UID("INSERT INTO detalleventa (IdVenta,CodBarra,Cantidad,PrecioUnitario,IdSucursal) VALUES ('" +nventa.idVenta +"','"+dv.producto.CodBarra+"', '"+dv.cantidad+"', '"+dv.PrecioUnitario+"', '"+nventa.idSucursal+"')");
+                    }  
+                    
+                    for (int i=0;i<VentasSeleccionadas.length;i++){
+                        cn.UID("DELETE FROM venta WHERE IdVenta = '"+tblListaVentasBorrador.getValueAt(VentasSeleccionadas[i],0)+"';");
+                    }
+                            
                     venta.AgregarB(nventa);
                     //CONTINUAR CON EL DETALLE_VENTA
-                 
                     DefaultTableModel model = (DefaultTableModel) tblProductosVenderBorrador.getModel();
-                    
                     ArrayList<DetalleVenta> articulos = new ArrayList<DetalleVenta>();
+                    boolean agregar = true;
                     for (int row = 0; row < model.getRowCount(); row++) {
                         //Agregar
                         Producto producto = new Producto();
-                        
-                        producto.CodBarra = model.getValueAt(row, 0).toString();
+                        agregar=true;
+                        producto.CodBarra = model.getValueAt(row, 1).toString();
 
                         System.out.println("DATOS> Cantidad>" + Double.parseDouble(model.getValueAt(row, 2).toString()) + " PrecioU> " + Double.parseDouble(model.getValueAt(row, 3).toString()));
-
-                        
-                        
+     
                         DetalleVenta dv = new DetalleVenta(producto, Double.parseDouble(model.getValueAt(row, 2).toString()), Double.parseDouble(model.getValueAt(row, 3).toString()));
                         System.out.println("DEtalleVenta " + dv.cantidad + " " + dv.PrecioUnitario + " " + dv.producto.CodBarra);
                         System.out.println("ART: " + nventa.articulo);
                         
-                        if(row>0){
+                    if(row>0){
                         for (int rowa = 0; rowa < row; rowa++) {
-                            if(dv.producto.CodBarra == tblProductosVenderBorrador.getValueAt(rowa, 1)){
-                               dv.cantidad = dv.cantidad + Double.parseDouble(tblProductosVenderBorrador.getValueAt(rowa, 2).toString());
-                               nventa.articulo.add(rowa, dv);
+                            if(dv.producto.CodBarra == nventa.articulo.get(rowa).producto.CodBarra){
+                               nventa.articulo.get(rowa).cantidad = dv.cantidad + nventa.articulo.get(rowa).cantidad;
+                               agregar=false;
+                               System.out.println("se supone que modifique la cantidad para guardar");
                             }
                         }
-                        }
+                    }
+                        
+                    if(agregar=true){
                         nventa.articulo.add(dv);
+                        agregarDetalleVentaB(nventa);
                     }
-                            
-                    //Se supone que voy a eliminar todos los detalles de venta de borradores
-                    for(int i=0; i<VentasSeleccionadas.length; i++){
-                     cn.UID("DELETE FROM detalleventa WHERE IdVenta = '"+tblListaVentasBorrador.getValueAt(VentasSeleccionadas[i],0)+"'");
-                     cn.UID("DELETE FROM venta WHERE IdVenta = '"+tblListaVentasBorrador.getValueAt(VentasSeleccionadas[i],0)+"'");
-                        System.out.println("me los heche, pero eso debia suceder XD");
+                        
                     }
-              
-                    agregarDetalleVentaB(nventa);
+               
+                    
                     agregarABitacora("Se realizo una venta "+txtNoDocVenta1.getText());
 
                 } catch (ParseException ex) {
