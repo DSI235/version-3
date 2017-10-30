@@ -6330,7 +6330,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         try {
             ControladorProveedor.Modificar(proveedor);
             JOptionPane.showMessageDialog(rootPane, "Modificado");
-             agregarABitacora("Se elimino un modifico "+prove);
+             agregarABitacora("Se modifico un proveedor "+prove);
             tblProveedores.removeAll();
             LlenarProveedor();
 
