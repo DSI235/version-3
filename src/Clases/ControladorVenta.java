@@ -49,6 +49,42 @@ public class ControladorVenta {
             throw new ErrorTienda("Class ControladorVenta/Agregar", e.getMessage());
         }
     }
+    
+    
+        public void AgregarB(Venta venta) throws ErrorTienda, SQLException, Exception {
+        try {
+            cn.Conectar();
+            iList p = new iList(new ListasTablas("IdVenta", venta.idVenta));
+            p.add(new ListasTablas("IdSucursal", venta.idSucursal));
+            p.add(new ListasTablas("TipoVenta", venta.tipoVenta));
+            p.add(new ListasTablas("IdTipoPrecio", venta.idTipoPrecio));
+            p.add(new ListasTablas("Cliente", venta.cliente));
+            p.add(new ListasTablas("Fecha", venta.fecha));
+            p.add(new ListasTablas("IVA", venta.IVA));
+            p.add(new ListasTablas("TotalGravado", venta.totalGrabado));
+            p.add(new ListasTablas("Total", venta.total));
+            p.add(new ListasTablas("Direccion", venta.direccion));
+            p.add(new ListasTablas("Giro", venta.giro));
+            p.add(new ListasTablas("NIT", venta.NIT));
+            p.add(new ListasTablas("NRC", venta.NRC));
+            p.add(new ListasTablas("NDocumento", venta.numDocumento));
+            p.add(new ListasTablas("PAC", venta.pac));
+            p.add(new ListasTablas("utilidad", venta.utilidad));
+            cn.AgregarRegistroB("venta", p, false);
+
+        } catch (SQLException e) {
+            throw new ErrorTienda("Class ControladorVenta/Agregar", e.getMessage());
+        }
+    }
+    
+    
+    
+
+
+
+
+
+
 
     public static ArrayList<Venta> Obtener() throws ErrorTienda {
         String[] cm = new String[]{"IdVenta", "IdSucursal", "TipoVenta", "IdTipoPrecio", "Cliente", "Fecha", "IVA", "TotalGravado", "Total", "Direccion", "Giro", "NIT", "NRC", "NDocumento", "utilidad", "PAC"};

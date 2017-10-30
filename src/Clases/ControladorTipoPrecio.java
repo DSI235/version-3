@@ -38,6 +38,7 @@ public class ControladorTipoPrecio {
         }
 
     }
+    
       public static void Modificar(TipoPrecio tipoPrecio) throws ErrorTienda {
 
         try {
@@ -51,7 +52,7 @@ public class ControladorTipoPrecio {
         }
     }
   
-      public static ArrayList<TipoPrecio> Buscar(String buscar) throws ErrorTienda {
+    public static ArrayList<TipoPrecio> Buscar(String buscar) throws ErrorTienda {
 
         if (buscar.isEmpty()) {
             //SI ESTA VACIO LLENAR TODO
@@ -100,6 +101,7 @@ public class ControladorTipoPrecio {
         }
 
     }
+      
           public static TipoPrecio ObtenerTipoPrecio(int id) throws ErrorTienda {
         TipoPrecio TipoPrecio = new TipoPrecio();
         String[] bs = new String[]{"IdTipoPrecio", "Nombre", "Utilidad"};
@@ -112,8 +114,7 @@ public class ControladorTipoPrecio {
                 TipoPrecio.idTipoPrecio = Integer.parseInt(rs.getString(1));
                 TipoPrecio.nombre = (rs.getString(2));
                 TipoPrecio.utilidad= Double.parseDouble(rs.getString(3));
-                
-            
+           
             }
 
 
@@ -141,4 +142,11 @@ public class ControladorTipoPrecio {
         }
         return Id;
     }
+
+    
+    
+    
+    
+   
+
 }

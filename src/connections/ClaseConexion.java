@@ -73,6 +73,62 @@ public abstract class ClaseConexion {
         return agregado;
     }
 
+    
+    public boolean AgregarRegistroB(String NombreTabla, iList campos, boolean Merge) throws Exception {
+        boolean agregado;
+        String sql1 = ") VALUES(", sql = "INSERT INTO " + NombreTabla + "(";
+        int y = 1;//para agregar elementos a la cadena
+
+        for (ListasTablas campo : campos.getAll()) {
+            sql += ((y > 1) ? ", " : "") + campo.getCampo();
+            sql1 += ((y > 1) ? ", " : "") + "?";
+            y++;
+        }
+        PreparedStatement ps;
+        y = 1;
+        sql += sql1 + ")";
+        if (Merge) {
+            sql += agregarMergeSentencia("mysql", campos);
+        }
+        ps = con.prepareStatement(sql);
+        for (ListasTablas campo : campos.getAll()) {
+            ps.setObject(y, campo.getValor());
+            y++;
+        }
+        int m = 1;
+        if (Merge) {
+            for (ListasTablas o : campos.getAll()) {
+                if (m > 1) {
+                    ps.setObject(y, o.getValor());
+                    y++;
+                }
+                m++;
+            }
+        }
+        y = ps.executeUpdate();
+        agregado = y > 0;
+        System.out.println("SQL DE AGREGAR Venta" + sql);
+        System.out.println("PREPARED STATEMENT DE AGREGAR COMPRA" + ps.toString());
+        return agregado;
+    }
+
+    
+    
+    
+    
+    
+    
+    public void ActualizarVenta(String NombreTabla, iList campos, boolean Merge) throws Exception {
+        
+        
+        
+        
+        
+        
+    }
+
+    
+    
     public boolean ModificarRegistro(String NombreTabla, iList Nuevoscampos, iList Ncondiciones) throws Exception {
         boolean modificado;
         String sql = "UPDATE " + NombreTabla + " SET ";
@@ -323,6 +379,11 @@ public abstract class ClaseConexion {
         return ps;
     }
 
+    //Para consolidar las ventas
+   
+
+    
+    
     private String agregarMergeSentencia(String servidor, iList campos) {
         String sql = "";
         switch (servidor) {

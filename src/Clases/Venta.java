@@ -4,10 +4,17 @@
  * and open the template in the editor.
  */
 package Clases;
+import static Clases.ControladorProveedor.cn;
+import connections.ListasTablas;
+import connections.iList;
+import frame.JFRPrincipal;
 import java.math.RoundingMode;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -72,6 +79,12 @@ public class Venta {
         return Double.parseDouble(decimal.format(iva));
         }
         
+        //Métodos para calcular el pac y la utilidad (nuevos campos)
+       
+        
+        
+        
+        ///////////////////////////////////
         public double CalcularTotal() throws ErrorTienda{
         CalcularTotalGrabado(); 
         CalcularIVA();
@@ -82,6 +95,9 @@ public class Venta {
         return Double.parseDouble(decimal.format(total));
     }
 
+        
+        
+        
     public Venta(int idVenta, int idSucursal, String tipoVenta, int idTipoPrecio, double IVA, double totalGrabado, String direccion, String giro, String NIT, String NRC, String numDocumento, Date fecha, String cliente, double total, double pac, double utilidad, ArrayList<DetalleVenta> articulo) {
         this.idVenta = idVenta;
         this.idSucursal = idSucursal;
