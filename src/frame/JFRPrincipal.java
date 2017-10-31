@@ -66,6 +66,8 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public final class JFRPrincipal extends javax.swing.JFrame {
 
+    
+    
     boolean ventas, compras, productos, proveedores, sucursales, precios, configuracion, usuarios, bitacora;
     boolean apagado, principal;
     int x, y;
@@ -10074,6 +10076,8 @@ public void generarReporteCompra(String nameReporte){
         jpnListaVentasBorrador.setVisible(false);
         jpnAgregarVentaBorrador.setVisible(true);
 
+        boolean a=true;
+        
         DecimalFormat dosdigitos = new DecimalFormat("0.00");
         DecimalFormat cuatrodigitos = new DecimalFormat("0.0000");        
         
@@ -10125,16 +10129,17 @@ public void generarReporteCompra(String nameReporte){
             VentasSeleccionadas = tblListaVentasBorrador.getSelectedRows();
              
             for(int i=0; i<tblListaVentasBorrador.getSelectedRowCount(); i++){
-          
+          a=true;
+                
+                
             //LLENAR TABlA DE DETALLE VENTA
-            String[] cm = new String[]{"IdVenta", "CodBarra", "Cantidad", "PrecioUnitario"};
-            iList p = new iList(new ListasTablas("IdVenta", tblListaVentasBorrador.getValueAt(VentasSeleccionadas[i], 1)));
+            String[] cm = new String[]{"CodBarra", "IdVenta", "Cantidad", "PrecioUnitario"};
+            iList p = new iList(new ListasTablas("IdVenta", tblListaVentasBorrador.getValueAt(VentasSeleccionadas[i], 0)));
             ArrayList<Object> listaDetalleVentas = new ArrayList();
            
             suma =  suma + Double.parseDouble(tblListaVentasBorrador.getValueAt(VentasSeleccionadas[i], 7).toString());
             total = total + Double.parseDouble(tblListaVentasBorrador.getValueAt(VentasSeleccionadas[i], 8).toString());
-                       
-            
+              
             conection cn = new conection();
             try {
                 cn.Conectar();
@@ -10158,14 +10163,26 @@ public void generarReporteCompra(String nameReporte){
             modelo.setColumnIdentifiers(detalleventas);
             Iterator<DetalleVenta> venta = listaDetalleVenta.iterator();
             while (venta.hasNext()) {
-                fila[1] = venta.next();
-                fila[0] = venta.next();
-                fila[2] = venta.next();
-                fila[3] = venta.next();
-                modelo.addRow(fila);
-
-            }
+                fila[1] = venta.next();//codigo barra
+                fila[0] = venta.next();//id venta
+                fila[2] = venta.next();//cantidad
+                fila[3] = venta.next();//precio unitario
                 
+                System.out.println(""+modelo.getRowCount());
+                
+                for(int j=0;j<modelo.getRowCount();j++){
+                if(fila[1]==modelo.getValueAt(j, 1)){
+                   modelo.setValueAt(Integer.parseInt(modelo.getValueAt(j, 2).toString())+ Integer.parseInt(fila[2].toString()), j, 2);
+                    System.out.println(""+modelo.getValueAt(j, 2));
+                   a=false;
+                }
+                }
+                
+            }
+             if(a=true){
+                   System.out.println(""+fila[1]+"\t"+fila[2]+"\t"+fila[3]+"\t"+fila[0]+"\n");  
+                  modelo.addRow(fila); 
+                }    
             }
             txtSumaVenta1.setText(""+dosdigitos.format(suma));
             txtTotalVenta1.setText(""+dosdigitos.format(total));
