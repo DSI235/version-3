@@ -2076,7 +2076,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnSexto.add(lbl18, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, 30));
 
         lblMitad6.setForeground(new java.awt.Color(51, 255, 255));
-        lblMitad6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/color2.png"))); // NOI18N
+        lblMitad6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/color1.png"))); // NOI18N
         jpnSexto.add(lblMitad6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 370, 600));
 
         jpnPrincipal.add(jpnSexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 730, 600));
@@ -2109,7 +2109,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lbl55.setText("de los productos de tu tienda");
         jpnSeptimo.add(lbl55, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, -1, 30));
 
-        lblMitad10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/color7.png"))); // NOI18N
+        lblMitad10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/color1.png"))); // NOI18N
         jpnSeptimo.add(lblMitad10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 600));
 
         jpnPrincipal.add(jpnSeptimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 730, 600));
@@ -2132,6 +2132,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lbl38.setText("y configuraciones especiales");
         jpnOctavo.add(lbl38, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, -1, 30));
 
+        lblMitad8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/color1.png"))); // NOI18N
         lblMitad8.setText("jLabel2");
         jpnOctavo.add(lblMitad8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 600));
 
@@ -2155,7 +2156,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lbl48.setText("acceso a tus sistema");
         jpnNoveno.add(lbl48, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, -1, 30));
 
-        lblMitad9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/color8.png"))); // NOI18N
+        lblMitad9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/color1.png"))); // NOI18N
         jpnNoveno.add(lblMitad9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 360, 600));
 
         jpnPrincipal.add(jpnNoveno, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 730, 600));
@@ -2212,7 +2213,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lbl25.setText("y precios especiales a tus clientes");
         jpnTercero.add(lbl25, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, -1, 30));
 
-        lblMitad3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/color3.png"))); // NOI18N
+        lblMitad3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/color1.png"))); // NOI18N
         lblMitad3.setText("jLabel2");
         jpnTercero.add(lblMitad3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 600));
 
@@ -2247,7 +2248,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lbl35.setText("agregar o eliminar Productos.");
         jpnCuarto.add(lbl35, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 190, 30));
 
-        lblMitad4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/color4.png"))); // NOI18N
+        lblMitad4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/color1.png"))); // NOI18N
         jpnCuarto.add(lblMitad4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 360, 600));
 
         jpnPrincipal.add(jpnCuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 730, 600));
@@ -2281,7 +2282,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lbl45.setText("a tus nuevos proveedores.");
         jpnQuinto.add(lbl45, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, -1, 30));
 
-        lblMitad5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/color6.png"))); // NOI18N
+        lblMitad5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/color1.png"))); // NOI18N
         jpnQuinto.add(lblMitad5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 600));
 
         jpnPrincipal.add(jpnQuinto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 730, 600));
