@@ -1653,14 +1653,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblListadoVentas3 = new javax.swing.JLabel();
         jSeparator64 = new javax.swing.JSeparator();
         btnAtrasReporteVenta2 = new javax.swing.JButton();
-        cmbMes = new javax.swing.JComboBox<>();
+        cmbMes = new javax.swing.JComboBox<String>();
         jLabel96 = new javax.swing.JLabel();
         jSeparator103 = new javax.swing.JSeparator();
         jLabel100 = new javax.swing.JLabel();
         jSeparator107 = new javax.swing.JSeparator();
-        cmbAño = new javax.swing.JComboBox<>();
+        cmbAño = new javax.swing.JComboBox<String>();
         btnGenerar = new javax.swing.JButton();
-        cmbReporteVenta = new javax.swing.JComboBox<>();
+        cmbReporteVenta = new javax.swing.JComboBox<String>();
         jpnReporteMesCompras = new javax.swing.JPanel();
         jScrollPane17 = new javax.swing.JScrollPane();
         tblListaComprasMes = new javax.swing.JTable();
@@ -1670,14 +1670,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblListadoVentas4 = new javax.swing.JLabel();
         jSeparator67 = new javax.swing.JSeparator();
         btnAtrasReporteCompra = new javax.swing.JButton();
-        cmbMes1 = new javax.swing.JComboBox<>();
+        cmbMes1 = new javax.swing.JComboBox<String>();
         jLabel97 = new javax.swing.JLabel();
         jSeparator104 = new javax.swing.JSeparator();
         jLabel101 = new javax.swing.JLabel();
         jSeparator108 = new javax.swing.JSeparator();
-        cmbAño1 = new javax.swing.JComboBox<>();
+        cmbAño1 = new javax.swing.JComboBox<String>();
         btnGenerar1 = new javax.swing.JButton();
-        cmbReporteCompra = new javax.swing.JComboBox<>();
+        cmbReporteCompra = new javax.swing.JComboBox<String>();
         jpnUsuarios = new javax.swing.JPanel();
         btnAgregarUsuario = new javax.swing.JButton();
         btnModificarUsuario = new javax.swing.JButton();
@@ -1708,8 +1708,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jSeparator31 = new javax.swing.JSeparator();
         jSeparator33 = new javax.swing.JSeparator();
         jSeparator36 = new javax.swing.JSeparator();
-        cmbRolUsuario = new javax.swing.JComboBox<>();
-        cmbEstadoUsuario = new javax.swing.JComboBox<>();
+        cmbRolUsuario = new javax.swing.JComboBox<String>();
+        cmbEstadoUsuario = new javax.swing.JComboBox<String>();
         jpnModificarUsuario = new javax.swing.JPanel();
         btnGuardarUsuario1 = new javax.swing.JButton();
         btnAtrasUsuarios1 = new javax.swing.JButton();
@@ -1728,8 +1728,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jSeparator58 = new javax.swing.JSeparator();
         jSeparator59 = new javax.swing.JSeparator();
         jSeparator80 = new javax.swing.JSeparator();
-        cmbNuevoRolUsuario = new javax.swing.JComboBox<>();
-        cmbNuevoEstadoUsuario = new javax.swing.JComboBox<>();
+        cmbNuevoRolUsuario = new javax.swing.JComboBox<String>();
+        cmbNuevoEstadoUsuario = new javax.swing.JComboBox<String>();
         jpnListaBorrador = new javax.swing.JPanel();
         jScrollPane14 = new javax.swing.JScrollPane();
         tblListaBorrador = new javax.swing.JTable();
@@ -1737,8 +1737,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jPanel39 = new javax.swing.JPanel();
         jSeparator81 = new javax.swing.JSeparator();
         lblVentas1 = new javax.swing.JLabel();
-        txtIdVentab = new javax.swing.JTextField();
-        lblidVentb = new javax.swing.JLabel();
         lblnDocumentob = new javax.swing.JLabel();
         txtNoDocVentab = new javax.swing.JTextField();
         lblListadoVentas1 = new javax.swing.JLabel();
@@ -1747,8 +1745,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblCodBarraProd19 = new javax.swing.JLabel();
         txtClienteVentab = new javax.swing.JTextField();
         lblCodBarraProd25 = new javax.swing.JLabel();
-        lblFecha4 = new javax.swing.JLabel();
-        txt_fecha_ventab = new com.toedter.calendar.JDateChooser();
         txtSumasb = new javax.swing.JTextField();
         jLabel113 = new javax.swing.JLabel();
         txtTotalventaGravadob = new javax.swing.JTextField();
@@ -5365,7 +5361,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnReporteMesVentas2.add(btnGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 420, 130, 40));
 
-        cmbReporteVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<SELECCIONAR>", "CREDITO FISCAL", "LIBRE", "FACTURA", " " }));
+        cmbReporteVenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<SELECCIONAR>", "CREDITO FISCAL", "LIBRE", "FACTURA", " " }));
         cmbReporteVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbReporteVentaActionPerformed(evt);
@@ -5475,7 +5471,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnReporteMesCompras.add(btnGenerar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 400, 130, 40));
 
-        cmbReporteCompra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<SELECCIONAR>", "CREDITO FISCAL", "LIBRE", "FACTURA", " " }));
+        cmbReporteCompra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<SELECCIONAR>", "CREDITO FISCAL", "LIBRE", "FACTURA", " " }));
         jpnReporteMesCompras.add(cmbReporteCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 400, 150, 40));
 
         getContentPane().add(jpnReporteMesCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
@@ -5679,10 +5675,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnAgregarUsuario.add(jSeparator33, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 60, 10));
         jpnAgregarUsuario.add(jSeparator36, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 60, 10));
 
-        cmbRolUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Comprador", "Vendedor" }));
+        cmbRolUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Comprador", "Vendedor" }));
         jpnAgregarUsuario.add(cmbRolUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 180, -1));
 
-        cmbEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        cmbEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo" }));
         jpnAgregarUsuario.add(cmbEstadoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 180, -1));
 
         getContentPane().add(jpnAgregarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
@@ -5789,10 +5785,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnModificarUsuario.add(jSeparator59, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 60, 10));
         jpnModificarUsuario.add(jSeparator80, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 60, 10));
 
-        cmbNuevoRolUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Comprador", "Vendedor" }));
+        cmbNuevoRolUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Comprador", "Vendedor" }));
         jpnModificarUsuario.add(cmbNuevoRolUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 180, -1));
 
-        cmbNuevoEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        cmbNuevoEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo" }));
         jpnModificarUsuario.add(cmbNuevoEstadoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 180, -1));
 
         getContentPane().add(jpnModificarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
@@ -5848,20 +5844,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblVentas1.setText("Ventas");
         jPanel39.add(lblVentas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 90, 30));
 
-        txtIdVentab.setEditable(false);
-        txtIdVentab.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtIdVentab.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
-        jPanel39.add(txtIdVentab, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, 140, 30));
-
-        lblidVentb.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblidVentb.setForeground(new java.awt.Color(255, 255, 255));
-        lblidVentb.setText("ID Venta");
-        jPanel39.add(lblidVentb, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 70, -1));
-
         lblnDocumentob.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblnDocumentob.setForeground(new java.awt.Color(255, 255, 255));
         lblnDocumentob.setText("N° de Documento");
-        jPanel39.add(lblnDocumentob, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 120, -1));
+        jPanel39.add(lblnDocumentob, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 120, -1));
 
         txtNoDocVentab.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtNoDocVentab.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
@@ -5873,7 +5859,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 txtNoDocVentabKeyTyped(evt);
             }
         });
-        jPanel39.add(txtNoDocVentab, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 210, 30));
+        jPanel39.add(txtNoDocVentab, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 210, 30));
 
         jpnListaBorrador.add(jPanel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 70));
 
@@ -5909,13 +5895,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblCodBarraProd25.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblCodBarraProd25.setText("Direccion:");
         jpnListaBorrador.add(lblCodBarraProd25, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 70, 30));
-
-        lblFecha4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblFecha4.setText("Fecha:");
-        jpnListaBorrador.add(lblFecha4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 50, 30));
-
-        txt_fecha_ventab.setDateFormatString("MM/dd/yyyy HH:mm:ss");
-        jpnListaBorrador.add(txt_fecha_ventab, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 170, 30));
         jpnListaBorrador.add(txtSumasb, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 420, 90, -1));
 
         jLabel113.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -9040,137 +9019,11 @@ public void generarReporteCompra(String nameReporte){
     }//GEN-LAST:event_btnAgregarVentabMouseExited
 
     private void btnAgregarVentabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarVentabActionPerformed
-         Date date = new Date();
-    Calendar calendar1 = Calendar.getInstance();
-    Calendar calendar2 = new GregorianCalendar();       
-    Calendar calendar = Calendar.getInstance(); 
-    int anio, mes, dia;
-        dia = calendar.get(Calendar.DATE);
-        mes = calendar.get(Calendar.MONTH)+1;
-        anio = calendar.get(Calendar.YEAR);
-        String Fecha="";
-        Fecha=anio+"-"+mes+"-"+dia;
-        String Giro = "";
-        String NIT = "";
-        String NRC = "";
-        String TipoVenta = "";
-        String Cliente = txtClienteVentab.getText();
-        String NDocumento = txtNoDocVentab.getText();
-        String Direcion = txtDireccionVentab.getText();
-        int filas = tblListaBorrador.getRowCount(), iteracion=0;
-        double  TotalVentas = 0;
-        int IdVenta = Integer.parseInt(txtIdVentab.getText());
-        int IdSucursal = 1;
-        int IdTipoPrecio = 2;  
-        while (iteracion<filas){
-            TotalVentas = TotalVentas + Double.parseDouble(String.valueOf(tblListaBorrador.getValueAt(iteracion, 3)));
-            iteracion++;
-        }
-        
-
-        double IVA=0, TotalGravado=0, Total=0;
-        
-        TipoVenta = "F";
-        IVA = TotalVentas*1.13;
-        IVA = IVA - TotalVentas;
-        IVA = Double.parseDouble(df.format(IVA));
-            
-            Total = (TotalVentas/0.95)*1.13;
-            Total = Double.parseDouble(df.format(Total));
-            TotalGravado = TotalVentas/0.95;
-            TotalGravado = Double.parseDouble(df.format(TotalGravado));
-        
-        
-        try {
-            controladorventa.Agregar(IdVenta, IdSucursal, IdTipoPrecio, TipoVenta, Cliente, Fecha, IVA, TotalGravado, Total, Direcion, Giro, NIT, NRC, NDocumento);
-        } catch (ErrorTienda ex) {
-            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        //para agregar detalleventa.
-        for(int i=0;i < tblListaBorrador.getRowCount();i++){
-                double posicionprecio = (Double.parseDouble(tblListaBorrador.getValueAt(i, 3).toString() )) / 1.13;
-                posicionprecio = Double.parseDouble(df.format(posicionprecio));
-                conection cn = new conection();//
-                cn.UID("INSERT INTO detalleventa (IdVenta, CodBarra, Cantidad, PrecioUnitario, IdSucursal) VALUES ('" +IdVenta+ "','" +tblListaBorrador.getValueAt(i, 0)+ "','"
-                    +tblListaBorrador.getValueAt(i, 2)+ "','" + tblListaBorrador.getValueAt(i, 3) + "','" + IdSucursal + "')");
-                }
-        //finalizado detallevnta.
-        
-        
-        //quitar las vendidas de ventaborrador                  
-                  String realizada = "si";
-                conection cn = new conection();//
-                for(int i=0;i < tblListaBorrador.getRowCount();i++){
-                    cn.UID("UPDATE ventaborrador SET`Realizada`= (\"SI\") WHERE CodBarra='" +tblListaBorrador.getValueAt(i, 0)+ "'");
-                }
-                
-      //terminado quitar ventaborrador
-        
-        
-        
-        jpnListaBorrador.setVisible(false);
-        jpnListaVentas.setVisible(true);
-        
-  
     }//GEN-LAST:event_btnAgregarVentabActionPerformed
 
     private void btnBrorradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrorradorActionPerformed
-        //FECHA DEL MOMENTO
-        java.util.Date date = new Date();
-        Object param = new java.sql.Timestamp(date.getTime());
-        //txtFecha.setText(new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(param));
-        txt_fecha_ventab.setDate(date);
-
-        
-        
-        
-        ControladorVenta VEnta = new ControladorVenta();
-        int idVenta = 0;
-        try {
-                idVenta = VEnta.ObtenerIdVenta();
-            } catch (ErrorTienda ex) {
-                Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            if (idVenta == 0) {
-                txtIdVentab.setText("1");
-            } else {
-                txtIdVentab.setText(Integer.toString(idVenta));
-          }
-
-        try {
-            jpnListaBorrador.setVisible(true);
-            jpnListaVentas.setVisible(false);
-            for(int i=0;i < ventaBorrador.getRowCount();i++){
-                ventaBorrador.removeRow(i);
-                i-=1;
-            }
-            rstventaBorrador = controladorventa.llenarVenta();
-
-            while (rstventaBorrador.next()) {//tablas base de datos
-                //tabla de compra
-                datosVentaB[0] = rstventaBorrador.getString(1);
-                datosVentaB[1] = rstventaBorrador.getString(2);
-                datosVentaB[2] = rstventaBorrador.getString(3);
-                datosVentaB[3] = rstventaBorrador.getString(4);
-                datosVentaB[4] = rstventaBorrador.getString(5);
-                ventaBorrador.addRow(datosVentaB);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-       }
-        //calcular valores
-        int filas = tblListaBorrador.getRowCount(), iteracion=0;
-            double total=0;
-            while (iteracion<filas){
-                total+=Double.parseDouble(String.valueOf(tblListaBorrador.getValueAt(iteracion, 3)));
-                iteracion++;
-            }
-            txtSumasb.setText("$"+total);
-            txtTotalventaGravadob.setText("$"+total);
-        //final calcularvalores
-
+        jpnListaBorrador.setVisible(true);
+        jpnListaVentas.setVisible(false);
     }//GEN-LAST:event_btnBrorradorActionPerformed
 
     private void btnAgregarProductoVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarProductoVentaMouseEntered
@@ -10472,7 +10325,6 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JLabel lblCostoProd2;
     private javax.swing.JLabel lblFecha2;
     private javax.swing.JLabel lblFecha3;
-    private javax.swing.JLabel lblFecha4;
     private javax.swing.JLabel lblIdCompra2;
     private javax.swing.JLabel lblIva;
     private javax.swing.JLabel lblIvaVenta;
@@ -10515,7 +10367,6 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JLabel lblVentas3;
     private javax.swing.JLabel lblVentas4;
     private javax.swing.JLabel lblgiro;
-    private javax.swing.JLabel lblidVentb;
     private javax.swing.JLabel lblnDocumentob;
     private javax.swing.JLabel lblnrc;
     private org.edisoncor.gui.panel.PanelCurves panelCurves1;
@@ -10574,7 +10425,6 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JTextField txtIdSuc;
     private javax.swing.JTextField txtIdTP;
     private javax.swing.JTextField txtIdVenta;
-    private javax.swing.JTextField txtIdVentab;
     private javax.swing.JTextField txtIva;
     private javax.swing.JTextField txtIvaVenta;
     private javax.swing.JTextField txtModDirSuc;
@@ -10644,7 +10494,6 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JTextField txtValorPar;
     private com.toedter.calendar.JDateChooser txt_fecha_compra;
     private com.toedter.calendar.JDateChooser txt_fecha_venta;
-    private com.toedter.calendar.JDateChooser txt_fecha_ventab;
     // End of variables declaration//GEN-END:variables
 
     private void setVisible(JPopupMenu MenuEmergente) {
