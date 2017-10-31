@@ -841,7 +841,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
     public void LlenarVenta() {
         String[] cm = new String[]{"IdVenta", "IdSucursal", "TipoVenta", "IdTipoPrecio", "Cliente", "Fecha", "IVA", "TotalGravado", "Total", "Direccion",
-            "Giro", "NIT", "NRC", "NDocumento","Estado"};
+            "Giro", "NIT", "NRC", "NDocumento"};
         ArrayList<Object> listaVentas = new ArrayList();
         DefaultTableModel modelo = new DefaultTableModel();
         conection cn = new conection();
@@ -876,7 +876,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 listaVentas.add(rs.getString("NIT"));
                 listaVentas.add(rs.getString("NRC"));
                 listaVentas.add(rs.getString("NDocumento"));
-                listaVentas.add(rs.getString("Estado"));
             }
             cn.Desconectar();
         } catch (Exception e) {
@@ -886,7 +885,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         Object[] fila = new Object[15];
 
         String[] ventas = new String[]{"IdVenta", "Fecha", "Sucursal", "Tipo Venta", "Tipo Precio", "Cliente", "IVA", "TotalGravado", "Total", "Direccion",
-            "Giro", "NIT", "NRC", "NDocumento", "Estado"};
+            "Giro", "NIT", "NRC", "NDocumento"};
         modelo.setColumnIdentifiers(ventas);
         Iterator<Venta> prod = listaVenta.iterator();
         while (prod.hasNext()) {
@@ -904,7 +903,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             fila[11] = prod.next();
             fila[12] = prod.next();
             fila[13] = prod.next();
-            fila[14] = prod.next();
             modelo.addRow(fila);
 
         }
@@ -6019,6 +6017,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         apagado();
         apagado2();
         jpnListaVentas.setVisible(true);
+        cmbTipoVenta.setSelectedIndex(1);
+        cmbTipoVenta.setSelectedIndex(0);
     }//GEN-LAST:event_btnVentasMouseClicked
 
     private void btnProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductosMouseClicked
@@ -9441,7 +9441,8 @@ public void generarReporteCompra(String nameReporte){
             lblIvaVenta.setVisible(false);
             lblBorrador.setVisible(false);
             lblProveedores10.setVisible(true);
-            
+            lblCodBarraProd24.setVisible(true);
+            cmbTipoPrecioVenta.setVisible(true);
             jLabel44.setVisible(true);
             txtIdVenta.setVisible(true);
             jLabel45.setVisible(true);
@@ -9484,7 +9485,8 @@ public void generarReporteCompra(String nameReporte){
             lblNITVenta.setVisible(false);
             lblBorrador.setVisible(false);
             lblProveedores10.setVisible(true);
-            
+            lblCodBarraProd24.setVisible(true);
+            cmbTipoPrecioVenta.setVisible(true);
             jLabel44.setVisible(true);
             txtIdVenta.setVisible(true);
             jLabel45.setVisible(true);
@@ -9524,7 +9526,8 @@ public void generarReporteCompra(String nameReporte){
             lblNITVenta.setVisible(true);
             lblBorrador.setVisible(false);  
             lblProveedores10.setVisible(true);
-            
+            lblCodBarraProd24.setVisible(true);
+            cmbTipoPrecioVenta.setVisible(true);
             jLabel44.setVisible(true);
             txtIdVenta.setVisible(true);
             jLabel45.setVisible(true);

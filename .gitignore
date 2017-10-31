@@ -26,3 +26,7 @@ build/classes/connections/ClaseConexion.class
 build/classes/connections/ClaseConexion.class
 build/classes/connections/ClaseConexion.class
 build/classes/connections/ClaseConexion.class
+*.properties
+*.properties
+*.class
+*.jar
