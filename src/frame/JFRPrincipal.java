@@ -28,6 +28,9 @@ import javax.swing.JPopupMenu;
 import javax.swing.table.JTableHeader;
 import connections.conection;
 import connections.iList;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.PrintJob;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
@@ -59,6 +62,10 @@ import javax.swing.table.TableRowSorter;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.PrintJob;
+import java.awt.Toolkit;
 
 /**
  *
@@ -9220,6 +9227,7 @@ public void generarReporteCompra(String nameReporte){
     }//GEN-LAST:event_btnVenderMouseExited
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
+imprimirVenta();
         // A VENDER!!!
         //if (!txtClienteVenta.getText().isEmpty()) {
             conection cn = new conection();
@@ -10600,4 +10608,95 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
 
         LlenarVenta();
     }
+    
+     public void imprimirVenta(){
+         
+        if(cmbTipoVenta.getSelectedIndex()==0 || cmbTipoVenta.getSelectedIndex()==2){
+                
+        double total=0.0,ingreso=0.0,vuelto=0.0;
+        total=Double.parseDouble(txtTotalVenta.getText());
+        ingreso=Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese la cantidad entregada por el cliente", "INGRESO DE EFECTIVO", JOptionPane.QUESTION_MESSAGE));
+        while(ingreso<total){
+        ingreso=Double.parseDouble(JOptionPane.showInputDialog(null, "La cantidad ingresada es incorrecta o muy baja", "INGRESO DE EFECTIVO", JOptionPane.QUESTION_MESSAGE));
+        }
+        vuelto=ingreso-total;
+        Font fuente = new Font("Arial", Font.PLAIN, 8);
+	PrintJob pj=Toolkit.getDefaultToolkit().getPrintJob(new Frame(), "ticket", null);
+	Graphics pagina;
+        int lx = 190;  
+        java.util.Date fecha = new Date();
+        
+        try{        
+		pagina = pj.getGraphics();
+		pagina.setFont(fuente);
+		pagina.setColor(Color.black); 			
+                        pagina.drawString("PROYECT X", 75, 10);
+                        pagina.drawString("TIENDA DE MISCELANEOS DIS235 UESFMOCC", 0, 20);
+                        pagina.drawString("FIN AV. FRAY FELIPE DE JESUS MORAGA SUR", 0, 30);
+                        pagina.drawString("SANTA ANA, SANTA ANA, EL SALVADOR", 0, 40);
+                        pagina.drawString("GIRO:    VENTAS VARIAS", 0, 50); //CONCATENAR GIRO
+                        pagina.drawString("--------------------------------------------------------------------------------------------------------------", 0, 60);
+                        pagina.drawString("TIPO VENTA: "+cmbTipoVenta.getSelectedItem().toString(), 20, 70); //TIPO DE VENTA
+                        pagina.drawString("FECHA: "+fecha+" ", 20, 80);
+                        pagina.drawString("ID VENTA: " +txtIdVenta.getText()  , 20, 90);
+                        pagina.drawString("NUMERO DOCUMENTO:  "+txtNoDocVenta.getText(), 20, 100);//CONCATENAR DOCUMENTO
+                        pagina.drawString("SUCURSAL:  "+cmbSucursalVenta.getSelectedItem().toString(), 20, 110);//CONCATENAR DOCUMENTO
+                        pagina.drawString("LE ATENDIO: " +sesion.username, 20, 120);//CONCATENAR DOCUMENTO
+                        pagina.drawString("--------------------------------------------------------------------------------------------------------------", 0, 130);
+                        pagina.drawString("NOMBRE: ´"+txtClienteVenta.getText(), 0, 140); //CONCATENAR NOMBRE
+                        pagina.drawString("DIRECCION: "+txtDireccionVenta.getText(), 0, 150); //CONCATENAR NOMBRE
+                        pagina.drawString("--------------------------------------------------------------------------------------------------------------", 0, 160);
+                        pagina.drawString("Codigo     Descripcion     Precio/uni.     Cantidad     Total", 0, 170);
+                        pagina.drawString("--------------------------------------------------------------------------------------------------------------", 0, 180);
+                        //ESTO ES FIJO DE CADA TICKET
+                        //ESTO ES FIJO DE CADA TICKET
+                        //ESTO ES FIJO DE CADA TICKET
+                        
+                        
+                        int lim=tblProductosVender.getRowCount();
+                        System.out.println("lim------------------------ "+lim);
+                        DefaultTableModel model = (DefaultTableModel) tblProductosVender.getModel();
+                        
+                        for(int row=0;row<lim;row++){
+                        String cod=model.getValueAt(row, 0).toString();
+                        String descripcion=model.getValueAt(row, 1).toString().toLowerCase();
+                        String uni=model.getValueAt(row, 3).toString();
+                        String cant=model.getValueAt(row, 2).toString();
+                        String subt=model.getValueAt(row, 5).toString();
+                             pagina.drawString(""+cod+"     "+descripcion.toLowerCase()+"   ",0 , lx=lx+10);
+                             pagina.drawString("$"+uni+"     x "+cant+"     $"+subt,90 , lx=lx+10);    
+                        }
+                       //pagina.drawString("123456789012   lapicero negro bic   0.25   10   $2.50",0 , lx=lx+10);
+                        pagina.drawString("--------------------------------------------------------------------------------------------------------------", 0, lx=lx+10);
+                        //DIGITO ENTERO DEL CODIGO //18 LETRAS DE LA DESCRIPCON //PRECIO UNITARIO //CANTIDAD //TOTAL
+                        pagina.drawString("SUBTOTAL: $"+txtSumaVenta.getText(), 120, lx=lx+10);//CONCATENAR SUBTOTAL
+                        //pagina.drawString("IVA:  $"+txtIvaVenta.getText(), 150, lx=lx+10);
+                        //pagina.drawString("PAC: $0.32", 150, lx=lx+10);
+                        //No va impreso pero si reflejado en el total
+                        pagina.drawString("--------------------------------------------------------------------------------------------------------------", 0, lx=lx+10);
+                        pagina.drawString("TOTAL: $"+txtTotalVenta.getText(), 130, lx=lx+10);
+                        pagina.drawString("--------------------------------------------------------------------------------------------------------------", 0, lx=lx+10);
+                        pagina.drawString("RECIBE: $"+ String.format("%.2f", ingreso), 130, lx=lx+10);//efectivo recibido
+                        pagina.drawString("CAMBIO: $"+ String.format("%.2f", vuelto), 130, lx=lx+10);//CONCATENAR SUBTOTAL
+                        pagina.drawString("--------------------------------------------------------------------------------------------------------------", 0, lx=lx+10);                       
+                        pagina.drawString("MONTOS EN DOLARES AMERICANOS", 25, lx=lx+10);
+                        pagina.drawString("GRACIAS POR SU COMPRAR, VUELVA PRONTO", 0, lx=lx+10);
+                        System.out.println("Imprimio");
+			pagina.dispose();
+			pj.end();
+		}catch(Exception e){
+			System.out.println("LA IMPRESION HA SIDO CANCELADA...");
+		}
+        
+        }else{
+        JOptionPane.showMessageDialog(null,"Para credito fiscal y borradro no se imprime", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        
+        
+
+        
+           
+    }
 }
+
