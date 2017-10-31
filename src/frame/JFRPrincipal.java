@@ -183,6 +183,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         LlenarParametros();
         LlenarUsuarios();
         LlenarBitacora();
+        lblLogeadoComo.setText("Logueado como: "+sesion.username+" / "+sesion.rol);
     }
     
     public void agregarABitacora(String accionRealizada){
@@ -1130,6 +1131,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblBotonCerrar = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
         panelCurves1 = new org.edisoncor.gui.panel.PanelCurves();
+        lblLogeadoComo = new javax.swing.JLabel();
         jpnBarraMenu = new javax.swing.JPanel();
         lblMenu = new javax.swing.JLabel();
         jpnSubMenu = new javax.swing.JPanel();
@@ -1789,6 +1791,11 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblLogo.setToolTipText("");
         jpnBarraSuperior.add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 170, 50));
         jpnBarraSuperior.add(panelCurves1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, -1, -1));
+
+        lblLogeadoComo.setBackground(new java.awt.Color(255, 255, 255));
+        lblLogeadoComo.setForeground(new java.awt.Color(204, 204, 204));
+        lblLogeadoComo.setText("jLabel1");
+        jpnBarraSuperior.add(lblLogeadoComo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, 270, -1));
 
         getContentPane().add(jpnBarraSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 55));
 
@@ -10474,6 +10481,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JLabel lblListadoVentas1;
     private javax.swing.JLabel lblListadoVentas3;
     private javax.swing.JLabel lblListadoVentas4;
+    private javax.swing.JLabel lblLogeadoComo;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblMenu;
     private javax.swing.JLabel lblMitad;
