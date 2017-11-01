@@ -841,7 +841,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
     public void LlenarVenta() {
         String[] cm = new String[]{"IdVenta", "IdSucursal", "TipoVenta", "IdTipoPrecio", "Cliente", "Fecha", "IVA", "TotalGravado", "Total", "Direccion",
-            "Giro", "NIT", "NRC", "NDocumento"};
+            "Giro", "NIT", "NRC", "NDocumento","PAC","utilidad"};
         ArrayList<Object> listaVentas = new ArrayList();
         DefaultTableModel modelo = new DefaultTableModel();
         conection cn = new conection();
@@ -876,18 +876,18 @@ public final class JFRPrincipal extends javax.swing.JFrame {
                 listaVentas.add(rs.getString("NIT"));
                 listaVentas.add(rs.getString("NRC"));
                 listaVentas.add(rs.getString("NDocumento"));
-//                listaVentas.add(rs.getString("PAC"));
-//                listaVentas.add(rs.getString("utilidad"));
+                listaVentas.add(rs.getString("PAC"));
+                listaVentas.add(rs.getString("utilidad"));
             }
             cn.Desconectar();
         } catch (Exception e) {
             //ERROR!!!
         }
         ArrayList<Venta> listaVenta = (ArrayList) listaVentas;
-        Object[] fila = new Object[14];
+        Object[] fila = new Object[16];
 
         String[] v = new String[]{"IdVenta", "Fecha", "Sucursal", "Tipo Venta", "Tipo Precio", "Cliente", "IVA", "TotalGravado", "Total", "Direccion",
-            "Giro", "NIT", "NRC", "NDocumento"};
+            "Giro", "NIT", "NRC", "NDocumento","PAC","utilidad"};
         modelo.setColumnIdentifiers(v);
         Iterator<Venta> prod = listaVenta.iterator();
         while (prod.hasNext()) {
@@ -905,7 +905,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             fila[11] = prod.next();
             fila[12] = prod.next();
             fila[13] = prod.next();
-           
+           fila[14] = prod.next();
+           fila[15] = prod.next();
             modelo.addRow(fila);
 
         }
