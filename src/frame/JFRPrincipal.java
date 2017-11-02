@@ -1535,7 +1535,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblCodBarraProd24 = new javax.swing.JLabel();
         cmbTipoPrecioVenta = new javax.swing.JComboBox();
         lblFecha3 = new javax.swing.JLabel();
-        txt_fecha_venta = new com.toedter.calendar.JDateChooser();
         btnAgregarProductoVenta = new javax.swing.JButton();
         btnVender = new javax.swing.JButton();
         cmbTipoVenta = new javax.swing.JComboBox();
@@ -1605,7 +1604,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         cmbTipoCompra = new javax.swing.JComboBox();
         btnBuscarProdCompra = new javax.swing.JButton();
         txtPercepcion = new javax.swing.JTextField();
-        txt_fecha_compra = new com.toedter.calendar.JDateChooser();
         jpnTipoPrecio = new javax.swing.JPanel();
         jPanel55 = new javax.swing.JPanel();
         jSeparator88 = new javax.swing.JSeparator();
@@ -1749,12 +1747,12 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblListadoVentas3 = new javax.swing.JLabel();
         jSeparator64 = new javax.swing.JSeparator();
         btnAtrasReporteVenta2 = new javax.swing.JButton();
-        cmbMes = new javax.swing.JComboBox<>();
+        cmbMes = new javax.swing.JComboBox<String>();
         jLabel96 = new javax.swing.JLabel();
         jSeparator103 = new javax.swing.JSeparator();
         jLabel100 = new javax.swing.JLabel();
         jSeparator107 = new javax.swing.JSeparator();
-        cmbAño = new javax.swing.JComboBox<>();
+        cmbAño = new javax.swing.JComboBox<String>();
         btnGenerar = new javax.swing.JButton();
         jpnReporteMesCompras = new javax.swing.JPanel();
         jScrollPane17 = new javax.swing.JScrollPane();
@@ -1765,14 +1763,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblListadoVentas4 = new javax.swing.JLabel();
         jSeparator67 = new javax.swing.JSeparator();
         btnAtrasReporteCompra = new javax.swing.JButton();
-        cmbMes1 = new javax.swing.JComboBox<>();
+        cmbMes1 = new javax.swing.JComboBox<String>();
         jLabel97 = new javax.swing.JLabel();
         jSeparator104 = new javax.swing.JSeparator();
         jLabel101 = new javax.swing.JLabel();
         jSeparator108 = new javax.swing.JSeparator();
-        cmbAño1 = new javax.swing.JComboBox<>();
+        cmbAño1 = new javax.swing.JComboBox<String>();
         btnGenerar1 = new javax.swing.JButton();
-        cmbReporteCompra = new javax.swing.JComboBox<>();
+        cmbReporteCompra = new javax.swing.JComboBox<String>();
         jpnUsuarios = new javax.swing.JPanel();
         btnAgregarUsuario = new javax.swing.JButton();
         btnModificarUsuario = new javax.swing.JButton();
@@ -1803,8 +1801,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jSeparator31 = new javax.swing.JSeparator();
         jSeparator33 = new javax.swing.JSeparator();
         jSeparator36 = new javax.swing.JSeparator();
-        cmbRolUsuario = new javax.swing.JComboBox<>();
-        cmbEstadoUsuario = new javax.swing.JComboBox<>();
+        cmbRolUsuario = new javax.swing.JComboBox<String>();
+        cmbEstadoUsuario = new javax.swing.JComboBox<String>();
         jpnModificarUsuario = new javax.swing.JPanel();
         btnGuardarUsuario1 = new javax.swing.JButton();
         btnAtrasUsuarios1 = new javax.swing.JButton();
@@ -1823,8 +1821,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jSeparator58 = new javax.swing.JSeparator();
         jSeparator59 = new javax.swing.JSeparator();
         jSeparator80 = new javax.swing.JSeparator();
-        cmbNuevoRolUsuario = new javax.swing.JComboBox<>();
-        cmbNuevoEstadoUsuario = new javax.swing.JComboBox<>();
+        cmbNuevoRolUsuario = new javax.swing.JComboBox<String>();
+        cmbNuevoEstadoUsuario = new javax.swing.JComboBox<String>();
         jpnAgregarVentaBorrador = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tblProductosVenderBorrador = new javax.swing.JTable();
@@ -1848,7 +1846,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblTotalVenta1 = new javax.swing.JLabel();
         jSeparator114 = new javax.swing.JSeparator();
         lblFecha5 = new javax.swing.JLabel();
-        txt_fecha_venta_borrador = new com.toedter.calendar.JDateChooser();
         btnConsolidarVentasBorrador = new javax.swing.JButton();
         jpnListaVentasBorrador = new javax.swing.JPanel();
         jScrollPane18 = new javax.swing.JScrollPane();
@@ -3863,9 +3860,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblFecha3.setText("Fecha:");
         jpnAgregarVenta.add(lblFecha3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, 50, 30));
 
-        txt_fecha_venta.setDateFormatString("MM/dd/yyyy HH:mm:ss");
-        jpnAgregarVenta.add(txt_fecha_venta, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 160, 30));
-
         btnAgregarProductoVenta.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnAgregarProductoVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/agregar2.png"))); // NOI18N
         btnAgregarProductoVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -4332,9 +4326,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             }
         });
         jpnRegistroCompra.add(txtPercepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 530, 100, 30));
-
-        txt_fecha_compra.setDateFormatString("MM/dd/yyyy HH:mm:ss");
-        jpnRegistroCompra.add(txt_fecha_compra, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 230, 30));
 
         getContentPane().add(jpnRegistroCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -5478,7 +5469,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnReporteMesCompras.add(btnGenerar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 400, 130, 40));
 
-        cmbReporteCompra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<SELECCIONAR>", "CREDITO FISCAL", "LIBRE", "FACTURA", " " }));
+        cmbReporteCompra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<SELECCIONAR>", "CREDITO FISCAL", "LIBRE", "FACTURA", " " }));
         jpnReporteMesCompras.add(cmbReporteCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 400, 150, 40));
 
         getContentPane().add(jpnReporteMesCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
@@ -5672,10 +5663,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnAgregarUsuario.add(jSeparator33, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 60, 10));
         jpnAgregarUsuario.add(jSeparator36, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 60, 10));
 
-        cmbRolUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Comprador", "Vendedor" }));
+        cmbRolUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Comprador", "Vendedor" }));
         jpnAgregarUsuario.add(cmbRolUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 180, -1));
 
-        cmbEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        cmbEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo" }));
         jpnAgregarUsuario.add(cmbEstadoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 180, -1));
 
         getContentPane().add(jpnAgregarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
@@ -5777,10 +5768,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnModificarUsuario.add(jSeparator59, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 60, 10));
         jpnModificarUsuario.add(jSeparator80, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 60, 10));
 
-        cmbNuevoRolUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Comprador", "Vendedor" }));
+        cmbNuevoRolUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Comprador", "Vendedor" }));
         jpnModificarUsuario.add(cmbNuevoRolUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 180, -1));
 
-        cmbNuevoEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        cmbNuevoEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo" }));
         jpnModificarUsuario.add(cmbNuevoEstadoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 180, -1));
 
         getContentPane().add(jpnModificarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
@@ -5905,9 +5896,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblFecha5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblFecha5.setText("Fecha:");
         jpnAgregarVentaBorrador.add(lblFecha5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 50, 30));
-
-        txt_fecha_venta_borrador.setDateFormatString("MM/dd/yyyy HH:mm:ss");
-        jpnAgregarVentaBorrador.add(txt_fecha_venta_borrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 310, 30));
 
         btnConsolidarVentasBorrador.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnConsolidarVentasBorrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/consolidar.png"))); // NOI18N
@@ -11148,9 +11136,6 @@ public void generarReporteCompra(String nameReporte){
     private javax.swing.JTextField txtUtilidadPrecio;
     private javax.swing.JTextField txtUtilidadVenta;
     private javax.swing.JTextField txtValorPar;
-    private com.toedter.calendar.JDateChooser txt_fecha_compra;
-    private com.toedter.calendar.JDateChooser txt_fecha_venta;
-    private com.toedter.calendar.JDateChooser txt_fecha_venta_borrador;
     // End of variables declaration//GEN-END:variables
 
     private void setVisible(JPopupMenu MenuEmergente) {
