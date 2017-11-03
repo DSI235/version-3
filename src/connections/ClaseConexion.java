@@ -407,6 +407,20 @@ public abstract class ClaseConexion {
         System.out.println(sql);
         return ps;
     }
+    
+    public PreparedStatement BuscarTodosC(String NombreTabla, String[] CamposAMostrar) throws Exception {
+        String sql = "SELECT";
+        int u = 1;
+        for (String f : CamposAMostrar) {
+            sql += ((u > 1) ? ", " : " ") + f;
+            u++;
+        }
+        sql += " FROM " + NombreTabla + " ORDER BY Fecha DESC";
+        u = 1;
+        PreparedStatement ps = con.prepareStatement(sql);
+        System.out.println(sql);
+        return ps;
+    }
 
     public PreparedStatement BuscarTodosCVB(String NombreTabla, String[] CamposAMostrar) throws Exception {
         String sql = "SELECT";

@@ -31,3 +31,5 @@ build/classes/connections/ClaseConexion.class
 *.class
 *.jar
 build/classes/connections/ClaseConexion.class
+*.properties
+*.class
