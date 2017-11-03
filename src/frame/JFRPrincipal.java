@@ -963,11 +963,13 @@ public void LlenarVenta() {
     
     //Para borrador
     public void LlenarVentaBorrador() {
-         String[] cm = new String[]{"IdVenta", "IdSucursal", "TipoVenta", "IdTipoPrecio", "Cliente", "Fecha", "IVA", "TotalGravado", "Total", "Direccion",
+         
+        conection cn = new conection();
+        String[] cm = new String[]{"IdVenta", "IdSucursal", "TipoVenta", "IdTipoPrecio", "Cliente", "Fecha", "IVA", "TotalGravado", "Total", "Direccion",
             "Giro", "NIT", "NRC", "NDocumento", "PAC", "utilidad"};
         ArrayList<Object> listaVentas = new ArrayList();
         DefaultTableModel modelo = new DefaultTableModel();
-        conection cn = new conection();
+        
         try {
             cn.Conectar();
             PreparedStatement ps = cn.BuscarTodosCVB("venta", cm);
@@ -3566,6 +3568,11 @@ public void LlenarVenta() {
                 btnAtrasDetalleCompra1MouseExited(evt);
             }
         });
+        btnAtrasDetalleCompra1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasDetalleCompra1ActionPerformed(evt);
+            }
+        });
         jpnDetalleVenta.add(btnAtrasDetalleCompra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 110, 30));
 
         txtNITDetalleVenta.setEditable(false);
@@ -6133,6 +6140,11 @@ public void LlenarVenta() {
         jpnListaVentasBorrador.add(lblFiltrarVentasBorrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 120, 30));
         jpnListaVentasBorrador.add(jSeparator114, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 127, 110, 10));
 
+        cmbFiltroSucursalVentasBorrador.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbFiltroSucursalVentasBorradorItemStateChanged(evt);
+            }
+        });
         jpnListaVentasBorrador.add(cmbFiltroSucursalVentasBorrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 150, -1));
 
         getContentPane().add(jpnListaVentasBorrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
@@ -6381,7 +6393,7 @@ public void LlenarVenta() {
 
         jLabel120.setBackground(new java.awt.Color(0, 0, 0));
         jLabel120.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel120.setText("Total Gravado: $");
+        jLabel120.setText("Total Gravado:   $");
         jpnDetalleVentaBorrador.add(jLabel120, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 340, 110, 40));
 
         txtTotalGravadoDetalleVentaBorrador.setEditable(false);
@@ -6398,6 +6410,11 @@ public void LlenarVenta() {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnAtrasDetalleVentaBorradorMouseExited(evt);
+            }
+        });
+        btnAtrasDetalleVentaBorrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasDetalleVentaBorradorActionPerformed(evt);
             }
         });
         jpnDetalleVentaBorrador.add(btnAtrasDetalleVentaBorrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 110, 30));
@@ -6419,12 +6436,12 @@ public void LlenarVenta() {
         jpnDetalleVentaBorrador.add(jLabel126, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, -1, 30));
 
         txtTotalDetalleVentaBorrador.setEditable(false);
-        jpnDetalleVentaBorrador.add(txtTotalDetalleVentaBorrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 420, 100, 40));
+        jpnDetalleVentaBorrador.add(txtTotalDetalleVentaBorrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 380, 100, 40));
 
         jLabel129.setBackground(new java.awt.Color(0, 0, 0));
         jLabel129.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel129.setText("Total: $");
-        jpnDetalleVentaBorrador.add(jLabel129, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 420, -1, 40));
+        jLabel129.setText("Total:                $");
+        jpnDetalleVentaBorrador.add(jLabel129, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 380, 110, 40));
 
         getContentPane().add(jpnDetalleVentaBorrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -7414,7 +7431,158 @@ public void LlenarVenta() {
     private void btnBrorradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrorradorActionPerformed
         jpnListaVentas.setVisible(false);
         jpnListaVentasBorrador.setVisible(true);
-        LlenarVentaBorrador();
+        conection cn = new conection();
+        
+        //LISTADO DE SUCURSALES EN COMBOBOX
+        try {
+            String[] cm = new String[]{"Nombre"};
+            cmbFiltroSucursalVentasBorrador.removeAllItems();
+                cn.Conectar();
+                PreparedStatement ps = cn.BuscarTodos("sucursal", cm);
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    cmbFiltroSucursalVentasBorrador.addItem(rs.getString("Nombre"));
+                    System.out.println(""+rs.getString("Nombre"));
+                }
+                cn.Desconectar();
+            
+        } catch (Exception e) {
+        }
+
+        int idSucursalSeleccionada = 0;
+        String suc = cmbFiltroSucursalVentasBorrador.getSelectedItem().toString();
+        
+        try {
+            String[] cm = new String[]{"IdSucursal", "Nombre", "Direccion", "Telefono"};
+            iList p = new iList(new ListasTablas("Nombre", suc));
+                cn.Conectar();
+                PreparedStatement ps = cn.BuscarRegistro("sucursal", cm, p);
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    idSucursalSeleccionada = Integer.parseInt(rs.getString("IdSucursal"));
+
+                }
+                cn.Desconectar();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error externo buscando la sucursal " + e.getMessage());
+        }
+        
+        ArrayList<Object> listaVentas = new ArrayList();
+        DefaultTableModel modelo = new DefaultTableModel();
+         
+                    String[] cm = new String[]{"IdVenta", "IdSucursal", "TipoVenta", "IdTipoPrecio", "Cliente", "Fecha", "IVA", "TotalGravado", "Total", "Direccion", "Giro", "NIT", "NRC", "NDocumento", "PAC", "utilidad"};
+                    iList p = new iList(new ListasTablas("IdSucursal", idSucursalSeleccionada));
+
+                    try {
+                        cn.Conectar();
+                        PreparedStatement ps = cn.BuscarRegistroVB("venta", cm, p);
+                        ResultSet rs = ps.executeQuery();
+
+                        while (rs.next()) {
+                listaVentas.add(rs.getString("IdVenta"));
+                listaVentas.add(cn.nombreSucursal(rs.getString("IdSucursal")));
+                listaVentas.add(rs.getString("Fecha"));
+                listaVentas.add(cn.nombrePrecio(rs.getString("IdTipoPrecio")));
+                listaVentas.add(rs.getString("Cliente"));
+                listaVentas.add(rs.getString("Fecha"));
+                listaVentas.add(rs.getString("IVA"));
+                listaVentas.add(rs.getString("TotalGravado"));
+                listaVentas.add(rs.getString("Total"));
+                listaVentas.add(rs.getString("Direccion"));
+                listaVentas.add(rs.getString("Giro"));
+                listaVentas.add(rs.getString("NIT"));
+                listaVentas.add(rs.getString("NRC"));
+                listaVentas.add(rs.getString("NDocumento"));
+                listaVentas.add(rs.getString("PAC"));
+                listaVentas.add(rs.getString("utilidad"));
+                        }
+                        cn.Desconectar();
+
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Error interno buscando la sucursal " + e.getMessage());
+                    }
+
+         Object[] fila = new Object[16];
+
+        String[] vb = new String[]{"IdVenta", "Sucursal", "TipoVenta", "IdTipoPrecio", "Cliente", "Fecha", "IVA", "TotalGravado", "Total", "Direccion", "Giro", "NIT", "NRC", "NDocumento", "PAC", "utilidad"};
+        modelo.setColumnIdentifiers(vb);
+        Iterator prod = listaVentas.iterator();
+        while (prod.hasNext()) {
+            fila[0] = prod.next();
+            fila[1] = prod.next();
+            fila[2] = prod.next();
+            fila[3] = prod.next();
+            fila[4] = prod.next();
+            fila[5] = prod.next();
+            fila[6] = prod.next();
+            fila[7] = prod.next();
+            fila[8] = prod.next();
+            fila[9] = prod.next();
+            fila[10] = prod.next();
+            fila[11] = prod.next();
+            fila[12] = prod.next();
+            fila[13] = prod.next();
+            fila[14] = prod.next();
+            fila[15] = prod.next();
+                        
+            modelo.addRow(fila);
+
+        }
+
+            tblListaVentasBorrador.setModel(modelo);
+
+            tblListaVentasBorrador.getColumnModel().getColumn(1).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(1).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(1).setWidth(0);
+             
+            tblListaVentasBorrador.getColumnModel().getColumn(2).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(2).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(2).setWidth(0);
+
+            tblListaVentasBorrador.getColumnModel().getColumn(3).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(3).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(3).setWidth(0);
+
+            tblListaVentasBorrador.getColumnModel().getColumn(4).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(4).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(4).setWidth(0);
+            
+            tblListaVentasBorrador.getColumnModel().getColumn(6).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(6).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(6).setWidth(0);
+            
+            tblListaVentasBorrador.getColumnModel().getColumn(9).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(9).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(9).setWidth(0);
+            
+            tblListaVentasBorrador.getColumnModel().getColumn(10).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(10).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(10).setWidth(0);
+            
+            tblListaVentasBorrador.getColumnModel().getColumn(11).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(11).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(11).setWidth(0);
+            
+            tblListaVentasBorrador.getColumnModel().getColumn(12).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(12).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(12).setWidth(0);
+            
+            tblListaVentasBorrador.getColumnModel().getColumn(13).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(13).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(13).setWidth(0);
+            
+            tblListaVentasBorrador.getColumnModel().getColumn(14).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(14).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(14).setWidth(0);
+            
+            tblListaVentasBorrador.getColumnModel().getColumn(15).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(15).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(15).setWidth(0);
+            
+
     }//GEN-LAST:event_btnBrorradorActionPerformed
 
     private void btnGuardarModificarProductoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarModificarProductoMouseEntered
@@ -10260,7 +10428,62 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     }//GEN-LAST:event_btnVerDetalleVentaBorradorMouseExited
 
     private void btnVerDetalleVentaBorradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDetalleVentaBorradorActionPerformed
-        // TODO add your handling code here:
+         try {
+            //LLEVAR LA INFO AL PANEL DE DETALLE VENTA
+            txtIdDetalleVentaBorrador.setText(tblListaVentasBorrador.getValueAt(tblListaVentasBorrador.getSelectedRow(), 0).toString());
+            txtTipoVentaDetalleVentaBorrador.setText(tblListaVentasBorrador.getValueAt(tblListaVentasBorrador.getSelectedRow(), 3).toString());
+            txtSucursalDetalleVentaBorrador.setText(tblListaVentasBorrador.getValueAt(tblListaVentasBorrador.getSelectedRow(), 2).toString());
+            txtFechaDetalleVentaBorrador.setText(tblListaVentasBorrador.getValueAt(tblListaVentasBorrador.getSelectedRow(), 1).toString());
+            txtTotalGravadoDetalleVentaBorrador.setText("$ " + tblListaVentasBorrador.getValueAt(tblListaVentasBorrador.getSelectedRow(), 7).toString());
+            txtTotalDetalleVentaBorrador.setText("$ " + tblListaVentasBorrador.getValueAt(tblListaVentasBorrador.getSelectedRow(), 8).toString());
+                      
+            //LLENAR TABlA DE DETALLE VENTA
+            String[] cm = new String[]{"CodBarra", "IdVenta", "Cantidad", "PrecioUnitario"};
+            iList p = new iList(new ListasTablas("IdVenta", tblListaVentasBorrador.getValueAt(tblListaVentasBorrador.getSelectedRow(), 0)));
+            ArrayList<Object> listaDetalleVentas = new ArrayList();
+            DefaultTableModel modelo = new DefaultTableModel();
+            conection cn = new conection();
+            try {
+                cn.Conectar();
+                PreparedStatement ps = cn.BuscarRegistro("detalleventa", cm, p);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    listaDetalleVentas.add(rs.getString("CodBarra"));
+                    listaDetalleVentas.add(rs.getString("IdVenta"));
+                    listaDetalleVentas.add(rs.getString("Cantidad"));
+                    listaDetalleVentas.add(rs.getString("PrecioUnitario"));
+                }
+                cn.Desconectar();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Algo paso llenando la tabla de detalle venta " + e.getMessage());
+            }
+            ArrayList<DetalleVenta> listaDetalleVenta = (ArrayList) listaDetalleVentas;
+            Object[] fila = new Object[4];
+
+            String[] detalleventas = new String[]{"CodBarra", "IdVenta", "Cantidad", "Precio Unitario"};
+            modelo.setColumnIdentifiers(detalleventas);
+            Iterator<DetalleVenta> venta = listaDetalleVenta.iterator();
+            while (venta.hasNext()) {
+                fila[0] = venta.next();
+                fila[1] = venta.next();
+                fila[2] = venta.next();
+                fila[3] = venta.next();
+                modelo.addRow(fila);
+
+            }
+            tblDetalleVentaBorrador.setModel(modelo);
+            System.out.println("Lleno DetalleVentaBorrador!...creo");
+
+        jpnListaVentasBorrador.setVisible(false);
+        jpnDetalleVentaBorrador.setVisible(true);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Seleccione una venta");
+        }
+        
+    
+      
+        
     }//GEN-LAST:event_btnVerDetalleVentaBorradorActionPerformed
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
@@ -10435,6 +10658,153 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
         }  
       
     }//GEN-LAST:event_btnVerDetalleVentaActionPerformed
+
+    private void btnAtrasDetalleVentaBorradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasDetalleVentaBorradorActionPerformed
+        jpnDetalleVentaBorrador.setVisible(false);
+        jpnListaVentasBorrador.setVisible(true);
+    }//GEN-LAST:event_btnAtrasDetalleVentaBorradorActionPerformed
+
+    private void btnAtrasDetalleCompra1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasDetalleCompra1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAtrasDetalleCompra1ActionPerformed
+
+    private void cmbFiltroSucursalVentasBorradorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFiltroSucursalVentasBorradorItemStateChanged
+        //Filtrar por sucursal las ventas en borrador
+        
+          //ID SUCURSAL SELECCIONADA
+        conection cn = new conection();  
+        int idSucursalSeleccionada = 0;
+        String suc = cmbFiltroSucursalVentasBorrador.getSelectedItem().toString();
+        
+        try {
+            String[] cm = new String[]{"IdSucursal", "Nombre", "Direccion", "Telefono"};
+            iList p = new iList(new ListasTablas("Nombre", suc));
+                cn.Conectar();
+                PreparedStatement ps = cn.BuscarRegistro("sucursal", cm, p);
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    idSucursalSeleccionada = Integer.parseInt(rs.getString("IdSucursal"));
+
+                }
+                cn.Desconectar();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error externo buscando la sucursal " + e.getMessage());
+        }
+          
+        ArrayList<Object> listaVentas = new ArrayList();
+        DefaultTableModel modelo = new DefaultTableModel();
+         
+                    String[] cm = new String[]{"IdVenta", "IdSucursal", "TipoVenta", "IdTipoPrecio", "Cliente", "Fecha", "IVA", "TotalGravado", "Total", "Direccion", "Giro", "NIT", "NRC", "NDocumento", "PAC", "utilidad"};
+                    iList p = new iList(new ListasTablas("IdSucursal", idSucursalSeleccionada));
+
+                    try {
+                        cn.Conectar();
+                        PreparedStatement ps = cn.BuscarRegistroVB("venta", cm, p);
+                        ResultSet rs = ps.executeQuery();
+
+                        while (rs.next()) {
+                listaVentas.add(rs.getString("IdVenta"));
+                listaVentas.add(cn.nombreSucursal(rs.getString("IdSucursal")));
+                listaVentas.add(rs.getString("Fecha"));
+                listaVentas.add(cn.nombrePrecio(rs.getString("IdTipoPrecio")));
+                listaVentas.add(rs.getString("Cliente"));
+                listaVentas.add(rs.getString("Fecha"));
+                listaVentas.add(rs.getString("IVA"));
+                listaVentas.add(rs.getString("TotalGravado"));
+                listaVentas.add(rs.getString("Total"));
+                listaVentas.add(rs.getString("Direccion"));
+                listaVentas.add(rs.getString("Giro"));
+                listaVentas.add(rs.getString("NIT"));
+                listaVentas.add(rs.getString("NRC"));
+                listaVentas.add(rs.getString("NDocumento"));
+                listaVentas.add(rs.getString("PAC"));
+                listaVentas.add(rs.getString("utilidad"));
+                        }
+                        cn.Desconectar();
+
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Error interno buscando la sucursal " + e.getMessage());
+                    }
+
+        Object[] fila = new Object[16];
+         String[] vb = new String[]{"IdVenta", "Sucursal", "TipoVenta", "IdTipoPrecio", "Cliente", "Fecha", "IVA", "TotalGravado", "Total", "Direccion", "Giro", "NIT", "NRC", "NDocumento", "PAC", "utilidad"};
+        modelo.setColumnIdentifiers(vb);
+        Iterator prod = listaVentas.iterator();
+        while (prod.hasNext()) {
+            fila[0] = prod.next();
+            fila[1] = prod.next();
+            fila[2] = prod.next();
+            fila[3] = prod.next();
+            fila[4] = prod.next();
+            fila[5] = prod.next();
+            fila[6] = prod.next();
+            fila[7] = prod.next();
+            fila[8] = prod.next();
+            fila[9] = prod.next();
+            fila[10] = prod.next();
+            fila[11] = prod.next();
+            fila[12] = prod.next();
+            fila[13] = prod.next();
+            fila[14] = prod.next();
+            fila[15] = prod.next();
+           
+            modelo.addRow(fila);
+
+        }
+            tblListaVentasBorrador.setModel(modelo);
+                        
+            tblListaVentasBorrador.getColumnModel().getColumn(1).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(1).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(1).setWidth(0);
+            
+            tblListaVentasBorrador.getColumnModel().getColumn(2).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(2).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(2).setWidth(0);
+
+            tblListaVentasBorrador.getColumnModel().getColumn(3).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(3).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(3).setWidth(0);
+            
+            tblListaVentasBorrador.getColumnModel().getColumn(4).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(4).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(4).setWidth(0);
+            
+            tblListaVentasBorrador.getColumnModel().getColumn(6).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(6).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(6).setWidth(0);
+            
+            tblListaVentasBorrador.getColumnModel().getColumn(9).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(9).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(9).setWidth(0);
+            
+            tblListaVentasBorrador.getColumnModel().getColumn(10).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(10).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(10).setWidth(0);
+            
+            tblListaVentasBorrador.getColumnModel().getColumn(11).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(11).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(11).setWidth(0);
+            
+            tblListaVentasBorrador.getColumnModel().getColumn(12).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(12).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(12).setWidth(0);
+            
+            tblListaVentasBorrador.getColumnModel().getColumn(13).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(13).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(13).setWidth(0);
+            
+            tblListaVentasBorrador.getColumnModel().getColumn(14).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(14).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(14).setWidth(0);
+            
+            tblListaVentasBorrador.getColumnModel().getColumn(15).setMinWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(15).setMaxWidth(0);
+            tblListaVentasBorrador.getColumnModel().getColumn(15).setWidth(0);
+            
+            
+    }//GEN-LAST:event_cmbFiltroSucursalVentasBorradorItemStateChanged
 
     /**
      * @param args the command line arguments

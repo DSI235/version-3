@@ -176,6 +176,34 @@ public abstract class ClaseConexion {
         return ps;
     }
 
+    public PreparedStatement BuscarRegistroVB(String NombreTabla, String[] CamposAMostrar, iList condiciones) throws Exception {
+        String sql = "SELECT";
+        int u = 1;
+        for (String f : CamposAMostrar) {
+            sql += ((u > 1) ? ", " : " ") + f;
+            u++;
+        }
+        sql += " FROM " + NombreTabla;
+        if (condiciones.size() > 0) {
+            sql += " WHERE TipoVenta = 'B' AND";
+        }
+        u = 1;
+        for (ListasTablas condicion : condiciones.getAll()) {
+            sql += ((u > 1) ? " AND " : " ") + condicion.getCampo() + "=?";
+            u++;
+        }
+        u = 1;
+        PreparedStatement ps = con.prepareStatement(sql);
+        for (ListasTablas condicion : condiciones.getAll()) {
+            ps.setObject(u, condicion.getValor());
+            u++;
+        }
+        System.out.println(sql);
+        return ps;
+    }
+
+    
+    
     public PreparedStatement BuscarRegistroLike(String NombreTabla, String NombreCampo, String valor) throws SQLException {
 
         String sql = "";
