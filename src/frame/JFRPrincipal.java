@@ -184,7 +184,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         LlenarSucursal();
         LlenarCompra();
         LlenarVenta();
-//        LlenarVentaBorrador();
+        LlenarVentaBorrador();
         LlenarParametros();
         LlenarUsuarios();
         LlenarBitacora();
@@ -892,7 +892,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         Object[] fila = new Object[16];
 
         String[] v = new String[]{"IdVenta", "Fecha", "Sucursal", "Tipo Venta", "Tipo Precio", "Cliente", "IVA", "TotalGravado", "Total", "Direccion",
-            "Giro", "NIT", "NRC", "NDocumento","PAC","utilidad"};
+            "Giro", "NIT", "NRC", "NDocumento", "PAC", "utilidad"};
         modelo.setColumnIdentifiers(v);
         Iterator<Venta> prod = listaVenta.iterator();
         while (prod.hasNext()) {
@@ -910,8 +910,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             fila[11] = prod.next();
             fila[12] = prod.next();
             fila[13] = prod.next();
-           fila[14] = prod.next();
-           fila[15] = prod.next();
+            fila[14] = prod.next();
+            fila[15] = prod.next();
             modelo.addRow(fila);
 
         }
@@ -1023,8 +1023,8 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             fila[11] = prod.next();
             fila[12] = prod.next();
             fila[13] = prod.next();
-           fila[14] = prod.next();
-           fila[15] = prod.next();
+            fila[14] = prod.next();
+            fila[15] = prod.next();
             modelo.addRow(fila);
 
         }
