@@ -82,6 +82,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     boolean ventas, compras, productos, proveedores, sucursales, precios, configuracion, usuarios, bitacora;
     boolean apagado, principal;
     int x, y;
+    int[] VentasSeleccionadas = null;
     int estadoVenta = 1;//Para el estado consolidado de las ventas, puede ser 0 o 1.
     int filas = 0;
     double totalC = 0;
@@ -3889,12 +3890,12 @@ public void LlenarVenta() {
                 txtNoDocVentaKeyTyped(evt);
             }
         });
-        jPanel50.add(txtNoDocVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 210, 30));
+        jPanel50.add(txtNoDocVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, 210, 30));
 
         jLabel45.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel45.setForeground(new java.awt.Color(255, 255, 255));
         jLabel45.setText("N° de Documento");
-        jPanel50.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 120, -1));
+        jPanel50.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 120, -1));
 
         txtIdVenta.setEditable(false);
         txtIdVenta.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -3933,7 +3934,7 @@ public void LlenarVenta() {
 
         lblNITVenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblNITVenta.setText("NIT:");
-        jpnAgregarVenta.add(lblNITVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 30, 30));
+        jpnAgregarVenta.add(lblNITVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 30, 30));
 
         txtNITVenta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3943,15 +3944,15 @@ public void LlenarVenta() {
                 txtNITVentaKeyTyped(evt);
             }
         });
-        jpnAgregarVenta.add(txtNITVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 140, 30));
+        jpnAgregarVenta.add(txtNITVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 140, 30));
 
         lblnrc.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblnrc.setText("NRC:");
-        jpnAgregarVenta.add(lblnrc, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 30, 30));
+        jpnAgregarVenta.add(lblnrc, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 30, 30));
 
         lblgiro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblgiro.setText("Giro:");
-        jpnAgregarVenta.add(lblgiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 40, 30));
+        jpnAgregarVenta.add(lblgiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 40, 30));
 
         txtNRCVenta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3961,7 +3962,7 @@ public void LlenarVenta() {
                 txtNRCVentaKeyTyped(evt);
             }
         });
-        jpnAgregarVenta.add(txtNRCVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 140, 30));
+        jpnAgregarVenta.add(txtNRCVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 160, 30));
 
         txtDireccionVenta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3975,11 +3976,11 @@ public void LlenarVenta() {
 
         lblCodBarraProd18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblCodBarraProd18.setText("Cliente:");
-        jpnAgregarVenta.add(lblCodBarraProd18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 50, 30));
+        jpnAgregarVenta.add(lblCodBarraProd18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 50, 30));
 
         lblCodBarraProd21.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblCodBarraProd21.setText("Tipo de Venta:");
-        jpnAgregarVenta.add(lblCodBarraProd21, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 90, 30));
+        lblCodBarraProd21.setText("Tipo de venta:");
+        jpnAgregarVenta.add(lblCodBarraProd21, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 90, 30));
 
         txtClienteVenta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3989,18 +3990,18 @@ public void LlenarVenta() {
                 txtClienteVentaKeyTyped(evt);
             }
         });
-        jpnAgregarVenta.add(txtClienteVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 160, 30));
+        jpnAgregarVenta.add(txtClienteVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 210, 30));
 
         txtGiroVenta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtGiroVentaKeyTyped(evt);
             }
         });
-        jpnAgregarVenta.add(txtGiroVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 140, 30));
+        jpnAgregarVenta.add(txtGiroVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 140, 30));
 
         lblCodBarraProd22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblCodBarraProd22.setText("Direccion:");
-        jpnAgregarVenta.add(lblCodBarraProd22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 70, 30));
+        jpnAgregarVenta.add(lblCodBarraProd22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 70, 30));
         jpnAgregarVenta.add(cmbSucursalVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 140, 30));
 
         lblCodBarraProd23.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -4031,8 +4032,8 @@ public void LlenarVenta() {
         jpnAgregarVenta.add(jSeparator72, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 760, 10));
 
         lblCodBarraProd24.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblCodBarraProd24.setText("Tipo Precio:");
-        jpnAgregarVenta.add(lblCodBarraProd24, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 80, 30));
+        lblCodBarraProd24.setText("Tipo de precio:");
+        jpnAgregarVenta.add(lblCodBarraProd24, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 170, -1, 30));
 
         cmbTipoPrecioVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -4043,10 +4044,10 @@ public void LlenarVenta() {
 
         lblFecha3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblFecha3.setText("Fecha:");
-        jpnAgregarVenta.add(lblFecha3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 50, 30));
+        jpnAgregarVenta.add(lblFecha3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 50, 30));
 
         txt_fecha_venta.setDateFormatString("MM/dd/yyyy HH:mm:ss");
-        jpnAgregarVenta.add(txt_fecha_venta, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, 160, 30));
+        jpnAgregarVenta.add(txt_fecha_venta, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, 180, 30));
 
         btnAgregarProductoVenta.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnAgregarProductoVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/agregar2.png"))); // NOI18N
@@ -4090,7 +4091,7 @@ public void LlenarVenta() {
                 cmbTipoVentaItemStateChanged(evt);
             }
         });
-        jpnAgregarVenta.add(cmbTipoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 110, 30));
+        jpnAgregarVenta.add(cmbTipoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, 110, 30));
         jpnAgregarVenta.add(txtPacVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 500, 100, 30));
 
         lblSumaVenta2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -9074,6 +9075,10 @@ public void LlenarVenta() {
             txtTotalVenta.setText("" + Total);
             filas--;
             if (model.getRowCount() == 0) {
+                txtTotalVenta.setText("");
+                txtPacVenta.setText("");
+                txtUtilidadVenta.setText("");
+                txtSumaVenta.setText("");
                 cmbTipoPrecioVenta.setEnabled(true);
                 cmbTipoVenta.setEnabled(true);
                 cmbSucursalVenta.setEnabled(true);
@@ -9619,10 +9624,7 @@ public void generarReporteCompra(String nameReporte){
 
     private void btnAgregarProductoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoVentaActionPerformed
         //vizcarra. bloqueare obciones extras
-     
-        cmbTipoVenta.setEnabled(false);
-        cmbTipoPrecioVenta.setEnabled(false);
-        totalC = 0;
+      totalC = 0;
         conection cn = new conection();
         String iva = null;
         try {
@@ -9632,14 +9634,161 @@ public void generarReporteCompra(String nameReporte){
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
         
-        
+        String pac = null;
+        try {
+            cn.Conectar();
+            pac = cn.ValorParametro("pac");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
         if(cmbTipoVenta.getSelectedItem().toString().equals("Borrador")||cmbTipoVenta.getSelectedItem().toString()=="Borrador"){
          cmbTipoPrecioVenta.setSelectedItem("Normal");
          cmbTipoPrecioVenta.setEnabled(false);
-            
+         
+
+
+//Manejo de ventas en borrador
+           if (txtNombreProductoVender.getText().isEmpty() || txtCantidadVender.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Valores incompletos o producto no válido");
+        } else {
+            if (Double.parseDouble(txtCantidadVender.getText()) == 0) {
+                JOptionPane.showMessageDialog(null, "No es posible guardar cantidad 0");
+            } else {
+                //Ahora si... a agregar el producto al model
+
+                //CREANDO PRODUCTO A GUARDAR
+                ControladorProducto cp = new ControladorProducto();
+                Producto producto = new Producto();
+                DecimalFormat dosdigitos = new DecimalFormat("0.00");
+                DecimalFormat cuatrodigitos = new DecimalFormat("0.0000");
+
+                //ID SUCURSAL SELECCIONADA
+                int idSucursalSeleccionada = 0;
+                String suc = cmbSucursalVenta.getSelectedItem().toString();
+                try {
+                    String[] cm = new String[]{"IdSucursal", "Nombre", "Direccion", "Telefono"};
+                    iList p = new iList(new ListasTablas("Nombre", suc));
+
+                        cn.Conectar();
+                        PreparedStatement ps = cn.BuscarRegistro("sucursal", cm, p);
+                        ResultSet rs = ps.executeQuery();
+
+                        while (rs.next()) {
+                            idSucursalSeleccionada = Integer.parseInt(rs.getString("IdSucursal"));
+                            System.out.println(""+idSucursalSeleccionada);
+                        }
+                        cn.Desconectar();
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error externo buscando la sucursal " + e.getMessage());
+                }
+
+                try {
+                    cn.Conectar();
+                    producto = cp.Obtener(txtCodigoBarraVender.getText());
+                    Double utilidad = cn.utilidadPrecio(cmbTipoPrecioVenta.getSelectedItem().toString());
+                    producto.costo = Double.parseDouble(dosdigitos.format((producto.costo / (1 - utilidad))));
+                    double Total = 0;
+
+                    DefaultTableModel model = (DefaultTableModel) tblProductosVender.getModel();
+                    //Evaluar inventario dependiendo de la cantidad...
+                    System.out.println("Inventario de producto= " + producto.inventario);
+                    if (cn.inventarioEnSucursalbyProducto(txtCodigoBarraVender.getText(), idSucursalSeleccionada) >= Double.parseDouble(txtCantidadVender.getText())) {
+
+                        boolean found = false;
+                        for (int row = 0; row < model.getRowCount(); row++) {
+                            if (txtCodigoBarraVender.getText().equals(model.getValueAt(row, 0))) {
+                                found = true;
+                                //Actualizar
+                                double suma = Double.parseDouble(txtCantidadVender.getText()) + Double.parseDouble(model.getValueAt(row, 2).toString());
+                                System.out.println("Suma: " + suma);
+                                if (cn.inventarioEnSucursalbyProducto(txtCodigoBarraVender.getText(), idSucursalSeleccionada) >= (Double.parseDouble(txtCantidadVender.getText()) + Double.parseDouble(model.getValueAt(row, 2).toString()))) {
+                                    model.setValueAt(Integer.parseInt(model.getValueAt(row, 2).toString()) + Double.parseDouble(txtCantidadVender.getText()), row, 2);
+                                    model.setValueAt(cuatrodigitos.format(Double.parseDouble(model.getValueAt(row, 2).toString()) * producto.costo), row, 4);
+                                    if (cmbTipoVenta.getSelectedIndex() == 2) {
+                                        model.setValueAt(cuatrodigitos.format(((Double.parseDouble(model.getValueAt(row, 2).toString()) * Double.parseDouble(model.getValueAt(row, 3).toString()) * Double.parseDouble(iva)))), row, 4);
+                                    } else {
+                                        model.setValueAt(0, row, 4);
+                                    }
+                                    model.setValueAt(cuatrodigitos.format(((Double.parseDouble(model.getValueAt(row, 2).toString()) * Double.parseDouble(model.getValueAt(row, 3).toString())) + Double.parseDouble(model.getValueAt(row, 4).toString()))), row, 5);
+
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "El inventario de este producto no puede satisfacer la cantidad necesaria");
+                                }
+                            }
+                        }
+
+                        if (!found) {
+                            model.addRow(new Object[filas]);
+                            for (int row = 0; row < model.getColumnCount(); row++) {
+                                //Agregar
+                                model.setValueAt(producto.CodBarra, filas, 0);
+                                model.setValueAt(producto.nombre, filas, 1);
+                                model.setValueAt(txtCantidadVender.getText(), filas, 2);
+                                model.setValueAt(producto.costo, filas, 3);
+                                if (cmbTipoVenta.getSelectedIndex() == 2) {
+                                    model.setValueAt(cuatrodigitos.format(((Double.parseDouble(model.getValueAt(filas, 2).toString()) * Double.parseDouble(model.getValueAt(filas, 3).toString()) * Double.parseDouble(iva)))), filas, 4);
+                                } else {
+                                    model.setValueAt(0, filas, 4);
+                                }
+                                model.setValueAt(cuatrodigitos.format(((Double.parseDouble(model.getValueAt(filas, 2).toString()) * Double.parseDouble(model.getValueAt(filas, 3).toString())) + Double.parseDouble(model.getValueAt(filas, 4).toString()))), filas, 5);
+                                //model.setValueAt(dosdigitos.format(((Integer.parseInt(txtCantidadVender.getText()) * producto.costo))), filas, 4);
+                            }
+                            filas++;
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "El inventario de este producto no puede satisfacer la cantidad necesaria");
+                    }
+
+                    //TOTAL
+                    switch (cmbTipoVenta.getSelectedItem().toString()) {
+                        case "Borrador":
+                        for (int row = 0; row < model.getRowCount(); row++) {
+                            totalC = Double.parseDouble(dosdigitos.format(totalC + Double.parseDouble(model.getValueAt(row, 5).toString())));
+                        }
+                        txtTotalVenta.setText("" + totalC);
+                        txtSumaVenta.setText("" + totalC);
+                        txtIvaVenta.setText("");
+                        txtPacVenta.setText("");
+                        txtUtilidadVenta.setText("");
+                        break;
+                        }
+
+                    txtCodigoBarraVender.setText("");
+                    txtNombreProductoVender.setText("");
+                    txtCantidadVender.setText("1");
+                    cmbTipoPrecioVenta.setEnabled(false);
+                    cmbTipoVenta.setEnabled(false);
+                    cmbSucursalVenta.setEnabled(false);
+                    txtCodigoBarraVender.requestFocus();
+
+                    if (model.getRowCount() == 0) {
+                        txtPacVenta.setText("");
+                        txtUtilidadVenta.setText("");
+                        txtSumaVenta.setText("");
+                        cmbTipoPrecioVenta.setEnabled(true);
+                        cmbTipoVenta.setEnabled(true);
+                        cmbSucursalVenta.setEnabled(true);
+                    }
+
+                } catch (ErrorTienda ex) {
+                    JOptionPane.showMessageDialog(null, "No se encontró el producto: " + txtCodigoBarraVender.getText() + " " + ex.getMessage());
+                } catch (Exception ex) {
+                    Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
         }
-        else{
+         
+           
+         //---------------------------   
+        }
+        
        
+       else{
+        cmbTipoVenta.setEnabled(false);
+        cmbTipoPrecioVenta.setEnabled(false);
+        
             if (txtNombreProductoVender.getText().isEmpty() || txtCantidadVender.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Valores incompletos o producto no válido");
         } else {
@@ -9661,7 +9810,6 @@ public void generarReporteCompra(String nameReporte){
                     String[] cm = new String[]{"IdSucursal", "Nombre", "Direccion", "Telefono"};
                     iList p = new iList(new ListasTablas("Nombre", suc));
 
-                    try {
                         cn.Conectar();
                         PreparedStatement ps = cn.BuscarRegistro("sucursal", cm, p);
                         ResultSet rs = ps.executeQuery();
@@ -9672,9 +9820,6 @@ public void generarReporteCompra(String nameReporte){
                         }
                         cn.Desconectar();
 
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "Error interno buscando la sucursal " + e.getMessage());
-                    }
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Error externo buscando la sucursal " + e.getMessage());
                 }
@@ -9751,7 +9896,7 @@ public void generarReporteCompra(String nameReporte){
                         txtTotalVenta.setText("" + totalC);
                         txtSumaVenta.setText("" + totalC);
                         txtIvaVenta.setText("0");
-                        txtPacVenta.setText(""+dosdigitos.format((totalC*0.0175)));
+                        txtPacVenta.setText(""+dosdigitos.format((totalC*Double.parseDouble(pac))));
                         txtUtilidadVenta.setText(""+dosdigitos.format((totalC*utilidad)));
                         break;
 
@@ -9766,7 +9911,7 @@ public void generarReporteCompra(String nameReporte){
                         txtIvaVenta.setText("" + dosdigitos.format(ivaFinal));
                         double granTotal = totalC + ivaFinal;
                         txtTotalVenta.setText("" + dosdigitos.format(granTotal));
-                        txtPacVenta.setText(""+dosdigitos.format((totalC*0.0175)));
+                        txtPacVenta.setText(""+dosdigitos.format((totalC*Double.parseDouble(pac))));
                         txtUtilidadVenta.setText(""+dosdigitos.format((totalC*utilidad)));
                         break;
                         case "Factura":
@@ -9776,7 +9921,7 @@ public void generarReporteCompra(String nameReporte){
                         txtSumaVenta.setText("" + dosdigitos.format(totalC));
                         txtTotalVenta.setText("" + dosdigitos.format(totalC));
                         txtIvaVenta.setText("0");
-                        txtPacVenta.setText(""+dosdigitos.format((totalC*0.0175)));
+                        txtPacVenta.setText(""+dosdigitos.format((totalC*Double.parseDouble(pac))));
                         txtUtilidadVenta.setText(""+dosdigitos.format((totalC*utilidad)));
                         break;
                     }
@@ -9790,6 +9935,9 @@ public void generarReporteCompra(String nameReporte){
                     txtCodigoBarraVender.requestFocus();
 
                     if (model.getRowCount() == 0) {
+                        txtPacVenta.setText("");
+                        txtUtilidadVenta.setText("");
+                        txtSumaVenta.setText("");
                         cmbTipoPrecioVenta.setEnabled(true);
                         cmbTipoVenta.setEnabled(true);
                         cmbSucursalVenta.setEnabled(true);
@@ -9822,11 +9970,6 @@ public void generarReporteCompra(String nameReporte){
             ControladorVenta venta = new ControladorVenta();
             Venta nventa = new Venta();
 
-            int borrador=cmbTipoVenta.getSelectedIndex();
-            int IdBorrador = Integer.parseInt(txtIdVenta.getText());
-          
-            
-            
             //ID SUCURSAL SELECCIONADA
             int idSucursalSeleccionada = 0;
                     String suc = cmbSucursalVenta.getSelectedItem().toString();
@@ -9852,10 +9995,7 @@ public void generarReporteCompra(String nameReporte){
                         JOptionPane.showMessageDialog(null, "Error externo buscando la sucursal " + e.getMessage());
                     }
 
-          
-               
-
-                    //ID TIPOPRECIO SELECCIONADA
+                              //ID TIPOPRECIO SELECCIONADA
                     int idTipoPrecio = 0;
                     String tp = cmbTipoPrecioVenta.getSelectedItem().toString();
                     try {
@@ -9882,24 +10022,61 @@ public void generarReporteCompra(String nameReporte){
                 
             
             //si es borrador
-            if (borrador==3) {
-                try {   
+            if (cmbTipoVenta.getSelectedItem().toString().equals("Borrador")||cmbTipoVenta.getSelectedItem().toString()=="Borrador") {
+                
+                try{
+                         
                 DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
                 SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
                 String dateFormatted = sdf.format(txt_fecha_venta.getDate());                            //.getDate()
                 Date date2 = formatter.parse(dateFormatted);
-                
-                cmbTipoPrecioVenta.setSelectedItem("Normal");
-                
-                
-                
-                
-                
-                
-        } catch (ParseException ex) {
-            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
+                    nventa.idVenta = Integer.parseInt(txtIdVenta.getText());
+                    nventa.idSucursal = idSucursalSeleccionada;
+                    
+                    nventa.tipoVenta = "B";
+                    nventa.idTipoPrecio = idTipoPrecio;
+                    nventa.cliente = "";
+                    nventa.fecha = date2;
+                    nventa.IVA = 0;
+                    nventa.totalGrabado = Double.parseDouble(txtSumaVenta.getText());
+                    nventa.total = Double.parseDouble(txtTotalVenta.getText());
+                    nventa.direccion = "";
+                    nventa.giro = "";
+                    nventa.NIT = "";
+                    nventa.NRC = "";
+                    nventa.numDocumento = "";
+                    nventa.PAC = 0;
+                    nventa.utilidad = 0;
+                    nventa.articulo = new ArrayList<DetalleVenta>();
+              
+                    venta.Agregar(nventa);
+                    agregarABitacora("Se realizo una venta "+txtNoDocVenta.getText());
+                    //CONTINUAR CON EL DETALLE_VENTA
+                    //Recorrer la tabla - tblProductosVender
+                    DefaultTableModel model = (DefaultTableModel) tblProductosVender.getModel();
+                    ArrayList<DetalleVenta> articulos = new ArrayList<DetalleVenta>();
+                    for (int row = 0; row < model.getRowCount(); row++) {
+                        //Agregar
+                        Producto producto = new Producto();
+                        producto.CodBarra = model.getValueAt(row, 0).toString();
+                        DetalleVenta dv = new DetalleVenta(producto, Double.parseDouble(model.getValueAt(row, 2).toString()), Double.parseDouble(model.getValueAt(row, 3).toString()));
+                        nventa.articulo.add(dv);
+                    }
+                    agregarDetalleVenta(nventa);
+
+                } catch (ParseException ex) {
+                    JOptionPane.showMessageDialog(null, "Error Parse guardando venta " + ex.getMessage());
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error SQL guardando venta " + ex.getMessage());
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Error guardando venta " + ex.getMessage() + " " + ex.getCause());
+                }
+     
+                
+                
+                
+    
                 
     }
             //si no es borrador
@@ -9987,35 +10164,41 @@ public void generarReporteCompra(String nameReporte){
         String tipoVenta = cmbTipoVenta.getSelectedItem().toString();
         switch (tipoVenta) {
             case "Libre":
+            cmbTipoPrecioVenta.setSelectedItem("Normal");
             cmbTipoPrecioVenta.setEnabled(true);
             tblProductosVender.getColumnModel().getColumn(4).setMinWidth(0);
             tblProductosVender.getColumnModel().getColumn(4).setMaxWidth(0);
             tblProductosVender.getColumnModel().getColumn(4).setWidth(0);
-            txtSumaVenta.setVisible(false);
+            txtSumaVenta.setEnabled(true);
             txtSumaVenta.setText(txtTotal.getText());
-            lblSumaVenta.setVisible(false);
-            txtIvaVenta.setVisible(false);
-            txtIvaVenta.setText("0");
-            lblIvaVenta.setVisible(false);
-            txtGiroVenta.setVisible(false);
-            txtNRCVenta.setVisible(false);
-            txtNITVenta.setVisible(false);
-            lblNITVenta.setVisible(false);
-            lblgiro.setVisible(false);
-            lblnrc.setVisible(false);
-            lblIvaVenta.setVisible(false);
+            lblSumaVenta.setVisible(true);
+            txtIvaVenta.setEnabled(false);
+            txtIvaVenta.setText("");
+            lblIvaVenta.setVisible(true);
+            txtGiroVenta.setEnabled(false);
+            txtNRCVenta.setEnabled(false);
+            txtNITVenta.setEnabled(false);
+            lblNITVenta.setVisible(true);
+            lblgiro.setVisible(true);
+            lblnrc.setVisible(true);
+         
 
+            lblSumaVenta2.setVisible(true);
+            lblIvaVenta2.setVisible(true);
+            txtPacVenta.setEnabled(true);
+            txtUtilidadVenta.setEnabled(true);
             lblProveedores10.setVisible(true);
             lblCodBarraProd24.setVisible(true);
             cmbTipoPrecioVenta.setVisible(true);
             jLabel44.setVisible(true);
             txtIdVenta.setVisible(true);
             jLabel45.setVisible(true);
+            txtNoDocVenta.setEnabled(true);
             txtNoDocVenta.setVisible(true);
             lblCodBarraProd18.setVisible(true);
-            txtClienteVenta.setVisible(true);
+            txtClienteVenta.setEnabled(true);
             lblCodBarraProd22.setVisible(true);
-            txtDireccionVenta.setVisible(true);
+            txtDireccionVenta.setEnabled(true);
             lblFecha3.setVisible(true);
             txt_fecha_venta.setVisible(true);
                  try {
@@ -10031,6 +10214,7 @@ public void generarReporteCompra(String nameReporte){
             }
             break;
             case "Factura":
+            cmbTipoPrecioVenta.setSelectedItem("Normal");
             cmbTipoPrecioVenta.setEnabled(true);
             tblProductosVender.getColumnModel().getColumn(4).setMinWidth(0);
             tblProductosVender.getColumnModel().getColumn(4).setMaxWidth(0);
@@ -10038,29 +10222,34 @@ public void generarReporteCompra(String nameReporte){
             //                tblProductosVender.getColumnModel().getColumn(4).setMinWidth(tblProductosVender.getColumnModel().getColumn(3).getWidth() - 15);
             //                tblProductosVender.getColumnModel().getColumn(4).setMaxWidth(tblProductosVender.getColumnModel().getColumn(3).getWidth() - 15);
             //                tblProductosVender.getColumnModel().getColumn(4).setWidth(tblProductosVender.getColumnModel().getColumn(3).getWidth() - 15);
-            txtSumaVenta.setVisible(true);
+            txtSumaVenta.setEnabled(true);
             lblSumaVenta.setVisible(true);
-            txtIvaVenta.setVisible(false);
-            txtIvaVenta.setText("0");
-            txtGiroVenta.setVisible(false);
-            this.txtNRCVenta.setVisible(false);
-            lblgiro.setVisible(false);
-            lblnrc.setVisible(false);
-            lblIvaVenta.setVisible(false);
-            txtNITVenta.setVisible(false);
-            lblNITVenta.setVisible(false);
+            txtIvaVenta.setEnabled(false);
+            txtIvaVenta.setText("");
+            txtGiroVenta.setEnabled(false);
+            this.txtNRCVenta.setEnabled(false);
+            lblgiro.setVisible(true);
+            lblnrc.setVisible(true);
+            lblIvaVenta.setVisible(true);
+            txtNITVenta.setEnabled(false);
+            lblNITVenta.setVisible(true);
             
+            lblSumaVenta2.setVisible(true);
+            lblIvaVenta2.setVisible(true);
+            txtPacVenta.setEnabled(true);
+            txtUtilidadVenta.setEnabled(true);
             lblProveedores10.setVisible(true);
             lblCodBarraProd24.setVisible(true);
             cmbTipoPrecioVenta.setVisible(true);
             jLabel44.setVisible(true);
             txtIdVenta.setVisible(true);
             jLabel45.setVisible(true);
+            txtNoDocVenta.setEnabled(true);
             txtNoDocVenta.setVisible(true);
             lblCodBarraProd18.setVisible(true);
-            txtClienteVenta.setVisible(true);
+            txtClienteVenta.setEnabled(true);
             lblCodBarraProd22.setVisible(true);
-            txtDireccionVenta.setVisible(true);
+            txtDireccionVenta.setEnabled(true);
             lblFecha3.setVisible(true);
             txt_fecha_venta.setVisible(true);
             try {
@@ -10076,22 +10265,27 @@ public void generarReporteCompra(String nameReporte){
             }
             break;
             case "Credito Fiscal":
+                cmbTipoPrecioVenta.setSelectedItem("Normal");
                 cmbTipoPrecioVenta.setEnabled(true);
             tblProductosVender.getColumnModel().getColumn(4).setMinWidth(0);
             tblProductosVender.getColumnModel().getColumn(4).setMaxWidth(0);
             tblProductosVender.getColumnModel().getColumn(4).setWidth(0);
             tblProductosVender.getColumnModel().getColumn(4).sizeWidthToFit();
-            txtSumaVenta.setVisible(true);
+            txtSumaVenta.setEnabled(true);
             lblSumaVenta.setVisible(true);
-            txtIvaVenta.setVisible(true);
+            txtIvaVenta.setEnabled(true);
             lblIvaVenta.setVisible(true);
-            txtGiroVenta.setVisible(true);
-            this.txtNRCVenta.setVisible(true);
+            txtGiroVenta.setEnabled(true);
+            this.txtNRCVenta.setEnabled(true);
             lblgiro.setVisible(true);
             lblnrc.setVisible(true);
-            txtNITVenta.setVisible(true);
+            txtNITVenta.setEnabled(true);
             lblNITVenta.setVisible(true);
-            
+           
+            lblSumaVenta2.setVisible(true);
+            lblIvaVenta2.setVisible(true);
+            txtPacVenta.setEnabled(true);
+            txtUtilidadVenta.setEnabled(true);
             lblProveedores10.setVisible(true);
             lblCodBarraProd24.setVisible(true);
             cmbTipoPrecioVenta.setVisible(true);
@@ -10099,10 +10293,11 @@ public void generarReporteCompra(String nameReporte){
             txtIdVenta.setVisible(true);
             jLabel45.setVisible(true);
             txtNoDocVenta.setVisible(true);
+            txtNoDocVenta.setEnabled(true);
             lblCodBarraProd18.setVisible(true);
-            txtClienteVenta.setVisible(true);
+            txtClienteVenta.setEnabled(true);
             lblCodBarraProd22.setVisible(true);
-            txtDireccionVenta.setVisible(true);
+            txtDireccionVenta.setEnabled(true);
             lblFecha3.setVisible(true);
             txt_fecha_venta.setVisible(true);
             
@@ -10120,38 +10315,49 @@ public void generarReporteCompra(String nameReporte){
             break;
             //vizcarra, caso para venta borrador
             case "Borrador":
-                cmbTipoPrecioVenta.setSelectedItem("Normal");
+                cmbTipoPrecioVenta.setSelectedItem("Mayoreo");
                 cmbTipoPrecioVenta.setEnabled(false);
             tblProductosVender.getColumnModel().getColumn(4).setMinWidth(0);
             tblProductosVender.getColumnModel().getColumn(4).setMaxWidth(0);
             tblProductosVender.getColumnModel().getColumn(4).setWidth(0);
             //
 
-            txtSumaVenta.setVisible(false);
+            txtSumaVenta.setEnabled(true);
             txtSumaVenta.setText(txtTotal.getText());
-            lblSumaVenta.setVisible(false);
-            txtIvaVenta.setVisible(false);
-            txtIvaVenta.setText("0");
-            lblIvaVenta.setVisible(false);
-            txtGiroVenta.setVisible(false);
-            txtNRCVenta.setVisible(false);
-            txtNITVenta.setVisible(false);
-            lblNITVenta.setVisible(false);
-            lblgiro.setVisible(false);
-            lblnrc.setVisible(false);
-            lblIvaVenta.setVisible(false);
+            lblSumaVenta.setVisible(true);
+            txtIvaVenta.setEnabled(false);
+            txtIvaVenta.setText("");
+            lblIvaVenta.setVisible(true);
+            txtGiroVenta.setEnabled(false);
+            txtNRCVenta.setEnabled(false);
+            txtNITVenta.setEnabled(false);
+            lblNITVenta.setVisible(true);
+            lblgiro.setVisible(true);
+            lblnrc.setVisible(true);
+           
             lblCodBarraProd24.setVisible(false);
             cmbTipoPrecioVenta.setVisible(false);
-            lblCodBarraProd18.setVisible(false);
-            txtClienteVenta.setVisible(false);
-            lblCodBarraProd22.setVisible(false);
-            txtDireccionVenta.setVisible(false);
+            lblCodBarraProd18.setVisible(true);
+            txtClienteVenta.setText("");
+            txtDireccionVenta.setText("");
+            txtNoDocVenta.setText("");
+            txtGiroVenta.setText("");
+            txtNITVenta.setText("");
+            txtNRCVenta.setText("");
+      
+            txtClienteVenta.setEnabled(false);
+            lblCodBarraProd22.setVisible(true);
+            txtDireccionVenta.setEnabled(false);
             jLabel45.setVisible(false);
             txtNoDocVenta.setVisible(false);
-
-            lblProveedores10.setVisible(false);
-            lblFecha3.setVisible(false);
-            txt_fecha_venta.setVisible(false);
+            lblSumaVenta2.setVisible(true);
+            lblIvaVenta2.setVisible(true);
+            txtPacVenta.setEnabled(false);
+            txtUtilidadVenta.setEnabled(false);
+            lblProveedores10.setVisible(true);
+            lblFecha3.setVisible(true);
+            lblFecha3.setVisible(true);
+            txt_fecha_venta.setVisible(true);
                    
             
             try {
@@ -10412,7 +10618,107 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     }//GEN-LAST:event_btnConsolidarVentasBorradorMouseExited
 
     private void btnConsolidarVentasBorradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsolidarVentasBorradorActionPerformed
-        // TODO add your handling code here:
+
+        jpnListaVentasBorrador.setVisible(false);
+        jpnConsolidarVentas.setVisible(true);
+  
+        boolean a=true;
+        
+        DecimalFormat dosdigitos = new DecimalFormat("0.00");
+        DecimalFormat cuatrodigitos = new DecimalFormat("0.0000");        
+        
+        ControladorVenta Venta = new ControladorVenta();
+        int idVenta = 0;
+        try {
+            idVenta = Venta.ObtenerIdVenta();
+        } catch (ErrorTienda ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if (idVenta == 0) {
+            txtIdVentaConsolidar.setText("1");
+        } else {
+            txtIdVentaConsolidar.setText(Integer.toString(idVenta));
+        }
+        
+        
+        java.util.Date date = new Date();
+        Object param = new java.sql.Timestamp(date.getTime());
+        txt_fecha_venta_Consolidar.setDate(date);
+
+        
+             //LISTADO DE SUCURSALES EN COMBOBOX
+             cmbSucursalVentaConsolidar.addItem(tblListaVentasBorrador.getValueAt(0, 1));
+             cmbSucursalVentaConsolidar.setEnabled(false);
+             
+            txtNoDocVentaConsolidar.setText("");
+            double suma=0, total=0;
+            DefaultTableModel modelo = new DefaultTableModel();
+            VentasSeleccionadas = tblListaVentasBorrador.getSelectedRows();
+             
+            for(int i=0; i<tblListaVentasBorrador.getSelectedRowCount(); i++){
+            a=true;
+                
+                
+            //LLENAR TABlA DE CONSOLIDAR VENTA
+            String[] cm = new String[]{"CodBarra", "IdVenta", "Cantidad", "PrecioUnitario"};
+            iList p = new iList(new ListasTablas("IdVenta", tblListaVentasBorrador.getValueAt(VentasSeleccionadas[i], 0)));
+            ArrayList<Object> listaDetalleVentas = new ArrayList();
+           //Calcular nuevos precios para Subtotal y total y luego calcular el pac y la utilidad
+           
+           
+           
+           
+           //------------
+            conection cn = new conection();
+            try {
+                cn.Conectar();
+                PreparedStatement ps = cn.BuscarRegistro("detalleventa", cm, p);
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    listaDetalleVentas.add(rs.getString("CodBarra"));
+                    listaDetalleVentas.add(rs.getString("IdVenta"));
+                    listaDetalleVentas.add(rs.getString("Cantidad"));
+                    listaDetalleVentas.add(rs.getString("PrecioUnitario"));
+                }
+                cn.Desconectar();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Algo paso llenando la tabla de detalle venta " + e.getMessage());
+            }
+            ArrayList<DetalleVenta> listaDetalleVenta = (ArrayList) listaDetalleVentas;
+            Object[] fila = new Object[4];
+
+            String[] detalleventas = new String[]{"IdVenta", "CodBarra", "Cantidad", "Precio Unitario"};
+            modelo.setColumnIdentifiers(detalleventas);
+            Iterator<DetalleVenta> venta = listaDetalleVenta.iterator();
+            while (venta.hasNext()) {
+                fila[1] = venta.next();//codigo barra
+                fila[0] = venta.next();//id venta
+                fila[2] = venta.next();//cantidad
+                fila[3] = venta.next();//precio unitario
+                
+                System.out.println(""+modelo.getRowCount());
+                
+                for(int j=0;j<modelo.getRowCount();j++){
+                if(fila[1]==modelo.getValueAt(j, 1)){
+                   modelo.setValueAt(Integer.parseInt(modelo.getValueAt(j, 2).toString())+ Integer.parseInt(fila[2].toString()), j, 2);
+                    System.out.println(""+modelo.getValueAt(j, 2));
+                   a=false;
+                }
+                }
+                
+            }
+             if(a=true){
+                   System.out.println(""+fila[1]+"\t"+fila[2]+"\t"+fila[3]+"\t"+fila[0]+"\n");  
+                  modelo.addRow(fila); 
+                }    
+            }
+            txtSumaVenta1.setText(""+dosdigitos.format(suma));
+            txtTotalVenta1.setText(""+dosdigitos.format(total));
+
+            tblProductosVenderBorrador.setModel(modelo);
+
     }//GEN-LAST:event_btnConsolidarVentasBorradorActionPerformed
 
     private void btnVerDetalleVentaBorradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerDetalleVentaBorradorMouseClicked
