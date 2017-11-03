@@ -7305,12 +7305,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         txtCantidadVender.setText("");
         txtSumaVenta.setText("");
         txtIvaVenta.setText("");
+        txtPacVenta.setText("");
+        txtUtilidadVenta.setText("");
         txtTotalVenta.setText("");
         cmbTipoVenta.setEnabled(true);
         cmbTipoPrecioVenta.setEnabled(true);
         cmbSucursalVenta.setEnabled(true);
         
-        //NUEVA COMPRA - VARIOS DETALLES
+        //NUEVA - VARIOS DETALLES
         //NUEVO ID
         ControladorVenta VEnta = new ControladorVenta();
         int idVenta = 0;
@@ -7351,6 +7353,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
                 while (rs.next()) {
                     cmbTipoPrecioVenta.addItem(rs.getString("Nombre"));
+                    cmbTipoPrecioVenta.setSelectedItem("Normal");//Establecemos el precio "Normal" predeterminado
                 }
                 cn.Desconectar();
             } catch (Exception e) {
@@ -7381,12 +7384,6 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         } catch (Exception e) {
         }
 
-//        cmbSucursalVenta.setSelectedIndex(1);
-//        cmbSucursalVenta.setSelectedIndex(0);
-//        cmbTipoVenta.setSelectedIndex(1);
-//        cmbTipoVenta.setSelectedIndex(2);
-//        cmbTipoPrecioVenta.setSelectedIndex(1);
-//        cmbTipoPrecioVenta.setSelectedIndex(0);
     }//GEN-LAST:event_btnAgregarVentaActionPerformed
 
     private void btnBrorradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrorradorActionPerformed
@@ -9431,8 +9428,6 @@ public void generarReporteCompra(String nameReporte){
      
         cmbTipoVenta.setEnabled(false);
         cmbTipoPrecioVenta.setEnabled(false);
-
-        // TODO add your handling code here:
         totalC = 0;
         conection cn = new conection();
         String iva = null;
@@ -9442,8 +9437,16 @@ public void generarReporteCompra(String nameReporte){
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-
-        if (txtNombreProductoVender.getText().isEmpty() || txtCantidadVender.getText().isEmpty()) {
+        
+        
+        if(cmbTipoVenta.getSelectedItem().toString().equals("Borrador")||cmbTipoVenta.getSelectedItem().toString()=="Borrador"){
+         cmbTipoPrecioVenta.setSelectedItem("Normal");
+         cmbTipoPrecioVenta.setEnabled(false);
+            
+        }
+        else{
+       
+            if (txtNombreProductoVender.getText().isEmpty() || txtCantidadVender.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Valores incompletos o producto no válido");
         } else {
             if (Double.parseDouble(txtCantidadVender.getText()) == 0) {
@@ -9554,6 +9557,8 @@ public void generarReporteCompra(String nameReporte){
                         txtTotalVenta.setText("" + totalC);
                         txtSumaVenta.setText("" + totalC);
                         txtIvaVenta.setText("0");
+                        txtPacVenta.setText(""+dosdigitos.format((totalC*0.0175)));
+                        txtUtilidadVenta.setText(""+dosdigitos.format((totalC*utilidad)));
                         break;
 
                         case "Credito Fiscal":
@@ -9567,6 +9572,8 @@ public void generarReporteCompra(String nameReporte){
                         txtIvaVenta.setText("" + dosdigitos.format(ivaFinal));
                         double granTotal = totalC + ivaFinal;
                         txtTotalVenta.setText("" + dosdigitos.format(granTotal));
+                        txtPacVenta.setText(""+dosdigitos.format((totalC*0.0175)));
+                        txtUtilidadVenta.setText(""+dosdigitos.format((totalC*utilidad)));
                         break;
                         case "Factura":
                         for (int row = 0; row < model.getRowCount(); row++) {
@@ -9575,7 +9582,8 @@ public void generarReporteCompra(String nameReporte){
                         txtSumaVenta.setText("" + dosdigitos.format(totalC));
                         txtTotalVenta.setText("" + dosdigitos.format(totalC));
                         txtIvaVenta.setText("0");
-                        ;
+                        txtPacVenta.setText(""+dosdigitos.format((totalC*0.0175)));
+                        txtUtilidadVenta.setText(""+dosdigitos.format((totalC*utilidad)));
                         break;
                     }
 
@@ -9601,6 +9609,7 @@ public void generarReporteCompra(String nameReporte){
 
             }
         }
+        }
     }//GEN-LAST:event_btnAgregarProductoVentaActionPerformed
 
     private void btnVenderMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVenderMouseEntered
@@ -9611,37 +9620,27 @@ public void generarReporteCompra(String nameReporte){
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVenderMouseExited
 
+   
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-imprimirVenta();
-        // A VENDER!!!
-        //if (!txtClienteVenta.getText().isEmpty()) {
+    //imprimirVenta();
+      
             conection cn = new conection();
             ControladorVenta venta = new ControladorVenta();
             Venta nventa = new Venta();
 
             int borrador=cmbTipoVenta.getSelectedIndex();
             int IdBorrador = Integer.parseInt(txtIdVenta.getText());
-            //si es borrador
-            if (borrador==3) {
-                
-                
-            }
-            //si no es borrador
-            else {
-                try {
-                    DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-                    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-                    String dateFormatted = sdf.format(txt_fecha_venta.getDate());                            //.getDate()
-                    Date date2 = formatter.parse(dateFormatted);
-
-                    //ID SUCURSAL SELECCIONADA
-                    int idSucursalSeleccionada = 0;
+          
+            
+            
+            //ID SUCURSAL SELECCIONADA
+            int idSucursalSeleccionada = 0;
                     String suc = cmbSucursalVenta.getSelectedItem().toString();
-                    try {
+            try {
                         String[] cm = new String[]{"IdSucursal", "Nombre", "Direccion", "Telefono"};
                         iList p = new iList(new ListasTablas("Nombre", suc));
 
-                        try {
+                try {
                             cn.Conectar();
                             PreparedStatement ps = cn.BuscarRegistro("Sucursal", cm, p);
                             ResultSet rs = ps.executeQuery();
@@ -9658,6 +9657,9 @@ imprimirVenta();
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "Error externo buscando la sucursal " + e.getMessage());
                     }
+
+          
+               
 
                     //ID TIPOPRECIO SELECCIONADA
                     int idTipoPrecio = 0;
@@ -9683,7 +9685,42 @@ imprimirVenta();
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "Error externo buscando el tipoprecio " + e.getMessage());
                     }
+                
+            
+            //si es borrador
+            if (borrador==3) {
+                try {   
+                DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+                String dateFormatted = sdf.format(txt_fecha_venta.getDate());                            //.getDate()
+                Date date2 = formatter.parse(dateFormatted);
+                
+                cmbTipoPrecioVenta.setSelectedItem("Normal");
+                
+                
+                
+                
+                
+                
+        } catch (ParseException ex) {
+            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+                
+    }
+            //si no es borrador
+            
+            
+            else {
+                  try {
                     //Objeto Venta
+                         
+                DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+                String dateFormatted = sdf.format(txt_fecha_venta.getDate());                            //.getDate()
+                Date date2 = formatter.parse(dateFormatted);
+                        
+        
                     nventa.idVenta = Integer.parseInt(txtIdVenta.getText());
                     nventa.idSucursal = idSucursalSeleccionada;
                     switch (cmbTipoVenta.getSelectedItem().toString()) {
@@ -9711,6 +9748,8 @@ imprimirVenta();
                     nventa.NIT = txtNITVenta.getText();
                     nventa.NRC = txtNRCVenta.getText();
                     nventa.numDocumento = txtNoDocVenta.getText();
+                    nventa.PAC = Double.parseDouble(txtPacVenta.getText());
+                    nventa.utilidad = Double.parseDouble(txtUtilidadVenta.getText());
                     nventa.articulo = new ArrayList<DetalleVenta>();
                     //                nventa.articulo =    ------------FALTA ARTICULOS?? R/ NO, se llena en DetalleVenta
                     //                venta agregada:
@@ -9754,6 +9793,7 @@ imprimirVenta();
         String tipoVenta = cmbTipoVenta.getSelectedItem().toString();
         switch (tipoVenta) {
             case "Libre":
+            cmbTipoPrecioVenta.setEnabled(true);
             tblProductosVender.getColumnModel().getColumn(4).setMinWidth(0);
             tblProductosVender.getColumnModel().getColumn(4).setMaxWidth(0);
             tblProductosVender.getColumnModel().getColumn(4).setWidth(0);
@@ -9797,6 +9837,7 @@ imprimirVenta();
             }
             break;
             case "Factura":
+            cmbTipoPrecioVenta.setEnabled(true);
             tblProductosVender.getColumnModel().getColumn(4).setMinWidth(0);
             tblProductosVender.getColumnModel().getColumn(4).setMaxWidth(0);
             tblProductosVender.getColumnModel().getColumn(4).setWidth(0);
@@ -9841,6 +9882,7 @@ imprimirVenta();
             }
             break;
             case "Credito Fiscal":
+                cmbTipoPrecioVenta.setEnabled(true);
             tblProductosVender.getColumnModel().getColumn(4).setMinWidth(0);
             tblProductosVender.getColumnModel().getColumn(4).setMaxWidth(0);
             tblProductosVender.getColumnModel().getColumn(4).setWidth(0);
@@ -9884,6 +9926,8 @@ imprimirVenta();
             break;
             //vizcarra, caso para venta borrador
             case "Borrador":
+                cmbTipoPrecioVenta.setSelectedItem("Normal");
+                cmbTipoPrecioVenta.setEnabled(false);
             tblProductosVender.getColumnModel().getColumn(4).setMinWidth(0);
             tblProductosVender.getColumnModel().getColumn(4).setMaxWidth(0);
             tblProductosVender.getColumnModel().getColumn(4).setWidth(0);
@@ -10277,10 +10321,6 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
         btnVerDetalleVenta.setIcon(new ImageIcon(getClass().getResource("/iconos/detalles2.png")));
     }//GEN-LAST:event_btnVerDetalleVentaMouseExited
 
-    private void btnVerDetalleVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDetalleVentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVerDetalleVentaActionPerformed
-
     private void btnReportMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportMouseEntered
        btnReport.setIcon(new ImageIcon(getClass().getResource("/iconos/reporteB.png")));  
     }//GEN-LAST:event_btnReportMouseEntered
@@ -10304,6 +10344,17 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private void btnBrorradorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBrorradorMouseExited
      btnBrorrador.setIcon(new ImageIcon(getClass().getResource("/iconos/borrador.png")));                                          
     }//GEN-LAST:event_btnBrorradorMouseExited
+
+    private void btnVerDetalleVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDetalleVentaActionPerformed
+        
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_btnVerDetalleVentaActionPerformed
 
     /**
      * @param args the command line arguments

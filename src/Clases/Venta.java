@@ -28,6 +28,8 @@ public class Venta {
     public String numDocumento;
     public Date fecha;
     public String cliente;
+    public double PAC;
+    public double utilidad;
     public double total;
     public ArrayList<DetalleVenta> articulo;
     DecimalFormat decimal = new DecimalFormat("0.00");
@@ -70,6 +72,15 @@ public class Venta {
         return Double.parseDouble(decimal.format(iva));
         }
         
+        public double CalcularPAC() throws ErrorTienda{
+        CalcularTotalGrabado();
+        double pac;
+        pac=totalGrabado*0.0175;
+        this.PAC=pac;
+        decimal.setRoundingMode(RoundingMode.CEILING);
+        return Double.parseDouble(decimal.format(pac));
+        }
+        
         public double CalcularTotal() throws ErrorTienda{
         CalcularTotalGrabado(); 
         CalcularIVA();
@@ -80,7 +91,7 @@ public class Venta {
         return Double.parseDouble(decimal.format(total));
     }
 
-    public Venta(int idVenta, int idSucursal, String tipoVenta, int idTipoPrecio, double IVA, double totalGrabado, String direccion, String giro, String NIT, String NRC, String numDocumento, Date fecha, String cliente, double total, ArrayList<DetalleVenta> articulo) {
+    public Venta(int idVenta, int idSucursal, String tipoVenta, int idTipoPrecio, double IVA, double totalGrabado, String direccion, String giro, String NIT, String NRC, String numDocumento, Date fecha, String cliente, double PAC, double utilidad, double total, ArrayList<DetalleVenta> articulo) {
         this.idVenta = idVenta;
         this.idSucursal = idSucursal;
         this.tipoVenta = tipoVenta;
@@ -94,8 +105,11 @@ public class Venta {
         this.numDocumento = numDocumento;
         this.fecha = fecha;
         this.cliente = cliente;
+        this.PAC = PAC;
+        this.utilidad = utilidad;
         this.total = total;
         this.articulo = articulo;
+        
     }
         
         

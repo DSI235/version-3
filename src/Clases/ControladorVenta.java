@@ -41,6 +41,8 @@ public class ControladorVenta {
             p.add(new ListasTablas("NIT", venta.NIT));
             p.add(new ListasTablas("NRC", venta.NRC));
             p.add(new ListasTablas("NDocumento", venta.numDocumento));
+            p.add(new ListasTablas ("PAC", venta.PAC));
+            p.add(new ListasTablas("utilidad", venta.utilidad));
             cn.AgregarRegistro("venta", p, false);
 
         } catch (SQLException e) {
@@ -49,7 +51,7 @@ public class ControladorVenta {
     }
 
     public static ArrayList<Venta> Obtener() throws ErrorTienda {
-        String[] cm = new String[]{"IdVenta", "IdSucursal", "TipoVenta", "IdTipoPrecio", "Cliente", "Fecha", "IVA", "TotalGravado", "Total", "Direccion", "Giro", "NIT", "NRC", "NDocumento"};
+        String[] cm = new String[]{"IdVenta", "IdSucursal", "TipoVenta", "IdTipoPrecio", "Cliente", "Fecha", "IVA", "TotalGravado", "Total", "Direccion", "Giro", "NIT", "NRC", "NDocumento", "PAC", "utilidad"};
 
         ArrayList<Object> listaVentas = new ArrayList();
         try {
@@ -73,7 +75,9 @@ public class ControladorVenta {
                 listaVentas.add(rs.getString("NIT"));
                 listaVentas.add(rs.getString("NRC"));
                 listaVentas.add(rs.getString("NDocumento"));
-
+                listaVentas.add(rs.getString("PAC"));
+                listaVentas.add(rs.getString("utilidad"));
+                
             }
             cn.Desconectar();
         } catch (Exception e) {
@@ -128,47 +132,6 @@ public class ControladorVenta {
         }
     }
     
-        //vizcarra metodo para obtener id borrador
-        public static int ObtenerIdBorrador() throws ErrorTienda {
-
-        int Id = 0;
-        ResultSet rs;
-        PreparedStatement ps;
-        try {
-
-            cn.Conectar();
-            ps = cn.BuscarIdMax("IdBorrador", "ventaborrador");
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                Id = rs.getInt(1);
-            }
-
-        } catch (Exception e) {
-            throw new ErrorTienda("Error al obtener el IdVenta", e.getMessage());
-        }
-        return Id;
-    }
-        public ResultSet llenarVenta(){         
-             conection cn = new conection();
-             return (cn.getValores(" SELECT `CodBarra`, `Producto`, `Cantidad`, `PrecioUnitario`, `IdSucursal` FROM `ventaborrador` WHERE Realizada = \"NO\"  "));
-    }
-        public void Agregar(int IdVenta, int IdSucursal, int IdTipoPrecio, String TipoVenta, String Cliente, String Fecha, double IVA, double TotalGravado, double Total, String Direccion, String Giro, String NIT, String NRC, String NDocumento) throws ErrorTienda{                    
-             conection cn = new conection();;
-         cn.UID("INSERT INTO venta(IdVenta, IdSucursal, IdTipoPrecio, TipoVenta,  Cliente, Fecha, IVA, TotalGravado, Total,Direccion, Giro, NIT, NRC, NDocumento) "
-                + "VALUES('" + IdVenta + "','" + IdSucursal + "','" + IdTipoPrecio + "','" + TipoVenta + "','" + Cliente + "','" + Fecha + "','" + IVA + "','" + TotalGravado + "','" + Total + "','" + Direccion + "','" + Giro + "','" + NIT + "','" + NRC + "','" + NDocumento + "')");      
-    }
-        
-//        public void confirmarVentaBorrador(){         
-//            
-//             conection cn = new conection();;
-//         cn.UID("INSERT INTO ventaborrador(Realizada) "
-//                + "VALUES('" + IdVenta + "','" + IdSucursal + "','" + IdTipoPrecio + "','" + TipoVenta + "','" + Cliente + "','" + Fecha + "','" + IVA + "','" + TotalGravado + "','" + Total + "','" + Direccion + "','" + Giro + "','" + NIT + "','" + NRC + "','" + NDocumento + "')");      
-//        }
-//        
-    // final metodo
-
-    
-
-    
+            
 }
 
