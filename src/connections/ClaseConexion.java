@@ -189,7 +189,7 @@ public abstract class ClaseConexion {
         }
         u = 1;
         for (ListasTablas condicion : condiciones.getAll()) {
-            sql += ((u > 1) ? " AND " : " ") + condicion.getCampo() + "=?";
+            sql += ((u > 1) ? " AND " : " ") + condicion.getCampo() + "=? ORDER BY Fecha DESC";
             u++;
         }
         u = 1;
