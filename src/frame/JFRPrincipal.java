@@ -772,7 +772,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         conection cn = new conection();
         try {
             cn.Conectar();
-            PreparedStatement ps = cn.BuscarTodosCV("compra", cm);
+            PreparedStatement ps = cn.BuscarTodosC("compra", cm);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
