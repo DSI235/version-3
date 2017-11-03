@@ -98,14 +98,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     public JFRPrincipal(Usuario userSesion) {
         this.sesion=userSesion;
         initComponents();
-//        //llenado de tabla ventaBorrador vizcarra
-//        ventaBorrador.addColumn("CodBarra");
-//        ventaBorrador.addColumn("Producto");        
-//        ventaBorrador.addColumn("Cantidad");
-//        ventaBorrador.addColumn("PrecioUnitario");
-//        ventaBorrador.addColumn("Sucursal");                      
-//        tblListaBorrador.setModel(ventaBorrador);
-//        //finalizado "llenado de tabla VentaBorrador"// vizcarra
+
         conection cn = new conection();
         
         System.out.println("USUARIO DE LOGIN:" + userSesion.username);
@@ -191,6 +184,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         LlenarSucursal();
         LlenarCompra();
         LlenarVenta();
+//        LlenarVentaBorrador();
         LlenarParametros();
         LlenarUsuarios();
         LlenarBitacora();
@@ -954,6 +948,14 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         tblListaVentas.getColumnModel().getColumn(13).setMinWidth(0);
         tblListaVentas.getColumnModel().getColumn(13).setMaxWidth(0);
         tblListaVentas.getColumnModel().getColumn(13).setWidth(0);
+        
+        tblListaVentas.getColumnModel().getColumn(14).setMinWidth(0);
+        tblListaVentas.getColumnModel().getColumn(14).setMaxWidth(0);
+        tblListaVentas.getColumnModel().getColumn(14).setWidth(0);
+        
+        tblListaVentas.getColumnModel().getColumn(15).setMinWidth(0);
+        tblListaVentas.getColumnModel().getColumn(15).setMaxWidth(0);
+        tblListaVentas.getColumnModel().getColumn(15).setWidth(0);
         System.out.println("Lleno Venta!...creo");
     }
 
@@ -962,7 +964,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     
     public void LlenarVentaBorrador() {
         String[] cm = new String[]{"IdVenta", "IdSucursal", "TipoVenta", "IdTipoPrecio", "Cliente", "Fecha", "IVA", "TotalGravado", "Total", "Direccion",
-            "Giro", "NIT", "NRC", "NDocumento","PAC","utilidad"};
+            "Giro", "NIT", "NRC", "NDocumento", "PAC", "utilidad"};
         ArrayList<Object> listaVentas = new ArrayList();
         DefaultTableModel modelo = new DefaultTableModel();
         conection cn = new conection();
@@ -1003,7 +1005,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         Object[] fila = new Object[16];
 
         String[] v = new String[]{"IdVenta", "Fecha", "Sucursal", "Tipo Venta", "Tipo Precio", "Cliente", "IVA", "TotalGravado", "Total", "Direccion",
-            "Giro", "NIT", "NRC", "NDocumento","PAC","utilidad"};
+            "Giro", "NIT", "NRC", "NDocumento", "PAC", "utilidad"};
         modelo.setColumnIdentifiers(v);
         Iterator<Venta> prod = listaVenta.iterator();
         while (prod.hasNext()) {
@@ -1537,6 +1539,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jLabel93 = new javax.swing.JLabel();
         txtTotalDetalleVenta = new javax.swing.JTextField();
         jLabel94 = new javax.swing.JLabel();
+        jLabel117 = new javax.swing.JLabel();
+        txtPacDetalleVenta = new javax.swing.JTextField();
+        txtUtilidadDetalleVenta = new javax.swing.JTextField();
+        jLabel119 = new javax.swing.JLabel();
         jpnListaVentas = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
         tblListaVentas = new javax.swing.JTable();
@@ -3539,10 +3545,10 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jLabel60.setBackground(new java.awt.Color(0, 0, 0));
         jLabel60.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel60.setText("Total Gravado: $");
-        jpnDetalleVenta.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 430, 110, 40));
+        jpnDetalleVenta.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 110, 40));
 
         txtTotalGravadoDetalleVenta.setEditable(false);
-        jpnDetalleVenta.add(txtTotalGravadoDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 430, 100, 40));
+        jpnDetalleVenta.add(txtTotalGravadoDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, 100, 40));
 
         btnAtrasDetalleCompra1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/atras.png"))); // NOI18N
         btnAtrasDetalleCompra1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -3620,20 +3626,36 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnDetalleVenta.add(jSeparator102, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 750, 10));
 
         txtIVADetalleVenta.setEditable(false);
-        jpnDetalleVenta.add(txtIVADetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 470, 100, 40));
+        jpnDetalleVenta.add(txtIVADetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 470, 100, 40));
 
         jLabel93.setBackground(new java.awt.Color(0, 0, 0));
         jLabel93.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel93.setText("IVA: $");
-        jpnDetalleVenta.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, 50, 40));
+        jpnDetalleVenta.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 470, 50, 40));
 
         txtTotalDetalleVenta.setEditable(false);
         jpnDetalleVenta.add(txtTotalDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 510, 100, 40));
 
         jLabel94.setBackground(new java.awt.Color(0, 0, 0));
         jLabel94.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel94.setText("Total: $");
-        jpnDetalleVenta.add(jLabel94, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 510, -1, 40));
+        jLabel94.setText("Total:     $");
+        jpnDetalleVenta.add(jLabel94, new org.netbeans.lib.awtextra.AbsoluteConstraints(527, 510, 70, 40));
+
+        jLabel117.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel117.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel117.setText("PAC:      $");
+        jpnDetalleVenta.add(jLabel117, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 430, 70, 40));
+
+        txtPacDetalleVenta.setEditable(false);
+        jpnDetalleVenta.add(txtPacDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 430, 100, 40));
+
+        txtUtilidadDetalleVenta.setEditable(false);
+        jpnDetalleVenta.add(txtUtilidadDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 470, 100, 40));
+
+        jLabel119.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel119.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel119.setText("Utilidad: $");
+        jpnDetalleVenta.add(jLabel119, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 470, 70, 40));
 
         getContentPane().add(jpnDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -7389,6 +7411,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
     private void btnBrorradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrorradorActionPerformed
         jpnListaVentas.setVisible(false);
         jpnListaVentasBorrador.setVisible(true);
+        LlenarVentaBorrador();
     }//GEN-LAST:event_btnBrorradorActionPerformed
 
     private void btnGuardarModificarProductoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarModificarProductoMouseEntered
@@ -10310,7 +10333,8 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     }//GEN-LAST:event_btnAtrasDetalleVentaBorradorMouseExited
 
     private void btnVerDetalleVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerDetalleVentaMouseClicked
-        // TODO add your handling code here:
+       jpnListaVentas.setVisible(false);
+       jpnDetalleVenta.setVisible(true);
     }//GEN-LAST:event_btnVerDetalleVentaMouseClicked
 
     private void btnVerDetalleVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerDetalleVentaMouseEntered
@@ -10346,14 +10370,67 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     }//GEN-LAST:event_btnBrorradorMouseExited
 
     private void btnVerDetalleVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDetalleVentaActionPerformed
-        
-        
-        
-        
-        
-        
-        
-        
+       try {
+            //LLEVAR LA INFO AL PANEL DE DETALLE VENTA
+            txtIdDetalleVenta.setText(tblListaVentas.getValueAt(tblListaVentas.getSelectedRow(), 0).toString());
+            txtTipoVentaDetalleVenta.setText(tblListaVentas.getValueAt(tblListaVentas.getSelectedRow(), 3).toString());
+            txtSucursalDetalleVenta.setText(tblListaVentas.getValueAt(tblListaVentas.getSelectedRow(), 2).toString());
+            txtClienteDetalleVenta.setText(tblListaVentas.getValueAt(tblListaVentas.getSelectedRow(), 5).toString());
+            txtTipoPrecioDetalleVenta.setText(tblListaVentas.getValueAt(tblListaVentas.getSelectedRow(), 4).toString());
+            txtFechaDetalleVenta.setText(tblListaVentas.getValueAt(tblListaVentas.getSelectedRow(), 1).toString());
+            txtIVADetalleVenta.setText("$ " + tblListaVentas.getValueAt(tblListaVentas.getSelectedRow(), 6).toString());
+            txtTotalGravadoDetalleVenta.setText("$ " + tblListaVentas.getValueAt(tblListaVentas.getSelectedRow(), 7).toString());
+            txtTotalDetalleVenta.setText("$ " + tblListaVentas.getValueAt(tblListaVentas.getSelectedRow(), 8).toString());
+            txtDireccionDetalleVenta.setText(tblListaVentas.getValueAt(tblListaVentas.getSelectedRow(), 9).toString());
+            txtGiroDetalleVenta.setText(tblListaVentas.getValueAt(tblListaVentas.getSelectedRow(), 10).toString());
+            txtNITDetalleVenta.setText(tblListaVentas.getValueAt(tblListaVentas.getSelectedRow(), 11).toString());
+            txtNRCDetalleVenta.setText(tblListaVentas.getValueAt(tblListaVentas.getSelectedRow(), 12).toString());
+            txtNoDocDetalleVenta.setText(tblListaVentas.getValueAt(tblListaVentas.getSelectedRow(), 13).toString());
+            txtPacDetalleVenta.setText(tblListaVentas.getValueAt(tblListaVentas.getSelectedRow(), 14).toString());
+            txtUtilidadDetalleVenta.setText(tblListaVentas.getValueAt(tblListaVentas.getSelectedRow(), 15).toString());        
+            //LLENAR TABlA DE DETALLE VENTA
+            String[] cm = new String[]{"CodBarra", "IdVenta", "Cantidad", "PrecioUnitario"};
+            iList p = new iList(new ListasTablas("IdVenta", tblListaVentas.getValueAt(tblListaVentas.getSelectedRow(), 0)));
+            ArrayList<Object> listaDetalleVentas = new ArrayList();
+            DefaultTableModel modelo = new DefaultTableModel();
+            conection cn = new conection();
+            try {
+                cn.Conectar();
+                PreparedStatement ps = cn.BuscarRegistro("detalleventa", cm, p);
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+
+                    listaDetalleVentas.add(rs.getString("CodBarra"));
+                    listaDetalleVentas.add(rs.getString("IdVenta"));
+                    listaDetalleVentas.add(rs.getString("Cantidad"));
+                    listaDetalleVentas.add(rs.getString("PrecioUnitario"));
+                }
+                cn.Desconectar();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Algo paso llenando la tabla de detalle venta " + e.getMessage());
+            }
+            ArrayList<DetalleVenta> listaDetalleVenta = (ArrayList) listaDetalleVentas;
+            Object[] fila = new Object[4];
+
+            String[] detalleventas = new String[]{"CodBarra", "IdVenta", "Cantidad", "Precio Unitario"};
+            modelo.setColumnIdentifiers(detalleventas);
+            Iterator<DetalleVenta> venta = listaDetalleVenta.iterator();
+            while (venta.hasNext()) {
+                fila[0] = venta.next();
+                fila[1] = venta.next();
+                fila[2] = venta.next();
+                fila[3] = venta.next();
+                modelo.addRow(fila);
+
+            }
+            tblDetalleVenta.setModel(modelo);
+            System.out.println("Lleno DetalleVenta!...creo");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Seleccione una venta");
+        }  
+      
     }//GEN-LAST:event_btnVerDetalleVentaActionPerformed
 
     /**
@@ -10521,7 +10598,9 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JLabel jLabel114;
     private javax.swing.JLabel jLabel115;
     private javax.swing.JLabel jLabel116;
+    private javax.swing.JLabel jLabel117;
     private javax.swing.JLabel jLabel118;
+    private javax.swing.JLabel jLabel119;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel120;
     private javax.swing.JLabel jLabel125;
@@ -11031,6 +11110,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JTextField txtNumDocCompra;
     private javax.swing.JTextField txtNumDocumentoDetalleCompra;
     private javax.swing.JTextField txtPacConsolidarVenta;
+    private javax.swing.JTextField txtPacDetalleVenta;
     private javax.swing.JTextField txtPacVenta;
     private javax.swing.JTextField txtPercepcion;
     private javax.swing.JTextField txtPercepcionDetalleCompra;
@@ -11066,6 +11146,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JTextField txtUsuariosBuscar;
     private javax.swing.JTextField txtUtPar;
     private javax.swing.JTextField txtUtilidadConsolidarVenta;
+    private javax.swing.JTextField txtUtilidadDetalleVenta;
     private javax.swing.JTextField txtUtilidadPrecio;
     private javax.swing.JTextField txtUtilidadVenta;
     private javax.swing.JTextField txtValorPar;
