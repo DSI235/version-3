@@ -1548,7 +1548,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         lblListadoVentas = new javax.swing.JLabel();
         jSeparator45 = new javax.swing.JSeparator();
         btnReport = new javax.swing.JButton();
-        btnVerDetalleVenta1 = new javax.swing.JButton();
+        btnVerDetalleVenta = new javax.swing.JButton();
         jpnAgregarVenta = new javax.swing.JPanel();
         jSeparator62 = new javax.swing.JSeparator();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -3690,6 +3690,17 @@ public final class JFRPrincipal extends javax.swing.JFrame {
 
         btnBrorrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/borrador.png"))); // NOI18N
         btnBrorrador.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnBrorrador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBrorradorMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBrorradorMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBrorradorMouseExited(evt);
+            }
+        });
         btnBrorrador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBrorradorActionPerformed(evt);
@@ -3717,6 +3728,17 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         jpnListaVentas.add(jSeparator45, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 127, 180, 10));
 
         btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/reporte.png"))); // NOI18N
+        btnReport.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnReportMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnReportMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnReportMouseExited(evt);
+            }
+        });
         btnReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReportActionPerformed(evt);
@@ -3724,25 +3746,25 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         });
         jpnListaVentas.add(btnReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 110, 30));
 
-        btnVerDetalleVenta1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/detalles2.png"))); // NOI18N
-        btnVerDetalleVenta1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnVerDetalleVenta1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnVerDetalleVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/detalles2.png"))); // NOI18N
+        btnVerDetalleVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnVerDetalleVenta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnVerDetalleVenta1MouseClicked(evt);
+                btnVerDetalleVentaMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnVerDetalleVenta1MouseEntered(evt);
+                btnVerDetalleVentaMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnVerDetalleVenta1MouseExited(evt);
+                btnVerDetalleVentaMouseExited(evt);
             }
         });
-        btnVerDetalleVenta1.addActionListener(new java.awt.event.ActionListener() {
+        btnVerDetalleVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerDetalleVenta1ActionPerformed(evt);
+                btnVerDetalleVentaActionPerformed(evt);
             }
         });
-        jpnListaVentas.add(btnVerDetalleVenta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 110, 30));
+        jpnListaVentas.add(btnVerDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 110, 30));
 
         getContentPane().add(jpnListaVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -9601,46 +9623,8 @@ imprimirVenta();
             int IdBorrador = Integer.parseInt(txtIdVenta.getText());
             //si es borrador
             if (borrador==3) {
-                                    int idTipoPrecio = 0;
-                                    double utilidadb=0;
-                    String tp = cmbTipoPrecioVenta.getSelectedItem().toString();
-                    try {
-                        String[] cm = new String[]{"IdTipoPrecio", "Nombre", "Utilidad"};
-                        iList p = new iList(new ListasTablas("Nombre", tp));
-
-                        try {
-                            cn.Conectar();
-                            PreparedStatement ps = cn.BuscarRegistro("tipoprecio", cm, p);
-                            ResultSet rs = ps.executeQuery();
-
-                            while (rs.next()) {
-                                idTipoPrecio = Integer.parseInt(rs.getString("IdTipoPrecio"));
-                                utilidadb = Double.parseDouble(rs.getString("Utilidad"));
-                                utilidadb = (1 - utilidadb);
-                                
-
-                            }
-                            cn.Desconectar();
-
-                        } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, "Error interno buscando el tipoprecio " + e.getMessage());
-                        }
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "Error externo buscando el tipoprecio " + e.getMessage());
-                    }
-                String realizada = "NO";
-                int suc = cmbSucursalVenta.getSelectedIndex();
-                suc = suc + 1;
-                for(int i=0;i < tblProductosVender.getRowCount();i++){
-                    double posicionprecio = (Double.parseDouble(tblProductosVender.getValueAt(i, 3).toString() ));
-                    posicionprecio = (posicionprecio*utilidadb);
-                    posicionprecio = Double.parseDouble(df.format(posicionprecio));
-                    cn.UID("INSERT INTO ventaborrador (IdBorrador, CodBarra, Producto, Cantidad, PrecioUnitario, IdSucursal, Realizada) VALUES ('" +IdBorrador+ "','" +tblProductosVender.getValueAt(i, 0)+ "','"
-                        +tblProductosVender.getValueAt(i, 1)+ "','" + tblProductosVender.getValueAt(i, 2) + "','" + posicionprecio + "'    ,'" + suc + "'  ,'" + realizada + "')");
-                    cn.UID("UPDATE inventario SET Cantidad = Cantidad - '" +tblProductosVender.getValueAt(i, 2)+ "'  WHERE CodBarra='" +tblProductosVender.getValueAt(i, 0)+ "'  AND IdSucursal ='"+suc+"'");
-                }
-                jpnAgregarVenta.setVisible(false);
-                jpnListaVentas.setVisible(true);
+                
+                
             }
             //si no es borrador
             else {
@@ -10182,11 +10166,11 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     }//GEN-LAST:event_btnConsolidarVentasBorradorMouseClicked
 
     private void btnConsolidarVentasBorradorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsolidarVentasBorradorMouseEntered
-        // TODO add your handling code here:
+    btnConsolidarVentasBorrador.setIcon(new ImageIcon(getClass().getResource("/iconos/consolidarB.png")));                                          
     }//GEN-LAST:event_btnConsolidarVentasBorradorMouseEntered
 
     private void btnConsolidarVentasBorradorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsolidarVentasBorradorMouseExited
-        // TODO add your handling code here:
+    btnConsolidarVentasBorrador.setIcon(new ImageIcon(getClass().getResource("/iconos/consolidar.png")));                                          
     }//GEN-LAST:event_btnConsolidarVentasBorradorMouseExited
 
     private void btnConsolidarVentasBorradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsolidarVentasBorradorActionPerformed
@@ -10198,11 +10182,11 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     }//GEN-LAST:event_btnVerDetalleVentaBorradorMouseClicked
 
     private void btnVerDetalleVentaBorradorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerDetalleVentaBorradorMouseEntered
-        // TODO add your handling code here:
+        btnVerDetalleVentaBorrador.setIcon(new ImageIcon(getClass().getResource("/iconos/detalles2B.png")));                                          
     }//GEN-LAST:event_btnVerDetalleVentaBorradorMouseEntered
 
     private void btnVerDetalleVentaBorradorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerDetalleVentaBorradorMouseExited
-        // TODO add your handling code here:
+        btnVerDetalleVentaBorrador.setIcon(new ImageIcon(getClass().getResource("/iconos/detalles2.png")));                                          
     }//GEN-LAST:event_btnVerDetalleVentaBorradorMouseExited
 
     private void btnVerDetalleVentaBorradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDetalleVentaBorradorActionPerformed
@@ -10281,21 +10265,45 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAtrasDetalleVentaBorradorMouseExited
 
-    private void btnVerDetalleVenta1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerDetalleVenta1MouseClicked
+    private void btnVerDetalleVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerDetalleVentaMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnVerDetalleVenta1MouseClicked
+    }//GEN-LAST:event_btnVerDetalleVentaMouseClicked
 
-    private void btnVerDetalleVenta1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerDetalleVenta1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVerDetalleVenta1MouseEntered
+    private void btnVerDetalleVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerDetalleVentaMouseEntered
+        btnVerDetalleVenta.setIcon(new ImageIcon(getClass().getResource("/iconos/detalles2B.png")));
+    }//GEN-LAST:event_btnVerDetalleVentaMouseEntered
 
-    private void btnVerDetalleVenta1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerDetalleVenta1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVerDetalleVenta1MouseExited
+    private void btnVerDetalleVentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerDetalleVentaMouseExited
+        btnVerDetalleVenta.setIcon(new ImageIcon(getClass().getResource("/iconos/detalles2.png")));
+    }//GEN-LAST:event_btnVerDetalleVentaMouseExited
 
-    private void btnVerDetalleVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDetalleVenta1ActionPerformed
+    private void btnVerDetalleVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDetalleVentaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnVerDetalleVenta1ActionPerformed
+    }//GEN-LAST:event_btnVerDetalleVentaActionPerformed
+
+    private void btnReportMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportMouseEntered
+       btnReport.setIcon(new ImageIcon(getClass().getResource("/iconos/reporteB.png")));  
+    }//GEN-LAST:event_btnReportMouseEntered
+
+    private void btnReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportMouseClicked
+       // TODO add your handling code here:
+    }//GEN-LAST:event_btnReportMouseClicked
+
+    private void btnReportMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportMouseExited
+    btnReport.setIcon(new ImageIcon(getClass().getResource("/iconos/reporte.png")));
+    }//GEN-LAST:event_btnReportMouseExited
+
+    private void btnBrorradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBrorradorMouseClicked
+        
+    }//GEN-LAST:event_btnBrorradorMouseClicked
+
+    private void btnBrorradorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBrorradorMouseEntered
+    btnBrorrador.setIcon(new ImageIcon(getClass().getResource("/iconos/borradorB.png")));                                          
+    }//GEN-LAST:event_btnBrorradorMouseEntered
+
+    private void btnBrorradorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBrorradorMouseExited
+     btnBrorrador.setIcon(new ImageIcon(getClass().getResource("/iconos/borrador.png")));                                          
+    }//GEN-LAST:event_btnBrorradorMouseExited
 
     /**
      * @param args the command line arguments
@@ -10419,7 +10427,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JButton btnVenderConsolidar;
     private javax.swing.JButton btnVentas;
     private javax.swing.JButton btnVerDetalle;
-    private javax.swing.JButton btnVerDetalleVenta1;
+    private javax.swing.JButton btnVerDetalleVenta;
     private javax.swing.JButton btnVerDetalleVentaBorrador;
     private javax.swing.ButtonGroup btngFiltroProductos;
     private javax.swing.JComboBox<String> cmbAño;
