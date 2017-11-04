@@ -1818,14 +1818,14 @@ public void LlenarVenta() {
         lblListadoVentas3 = new javax.swing.JLabel();
         jSeparator64 = new javax.swing.JSeparator();
         btnAtrasReporteVenta2 = new javax.swing.JButton();
-        cmbMes = new javax.swing.JComboBox<>();
+        cmbMes = new javax.swing.JComboBox<String>();
         jLabel96 = new javax.swing.JLabel();
         jSeparator103 = new javax.swing.JSeparator();
         jLabel100 = new javax.swing.JLabel();
         jSeparator107 = new javax.swing.JSeparator();
-        cmbAño = new javax.swing.JComboBox<>();
+        cmbAño = new javax.swing.JComboBox<String>();
         btnGenerar = new javax.swing.JButton();
-        cmbReporteVenta = new javax.swing.JComboBox<>();
+        cmbReporteVenta = new javax.swing.JComboBox<String>();
         jpnReporteMesCompras = new javax.swing.JPanel();
         jScrollPane17 = new javax.swing.JScrollPane();
         tblListaComprasMes = new javax.swing.JTable();
@@ -1835,14 +1835,14 @@ public void LlenarVenta() {
         lblListadoVentas4 = new javax.swing.JLabel();
         jSeparator67 = new javax.swing.JSeparator();
         btnAtrasReporteCompra = new javax.swing.JButton();
-        cmbMes1 = new javax.swing.JComboBox<>();
+        cmbMes1 = new javax.swing.JComboBox<String>();
         jLabel97 = new javax.swing.JLabel();
         jSeparator104 = new javax.swing.JSeparator();
         jLabel101 = new javax.swing.JLabel();
         jSeparator108 = new javax.swing.JSeparator();
-        cmbAño1 = new javax.swing.JComboBox<>();
+        cmbAño1 = new javax.swing.JComboBox<String>();
         btnGenerar1 = new javax.swing.JButton();
-        cmbReporteCompra = new javax.swing.JComboBox<>();
+        cmbReporteCompra = new javax.swing.JComboBox<String>();
         jpnUsuarios = new javax.swing.JPanel();
         btnAgregarUsuario = new javax.swing.JButton();
         btnModificarUsuario = new javax.swing.JButton();
@@ -1873,8 +1873,8 @@ public void LlenarVenta() {
         jSeparator31 = new javax.swing.JSeparator();
         jSeparator33 = new javax.swing.JSeparator();
         jSeparator36 = new javax.swing.JSeparator();
-        cmbRolUsuario = new javax.swing.JComboBox<>();
-        cmbEstadoUsuario = new javax.swing.JComboBox<>();
+        cmbRolUsuario = new javax.swing.JComboBox<String>();
+        cmbEstadoUsuario = new javax.swing.JComboBox<String>();
         jpnModificarUsuario = new javax.swing.JPanel();
         btnGuardarUsuario1 = new javax.swing.JButton();
         btnAtrasUsuarios1 = new javax.swing.JButton();
@@ -1893,8 +1893,8 @@ public void LlenarVenta() {
         jSeparator58 = new javax.swing.JSeparator();
         jSeparator59 = new javax.swing.JSeparator();
         jSeparator80 = new javax.swing.JSeparator();
-        cmbNuevoRolUsuario = new javax.swing.JComboBox<>();
-        cmbNuevoEstadoUsuario = new javax.swing.JComboBox<>();
+        cmbNuevoRolUsuario = new javax.swing.JComboBox<String>();
+        cmbNuevoEstadoUsuario = new javax.swing.JComboBox<String>();
         jpnListaVentasBorrador = new javax.swing.JPanel();
         jScrollPane19 = new javax.swing.JScrollPane();
         tblListaVentasBorrador = new javax.swing.JTable();
@@ -1905,7 +1905,7 @@ public void LlenarVenta() {
         lblTituloListaVentasBorrador = new javax.swing.JLabel();
         lblFiltrarVentasBorrador = new javax.swing.JLabel();
         jSeparator114 = new javax.swing.JSeparator();
-        cmbFiltroSucursalVentasBorrador = new javax.swing.JComboBox<>();
+        cmbFiltroSucursalVentasBorrador = new javax.swing.JComboBox<String>();
         jpnConsolidarVentas = new javax.swing.JPanel();
         jSeparator81 = new javax.swing.JSeparator();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -1913,14 +1913,7 @@ public void LlenarVenta() {
         btnAtras = new javax.swing.JButton();
         jPanel66 = new javax.swing.JPanel();
         jSeparator105 = new javax.swing.JSeparator();
-        lblIdVentaConsolidar = new javax.swing.JLabel();
-        txtNoDocVentaConsolidar = new javax.swing.JTextField();
-        lblNumDocConsolidar = new javax.swing.JLabel();
-        txtIdVentaConsolidar = new javax.swing.JTextField();
         lblConsolidarVentas = new javax.swing.JLabel();
-        lblCodBarraProd25 = new javax.swing.JLabel();
-        cmbSucursalVentaConsolidar = new javax.swing.JComboBox();
-        lblCodBarraProd27 = new javax.swing.JLabel();
         txtSumaVenta1 = new javax.swing.JTextField();
         lblSumaVenta1 = new javax.swing.JLabel();
         txtIvaVenta1 = new javax.swing.JTextField();
@@ -1931,7 +1924,6 @@ public void LlenarVenta() {
         lblFecha4 = new javax.swing.JLabel();
         txt_fecha_venta_Consolidar = new com.toedter.calendar.JDateChooser();
         btnVenderConsolidar = new javax.swing.JButton();
-        cmbTipoVentaConsolidar = new javax.swing.JComboBox();
         txtPacConsolidarVenta = new javax.swing.JTextField();
         lblSumaVenta3 = new javax.swing.JLabel();
         txtUtilidadConsolidarVenta = new javax.swing.JTextField();
@@ -5626,7 +5618,7 @@ public void LlenarVenta() {
         });
         jpnReporteMesVentas2.add(btnGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 420, 130, 40));
 
-        cmbReporteVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<SELECCIONAR>", "CREDITO FISCAL", "LIBRE", "FACTURA", " " }));
+        cmbReporteVenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<SELECCIONAR>", "CREDITO FISCAL", "LIBRE", "FACTURA", " " }));
         cmbReporteVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbReporteVentaActionPerformed(evt);
@@ -5736,7 +5728,7 @@ public void LlenarVenta() {
         });
         jpnReporteMesCompras.add(btnGenerar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 400, 130, 40));
 
-        cmbReporteCompra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<SELECCIONAR>", "CREDITO FISCAL", "LIBRE", "FACTURA", " " }));
+        cmbReporteCompra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<SELECCIONAR>", "CREDITO FISCAL", "LIBRE", "FACTURA", " " }));
         jpnReporteMesCompras.add(cmbReporteCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 400, 150, 40));
 
         getContentPane().add(jpnReporteMesCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
@@ -5940,10 +5932,10 @@ public void LlenarVenta() {
         jpnAgregarUsuario.add(jSeparator33, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 60, 10));
         jpnAgregarUsuario.add(jSeparator36, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 60, 10));
 
-        cmbRolUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Comprador", "Vendedor" }));
+        cmbRolUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Comprador", "Vendedor" }));
         jpnAgregarUsuario.add(cmbRolUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 180, -1));
 
-        cmbEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        cmbEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo" }));
         jpnAgregarUsuario.add(cmbEstadoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 180, -1));
 
         getContentPane().add(jpnAgregarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
@@ -6050,10 +6042,10 @@ public void LlenarVenta() {
         jpnModificarUsuario.add(jSeparator59, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 60, 10));
         jpnModificarUsuario.add(jSeparator80, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 60, 10));
 
-        cmbNuevoRolUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Comprador", "Vendedor" }));
+        cmbNuevoRolUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Comprador", "Vendedor" }));
         jpnModificarUsuario.add(cmbNuevoRolUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 180, -1));
 
-        cmbNuevoEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        cmbNuevoEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo" }));
         jpnModificarUsuario.add(cmbNuevoEstadoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 180, -1));
 
         getContentPane().add(jpnModificarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
@@ -6208,33 +6200,6 @@ public void LlenarVenta() {
         jSeparator105.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel66.add(jSeparator105, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 20, 70));
 
-        lblIdVentaConsolidar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblIdVentaConsolidar.setForeground(new java.awt.Color(255, 255, 255));
-        lblIdVentaConsolidar.setText("ID Venta");
-        jPanel66.add(lblIdVentaConsolidar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 70, -1));
-
-        txtNoDocVentaConsolidar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtNoDocVentaConsolidar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
-        txtNoDocVentaConsolidar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNoDocVentaConsolidarKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNoDocVentaConsolidarKeyTyped(evt);
-            }
-        });
-        jPanel66.add(txtNoDocVentaConsolidar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 210, 30));
-
-        lblNumDocConsolidar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblNumDocConsolidar.setForeground(new java.awt.Color(255, 255, 255));
-        lblNumDocConsolidar.setText("N° de Documento");
-        jPanel66.add(lblNumDocConsolidar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 120, -1));
-
-        txtIdVentaConsolidar.setEditable(false);
-        txtIdVentaConsolidar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtIdVentaConsolidar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
-        jPanel66.add(txtIdVentaConsolidar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, 140, 30));
-
         lblConsolidarVentas.setBackground(new java.awt.Color(255, 255, 255));
         lblConsolidarVentas.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblConsolidarVentas.setForeground(new java.awt.Color(255, 255, 255));
@@ -6242,15 +6207,6 @@ public void LlenarVenta() {
         jPanel66.add(lblConsolidarVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 180, 30));
 
         jpnConsolidarVentas.add(jPanel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 70));
-
-        lblCodBarraProd25.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblCodBarraProd25.setText("Tipo de Venta:");
-        jpnConsolidarVentas.add(lblCodBarraProd25, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 90, 30));
-        jpnConsolidarVentas.add(cmbSucursalVentaConsolidar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 140, 30));
-
-        lblCodBarraProd27.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblCodBarraProd27.setText("Sucursal:");
-        jpnConsolidarVentas.add(lblCodBarraProd27, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 60, 30));
         jpnConsolidarVentas.add(txtSumaVenta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 450, 100, 30));
 
         lblSumaVenta1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -6273,10 +6229,10 @@ public void LlenarVenta() {
 
         lblFecha4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblFecha4.setText("Fecha:");
-        jpnConsolidarVentas.add(lblFecha4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, 50, 30));
+        jpnConsolidarVentas.add(lblFecha4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 50, 30));
 
         txt_fecha_venta_Consolidar.setDateFormatString("MM/dd/yyyy HH:mm:ss");
-        jpnConsolidarVentas.add(txt_fecha_venta_Consolidar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, 180, 30));
+        jpnConsolidarVentas.add(txt_fecha_venta_Consolidar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 180, 30));
 
         btnVenderConsolidar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnVenderConsolidar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/vender.png"))); // NOI18N
@@ -6295,14 +6251,6 @@ public void LlenarVenta() {
             }
         });
         jpnConsolidarVentas.add(btnVenderConsolidar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 450, 110, 30));
-
-        cmbTipoVentaConsolidar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Factura", "Crédito fiscal" }));
-        cmbTipoVentaConsolidar.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbTipoVentaConsolidarItemStateChanged(evt);
-            }
-        });
-        jpnConsolidarVentas.add(cmbTipoVentaConsolidar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, 110, 30));
         jpnConsolidarVentas.add(txtPacConsolidarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 450, 100, 30));
 
         lblSumaVenta3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -10667,40 +10615,17 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
 
         jpnListaVentasBorrador.setVisible(false);
         jpnConsolidarVentas.setVisible(true);
-       
-        cmbTipoVentaConsolidar.setSelectedItem("Crédito fiscal");
-        cmbTipoVentaConsolidar.setSelectedItem("Factura");
         
         boolean a=true;
         
         DecimalFormat dosdigitos = new DecimalFormat("0.00");
         DecimalFormat cuatrodigitos = new DecimalFormat("0.0000");        
         
-        ControladorVenta Venta = new ControladorVenta();
-        int idVenta = 0;
-        try {
-            idVenta = Venta.ObtenerIdVenta();
-        } catch (ErrorTienda ex) {
-            Logger.getLogger(JFRPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        if (idVenta == 0) {
-            txtIdVentaConsolidar.setText("1");
-        } else {
-            txtIdVentaConsolidar.setText(Integer.toString(idVenta));
-        }
-        
-        
         java.util.Date date = new Date();
         Object param = new java.sql.Timestamp(date.getTime());
         txt_fecha_venta_Consolidar.setDate(date);
 
-        
-             //LISTADO DE SUCURSALES EN COMBOBOX
-             cmbSucursalVentaConsolidar.addItem(tblListaVentasBorrador.getValueAt(0, 1));
-             cmbSucursalVentaConsolidar.setEnabled(false);
-             
-            txtNoDocVentaConsolidar.setText("");
+
             double suma=0, total=0;
             DefaultTableModel modelo = new DefaultTableModel();
             VentasSeleccionadas = tblListaVentasBorrador.getSelectedRows();
@@ -10850,14 +10775,6 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
         jpnReporteMesVentas2.setVisible(true);
     }//GEN-LAST:event_btnReportActionPerformed
 
-    private void txtNoDocVentaConsolidarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNoDocVentaConsolidarKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNoDocVentaConsolidarKeyPressed
-
-    private void txtNoDocVentaConsolidarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNoDocVentaConsolidarKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNoDocVentaConsolidarKeyTyped
-
     private void btnVenderConsolidarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVenderConsolidarMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVenderConsolidarMouseEntered
@@ -10869,45 +10786,6 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private void btnVenderConsolidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderConsolidarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVenderConsolidarActionPerformed
-
-    private void cmbTipoVentaConsolidarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbTipoVentaConsolidarItemStateChanged
-       
-        //Mostrar campos en consolidar ventas
-        String tipoVenta = cmbTipoVentaConsolidar.getSelectedItem().toString();
-        switch (tipoVenta) {
-            
-            case "Factura":
-            txtClienteConsolidarVenta.setText("");
-            txtDireccionConsolidarVenta.setText("");
-            txtNITConsolidarVenta.setText("");
-            txtNITConsolidarVenta.setText("");
-            txtNRCConsolidarVenta.setText("");
-            txtGiroConsolidarVenta.setText("");
-            txtClienteConsolidarVenta.setEnabled(false);
-            txtDireccionConsolidarVenta.setEnabled(false);
-            txtNITConsolidarVenta.setEnabled(false);
-            txtNRCConsolidarVenta.setEnabled(false);
-            txtGiroConsolidarVenta.setEnabled(false);
-              
-            break;
-           
-            case "Crédito fiscal":
-            txtClienteConsolidarVenta.setEnabled(true);
-            txtDireccionConsolidarVenta.setEnabled(true);
-            txtNITConsolidarVenta.setEnabled(true);
-            txtNRCConsolidarVenta.setEnabled(true);
-            txtGiroConsolidarVenta.setEnabled(true);
-                
-            break;
-            
-        }
-        
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_cmbTipoVentaConsolidarItemStateChanged
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         // TODO add your handling code here:
@@ -11357,12 +11235,10 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JComboBox cmbSucursal2;
     private javax.swing.JComboBox cmbSucursalCompra;
     private javax.swing.JComboBox cmbSucursalVenta;
-    private javax.swing.JComboBox cmbSucursalVentaConsolidar;
     private javax.swing.JComboBox cmbSucursales1;
     private javax.swing.JComboBox cmbTipoCompra;
     private javax.swing.JComboBox cmbTipoPrecioVenta;
     private javax.swing.JComboBox cmbTipoVenta;
-    private javax.swing.JComboBox cmbTipoVentaConsolidar;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
@@ -11732,8 +11608,6 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JLabel lblCodBarraProd22;
     private javax.swing.JLabel lblCodBarraProd23;
     private javax.swing.JLabel lblCodBarraProd24;
-    private javax.swing.JLabel lblCodBarraProd25;
-    private javax.swing.JLabel lblCodBarraProd27;
     private javax.swing.JLabel lblCodBarraProd3;
     private javax.swing.JLabel lblCodBarraProd6;
     private javax.swing.JLabel lblCodBarraProd9;
@@ -11746,7 +11620,6 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JLabel lblFiltrarVentasBorrador;
     private javax.swing.JLabel lblGiroConsolidarVenta;
     private javax.swing.JLabel lblIdCompra2;
-    private javax.swing.JLabel lblIdVentaConsolidar;
     private javax.swing.JLabel lblIva;
     private javax.swing.JLabel lblIvaVenta;
     private javax.swing.JLabel lblIvaVenta1;
@@ -11772,7 +11645,6 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JLabel lblNITVenta;
     private javax.swing.JLabel lblNRCConsollidarVenta;
     private javax.swing.JLabel lblNomProd2;
-    private javax.swing.JLabel lblNumDocConsolidar;
     private javax.swing.JLabel lblPercepcion;
     private javax.swing.JLabel lblProveedor2;
     private javax.swing.JLabel lblProveedores10;
@@ -11859,7 +11731,6 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JTextField txtIdSuc;
     private javax.swing.JTextField txtIdTP;
     private javax.swing.JTextField txtIdVenta;
-    private javax.swing.JTextField txtIdVentaConsolidar;
     private javax.swing.JTextField txtIva;
     private javax.swing.JTextField txtIvaVenta;
     private javax.swing.JTextField txtIvaVenta1;
@@ -11876,7 +11747,6 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JTextField txtNRCVenta;
     private javax.swing.JTextField txtNoDocDetalleVenta;
     private javax.swing.JTextField txtNoDocVenta;
-    private javax.swing.JTextField txtNoDocVentaConsolidar;
     private javax.swing.JTextField txtNomPar;
     private javax.swing.JTextField txtNomPar1;
     private javax.swing.JTextField txtNomProd;
