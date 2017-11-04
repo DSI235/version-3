@@ -9,3 +9,4 @@ build/built-jar.properties
 *.properties
 *.class
 *.class
+build/classes/connections/ClaseConexion.class
