@@ -1276,8 +1276,7 @@ public void LlenarVenta() {
         // borrador
         jpnListaVentasBorrador.setVisible(false);
         jpnConsolidarVentas.setVisible(false);
-        jpnDetalleVentaBorrador.setVisible(false);
-        jpnDatosVentaBorrador.setVisible(false);
+        jpnDetalleVentaBorrador.setVisible(false);        
         //
     }
 
@@ -1907,6 +1906,8 @@ public void LlenarVenta() {
         lblFiltrarVentasBorrador = new javax.swing.JLabel();
         jSeparator114 = new javax.swing.JSeparator();
         cmbFiltroSucursalVentasBorrador = new javax.swing.JComboBox<String>();
+        lblFiltrarVentasBorrador2 = new javax.swing.JLabel();
+        cmmDatosVentasb = new javax.swing.JComboBox<String>();
         jpnConsolidarVentas = new javax.swing.JPanel();
         jSeparator81 = new javax.swing.JSeparator();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -1931,15 +1932,15 @@ public void LlenarVenta() {
         lblSumaVenta3 = new javax.swing.JLabel();
         txtUtilidadConsolidarVenta = new javax.swing.JTextField();
         lblUtilidadConsolidarVenta = new javax.swing.JLabel();
-        lblNITConsolidarVenta = new javax.swing.JLabel();
-        txtNITConsolidarVenta = new javax.swing.JTextField();
-        lblNRCConsollidarVenta = new javax.swing.JLabel();
+        lblNITConsolidarVentab = new javax.swing.JLabel();
+        txtNITConsolidarVentab = new javax.swing.JTextField();
+        lblNRCConsollidarVentab = new javax.swing.JLabel();
         lblGiroConsolidarVenta = new javax.swing.JLabel();
         txtNRCConsolidarVenta = new javax.swing.JTextField();
         txtDireccionConsolidarVenta = new javax.swing.JTextField();
         lblClienteConsolidarVenta = new javax.swing.JLabel();
         txtClienteConsolidarVenta = new javax.swing.JTextField();
-        txtGiroConsolidarVenta = new javax.swing.JTextField();
+        txtGiroConsolidarVentab = new javax.swing.JTextField();
         lblDireccionConsolidarVenta = new javax.swing.JLabel();
         jpnDetalleVentaBorrador = new javax.swing.JPanel();
         jPanel67 = new javax.swing.JPanel();
@@ -1961,14 +1962,6 @@ public void LlenarVenta() {
         jLabel126 = new javax.swing.JLabel();
         txtTotalDetalleVentaBorrador = new javax.swing.JTextField();
         jLabel129 = new javax.swing.JLabel();
-        jpnDatosVentaBorrador = new javax.swing.JPanel();
-        btnContinuarVentab = new javax.swing.JButton();
-        btnAtrasDatosVentab = new javax.swing.JButton();
-        jPanel68 = new javax.swing.JPanel();
-        jLabel121 = new javax.swing.JLabel();
-        jSeparator116 = new javax.swing.JSeparator();
-        lblFiltrarVentasBorrador1 = new javax.swing.JLabel();
-        cmmDatosVentasb = new javax.swing.JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/iconos/lanzador.png")).getImage());
@@ -6158,6 +6151,18 @@ public void LlenarVenta() {
         });
         jpnListaVentasBorrador.add(cmbFiltroSucursalVentasBorrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 150, -1));
 
+        lblFiltrarVentasBorrador2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblFiltrarVentasBorrador2.setText("Consolidar como:");
+        jpnListaVentasBorrador.add(lblFiltrarVentasBorrador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 120, 30));
+
+        cmmDatosVentasb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Factura", "Credito Fiscal" }));
+        cmmDatosVentasb.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmmDatosVentasbItemStateChanged(evt);
+            }
+        });
+        jpnListaVentasBorrador.add(cmmDatosVentasb, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, 150, 30));
+
         getContentPane().add(jpnListaVentasBorrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
         jpnConsolidarVentas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -6290,23 +6295,23 @@ public void LlenarVenta() {
         lblUtilidadConsolidarVenta.setText("Utilidad :   $");
         jpnConsolidarVentas.add(lblUtilidadConsolidarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 480, 80, 30));
 
-        lblNITConsolidarVenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblNITConsolidarVenta.setText("NIT:");
-        jpnConsolidarVentas.add(lblNITConsolidarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 30, 30));
+        lblNITConsolidarVentab.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblNITConsolidarVentab.setText("NIT:");
+        jpnConsolidarVentas.add(lblNITConsolidarVentab, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 30, 30));
 
-        txtNITConsolidarVenta.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNITConsolidarVentab.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNITConsolidarVentaKeyPressed(evt);
+                txtNITConsolidarVentabKeyPressed(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNITConsolidarVentaKeyTyped(evt);
+                txtNITConsolidarVentabKeyTyped(evt);
             }
         });
-        jpnConsolidarVentas.add(txtNITConsolidarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 210, 30));
+        jpnConsolidarVentas.add(txtNITConsolidarVentab, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 210, 30));
 
-        lblNRCConsollidarVenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblNRCConsollidarVenta.setText("NRC:");
-        jpnConsolidarVentas.add(lblNRCConsollidarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 30, 30));
+        lblNRCConsollidarVentab.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblNRCConsollidarVentab.setText("NRC:");
+        jpnConsolidarVentas.add(lblNRCConsollidarVentab, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 30, 30));
 
         lblGiroConsolidarVenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblGiroConsolidarVenta.setText("Giro:");
@@ -6346,12 +6351,12 @@ public void LlenarVenta() {
         });
         jpnConsolidarVentas.add(txtClienteConsolidarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 210, 30));
 
-        txtGiroConsolidarVenta.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtGiroConsolidarVentab.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtGiroConsolidarVentaKeyTyped(evt);
+                txtGiroConsolidarVentabKeyTyped(evt);
             }
         });
-        jpnConsolidarVentas.add(txtGiroConsolidarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 180, 30));
+        jpnConsolidarVentas.add(txtGiroConsolidarVentab, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 180, 30));
 
         lblDireccionConsolidarVenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblDireccionConsolidarVenta.setText("Direccion:");
@@ -6467,69 +6472,6 @@ public void LlenarVenta() {
         jpnDetalleVentaBorrador.add(jLabel129, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 380, 110, 40));
 
         getContentPane().add(jpnDetalleVentaBorrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
-
-        jpnDatosVentaBorrador.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnContinuarVentab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/agregar2.png"))); // NOI18N
-        btnContinuarVentab.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnContinuarVentab.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnContinuarVentabMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnContinuarVentabMouseExited(evt);
-            }
-        });
-        btnContinuarVentab.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnContinuarVentabActionPerformed(evt);
-            }
-        });
-        jpnDatosVentaBorrador.add(btnContinuarVentab, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 380, 110, 30));
-
-        btnAtrasDatosVentab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/atras.png"))); // NOI18N
-        btnAtrasDatosVentab.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnAtrasDatosVentab.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAtrasDatosVentabMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnAtrasDatosVentabMouseExited(evt);
-            }
-        });
-        btnAtrasDatosVentab.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAtrasDatosVentabActionPerformed(evt);
-            }
-        });
-        jpnDatosVentaBorrador.add(btnAtrasDatosVentab, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, 110, 30));
-
-        jPanel68.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel68.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel121.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel121.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel121.setText("Datos ventas Borrador");
-        jPanel68.add(jLabel121, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 300, 30));
-
-        jSeparator116.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel68.add(jSeparator116, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 20, 50));
-
-        jpnDatosVentaBorrador.add(jPanel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 50));
-
-        lblFiltrarVentasBorrador1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblFiltrarVentasBorrador1.setText("Tipo Factura:");
-        jpnDatosVentaBorrador.add(lblFiltrarVentasBorrador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 120, 30));
-
-        cmmDatosVentasb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Factura", "Credito Fiscal" }));
-        cmmDatosVentasb.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmmDatosVentasbItemStateChanged(evt);
-            }
-        });
-        jpnDatosVentaBorrador.add(cmmDatosVentasb, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 150, -1));
-
-        getContentPane().add(jpnDatosVentaBorrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
         pack();
         setLocationRelativeTo(null);
@@ -10704,10 +10646,11 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
 
     private void btnConsolidarVentasBorradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsolidarVentasBorradorActionPerformed
 
+        int SaPocCoVenb = cmmDatosVentasb.getSelectedIndex();                
         jpnListaVentasBorrador.setVisible(false);
-        jpnDatosVentaBorrador.setVisible(true);
+        jpnConsolidarVentas.setVisible(true);
         
-        boolean a=true;
+        
         
         DecimalFormat dosdigitos = new DecimalFormat("0.00");
         DecimalFormat cuatrodigitos = new DecimalFormat("0.0000");        
@@ -10715,25 +10658,27 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
         java.util.Date date = new Date();
         Object param = new java.sql.Timestamp(date.getTime());
         txt_fecha_venta_Consolidar.setDate(date);
-
-
+        //hacer cuando es factura
+        if (SaPocCoVenb==0) {
+            lblNITConsolidarVentab.setVisible(false);
+            txtNITConsolidarVentab.setVisible(false);
+            lblNRCConsollidarVentab.setVisible(false);
+            txtNRCConsolidarVenta.setVisible(false);
+            lblGiroConsolidarVenta.setVisible(false);
+            txtGiroConsolidarVentab.setVisible(false);
+            boolean a=true;
             double suma=0, total=0;
             DefaultTableModel modelo = new DefaultTableModel();
             VentasSeleccionadas = tblListaVentasBorrador.getSelectedRows();
              
             for(int i=0; i<tblListaVentasBorrador.getSelectedRowCount(); i++){
-            a=true;
-                
-                
+            a=true;                                
             //LLENAR TABlA DE CONSOLIDAR VENTA
             String[] cm = new String[]{"CodBarra", "IdVenta", "Cantidad", "PrecioUnitario"};
             iList p = new iList(new ListasTablas("IdVenta", tblListaVentasBorrador.getValueAt(VentasSeleccionadas[i], 0)));
             ArrayList<Object> listaDetalleVentas = new ArrayList();
            //Calcular nuevos precios para Subtotal y total y luego calcular el pac y la utilidad
-           
-           
-           
-           
+                                            
            //------------
             conection cn = new conection();
             try {
@@ -10761,30 +10706,27 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
                 fila[1] = venta.next();//codigo barra
                 fila[0] = venta.next();//id venta
                 fila[2] = venta.next();//cantidad
-                fila[3] = venta.next();//precio unitario
-                
-                System.out.println(""+modelo.getRowCount());
-                
+                fila[3] = venta.next();//precio unitario                
+                System.out.println(""+modelo.getRowCount());                
                 for(int j=0;j<modelo.getRowCount();j++){
                 if(fila[1]==modelo.getValueAt(j, 1)){
                    modelo.setValueAt(Integer.parseInt(modelo.getValueAt(j, 2).toString())+ Integer.parseInt(fila[2].toString()), j, 2);
                    a=false;
                 }
-                }
-                
+                }                
             }
              if(a=true){
                   modelo.addRow(fila); 
                 }    
-            }
-            
-            //HAY QUE CALCULAR DE NUEVO LOS TOTALES CON EL NUEVO PRECIO
-            
+            }            
+            //HAY QUE CALCULAR DE NUEVO LOS TOTALES CON EL NUEVO PRECIO            
             txtSumaVenta1.setText(""+dosdigitos.format(suma));
             txtTotalVenta1.setText(""+dosdigitos.format(total));
-
             tblProductosVenderBorrador.setModel(modelo);
-
+        }else if (SaPocCoVenb==1) {
+            //hacer cuando es credito fiscal
+        }
+            
     }//GEN-LAST:event_btnConsolidarVentasBorradorActionPerformed
 
     private void btnVerDetalleVentaBorradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerDetalleVentaBorradorMouseClicked
@@ -10879,7 +10821,14 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     }//GEN-LAST:event_btnVenderConsolidarActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
-        // TODO add your handling code here:
+        jpnConsolidarVentas.setVisible(false);
+        jpnListaVentasBorrador.setVisible(true);
+        lblNITConsolidarVentab.setVisible(true);
+            txtNITConsolidarVentab.setVisible(true);
+            lblNRCConsollidarVentab.setVisible(true);
+            txtNRCConsolidarVenta.setVisible(true);
+            lblGiroConsolidarVenta.setVisible(true);
+            txtGiroConsolidarVentab.setVisible(true);
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnAtrasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtrasMouseExited
@@ -11150,13 +11099,13 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
             
     }//GEN-LAST:event_cmbFiltroSucursalVentasBorradorItemStateChanged
 
-    private void txtNITConsolidarVentaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNITConsolidarVentaKeyPressed
+    private void txtNITConsolidarVentabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNITConsolidarVentabKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNITConsolidarVentaKeyPressed
+    }//GEN-LAST:event_txtNITConsolidarVentabKeyPressed
 
-    private void txtNITConsolidarVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNITConsolidarVentaKeyTyped
+    private void txtNITConsolidarVentabKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNITConsolidarVentabKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNITConsolidarVentaKeyTyped
+    }//GEN-LAST:event_txtNITConsolidarVentabKeyTyped
 
     private void txtNRCConsolidarVentaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNRCConsolidarVentaKeyPressed
         // TODO add your handling code here:
@@ -11182,38 +11131,9 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
         // TODO add your handling code here:
     }//GEN-LAST:event_txtClienteConsolidarVentaKeyTyped
 
-    private void txtGiroConsolidarVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGiroConsolidarVentaKeyTyped
+    private void txtGiroConsolidarVentabKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGiroConsolidarVentabKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtGiroConsolidarVentaKeyTyped
-
-    private void btnContinuarVentabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnContinuarVentabMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnContinuarVentabMouseEntered
-
-    private void btnContinuarVentabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnContinuarVentabMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnContinuarVentabMouseExited
-
-    private void btnContinuarVentabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarVentabActionPerformed
-        jpnDatosVentaBorrador.setVisible(false);
-        jpnConsolidarVentas.setVisible(true);
-    }//GEN-LAST:event_btnContinuarVentabActionPerformed
-
-    private void btnAtrasDatosVentabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtrasDatosVentabMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAtrasDatosVentabMouseEntered
-
-    private void btnAtrasDatosVentabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtrasDatosVentabMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAtrasDatosVentabMouseExited
-
-    private void btnAtrasDatosVentabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasDatosVentabActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAtrasDatosVentabActionPerformed
-
-    private void cmmDatosVentasbItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmmDatosVentasbItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmmDatosVentasbItemStateChanged
+    }//GEN-LAST:event_txtGiroConsolidarVentabKeyTyped
 
     private void txtNoDocVentabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNoDocVentabKeyPressed
         // TODO add your handling code here:
@@ -11222,6 +11142,10 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private void txtNoDocVentabKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNoDocVentabKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNoDocVentabKeyTyped
+
+    private void cmmDatosVentasbItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmmDatosVentasbItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmmDatosVentasbItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -11283,7 +11207,6 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JButton btnAgregarUsuario;
     private javax.swing.JButton btnAgregarVenta;
     private javax.swing.JButton btnAtras;
-    private javax.swing.JButton btnAtrasDatosVentab;
     private javax.swing.JButton btnAtrasDetalleCompra;
     private javax.swing.JButton btnAtrasDetalleCompra1;
     private javax.swing.JButton btnAtrasDetalleVentaBorrador;
@@ -11308,7 +11231,6 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCompras;
     private javax.swing.JButton btnConsolidarVentasBorrador;
-    private javax.swing.JButton btnContinuarVentab;
     private javax.swing.JButton btnEliminarBitacora;
     private javax.swing.JButton btnEliminarBitacora1;
     private javax.swing.JButton btnEliminarProducto;
@@ -11394,7 +11316,6 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JLabel jLabel119;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel120;
-    private javax.swing.JLabel jLabel121;
     private javax.swing.JLabel jLabel125;
     private javax.swing.JLabel jLabel126;
     private javax.swing.JLabel jLabel129;
@@ -11521,7 +11442,6 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JPanel jPanel65;
     private javax.swing.JPanel jPanel66;
     private javax.swing.JPanel jPanel67;
-    private javax.swing.JPanel jPanel68;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
@@ -11557,7 +11477,6 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JSeparator jSeparator113;
     private javax.swing.JSeparator jSeparator114;
     private javax.swing.JSeparator jSeparator115;
-    private javax.swing.JSeparator jSeparator116;
     private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator13;
     private javax.swing.JSeparator jSeparator14;
@@ -11659,7 +11578,6 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JPanel jpnConfiguracion;
     private javax.swing.JPanel jpnConsolidarVentas;
     private javax.swing.JPanel jpnCuarto;
-    private javax.swing.JPanel jpnDatosVentaBorrador;
     private javax.swing.JPanel jpnDecimo;
     private javax.swing.JPanel jpnDetalleCompra;
     private javax.swing.JPanel jpnDetalleVenta;
@@ -11753,7 +11671,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JLabel lblFecha3;
     private javax.swing.JLabel lblFecha4;
     private javax.swing.JLabel lblFiltrarVentasBorrador;
-    private javax.swing.JLabel lblFiltrarVentasBorrador1;
+    private javax.swing.JLabel lblFiltrarVentasBorrador2;
     private javax.swing.JLabel lblGiroConsolidarVenta;
     private javax.swing.JLabel lblIdCompra2;
     private javax.swing.JLabel lblIva;
@@ -11777,9 +11695,9 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JLabel lblMitad6;
     private javax.swing.JLabel lblMitad8;
     private javax.swing.JLabel lblMitad9;
-    private javax.swing.JLabel lblNITConsolidarVenta;
+    private javax.swing.JLabel lblNITConsolidarVentab;
     private javax.swing.JLabel lblNITVenta;
-    private javax.swing.JLabel lblNRCConsollidarVenta;
+    private javax.swing.JLabel lblNRCConsollidarVentab;
     private javax.swing.JLabel lblNoDocVentab;
     private javax.swing.JLabel lblNomProd2;
     private javax.swing.JLabel lblPercepcion;
@@ -11850,7 +11768,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JTextField txtFechaDetalleCompra;
     private javax.swing.JTextField txtFechaDetalleVenta;
     private javax.swing.JTextField txtFechaDetalleVentaBorrador;
-    private javax.swing.JTextField txtGiroConsolidarVenta;
+    private javax.swing.JTextField txtGiroConsolidarVentab;
     private javax.swing.JTextField txtGiroDetalleVenta;
     private javax.swing.JTextField txtGiroVenta;
     private javax.swing.JTextField txtIDProveedor;
@@ -11875,7 +11793,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JTextField txtModIdSuc;
     private javax.swing.JTextField txtModNombreSuc;
     private javax.swing.JTextField txtNIT;
-    private javax.swing.JTextField txtNITConsolidarVenta;
+    private javax.swing.JTextField txtNITConsolidarVentab;
     private javax.swing.JTextField txtNITDetalleVenta;
     private javax.swing.JTextField txtNITVenta;
     private javax.swing.JTextField txtNRCConsolidarVenta;
