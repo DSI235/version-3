@@ -10716,14 +10716,14 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
             double SubTotal = 0.0;
             double cantidad=0.0, preciounitario=0.0;
             while (venta.hasNext()) {
-                fila[1] = venta.next();//codigo barra
                 fila[0] = venta.next();//id venta
+                fila[1] = venta.next();// codigo barra
                 fila[2] = venta.next();//cantidad
                 fila[3] = venta.next();//precio unitario  
                 cantidad = Double.parseDouble(fila[2].toString());
                 preciounitario = Double.parseDouble(fila[3].toString());
                 SubTotal = cantidad*preciounitario*(Double.parseDouble(iva)+1);                
-                fila[4] = String.valueOf((df.format(SubTotal)));
+                fila[4] = String.valueOf((df.format(SubTotal)));//SubTotal
                 System.out.println(""+modelo.getRowCount());                
                 for(int j=0;j<modelo.getRowCount();j++){
                 if(fila[1]==modelo.getValueAt(j, 1)){
@@ -10858,17 +10858,28 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
             double utvbm = totalgravadovb;
             totalgravadovb= totalgravadovb/(1-utilidadb);
             double ivabprecio= totalgravadovb*(Double.parseDouble(iva)+1);
-            double ivafb= ivabprecio-totalgravadovb;
-            double pac = ivabprecio*(Double.parseDouble(pacvb));
+            double ivafb= ivabprecio-totalgravadovb;            
+            double pac = ivabprecio*(Double.parseDouble(pacvb));            
             double utilidadvbm = totalgravadovb-(utvbm);
-            
-//            subtotalvb = subtotalvb*(1-precionormalb);
-            
-          cn.UID("UPDATE venta SET TipoVenta= (\"F\"), IdTipoPrecio=3, IVA='" +(df.format(ivafb))+ "', "
-                  + "TotalGravado='" +(df.format(totalgravadovb))+ "', Total='" +ivabprecio+ "', "
-                  + "NDocumento='" +txtNoDocVentab.getText()+ "', PAC='" +(df.format(pac))+ "', "
-                  + "Utilidad='" +(df.format(utilidadvbm))+ "' "
+            utilidadvbm = Double.parseDouble(df.format(utilidadvbm));
+            totalgravadovb= Double.parseDouble(df.format(totalgravadovb));
+            ivafb = Double.parseDouble(df.format(ivafb));
+            pac = Double.parseDouble(df.format(pac));
+            ivabprecio=Double.parseDouble(df.format(ivabprecio));
+          cn.UID("UPDATE venta SET TipoVenta= (\"F\"), IdTipoPrecio=3, IVA='" +ivafb+ "', "
+                  + "TotalGravado='" +totalgravadovb+ "', Total='" +ivabprecio+ "', "
+                  + "NDocumento='" +txtNoDocVentab.getText()+ "', PAC='" +pac+ "', "
+                  + "Utilidad='" +utilidadvbm+ "' "
                   + "WHERE IdVenta='" +tblProductosVenderBorrador.getValueAt(i, 0)+ "'");  
+          //
+          preciovb = preciovb*(1-precionormalb);
+          preciovb = preciovb/(1-utilidadb);
+          preciovb=Double.parseDouble(df.format(preciovb));
+          //
+          cn.UID("UPDATE detalleventa SET PrecioUnitario='" +preciovb+ "'"
+                  + " WHERE IdVenta='" +tblProductosVenderBorrador.getValueAt(i, 0)+ "' "
+                  + "AND CodBarra='" +tblProductosVenderBorrador.getValueAt(i, 1)+ "'");  
+          //
         }
     }//GEN-LAST:event_btnVenderConsolidarActionPerformed
 
