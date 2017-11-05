@@ -10835,10 +10835,41 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
 
     private void btnVenderConsolidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderConsolidarActionPerformed
         //viene lo yuca
+        conection cn = new conection();
         int saPocCoVenb = cmmDatosVentasb.getSelectedIndex();                
         if (saPocCoVenb==0) {            
         }
-        
+        Double utilidadb=0.0, precionormalb=0.0;
+        String iva=null;
+        String pacvb=null;
+        try {
+            cn.Conectar();
+            utilidadb = cn.utilidadPrecio("minimo");            
+            precionormalb = cn.utilidadPrecio("normal");            
+            iva = cn.ValorParametro("iva");
+            pacvb = cn.ValorParametro("pac");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        for(int i=0;i < tblProductosVenderBorrador.getRowCount();i++){
+            double cantidadvb = (Double.parseDouble(tblProductosVenderBorrador.getValueAt(i, 2).toString() ));
+            double preciovb = (Double.parseDouble(tblProductosVenderBorrador.getValueAt(i, 3).toString() ));
+            double totalgravadovb= (cantidadvb*preciovb)*(1-precionormalb);
+            double utvbm = totalgravadovb;
+            totalgravadovb= totalgravadovb/(1-utilidadb);
+            double ivabprecio= totalgravadovb*(Double.parseDouble(iva)+1);
+            double ivafb= ivabprecio-totalgravadovb;
+            double pac = ivabprecio*(Double.parseDouble(pacvb));
+            double utilidadvbm = totalgravadovb-(utvbm);
+            
+//            subtotalvb = subtotalvb*(1-precionormalb);
+            
+          cn.UID("UPDATE venta SET TipoVenta= (\"F\"), IdTipoPrecio=3, IVA='" +(df.format(ivafb))+ "', "
+                  + "TotalGravado='" +(df.format(totalgravadovb))+ "', Total='" +ivabprecio+ "', "
+                  + "NDocumento='" +txtNoDocVentab.getText()+ "', PAC='" +(df.format(pac))+ "', "
+                  + "Utilidad='" +(df.format(utilidadvbm))+ "' "
+                  + "WHERE IdVenta='" +tblProductosVenderBorrador.getValueAt(i, 0)+ "'");  
+        }
     }//GEN-LAST:event_btnVenderConsolidarActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
