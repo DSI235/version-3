@@ -10645,7 +10645,17 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     }//GEN-LAST:event_btnConsolidarVentasBorradorMouseExited
 
     private void btnConsolidarVentasBorradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsolidarVentasBorradorActionPerformed
-
+       conection cn = new conection();
+        Double utilidadb=0.0;
+        String iva=null;
+        try {
+            cn.Conectar();
+            utilidadb = cn.utilidadPrecio("minimo");            
+                        iva = cn.ValorParametro("iva");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }        
+        
         int SaPocCoVenb = cmmDatosVentasb.getSelectedIndex();                
         jpnListaVentasBorrador.setVisible(false);
         jpnConsolidarVentas.setVisible(true);
@@ -10674,39 +10684,46 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
             for(int i=0; i<tblListaVentasBorrador.getSelectedRowCount(); i++){
             a=true;                                
             //LLENAR TABlA DE CONSOLIDAR VENTA
-            String[] cm = new String[]{"CodBarra", "IdVenta", "Cantidad", "PrecioUnitario"};
+            String[] cm = new String[]{"IdVenta", "CodBarra", "Cantidad", "PrecioUnitario"};
             iList p = new iList(new ListasTablas("IdVenta", tblListaVentasBorrador.getValueAt(VentasSeleccionadas[i], 0)));
             ArrayList<Object> listaDetalleVentas = new ArrayList();
            //Calcular nuevos precios para Subtotal y total y luego calcular el pac y la utilidad
                                             
            //------------
-            conection cn = new conection();
+//            conection cn = new conection();
             try {
                 cn.Conectar();
                 PreparedStatement ps = cn.BuscarRegistro("detalleventa", cm, p);
                 ResultSet rs = ps.executeQuery();
 
                 while (rs.next()) {
-                    listaDetalleVentas.add(rs.getString("CodBarra"));
                     listaDetalleVentas.add(rs.getString("IdVenta"));
+                    listaDetalleVentas.add(rs.getString("CodBarra"));
                     listaDetalleVentas.add(rs.getString("Cantidad"));
                     listaDetalleVentas.add(rs.getString("PrecioUnitario"));
+//                    listaDetalleVentas.add(rs.getString("SubTotal"));
                 }
                 cn.Desconectar();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Algo paso llenando la tabla de detalle venta " + e.getMessage());
             }
             ArrayList<DetalleVenta> listaDetalleVenta = (ArrayList) listaDetalleVentas;
-            Object[] fila = new Object[4];
+            Object[] fila = new Object[5];
 
-            String[] detalleventas = new String[]{"IdVenta", "CodBarra", "Cantidad", "Precio Unitario"};
+            String[] detalleventas = new String[]{"IdVenta", "CodBarra", "Cantidad", "Precio Unitario", "SubTotal"};
             modelo.setColumnIdentifiers(detalleventas);
             Iterator<DetalleVenta> venta = listaDetalleVenta.iterator();
+            double SubTotal = 0.0;
+            double cantidad=0.0, preciounitario=0.0;
             while (venta.hasNext()) {
                 fila[1] = venta.next();//codigo barra
                 fila[0] = venta.next();//id venta
                 fila[2] = venta.next();//cantidad
-                fila[3] = venta.next();//precio unitario                
+                fila[3] = venta.next();//precio unitario  
+                cantidad = Double.parseDouble(fila[2].toString());
+                preciounitario = Double.parseDouble(fila[3].toString());
+                SubTotal = cantidad*preciounitario*(Double.parseDouble(iva)+1);                
+                fila[4] = String.valueOf((df.format(SubTotal)));
                 System.out.println(""+modelo.getRowCount());                
                 for(int j=0;j<modelo.getRowCount();j++){
                 if(fila[1]==modelo.getValueAt(j, 1)){
@@ -10817,7 +10834,11 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     }//GEN-LAST:event_btnVenderConsolidarMouseExited
 
     private void btnVenderConsolidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderConsolidarActionPerformed
-        // TODO add your handling code here:
+        //viene lo yuca
+        int saPocCoVenb = cmmDatosVentasb.getSelectedIndex();                
+        if (saPocCoVenb==0) {            
+        }
+        
     }//GEN-LAST:event_btnVenderConsolidarActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
@@ -10908,7 +10929,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
             txtPacDetalleVenta.setText(tblListaVentas.getValueAt(tblListaVentas.getSelectedRow(), 14).toString());
             txtUtilidadDetalleVenta.setText(tblListaVentas.getValueAt(tblListaVentas.getSelectedRow(), 15).toString());        
             //LLENAR TABlA DE DETALLE VENTA
-            String[] cm = new String[]{"CodBarra", "IdVenta", "Cantidad", "PrecioUnitario"};
+            String[] cm = new String[]{"IdVenta", "CodBarra", "Cantidad", "PrecioUnitario"};
             iList p = new iList(new ListasTablas("IdVenta", tblListaVentas.getValueAt(tblListaVentas.getSelectedRow(), 0)));
             ArrayList<Object> listaDetalleVentas = new ArrayList();
             DefaultTableModel modelo = new DefaultTableModel();
@@ -10920,8 +10941,8 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
 
                 while (rs.next()) {
 
-                    listaDetalleVentas.add(rs.getString("CodBarra"));
                     listaDetalleVentas.add(rs.getString("IdVenta"));
+                    listaDetalleVentas.add(rs.getString("CodBarra"));
                     listaDetalleVentas.add(rs.getString("Cantidad"));
                     listaDetalleVentas.add(rs.getString("PrecioUnitario"));
                 }
