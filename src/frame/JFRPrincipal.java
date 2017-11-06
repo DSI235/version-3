@@ -11027,7 +11027,8 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
         }
         }
         //finaliza credito fiscal
-        
+
+//        imprimirVenta();
 
     }//GEN-LAST:event_btnVenderConsolidarActionPerformed
 
