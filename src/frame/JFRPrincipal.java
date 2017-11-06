@@ -10669,7 +10669,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
         //para los dos tipo factura
          boolean a=true;
             double suma=0, total=0;
-            DefaultTableModel modelo = new DefaultTableModel();
+            DefaultTableModel modelo = new DefaultTableModel();            
             VentasSeleccionadas = tblListaVentasBorrador.getSelectedRows();
         //finaliza
         //hacer cuando es factura
@@ -10691,11 +10691,12 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
            //Calcular nuevos precios para Subtotal y total y luego calcular el pac y la utilidad
                                             
            //------------
-//            conection cn = new conection();
             try {
                 cn.Conectar();
                 PreparedStatement ps = cn.BuscarRegistro("detalleventa", cm, p);
                 ResultSet rs = ps.executeQuery();
+                
+                System.out.println("RESULT SET DE DETALLE VENTA" + rs.toString());
 
                 while (rs.next()) {
                     listaDetalleVentas.add(rs.getString("IdVenta"));
@@ -10703,6 +10704,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
                     listaDetalleVentas.add(rs.getString("Cantidad"));
                     listaDetalleVentas.add(rs.getString("PrecioUnitario"));
                 }
+                System.out.println("LISTA DETALLE VENTAS " + listaDetalleVentas.toString());
                 cn.Desconectar();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Algo paso llenando la tabla de detalle venta " + e.getMessage());
@@ -10724,17 +10726,9 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
                 preciounitario = Double.parseDouble(fila[3].toString());
                 SubTotal = cantidad*preciounitario*(Double.parseDouble(iva)+1);                
                 fila[4] = String.valueOf((dosdigitos.format(SubTotal)));//SubTotal
-                System.out.println(""+modelo.getRowCount());                
-                for(int j=0;j<modelo.getRowCount();j++){
-                if(fila[1]==modelo.getValueAt(j, 1)){
-                   modelo.setValueAt(Integer.parseInt(modelo.getValueAt(j, 2).toString())+ Integer.parseInt(fila[2].toString()), j, 2);
-                   a=false;
-                }
-                }                
-            }
-             if(a=true){
-                  modelo.addRow(fila); 
-                }    
+                System.out.println(""+modelo.getRowCount());
+                modelo.addRow(fila);             
+            }            
             }      
         Double  precionormalb=0.0;
         String pacvb=null;
@@ -10808,16 +10802,9 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
                 SubTotal = cantidad*preciounitario;                
                 fila[4] = String.valueOf((dosdigitos.format(SubTotal)));//SubTotal
                 System.out.println(""+modelo.getRowCount());                
-                for(int j=0;j<modelo.getRowCount();j++){
-                if(fila[1]==modelo.getValueAt(j, 1)){
-                   modelo.setValueAt(Integer.parseInt(modelo.getValueAt(j, 2).toString())+ Integer.parseInt(fila[2].toString()), j, 2);
-                   a=false;
-                }
-                }                
+                modelo.addRow(fila); 
             }
-             if(a=true){
-                  modelo.addRow(fila); 
-                }    
+                  
             }            
             //mostrar en txt
             tblProductosVenderBorrador.setModel(modelo);
@@ -10850,8 +10837,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
             txtUtilidadConsolidarVenta.setText("$"+dosdigitos.format(utilidadvb));
             txtIvaVenta1.setText("$"+dosdigitos.format(saberiva));
              //
-        }
-            
+        }            
     }//GEN-LAST:event_btnConsolidarVentasBorradorActionPerformed
 
     private void btnVerDetalleVentaBorradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerDetalleVentaBorradorMouseClicked
@@ -10975,6 +10961,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
             ivafb = Double.parseDouble(df.format(ivafb));
             pac = Double.parseDouble(df.format(pac));
             ivabprecio=Double.parseDouble(df.format(ivabprecio));
+            
           cn.UID("UPDATE venta SET TipoVenta= (\"F\"), IdTipoPrecio=3, IVA='" +ivafb+ "', "
                   + "TotalGravado='" +totalgravadovb+ "', Total='" +ivabprecio+ "', "
                   + "NDocumento='" +txtNoDocVentab.getText()+ "', PAC='" +pac+ "', "
@@ -11027,7 +11014,8 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
         }
         }
         //finaliza credito fiscal
-
+        jpnListaVentas.setVisible(true);
+        jpnConsolidarVentas.setVisible(false);        
 //        imprimirVenta();
 
     }//GEN-LAST:event_btnVenderConsolidarActionPerformed
@@ -12268,13 +12256,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
         
         }else{
         JOptionPane.showMessageDialog(null,"Para credito fiscal y borradro no se imprime", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-        }
-        
-        
-        
-
-        
-           
+        }                                          
     }
 }
 

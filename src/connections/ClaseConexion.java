@@ -173,6 +173,7 @@ public abstract class ClaseConexion {
             u++;
         }
         System.out.println(sql);
+        System.out.println("SQL BUSCAR: " + ps.toString());
         return ps;
     }
 
