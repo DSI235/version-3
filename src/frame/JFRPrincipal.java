@@ -1922,7 +1922,7 @@ public void LlenarVenta() {
         lblSumaVenta1 = new javax.swing.JLabel();
         txtIvaVenta1 = new javax.swing.JTextField();
         lblIvaVenta1 = new javax.swing.JLabel();
-        txtTotalVenta1 = new javax.swing.JTextField();
+        txtTotalVentab = new javax.swing.JTextField();
         lblTotalVenta1 = new javax.swing.JLabel();
         jSeparator112 = new javax.swing.JSeparator();
         lblFecha4 = new javax.swing.JLabel();
@@ -6250,7 +6250,7 @@ public void LlenarVenta() {
         lblIvaVenta1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblIvaVenta1.setText("Iva :   $");
         jpnConsolidarVentas.add(lblIvaVenta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 480, 50, 30));
-        jpnConsolidarVentas.add(txtTotalVenta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 510, 100, 30));
+        jpnConsolidarVentas.add(txtTotalVentab, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 510, 100, 30));
 
         lblTotalVenta1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblTotalVenta1.setText("TOTAL:      $");
@@ -10682,6 +10682,8 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
             txtNRCConsolidarVenta.setVisible(false);
             lblGiroConsolidarVenta.setVisible(false);
             txtGiroConsolidarVentab.setVisible(false);
+            lblIvaVenta1.setVisible(false);
+            txtIvaVenta1.setVisible(false);
             for(int i=0; i<tblListaVentasBorrador.getSelectedRowCount(); i++){
             a=true;                                
             //LLENAR TABlA DE CONSOLIDAR VENTA
@@ -10735,12 +10737,36 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
              if(a=true){
                   modelo.addRow(fila); 
                 }    
-            }            
-            //HAY QUE CALCULAR DE NUEVO LOS TOTALES CON EL NUEVO PRECIO            
-            txtSumaVenta1.setText(""+dosdigitos.format(suma));
-            txtTotalVenta1.setText(""+dosdigitos.format(total));
-            tblProductosVenderBorrador.setModel(modelo);
-        }else if (SaPocCoVenb==1) {
+            }      
+        Double  precionormalb=0.0;
+        String pacvb=null;
+        try {
+            cn.Conectar();
+            precionormalb = cn.utilidadPrecio("normal");            
+            pacvb = cn.ValorParametro("pac");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());            
+        }
+        tblProductosVenderBorrador.setModel(modelo);
+            //para mostrar en los txt
+            int filas = tblProductosVenderBorrador.getRowCount(), iter=0;
+            double totalvb=0;
+            while (iter<filas){
+                totalvb=totalvb+Double.parseDouble(String.valueOf(tblProductosVenderBorrador.getValueAt(iter, 4).toString()));
+                iter++;
+            }                    
+            double pacvbmos = totalvb*(Double.parseDouble(pacvb));
+            double pcsiniva = totalvb/(1+Double.parseDouble(iva));
+            double pcsinut = pcsiniva*(1-precionormalb);
+            double txtucv = pcsiniva-pcsinut;
+
+            txtTotalVentab.setText("$"+dosdigitos.format(totalvb));
+            txtSumaVenta1.setText("$"+dosdigitos.format(totalvb));
+            txtPacConsolidarVenta.setText("$"+dosdigitos.format(pacvbmos));
+            txtUtilidadConsolidarVenta.setText("$"+dosdigitos.format(txtucv));            
+        }
+        //
+        else if (SaPocCoVenb==1) {
             //hacer cuando es credito fiscal
              for(int i=0; i<tblListaVentasBorrador.getSelectedRowCount(); i++){
             a=true;                                
@@ -10751,7 +10777,6 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
            //Calcular nuevos precios para Subtotal y total y luego calcular el pac y la utilidad
                                             
            //------------
-//            conection cn = new conection();
             try {
                 cn.Conectar();
                 PreparedStatement ps = cn.BuscarRegistro("detalleventa", cm, p);
@@ -10796,10 +10821,37 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
                   modelo.addRow(fila); 
                 }    
             }            
-            //HAY QUE CALCULAR DE NUEVO LOS TOTALES CON EL NUEVO PRECIO            
-            txtSumaVenta1.setText(""+dosdigitos.format(suma));
-            txtTotalVenta1.setText(""+dosdigitos.format(total));
+            //mostrar en txt
             tblProductosVenderBorrador.setModel(modelo);
+            //para mostrar en los txt
+            Double  precionormalb=0.0;
+        String pacvb=null;
+        try {
+            cn.Conectar();
+            precionormalb = cn.utilidadPrecio("normal");            
+            pacvb = cn.ValorParametro("pac");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            
+        }
+            int filas = tblProductosVenderBorrador.getRowCount(), iter=0;
+            double totalvb=0;
+            while (iter<filas){
+                totalvb=totalvb+Double.parseDouble(String.valueOf(tblProductosVenderBorrador.getValueAt(iter, 4).toString()));
+                iter++;
+            }                    
+            double productosConiva = totalvb*(1+Double.parseDouble(iva));
+            double saberiva = productosConiva - totalvb;
+            double saberpac = totalvb*(Double.parseDouble(pacvb));
+            double saberUtilidad = totalvb*(1-precionormalb);
+            double utilidadvb = totalvb-saberUtilidad;
+
+            txtTotalVentab.setText("$"+dosdigitos.format(totalvb));
+            txtSumaVenta1.setText("$"+dosdigitos.format(productosConiva));
+            txtPacConsolidarVenta.setText("$"+dosdigitos.format(saberpac));
+            txtUtilidadConsolidarVenta.setText("$"+dosdigitos.format(utilidadvb));
+            txtIvaVenta1.setText("$"+dosdigitos.format(saberiva));
+             //
         }
             
     }//GEN-LAST:event_btnConsolidarVentasBorradorActionPerformed
@@ -10990,6 +11042,8 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
             txtNRCConsolidarVenta.setVisible(true);
             lblGiroConsolidarVenta.setVisible(true);
             txtGiroConsolidarVentab.setVisible(true);
+            lblIvaVenta1.setVisible(true);
+            txtIvaVenta1.setVisible(true);
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnAtrasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtrasMouseExited
@@ -12018,7 +12072,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JTextField txtTotalGravadoDetalleVenta;
     private javax.swing.JTextField txtTotalGravadoDetalleVentaBorrador;
     private javax.swing.JTextField txtTotalVenta;
-    private javax.swing.JTextField txtTotalVenta1;
+    private javax.swing.JTextField txtTotalVentab;
     private javax.swing.JTextField txtUsernameUsuario;
     private javax.swing.JTextField txtUsuariosBuscar;
     private javax.swing.JTextField txtUtPar;
