@@ -10659,9 +10659,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
         int SaPocCoVenb = cmmDatosVentasb.getSelectedIndex();                
         jpnListaVentasBorrador.setVisible(false);
         jpnConsolidarVentas.setVisible(true);
-        
-        
-        
+                     
         DecimalFormat dosdigitos = new DecimalFormat("0.00");
         DecimalFormat cuatrodigitos = new DecimalFormat("0.0000");        
         
@@ -10725,7 +10723,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
                 cantidad = Double.parseDouble(fila[2].toString());
                 preciounitario = Double.parseDouble(fila[3].toString());
                 SubTotal = cantidad*preciounitario*(Double.parseDouble(iva)+1);                
-                fila[4] = String.valueOf((df.format(SubTotal)));//SubTotal
+                fila[4] = String.valueOf((dosdigitos.format(SubTotal)));//SubTotal
                 System.out.println(""+modelo.getRowCount());                
                 for(int j=0;j<modelo.getRowCount();j++){
                 if(fila[1]==modelo.getValueAt(j, 1)){
@@ -10808,7 +10806,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
                 cantidad = Double.parseDouble(fila[2].toString());
                 preciounitario = Double.parseDouble(fila[3].toString());
                 SubTotal = cantidad*preciounitario;                
-                fila[4] = String.valueOf((df.format(SubTotal)));//SubTotal
+                fila[4] = String.valueOf((dosdigitos.format(SubTotal)));//SubTotal
                 System.out.println(""+modelo.getRowCount());                
                 for(int j=0;j<modelo.getRowCount();j++){
                 if(fila[1]==modelo.getValueAt(j, 1)){
