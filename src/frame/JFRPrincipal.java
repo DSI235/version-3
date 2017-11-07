@@ -10803,8 +10803,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
                 fila[4] = String.valueOf((dosdigitos.format(SubTotal)));//SubTotal
                 System.out.println(""+modelo.getRowCount());                
                 modelo.addRow(fila); 
-            }
-                  
+            }                  
             }            
             //mostrar en txt
             tblProductosVenderBorrador.setModel(modelo);
@@ -10945,17 +10944,25 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
         //comienza esa etapa
         int saPocCoVenb = cmmDatosVentasb.getSelectedIndex();                
         //si es factura
-        if (saPocCoVenb==0) {            
+        if (saPocCoVenb==0) {      
+            
+            double ivafb=0, totalgravadovb=0,ivabprecio=0,pac=0,utilidadvbm=0;
+            int idVentaborrador;
                     for(int i=0;i < tblProductosVenderBorrador.getRowCount();i++){
+            int idVentaborradorTupla = Integer.parseInt(tblProductosVenderBorrador.getValueAt(i, 0).toString());            
+            idVentaborrador=idVentaborradorTupla;
+                        if (rootPaneCheckingEnabled) {
+                            
+                        }
             double cantidadvb = (Double.parseDouble(tblProductosVenderBorrador.getValueAt(i, 2).toString() ));
             double preciovb = (Double.parseDouble(tblProductosVenderBorrador.getValueAt(i, 3).toString() ));
-            double totalgravadovb= (cantidadvb*preciovb)*(1-precionormalb);
+            totalgravadovb= (cantidadvb*preciovb)*(1-precionormalb);
             double utvbm = totalgravadovb;
             totalgravadovb= totalgravadovb/(1-utilidadb);
-            double ivabprecio= totalgravadovb*(Double.parseDouble(iva)+1);
-            double ivafb= ivabprecio-totalgravadovb;            
-            double pac = ivabprecio*(Double.parseDouble(pacvb));            
-            double utilidadvbm = totalgravadovb-(utvbm);
+            ivabprecio= totalgravadovb*(Double.parseDouble(iva)+1);
+             ivafb= ivabprecio-totalgravadovb;            
+             pac = ivabprecio*(Double.parseDouble(pacvb));            
+            utilidadvbm = totalgravadovb-(utvbm);
             utilidadvbm = Double.parseDouble(df.format(utilidadvbm));
             totalgravadovb= Double.parseDouble(df.format(totalgravadovb));
             ivafb = Double.parseDouble(df.format(ivafb));
@@ -10972,12 +10979,15 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
           preciovb = preciovb/(1-utilidadb);
           preciovb=Double.parseDouble(df.format(preciovb));
           //
+          //*actualizar detalleventa*//
           cn.UID("UPDATE detalleventa SET PrecioUnitario='" +preciovb+ "'"
                   + " WHERE IdVenta='" +tblProductosVenderBorrador.getValueAt(i, 0)+ "' "
                   + "AND CodBarra='" +tblProductosVenderBorrador.getValueAt(i, 1)+ "'");  
-          //
+          //**finaliacion de detalleventa*//
         }
         }// finaliza con factura
+        //*
+        //*
         //comienza credito fiscal
         else if (saPocCoVenb==1) {
                        for(int i=0;i < tblProductosVenderBorrador.getRowCount();i++){
@@ -10995,6 +11005,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
             ivafb = Double.parseDouble(df.format(ivafb));
             pac = Double.parseDouble(df.format(pac));
             ivabprecio=Double.parseDouble(df.format(ivabprecio));
+            ////*actualizar venta*////
           cn.UID("UPDATE venta SET TipoVenta= (\"C\"), IdTipoPrecio=3, IVA='" +ivafb+ "', "
                   +" TotalGravado='" +totalgravadovb+ "', Total='" +totalgravadovb+ "', "
                   +" Giro='" +txtGiroConsolidarVentab.getText()+ "', "
@@ -11002,11 +11013,12 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
                   +" NDocumento='"+txtNoDocVentab.getText()+"', PAC='"+pac+"', "
                   +" Utilidad='" +utilidadvbm+ "'"
                   +" WHERE IdVenta='" +tblProductosVenderBorrador.getValueAt(i, 0)+ "'");  
-          //
+          ////*finalizado de la actualizacion a venta*////
           preciovb = preciovb*(1-precionormalb);
           preciovb = preciovb/(1-utilidadb);
           preciovb=Double.parseDouble(df.format(preciovb));
           //
+          ////*actualizar detalleventa
           cn.UID("UPDATE detalleventa SET PrecioUnitario='" +preciovb+ "'"
                   + " WHERE IdVenta='" +tblProductosVenderBorrador.getValueAt(i, 0)+ "' "
                   + "AND CodBarra='" +tblProductosVenderBorrador.getValueAt(i, 1)+ "'");  
