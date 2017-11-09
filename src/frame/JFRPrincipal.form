@@ -2489,6 +2489,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="reporteComprabtn">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/iconos/reporte.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Reporte"/>
           </Properties>
           <Events>
@@ -6704,7 +6707,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="40" y="220" width="650" height="180"/>
+              <AbsoluteConstraints x="40" y="220" width="650" height="310"/>
             </Constraint>
           </Constraints>
 
@@ -6772,7 +6775,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="160" y="420" width="110" height="30"/>
+              <AbsoluteConstraints x="580" y="540" width="110" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -6892,7 +6895,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="40" y="420" width="110" height="30"/>
+              <AbsoluteConstraints x="390" y="170" width="110" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -7894,14 +7897,16 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnGenerar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Generar Reporte"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/iconos/reporte.png"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGenerarActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="500" y="420" width="130" height="40"/>
+              <AbsoluteConstraints x="500" y="420" width="110" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -7925,7 +7930,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="330" y="420" width="150" height="40"/>
+              <AbsoluteConstraints x="330" y="420" width="160" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -8157,14 +8162,16 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnGenerar1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Generar Reporte"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/iconos/reporte.png"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGenerar1ActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="580" y="400" width="130" height="40"/>
+              <AbsoluteConstraints x="580" y="400" width="110" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -8185,7 +8192,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="410" y="400" width="150" height="40"/>
+              <AbsoluteConstraints x="410" y="400" width="160" height="30"/>
             </Constraint>
           </Constraints>
         </Component>

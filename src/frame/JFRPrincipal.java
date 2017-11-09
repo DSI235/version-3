@@ -212,7 +212,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
             tblBitacora.removeAll();
             LlenarBitacora();
             apagado2();
-            jpnBitacora.setVisible(true);
+            //jpnBitacora.setVisible(true);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -1818,14 +1818,14 @@ public void LlenarVenta() {
         lblListadoVentas3 = new javax.swing.JLabel();
         jSeparator64 = new javax.swing.JSeparator();
         btnAtrasReporteVenta2 = new javax.swing.JButton();
-        cmbMes = new javax.swing.JComboBox<String>();
+        cmbMes = new javax.swing.JComboBox<>();
         jLabel96 = new javax.swing.JLabel();
         jSeparator103 = new javax.swing.JSeparator();
         jLabel100 = new javax.swing.JLabel();
         jSeparator107 = new javax.swing.JSeparator();
-        cmbAño = new javax.swing.JComboBox<String>();
+        cmbAño = new javax.swing.JComboBox<>();
         btnGenerar = new javax.swing.JButton();
-        cmbReporteVenta = new javax.swing.JComboBox<String>();
+        cmbReporteVenta = new javax.swing.JComboBox<>();
         jpnReporteMesCompras = new javax.swing.JPanel();
         jScrollPane17 = new javax.swing.JScrollPane();
         tblListaComprasMes = new javax.swing.JTable();
@@ -1835,14 +1835,14 @@ public void LlenarVenta() {
         lblListadoVentas4 = new javax.swing.JLabel();
         jSeparator67 = new javax.swing.JSeparator();
         btnAtrasReporteCompra = new javax.swing.JButton();
-        cmbMes1 = new javax.swing.JComboBox<String>();
+        cmbMes1 = new javax.swing.JComboBox<>();
         jLabel97 = new javax.swing.JLabel();
         jSeparator104 = new javax.swing.JSeparator();
         jLabel101 = new javax.swing.JLabel();
         jSeparator108 = new javax.swing.JSeparator();
-        cmbAño1 = new javax.swing.JComboBox<String>();
+        cmbAño1 = new javax.swing.JComboBox<>();
         btnGenerar1 = new javax.swing.JButton();
-        cmbReporteCompra = new javax.swing.JComboBox<String>();
+        cmbReporteCompra = new javax.swing.JComboBox<>();
         jpnUsuarios = new javax.swing.JPanel();
         btnAgregarUsuario = new javax.swing.JButton();
         btnModificarUsuario = new javax.swing.JButton();
@@ -1873,8 +1873,8 @@ public void LlenarVenta() {
         jSeparator31 = new javax.swing.JSeparator();
         jSeparator33 = new javax.swing.JSeparator();
         jSeparator36 = new javax.swing.JSeparator();
-        cmbRolUsuario = new javax.swing.JComboBox<String>();
-        cmbEstadoUsuario = new javax.swing.JComboBox<String>();
+        cmbRolUsuario = new javax.swing.JComboBox<>();
+        cmbEstadoUsuario = new javax.swing.JComboBox<>();
         jpnModificarUsuario = new javax.swing.JPanel();
         btnGuardarUsuario1 = new javax.swing.JButton();
         btnAtrasUsuarios1 = new javax.swing.JButton();
@@ -1893,8 +1893,8 @@ public void LlenarVenta() {
         jSeparator58 = new javax.swing.JSeparator();
         jSeparator59 = new javax.swing.JSeparator();
         jSeparator80 = new javax.swing.JSeparator();
-        cmbNuevoRolUsuario = new javax.swing.JComboBox<String>();
-        cmbNuevoEstadoUsuario = new javax.swing.JComboBox<String>();
+        cmbNuevoRolUsuario = new javax.swing.JComboBox<>();
+        cmbNuevoEstadoUsuario = new javax.swing.JComboBox<>();
         jpnListaVentasBorrador = new javax.swing.JPanel();
         jScrollPane19 = new javax.swing.JScrollPane();
         tblListaVentasBorrador = new javax.swing.JTable();
@@ -1905,9 +1905,9 @@ public void LlenarVenta() {
         lblTituloListaVentasBorrador = new javax.swing.JLabel();
         lblFiltrarVentasBorrador = new javax.swing.JLabel();
         jSeparator114 = new javax.swing.JSeparator();
-        cmbFiltroSucursalVentasBorrador = new javax.swing.JComboBox<String>();
+        cmbFiltroSucursalVentasBorrador = new javax.swing.JComboBox<>();
         lblFiltrarVentasBorrador2 = new javax.swing.JLabel();
-        cmmDatosVentasb = new javax.swing.JComboBox<String>();
+        cmmDatosVentasb = new javax.swing.JComboBox<>();
         jpnConsolidarVentas = new javax.swing.JPanel();
         jSeparator81 = new javax.swing.JSeparator();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -3032,6 +3032,7 @@ public void LlenarVenta() {
         jpnCompras.add(lblListadoCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 200, -1));
         jpnCompras.add(jSeparator35, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 117, 200, 10));
 
+        reporteComprabtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/reporte.png"))); // NOI18N
         reporteComprabtn.setText("Reporte");
         reporteComprabtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -5052,7 +5053,7 @@ public void LlenarVenta() {
         tblBitacora.getTableHeader().setReorderingAllowed(false);
         jScrollPane15.setViewportView(tblBitacora);
 
-        jpnBitacora.add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 650, 180));
+        jpnBitacora.add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 650, 310));
 
         btnBuscarBitacora.setBackground(new java.awt.Color(0, 0, 0));
         btnBuscarBitacora.setForeground(new java.awt.Color(255, 255, 255));
@@ -5089,7 +5090,7 @@ public void LlenarVenta() {
                 btnEliminarBitacoraActionPerformed(evt);
             }
         });
-        jpnBitacora.add(btnEliminarBitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, 110, 30));
+        jpnBitacora.add(btnEliminarBitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 540, 110, 30));
 
         jPanel64.setBackground(new java.awt.Color(0, 0, 0));
         jPanel64.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -5146,7 +5147,7 @@ public void LlenarVenta() {
                 btnEliminarBitacora1ActionPerformed(evt);
             }
         });
-        jpnBitacora.add(btnEliminarBitacora1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 110, 30));
+        jpnBitacora.add(btnEliminarBitacora1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 110, 30));
 
         getContentPane().add(jpnBitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -5614,21 +5615,21 @@ public void LlenarVenta() {
         });
         jpnReporteMesVentas2.add(cmbAño, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 70, 30));
 
-        btnGenerar.setText("Generar Reporte");
+        btnGenerar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/reporte.png"))); // NOI18N
         btnGenerar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGenerarActionPerformed(evt);
             }
         });
-        jpnReporteMesVentas2.add(btnGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 420, 130, 40));
+        jpnReporteMesVentas2.add(btnGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 420, 110, 30));
 
-        cmbReporteVenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<SELECCIONAR>", "CREDITO FISCAL", "LIBRE", "FACTURA", " " }));
+        cmbReporteVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<SELECCIONAR>", "CREDITO FISCAL", "LIBRE", "FACTURA", " " }));
         cmbReporteVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbReporteVentaActionPerformed(evt);
             }
         });
-        jpnReporteMesVentas2.add(cmbReporteVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, 150, 40));
+        jpnReporteMesVentas2.add(cmbReporteVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, 160, 30));
 
         getContentPane().add(jpnReporteMesVentas2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -5724,16 +5725,16 @@ public void LlenarVenta() {
         });
         jpnReporteMesCompras.add(cmbAño1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 70, 30));
 
-        btnGenerar1.setText("Generar Reporte");
+        btnGenerar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/reporte.png"))); // NOI18N
         btnGenerar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGenerar1ActionPerformed(evt);
             }
         });
-        jpnReporteMesCompras.add(btnGenerar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 400, 130, 40));
+        jpnReporteMesCompras.add(btnGenerar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 400, 110, 30));
 
-        cmbReporteCompra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<SELECCIONAR>", "CREDITO FISCAL", "LIBRE", "FACTURA", " " }));
-        jpnReporteMesCompras.add(cmbReporteCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 400, 150, 40));
+        cmbReporteCompra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<SELECCIONAR>", "CREDITO FISCAL", "LIBRE", "FACTURA", " " }));
+        jpnReporteMesCompras.add(cmbReporteCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 400, 160, 30));
 
         getContentPane().add(jpnReporteMesCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -5936,10 +5937,10 @@ public void LlenarVenta() {
         jpnAgregarUsuario.add(jSeparator33, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 60, 10));
         jpnAgregarUsuario.add(jSeparator36, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 60, 10));
 
-        cmbRolUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Comprador", "Vendedor" }));
+        cmbRolUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Comprador", "Vendedor" }));
         jpnAgregarUsuario.add(cmbRolUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 180, -1));
 
-        cmbEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo" }));
+        cmbEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
         jpnAgregarUsuario.add(cmbEstadoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 180, -1));
 
         getContentPane().add(jpnAgregarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
@@ -6046,10 +6047,10 @@ public void LlenarVenta() {
         jpnModificarUsuario.add(jSeparator59, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 60, 10));
         jpnModificarUsuario.add(jSeparator80, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 60, 10));
 
-        cmbNuevoRolUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Comprador", "Vendedor" }));
+        cmbNuevoRolUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Comprador", "Vendedor" }));
         jpnModificarUsuario.add(cmbNuevoRolUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 180, -1));
 
-        cmbNuevoEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo" }));
+        cmbNuevoEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
         jpnModificarUsuario.add(cmbNuevoEstadoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 180, -1));
 
         getContentPane().add(jpnModificarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
@@ -6155,7 +6156,7 @@ public void LlenarVenta() {
         lblFiltrarVentasBorrador2.setText("Consolidar como:");
         jpnListaVentasBorrador.add(lblFiltrarVentasBorrador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 120, 30));
 
-        cmmDatosVentasb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Factura", "Credito Fiscal" }));
+        cmmDatosVentasb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Factura", "Credito Fiscal" }));
         cmmDatosVentasb.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmmDatosVentasbItemStateChanged(evt);
@@ -6704,7 +6705,7 @@ public void LlenarVenta() {
         try {
             Proveedor p = new Proveedor();
             p.idProveedor = Integer.parseInt(tblProveedores.getValueAt(tblProveedores.getSelectedRow(), 0).toString().trim());
-            p.idProveedor = Integer.parseInt(tblProveedores.getValueAt(tblProveedores.getSelectedRow(), 1).toString().trim());
+            //p.idProveedor = Integer.parseInt(tblProveedores.getValueAt(tblProveedores.getSelectedRow(), 1).toString().trim());
             ControladorProveedor.Eliminar(p);
             String prove=  tblProveedores.getValueAt(tblProveedores.getSelectedRow(), 0).toString();
             tblProveedores.removeAll();
@@ -8541,6 +8542,7 @@ public void LlenarVenta() {
                     ControladorSucursal.eliminarSucursal(s);
 
                     tblSucursal.removeAll();
+                    jpnSucursal.setVisible(true);
                     LlenarSucursal();
 
                     JOptionPane.showMessageDialog(null, "Sucursal Eliminada");
@@ -8748,10 +8750,11 @@ public void LlenarVenta() {
                     ControladorTipoPrecio.eliminarTipoPrecio(tp);
                     agregarABitacora("Se elimino el tipo precio: " + tblTP.getValueAt(tblTP.getSelectedRow(), 1).toString());
                     tblTP.removeAll();
+                    jpnTipoPrecio.setVisible(true);
                     LlenarTipoPrecio();
 
                     JOptionPane.showMessageDialog(null, "Tipo de precio Eliminado");
-
+                    
                 } catch (ErrorTienda e) {
                     JOptionPane.showMessageDialog(null, "Error al eliminar tipo de precio");
                 }
@@ -8995,8 +8998,10 @@ public void LlenarVenta() {
     }//GEN-LAST:event_txtUtParKeyTyped
 
     private void txtValorParKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorParKeyTyped
-        int longitud = txtValorPar.getText().length();
-        validacion.LongitudLetras(evt, longitud, 29);
+
+        if(txtValorPar.getText().length()>29){
+        evt.consume();
+        }
     }//GEN-LAST:event_txtValorParKeyTyped
 
     private void txtCodBarraProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodBarraProdKeyPressed
@@ -9198,7 +9203,9 @@ public void LlenarVenta() {
     }//GEN-LAST:event_txtPercepcionActionPerformed
 
     private void txtNuevoNRCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNuevoNRCKeyTyped
-        // TODO add your handling code here:
+       if(txtNuevoNRC.getText().length()>7){
+       evt.consume();
+       }
     }//GEN-LAST:event_txtNuevoNRCKeyTyped
 
     private void txtNuevaSucursalProdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNuevaSucursalProdKeyTyped
