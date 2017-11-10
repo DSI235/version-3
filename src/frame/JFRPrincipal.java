@@ -190,6 +190,7 @@ public final class JFRPrincipal extends javax.swing.JFrame {
         LlenarUsuarios();
         LlenarBitacora();
         lblLogeadoComo.setText("Logueado como: "+sesion.username+" / "+sesion.rol);
+        rbtnBitacoraUsuario.setSelected(true);
     }
     
     public void agregarABitacora(String accionRealizada){
@@ -1285,6 +1286,7 @@ public void LlenarVenta() {
     private void initComponents() {
 
         btngFiltroProductos = new javax.swing.ButtonGroup();
+        btngFiltroBitacora = new javax.swing.ButtonGroup();
         jpnBarraSuperior = new javax.swing.JPanel();
         lblBotonCerrar = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
@@ -1752,7 +1754,9 @@ public void LlenarVenta() {
         txtBuscarBitacora = new javax.swing.JTextField();
         jLabel116 = new javax.swing.JLabel();
         jSeparator110 = new javax.swing.JSeparator();
-        btnEliminarBitacora1 = new javax.swing.JButton();
+        rbtnBitacoraUsuario = new javax.swing.JRadioButton();
+        rbtnBitacoraFecha = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
         jpnModificarPrecio = new javax.swing.JPanel();
         btnGuardarPar = new javax.swing.JButton();
         btnAtrasModPar = new javax.swing.JButton();
@@ -1908,6 +1912,7 @@ public void LlenarVenta() {
         cmbFiltroSucursalVentasBorrador = new javax.swing.JComboBox<>();
         lblFiltrarVentasBorrador2 = new javax.swing.JLabel();
         cmmDatosVentasb = new javax.swing.JComboBox<>();
+        btnAtrasReporteCompra1 = new javax.swing.JButton();
         jpnConsolidarVentas = new javax.swing.JPanel();
         jSeparator81 = new javax.swing.JSeparator();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -2525,7 +2530,7 @@ public void LlenarVenta() {
                 btnEliminarProveedorActionPerformed(evt);
             }
         });
-        jpnProveedores.add(btnEliminarProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 520, 110, 30));
+        jpnProveedores.add(btnEliminarProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 520, 110, 30));
 
         btnAgregarProveedor.setBackground(new java.awt.Color(0, 0, 0));
         btnAgregarProveedor.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -2549,7 +2554,7 @@ public void LlenarVenta() {
                 btnAgregarProveedorActionPerformed(evt);
             }
         });
-        jpnProveedores.add(btnAgregarProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 520, 110, 30));
+        jpnProveedores.add(btnAgregarProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 520, 110, 30));
 
         btnModificarProveedor.setBackground(new java.awt.Color(0, 0, 0));
         btnModificarProveedor.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -2572,7 +2577,7 @@ public void LlenarVenta() {
                 btnModificarProveedorActionPerformed(evt);
             }
         });
-        jpnProveedores.add(btnModificarProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 520, 110, 30));
+        jpnProveedores.add(btnModificarProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 520, 110, 30));
 
         tblProveedores =new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex){
@@ -2872,7 +2877,7 @@ public void LlenarVenta() {
                 txtNuevoTelefonoProveedorKeyTyped(evt);
             }
         });
-        jpnModificarProveedor.add(txtNuevoTelefonoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 230, 30));
+        jpnModificarProveedor.add(txtNuevoTelefonoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, 230, 30));
 
         jPanel48.setBackground(new java.awt.Color(0, 0, 0));
         jPanel48.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -2901,7 +2906,7 @@ public void LlenarVenta() {
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel23.setText("Teléfono:");
-        jpnModificarProveedor.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, -1, 20));
+        jpnModificarProveedor.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, -1, 20));
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel24.setText("Dirección:");
@@ -2912,7 +2917,7 @@ public void LlenarVenta() {
         jpnModificarProveedor.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, 20));
         jpnModificarProveedor.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 30, 10));
         jpnModificarProveedor.add(jSeparator41, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 50, 10));
-        jpnModificarProveedor.add(jSeparator42, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 60, 10));
+        jpnModificarProveedor.add(jSeparator42, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, 60, 10));
         jpnModificarProveedor.add(jSeparator43, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 60, 10));
 
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
@@ -2925,12 +2930,12 @@ public void LlenarVenta() {
                 txtEmailKeyTyped(evt);
             }
         });
-        jpnModificarProveedor.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, 230, 30));
+        jpnModificarProveedor.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 430, 230, 30));
 
         jLabel35.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel35.setText("Email:");
-        jpnModificarProveedor.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, -1, 20));
-        jpnModificarProveedor.add(jSeparator82, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, 30, 10));
+        jpnModificarProveedor.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, -1, 20));
+        jpnModificarProveedor.add(jSeparator82, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 450, 30, 10));
 
         txtNuevoNRC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2942,12 +2947,12 @@ public void LlenarVenta() {
                 txtNuevoNRCKeyTyped(evt);
             }
         });
-        jpnModificarProveedor.add(txtNuevoNRC, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 230, 30));
+        jpnModificarProveedor.add(txtNuevoNRC, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 230, 30));
 
         jLabel33.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel33.setText("NRC:");
-        jpnModificarProveedor.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, -1, 20));
-        jpnModificarProveedor.add(jSeparator24, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 30, 10));
+        jpnModificarProveedor.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, -1, 20));
+        jpnModificarProveedor.add(jSeparator24, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 30, 10));
 
         getContentPane().add(jpnModificarProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -2971,7 +2976,7 @@ public void LlenarVenta() {
         tblCompras.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(tblCompras);
 
-        jpnCompras.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 650, 230));
+        jpnCompras.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 650, 310));
 
         btnAgregarCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/agregar.png"))); // NOI18N
         btnAgregarCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -2991,7 +2996,7 @@ public void LlenarVenta() {
                 btnAgregarCompraActionPerformed(evt);
             }
         });
-        jpnCompras.add(btnAgregarCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, 110, 30));
+        jpnCompras.add(btnAgregarCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 460, 110, 30));
 
         btnVerDetalle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/detalles2.png"))); // NOI18N
         btnVerDetalle.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -3011,7 +3016,7 @@ public void LlenarVenta() {
                 btnVerDetalleActionPerformed(evt);
             }
         });
-        jpnCompras.add(btnVerDetalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, 110, 30));
+        jpnCompras.add(btnVerDetalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 460, 110, 30));
 
         jPanel37.setBackground(new java.awt.Color(0, 0, 0));
         jPanel37.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -3039,7 +3044,7 @@ public void LlenarVenta() {
                 reporteComprabtnActionPerformed(evt);
             }
         });
-        jpnCompras.add(reporteComprabtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 380, 100, 30));
+        jpnCompras.add(reporteComprabtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 460, 100, 30));
 
         getContentPane().add(jpnCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -3253,7 +3258,7 @@ public void LlenarVenta() {
                 txtPrecioProductosKeyTyped(evt);
             }
         });
-        jpnNuevoProducto.add(txtPrecioProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 90, 30));
+        jpnNuevoProducto.add(txtPrecioProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 140, 30));
 
         jPanel46.setBackground(new java.awt.Color(0, 0, 0));
         jPanel46.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -3300,7 +3305,7 @@ public void LlenarVenta() {
                 txtProductoInventarioKeyTyped(evt);
             }
         });
-        jpnNuevoProducto.add(txtProductoInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 90, 30));
+        jpnNuevoProducto.add(txtProductoInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 140, 30));
         jpnNuevoProducto.add(jSeparator39, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 50, 20));
 
         jLabel38.setBackground(new java.awt.Color(0, 0, 0));
@@ -3315,7 +3320,7 @@ public void LlenarVenta() {
                 cmbSucursal2ActionPerformed(evt);
             }
         });
-        jpnNuevoProducto.add(cmbSucursal2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 190, 30));
+        jpnNuevoProducto.add(cmbSucursal2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 230, 30));
 
         getContentPane().add(jpnNuevoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -3422,7 +3427,7 @@ public void LlenarVenta() {
                 txtSucursalDetalleCompraActionPerformed(evt);
             }
         });
-        jpnDetalleCompra.add(txtSucursalDetalleCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 160, 30));
+        jpnDetalleCompra.add(txtSucursalDetalleCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 200, 30));
 
         txtNumDocumentoDetalleCompra.setEditable(false);
         txtNumDocumentoDetalleCompra.addActionListener(new java.awt.event.ActionListener() {
@@ -3479,7 +3484,7 @@ public void LlenarVenta() {
         jpnDetalleVenta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtClienteDetalleVenta.setEditable(false);
-        jpnDetalleVenta.add(txtClienteDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 210, 30));
+        jpnDetalleVenta.add(txtClienteDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 230, 30));
 
         jPanel52.setBackground(new java.awt.Color(0, 0, 0));
         jPanel52.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -3511,7 +3516,7 @@ public void LlenarVenta() {
         jPanel52.add(txtNoDocDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, 150, 30));
 
         txtFechaDetalleVenta.setEditable(false);
-        jPanel52.add(txtFechaDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, 160, 30));
+        jPanel52.add(txtFechaDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, 170, 30));
 
         jLabel95.setBackground(new java.awt.Color(0, 0, 0));
         jLabel95.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -3578,23 +3583,23 @@ public void LlenarVenta() {
                 btnAtrasDetalleCompra1ActionPerformed(evt);
             }
         });
-        jpnDetalleVenta.add(btnAtrasDetalleCompra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 110, 30));
+        jpnDetalleVenta.add(btnAtrasDetalleCompra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 110, 30));
 
         txtNITDetalleVenta.setEditable(false);
-        jpnDetalleVenta.add(txtNITDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 170, 30));
+        jpnDetalleVenta.add(txtNITDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 180, 30));
 
         jLabel59.setBackground(new java.awt.Color(0, 0, 0));
         jLabel59.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel59.setText("NIT:");
-        jpnDetalleVenta.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, 30));
+        jpnDetalleVenta.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, 30));
 
         txtNRCDetalleVenta.setEditable(false);
-        jpnDetalleVenta.add(txtNRCDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 100, 30));
+        jpnDetalleVenta.add(txtNRCDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 140, 30));
 
         jLabel87.setBackground(new java.awt.Color(0, 0, 0));
         jLabel87.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel87.setText("NRC:");
-        jpnDetalleVenta.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, 30));
+        jpnDetalleVenta.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, -1, 30));
 
         txtDireccionDetalleVenta.setEditable(false);
         jpnDetalleVenta.add(txtDireccionDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 270, 30));
@@ -3605,7 +3610,7 @@ public void LlenarVenta() {
         jpnDetalleVenta.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, 30));
 
         txtGiroDetalleVenta.setEditable(false);
-        jpnDetalleVenta.add(txtGiroDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, 200, 30));
+        jpnDetalleVenta.add(txtGiroDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, 320, 30));
 
         jLabel89.setBackground(new java.awt.Color(0, 0, 0));
         jLabel89.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -3703,7 +3708,7 @@ public void LlenarVenta() {
             tblListaVentas.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        jpnListaVentas.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 660, 190));
+        jpnListaVentas.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 660, 350));
 
         btnAgregarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/agregar.png"))); // NOI18N
         btnAgregarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -3723,7 +3728,7 @@ public void LlenarVenta() {
                 btnAgregarVentaActionPerformed(evt);
             }
         });
-        jpnListaVentas.add(btnAgregarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 350, 110, 30));
+        jpnListaVentas.add(btnAgregarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 480, 110, 30));
 
         btnBrorrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/borrador.png"))); // NOI18N
         btnBrorrador.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -3743,7 +3748,7 @@ public void LlenarVenta() {
                 btnBrorradorActionPerformed(evt);
             }
         });
-        jpnListaVentas.add(btnBrorrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 110, 30));
+        jpnListaVentas.add(btnBrorrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, 110, 30));
 
         jPanel38.setBackground(new java.awt.Color(0, 0, 0));
         jPanel38.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -3757,12 +3762,12 @@ public void LlenarVenta() {
         lblVentas.setText("Ventas");
         jPanel38.add(lblVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 90, 30));
 
-        jpnListaVentas.add(jPanel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 50));
+        jpnListaVentas.add(jPanel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 50));
 
         lblListadoVentas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblListadoVentas.setText("Listado de Ventas Realizadas:");
-        jpnListaVentas.add(lblListadoVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 200, 30));
-        jpnListaVentas.add(jSeparator45, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 127, 180, 10));
+        jpnListaVentas.add(lblListadoVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 200, 30));
+        jpnListaVentas.add(jSeparator45, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 180, 10));
 
         btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/reporte.png"))); // NOI18N
         btnReport.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -3781,7 +3786,7 @@ public void LlenarVenta() {
                 btnReportActionPerformed(evt);
             }
         });
-        jpnListaVentas.add(btnReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 110, 30));
+        jpnListaVentas.add(btnReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 480, 110, 30));
 
         btnVerDetalleVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/detalles2.png"))); // NOI18N
         btnVerDetalleVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -3801,7 +3806,7 @@ public void LlenarVenta() {
                 btnVerDetalleVentaActionPerformed(evt);
             }
         });
-        jpnListaVentas.add(btnVerDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 110, 30));
+        jpnListaVentas.add(btnVerDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 480, 110, 30));
 
         getContentPane().add(jpnListaVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -4570,7 +4575,7 @@ public void LlenarVenta() {
         tblTP.getTableHeader().setReorderingAllowed(false);
         jScrollPane12.setViewportView(tblTP);
 
-        jpnTipoPrecio.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 550, 120));
+        jpnTipoPrecio.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 550, 260));
 
         btnModificarTP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/modificar.png"))); // NOI18N
         btnModificarTP.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -4590,7 +4595,7 @@ public void LlenarVenta() {
                 btnModificarTPActionPerformed(evt);
             }
         });
-        jpnTipoPrecio.add(btnModificarTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, 110, 30));
+        jpnTipoPrecio.add(btnModificarTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 450, 110, 30));
 
         btnBuscarTP.setBackground(new java.awt.Color(0, 0, 0));
         btnBuscarTP.setForeground(new java.awt.Color(255, 255, 255));
@@ -4640,7 +4645,7 @@ public void LlenarVenta() {
                 btnTPNuevoActionPerformed(evt);
             }
         });
-        jpnTipoPrecio.add(btnTPNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 110, 30));
+        jpnTipoPrecio.add(btnTPNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 450, 110, 30));
 
         btnTPEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
         btnTPEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -4657,7 +4662,7 @@ public void LlenarVenta() {
                 btnTPEliminarActionPerformed(evt);
             }
         });
-        jpnTipoPrecio.add(btnTPEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 110, 30));
+        jpnTipoPrecio.add(btnTPEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 110, 30));
 
         getContentPane().add(jpnTipoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -4914,7 +4919,7 @@ public void LlenarVenta() {
         tblSucursal.getTableHeader().setReorderingAllowed(false);
         jScrollPane11.setViewportView(tblSucursal);
 
-        jpnSucursal.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 650, 180));
+        jpnSucursal.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 650, 290));
 
         btnSucursalNueva.setBackground(new java.awt.Color(0, 0, 0));
         btnSucursalNueva.setForeground(new java.awt.Color(255, 255, 255));
@@ -4933,7 +4938,7 @@ public void LlenarVenta() {
                 btnSucursalNuevaActionPerformed(evt);
             }
         });
-        jpnSucursal.add(btnSucursalNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 430, 110, 30));
+        jpnSucursal.add(btnSucursalNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 520, 110, 30));
 
         btnSucursalBuscar.setBackground(new java.awt.Color(0, 0, 0));
         btnSucursalBuscar.setForeground(new java.awt.Color(255, 255, 255));
@@ -4952,7 +4957,7 @@ public void LlenarVenta() {
                 btnSucursalBuscarActionPerformed(evt);
             }
         });
-        jpnSucursal.add(btnSucursalBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 110, 30));
+        jpnSucursal.add(btnSucursalBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 110, 30));
 
         btnModSucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/modificar.png"))); // NOI18N
         btnModSucursal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -4972,7 +4977,7 @@ public void LlenarVenta() {
                 btnModSucursalActionPerformed(evt);
             }
         });
-        jpnSucursal.add(btnModSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 430, 110, 30));
+        jpnSucursal.add(btnModSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 520, 110, 30));
 
         btnSucursalEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
         btnSucursalEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -4989,7 +4994,7 @@ public void LlenarVenta() {
                 btnSucursalEliminarActionPerformed(evt);
             }
         });
-        jpnSucursal.add(btnSucursalEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 110, 30));
+        jpnSucursal.add(btnSucursalEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, 110, 30));
 
         jPanel51.setBackground(new java.awt.Color(0, 0, 0));
         jPanel51.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -5020,7 +5025,7 @@ public void LlenarVenta() {
                 txtSucursalBuscarKeyPressed(evt);
             }
         });
-        jpnSucursal.add(txtSucursalBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 430, 30));
+        jpnSucursal.add(txtSucursalBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 580, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Buscar sucursal");
@@ -5053,13 +5058,12 @@ public void LlenarVenta() {
         tblBitacora.getTableHeader().setReorderingAllowed(false);
         jScrollPane15.setViewportView(tblBitacora);
 
-        jpnBitacora.add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 650, 310));
+        jpnBitacora.add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 650, 320));
 
         btnBuscarBitacora.setBackground(new java.awt.Color(0, 0, 0));
         btnBuscarBitacora.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscarBitacora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/buscar.png"))); // NOI18N
         btnBuscarBitacora.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnBuscarBitacora.setEnabled(false);
         btnBuscarBitacora.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnBuscarBitacoraMouseEntered(evt);
@@ -5073,7 +5077,7 @@ public void LlenarVenta() {
                 btnBuscarBitacoraActionPerformed(evt);
             }
         });
-        jpnBitacora.add(btnBuscarBitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 170, 110, 30));
+        jpnBitacora.add(btnBuscarBitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 130, 110, 30));
 
         btnEliminarBitacora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
         btnEliminarBitacora.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -5105,11 +5109,11 @@ public void LlenarVenta() {
         jPanel64.add(lblProveedores11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 110, 30));
 
         jpnBitacora.add(jPanel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 50));
-        jpnBitacora.add(jSeparator109, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 130, 10));
+        jpnBitacora.add(jSeparator109, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 130, 10));
 
         jLabel115.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel115.setText("Listado de entradas en la bitacora:");
-        jpnBitacora.add(jLabel115, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
+        jpnBitacora.add(jLabel115, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 165, -1, 40));
 
         txtBuscarBitacora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -5124,30 +5128,26 @@ public void LlenarVenta() {
                 txtBuscarBitacoraKeyTyped(evt);
             }
         });
-        jpnBitacora.add(txtBuscarBitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 640, 30));
+        jpnBitacora.add(txtBuscarBitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 640, 30));
 
         jLabel116.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel116.setText("Buscar en bitacora");
-        jpnBitacora.add(jLabel116, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
-        jpnBitacora.add(jSeparator110, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 96, 100, 20));
+        jpnBitacora.add(jLabel116, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+        jpnBitacora.add(jSeparator110, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 100, 20));
 
-        btnEliminarBitacora1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/eliminar.png"))); // NOI18N
-        btnEliminarBitacora1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnEliminarBitacora1.setEnabled(false);
-        btnEliminarBitacora1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnEliminarBitacora1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnEliminarBitacora1MouseExited(evt);
-            }
-        });
-        btnEliminarBitacora1.addActionListener(new java.awt.event.ActionListener() {
+        rbtnBitacoraUsuario.setText("Usuario");
+        rbtnBitacoraUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarBitacora1ActionPerformed(evt);
+                rbtnBitacoraUsuarioActionPerformed(evt);
             }
         });
-        jpnBitacora.add(btnEliminarBitacora1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 110, 30));
+        jpnBitacora.add(rbtnBitacoraUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, -1));
+
+        rbtnBitacoraFecha.setText("Fecha");
+        jpnBitacora.add(rbtnBitacoraFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, -1, -1));
+
+        jLabel1.setText("Filtrar por:");
+        jpnBitacora.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, -1));
 
         getContentPane().add(jpnBitacora, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -5201,7 +5201,7 @@ public void LlenarVenta() {
         jLabel73.setText("Modifica un tipo de precio:");
         jPanel56.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 270, 30));
 
-        jpnModificarPrecio.add(jPanel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 50));
+        jpnModificarPrecio.add(jPanel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 50));
 
         txtIdPar.setEnabled(false);
         jpnModificarPrecio.add(txtIdPar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 290, 30));
@@ -5484,7 +5484,7 @@ public void LlenarVenta() {
         jLabel82.setText("Modifica un parametro:");
         jPanel59.add(jLabel82, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 270, 30));
 
-        jpnModificarParametro.add(jPanel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 50));
+        jpnModificarParametro.add(jPanel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 50));
 
         txtIdPar1.setEnabled(false);
         jpnModificarParametro.add(txtIdPar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 290, 30));
@@ -5594,7 +5594,7 @@ public void LlenarVenta() {
                 cmbMesItemStateChanged(evt);
             }
         });
-        jpnReporteMesVentas2.add(cmbMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 80, 30));
+        jpnReporteMesVentas2.add(cmbMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 140, 30));
 
         jLabel96.setBackground(new java.awt.Color(0, 0, 0));
         jLabel96.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -5605,15 +5605,15 @@ public void LlenarVenta() {
         jLabel100.setBackground(new java.awt.Color(0, 0, 0));
         jLabel100.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel100.setText("Año:");
-        jpnReporteMesVentas2.add(jLabel100, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, -1, 20));
-        jpnReporteMesVentas2.add(jSeparator107, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 30, 20));
+        jpnReporteMesVentas2.add(jLabel100, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, 20));
+        jpnReporteMesVentas2.add(jSeparator107, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 30, 20));
 
         cmbAño.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbAñoItemStateChanged(evt);
             }
         });
-        jpnReporteMesVentas2.add(cmbAño, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 70, 30));
+        jpnReporteMesVentas2.add(cmbAño, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 130, 30));
 
         btnGenerar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/reporte.png"))); // NOI18N
         btnGenerar.addActionListener(new java.awt.event.ActionListener() {
@@ -5704,7 +5704,7 @@ public void LlenarVenta() {
                 cmbMes1ItemStateChanged(evt);
             }
         });
-        jpnReporteMesCompras.add(cmbMes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 80, 30));
+        jpnReporteMesCompras.add(cmbMes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 150, 30));
 
         jLabel97.setBackground(new java.awt.Color(0, 0, 0));
         jLabel97.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -5715,15 +5715,15 @@ public void LlenarVenta() {
         jLabel101.setBackground(new java.awt.Color(0, 0, 0));
         jLabel101.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel101.setText("Año:");
-        jpnReporteMesCompras.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, -1, 20));
-        jpnReporteMesCompras.add(jSeparator108, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 30, 20));
+        jpnReporteMesCompras.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, 20));
+        jpnReporteMesCompras.add(jSeparator108, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 30, 20));
 
         cmbAño1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbAño1ItemStateChanged(evt);
             }
         });
-        jpnReporteMesCompras.add(cmbAño1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 70, 30));
+        jpnReporteMesCompras.add(cmbAño1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 140, 30));
 
         btnGenerar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/reporte.png"))); // NOI18N
         btnGenerar1.addActionListener(new java.awt.event.ActionListener() {
@@ -5938,10 +5938,10 @@ public void LlenarVenta() {
         jpnAgregarUsuario.add(jSeparator36, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 60, 10));
 
         cmbRolUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Comprador", "Vendedor" }));
-        jpnAgregarUsuario.add(cmbRolUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 180, -1));
+        jpnAgregarUsuario.add(cmbRolUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 190, 30));
 
         cmbEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
-        jpnAgregarUsuario.add(cmbEstadoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 180, -1));
+        jpnAgregarUsuario.add(cmbEstadoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 190, 30));
 
         getContentPane().add(jpnAgregarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -6048,10 +6048,10 @@ public void LlenarVenta() {
         jpnModificarUsuario.add(jSeparator80, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 60, 10));
 
         cmbNuevoRolUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Comprador", "Vendedor" }));
-        jpnModificarUsuario.add(cmbNuevoRolUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 180, -1));
+        jpnModificarUsuario.add(cmbNuevoRolUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 190, 30));
 
         cmbNuevoEstadoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
-        jpnModificarUsuario.add(cmbNuevoEstadoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 180, -1));
+        jpnModificarUsuario.add(cmbNuevoEstadoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 190, 30));
 
         getContentPane().add(jpnModificarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -6150,7 +6150,7 @@ public void LlenarVenta() {
                 cmbFiltroSucursalVentasBorradorItemStateChanged(evt);
             }
         });
-        jpnListaVentasBorrador.add(cmbFiltroSucursalVentasBorrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 150, -1));
+        jpnListaVentasBorrador.add(cmbFiltroSucursalVentasBorrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 102, 190, 30));
 
         lblFiltrarVentasBorrador2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblFiltrarVentasBorrador2.setText("Consolidar como:");
@@ -6163,6 +6163,26 @@ public void LlenarVenta() {
             }
         });
         jpnListaVentasBorrador.add(cmmDatosVentasb, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, 150, 30));
+
+        btnAtrasReporteCompra1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/atras.png"))); // NOI18N
+        btnAtrasReporteCompra1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAtrasReporteCompra1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAtrasReporteCompra1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAtrasReporteCompra1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAtrasReporteCompra1MouseExited(evt);
+            }
+        });
+        btnAtrasReporteCompra1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasReporteCompra1ActionPerformed(evt);
+            }
+        });
+        jpnListaVentasBorrador.add(btnAtrasReporteCompra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 110, 30));
 
         getContentPane().add(jpnListaVentasBorrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 730, 600));
 
@@ -7295,13 +7315,14 @@ public void LlenarVenta() {
             try{
                 ControladorProducto.Agregar(producto);
                 JOptionPane.showMessageDialog(null, "Agregado");
-
+                agregarABitacora("Se agregro producto "+produ);
                 jtblProductos.removeAll();
                 btnBuscarProducto.doClick();
                 
                 jpnNuevoProducto.setVisible(false);
                 jpnProductos.setVisible(true);
-                agregarABitacora("Se agregro producto "+produ);
+               
+                
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
@@ -9203,7 +9224,7 @@ public void LlenarVenta() {
     }//GEN-LAST:event_txtPercepcionActionPerformed
 
     private void txtNuevoNRCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNuevoNRCKeyTyped
-       if(txtNuevoNRC.getText().length()>7){
+       if(txtNuevoNRC.getText().length()>6){
        evt.consume();
        }
     }//GEN-LAST:event_txtNuevoNRCKeyTyped
@@ -9251,7 +9272,7 @@ public void LlenarVenta() {
     }//GEN-LAST:event_cmbAñoItemStateChanged
 
     public void generarReporteVenta(String archivo){
-        String reporte = "C:\\Users\\ronal\\Desktop\\version-3\\src\\reportes\\"+archivo;
+        String reporte = "src/reportes/"+archivo;
         System.out.println(reporte);
         Map parametros = new HashMap();
         conection cn = new conection();
@@ -9313,7 +9334,7 @@ public void LlenarVenta() {
 
 public void generarReporteCompra(String nameReporte){
 
-        String reporte = "C:\\Users\\ronal\\Desktop\\version-3\\src\\reportes\\"+nameReporte;
+        String reporte = "src/reportes/"+nameReporte;
         System.out.println(reporte);
         Map parametros = new HashMap();
         conection cn = new conection();
@@ -10178,6 +10199,7 @@ public void generarReporteCompra(String nameReporte){
                     }
                     System.out.println("LLEgue");
                     agregarDetalleVenta(nventa);
+                    
 
                 } catch (ParseException ex) {
                     JOptionPane.showMessageDialog(null, "Error Parse guardando venta " + ex.getMessage());
@@ -10483,18 +10505,6 @@ public void generarReporteCompra(String nameReporte){
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarBitacoraKeyPressed
 
-    private void btnEliminarBitacora1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarBitacora1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminarBitacora1MouseEntered
-
-    private void btnEliminarBitacora1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarBitacora1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminarBitacora1MouseExited
-
-    private void btnEliminarBitacora1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarBitacora1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminarBitacora1ActionPerformed
-
     private void txtBuscarBitacoraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarBitacoraKeyTyped
  txtBuscarBitacora.addKeyListener(new KeyAdapter() {
             //@Override
@@ -10502,7 +10512,16 @@ public void generarReporteCompra(String nameReporte){
                 String cadena = (txtBuscarBitacora.getText());
                 txtBuscarBitacora.setText(cadena);
                 repaint();
+                
+                if(rbtnBitacoraUsuario.isSelected()){
                 trsFiltroBit.setRowFilter(RowFilter.regexFilter(txtBuscarBitacora.getText(), 1));
+                }else if(rbtnBitacoraFecha.isSelected()){
+                trsFiltroBit.setRowFilter(RowFilter.regexFilter(txtBuscarBitacora.getText(), 2));
+                }else{
+                trsFiltroBit.setRowFilter(RowFilter.regexFilter(txtBuscarBitacora.getText(), 1));
+                }
+                
+                
 
             }
         });
@@ -11375,6 +11394,27 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
         // TODO add your handling code here:
     }//GEN-LAST:event_cmmDatosVentasbItemStateChanged
 
+    private void rbtnBitacoraUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnBitacoraUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtnBitacoraUsuarioActionPerformed
+
+    private void btnAtrasReporteCompra1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtrasReporteCompra1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAtrasReporteCompra1MouseClicked
+
+    private void btnAtrasReporteCompra1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtrasReporteCompra1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAtrasReporteCompra1MouseEntered
+
+    private void btnAtrasReporteCompra1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtrasReporteCompra1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAtrasReporteCompra1MouseExited
+
+    private void btnAtrasReporteCompra1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasReporteCompra1ActionPerformed
+        jpnListaVentasBorrador.setVisible(false);
+        jpnListaVentas.setVisible(true);
+    }//GEN-LAST:event_btnAtrasReporteCompra1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -11445,6 +11485,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JButton btnAtrasModificarProveedor;
     private javax.swing.JButton btnAtrasProveedores;
     private javax.swing.JButton btnAtrasReporteCompra;
+    private javax.swing.JButton btnAtrasReporteCompra1;
     private javax.swing.JButton btnAtrasReporteVenta2;
     private javax.swing.JButton btnAtrasSuc;
     private javax.swing.JButton btnAtrasSuc1;
@@ -11460,7 +11501,6 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JButton btnCompras;
     private javax.swing.JButton btnConsolidarVentasBorrador;
     private javax.swing.JButton btnEliminarBitacora;
-    private javax.swing.JButton btnEliminarBitacora1;
     private javax.swing.JButton btnEliminarProducto;
     private javax.swing.JButton btnEliminarProductoVenta;
     private javax.swing.JButton btnEliminarProveedor;
@@ -11499,6 +11539,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JButton btnVerDetalle;
     private javax.swing.JButton btnVerDetalleVenta;
     private javax.swing.JButton btnVerDetalleVentaBorrador;
+    private javax.swing.ButtonGroup btngFiltroBitacora;
     private javax.swing.ButtonGroup btngFiltroProductos;
     private javax.swing.JComboBox<String> cmbAño;
     private javax.swing.JComboBox<String> cmbAño1;
@@ -11520,6 +11561,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JComboBox cmbTipoPrecioVenta;
     private javax.swing.JComboBox cmbTipoVenta;
     private javax.swing.JComboBox<String> cmmDatosVentasb;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
@@ -11955,6 +11997,8 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
     private javax.swing.JLabel lblnrc;
     private org.edisoncor.gui.panel.PanelCurves panelCurves1;
     private org.edisoncor.gui.panel.PanelCurves panelCurves2;
+    private javax.swing.JRadioButton rbtnBitacoraFecha;
+    private javax.swing.JRadioButton rbtnBitacoraUsuario;
     private javax.swing.JButton reporteComprabtn;
     private javax.swing.JTable tblBitacora;
     private javax.swing.JTable tblCompra;
@@ -12178,9 +12222,11 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
             try {
                 ControladorVenta cv = new ControladorVenta();
                 cv.ActualizarInventario(nventa.articulo, nventa.idSucursal);
-                jtblProductos.removeAll();
+                
                 LlenarProducto("");
                 agregarABitacora("Se agregro el detalle de una venta");
+                imprimirVenta();
+                jtblProductos.removeAll();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error en agregar Detalle de Venta interno");
             }
@@ -12190,7 +12236,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
         }
 
         JOptionPane.showMessageDialog(null, "Se ha agregado la venta correctamente");
-
+        
         jpnAgregarVenta.setVisible(false);
         jpnListaVentas.setVisible(true);
 
@@ -12235,7 +12281,7 @@ btnGuardarPar1.doClick();        // TODO add your handling code here:
                         pagina.drawString("SUCURSAL:  "+cmbSucursalVenta.getSelectedItem().toString(), 20, 110);//CONCATENAR DOCUMENTO
                         pagina.drawString("LE ATENDIO: " +sesion.username, 20, 120);//CONCATENAR DOCUMENTO
                         pagina.drawString("--------------------------------------------------------------------------------------------------------------", 0, 130);
-                        pagina.drawString("NOMBRE: ´"+txtClienteVenta.getText(), 0, 140); //CONCATENAR NOMBRE
+                        pagina.drawString("NOMBRE: "+txtClienteVenta.getText(), 0, 140); //CONCATENAR NOMBRE
                         pagina.drawString("DIRECCION: "+txtDireccionVenta.getText(), 0, 150); //CONCATENAR NOMBRE
                         pagina.drawString("--------------------------------------------------------------------------------------------------------------", 0, 160);
                         pagina.drawString("Codigo     Descripcion     Precio/uni.     Cantidad     Total", 0, 170);
